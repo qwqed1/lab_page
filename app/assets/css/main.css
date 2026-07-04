@@ -1,0 +1,1177 @@
+/* Google Font Roboto is imported via nuxt.config.ts */
+
+:root {
+  --bg-page: #f5f5f5;
+  --bg-card-white: #ffffff;
+  --border-color-grey: #dfdfdf;
+  --text-black: #000000;
+  --text-white: #ffffff;
+  --text-muted: #666666;
+  --font-family: 'Roboto', sans-serif;
+  --transition-speed: 0.3s;
+  --ease-bounce: cubic-bezier(0.25, 1.5, 0.5, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-page);
+  color: var(--text-black);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Page Layout Container */
+.page-container {
+  display: grid;
+  grid-template-columns: 677px 723px;
+  gap: 64px;
+  max-width: 1920px;
+  margin: 0; /* Align to the left edge */
+  padding: 0; /* No margins or paddings from screen edges */
+  min-height: 100vh;
+}
+
+/* Mobile Top Navigation Bar (Default hidden on desktop) */
+.mobile-top-bar {
+  display: none;
+}
+
+/* ==========================================================================
+   LEFT COLUMN (SIDEBAR) STYLES
+   ========================================================================== */
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* Zero gaps, elements touch in sidebar */
+  width: 100%;
+  border-right: 1px solid var(--border-color-grey); /* Right border separating sidebar from content */
+}
+
+/* Promo Green Card (Frame 41) */
+.promo-card {
+  position: relative;
+  width: 100%;
+  height: 567px;
+  border-radius: 0; /* Completely square, no rounding */
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  border: none;
+  border-bottom: 1px solid var(--border-color-grey);
+  /* Solid warm green / sage gradient matching screenshot */
+  background: linear-gradient(180deg, #7e8f7c 0%, #97af96 100%);
+  transition: opacity var(--transition-speed) ease;
+}
+
+.promo-card:hover {
+  opacity: 0.98;
+}
+
+.promo-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.promo-banner-img {
+  width: 100%;
+  max-width: 392px;
+  height: 142px;
+  object-fit: contain;
+  transition: transform 0.5s var(--ease-bounce);
+}
+
+.promo-card:hover .promo-banner-img {
+  transform: scale(1.03);
+}
+
+.promo-text {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text-white);
+  font-weight: 400;
+  max-width: 444px;
+  opacity: 0.95;
+}
+
+/* Button "Записаться на тест" (Frame 111) */
+.promo-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  padding: 24px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px; /* Small rounding for buttons */
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.promo-button:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.promo-button:active {
+  transform: scale(0.99);
+}
+
+.promo-button-text {
+  color: var(--text-white);
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.promo-button-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s var(--ease-bounce);
+}
+
+.promo-button:hover .promo-button-icon {
+  transform: translateX(6px);
+}
+
+/* Cards Row (Frame 109) */
+.cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0; 
+  border-radius: 0; /* Completely square, no rounding */
+  overflow: hidden;
+}
+
+/* Card item (Frame 101, Frame 36) */
+.sub-card {
+  height: 297px;
+  background-color: var(--bg-card-white);
+  border: none;
+  border-bottom: 1px solid var(--border-color-grey);
+  border-radius: 0; /* Completely square, no rounding */
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background-color var(--transition-speed) ease;
+}
+
+.sub-card:first-child {
+  border-right: 1px solid var(--border-color-grey); /* Vertical separator */
+}
+
+.sub-card:hover {
+  background-color: #fafafa;
+}
+
+.card-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align left */
+  background-color: transparent; /* No grey background box */
+  border-radius: 0;
+  transition: transform var(--transition-speed) var(--ease-bounce);
+}
+
+.sub-card:hover .card-icon-wrapper {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.card-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-title {
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--text-black);
+  line-height: 1.3;
+}
+
+.card-subtitle {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* Sidebar Row list (Frame 47, Frame 38, Frame 113) */
+.sidebar-row-card {
+  width: 100%;
+  height: 72px;
+  background-color: var(--bg-card-white);
+  border: none;
+  border-bottom: 1px solid var(--border-color-grey); /* Bottom border separator */
+  border-radius: 0; /* Completely square, no rounding */
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) var(--ease-smooth);
+}
+
+.sidebar-row-card:hover {
+  background-color: #fafafa;
+}
+
+.row-left-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Quiz badge / Tag */
+.tag-badge {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-black);
+  letter-spacing: -0.2px;
+}
+
+.row-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-black);
+}
+
+.row-icon-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ==========================================================================
+   RIGHT COLUMN (CONTENT AREA) STYLES
+   ========================================================================== */
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+  padding-top: 64px; /* Align content Y offset (Y=64 in Figma) */
+}
+
+/* Header Area (Frame 116) */
+.content-header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.main-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--text-black);
+  letter-spacing: -0.8px;
+}
+
+/* Nav Menu (Frame 293) */
+.nav-menu {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  height: 45px;
+  border-radius: 10px;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  user-select: none;
+}
+
+.nav-item.active {
+  background-color: var(--text-black);
+  color: var(--bg-page);
+  border: 1px solid var(--text-black);
+}
+
+.nav-item.outline {
+  background-color: transparent;
+  color: var(--text-black);
+  border: 1px solid var(--text-black);
+}
+
+.nav-item.outline:hover {
+  background-color: var(--text-black);
+  color: var(--bg-page);
+}
+
+/* Content Body Area (Frame 117) */
+.content-body {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Table of Contents Card (Frame 336089) */
+.toc-card {
+  width: 100%;
+  background-color: #ededed; /* slightly darker grey for contrast */
+  border-radius: 12px; /* Rounded corners matching Figma screenshots */
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+
+.toc-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-black);
+}
+
+.toc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toc-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: var(--text-black);
+  cursor: pointer;
+  transition: transform var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.toc-item:hover {
+  transform: translateX(4px);
+  color: #555;
+}
+
+.toc-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--text-black);
+  border-radius: 50%;
+}
+
+/* Text Blocks & Paragraphs */
+.intro-text {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-black);
+  font-weight: 400;
+}
+
+.sections-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  scroll-margin-top: 100px; /* offset for scrolling */
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-black);
+}
+
+.section-body {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-black);
+  font-weight: 400;
+}
+
+.section-body-secondary {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-black);
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   LICENSES TAB STYLES
+   ========================================================================== */
+
+.licenses-search-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.licenses-search-wrapper .search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.licenses-search-input {
+  width: 100%;
+  height: 56px;
+  padding: 16px 16px 16px 52px;
+  border: 1px solid var(--border-color-grey);
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: var(--font-family);
+  background-color: var(--bg-card-white);
+  color: var(--text-black);
+  outline: none;
+  transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.licenses-search-input:focus {
+  border-color: #7e8f7c;
+  box-shadow: 0 0 0 4px rgba(126, 143, 124, 0.1);
+}
+
+.licenses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.license-card {
+  background-color: var(--bg-card-white);
+  border: 1px solid var(--border-color-grey);
+  border-radius: 12px; /* Matching TOC-card rounded style */
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 280px;
+  transition: transform var(--transition-speed) var(--ease-smooth), box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.license-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
+  border-color: #7e8f7c;
+}
+
+.license-icon {
+  margin-bottom: 16px;
+}
+
+.license-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1;
+}
+
+.license-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-black);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.license-date {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.license-download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 48px;
+  background-color: transparent;
+  border: 1px solid #7e8f7c;
+  color: #7e8f7c;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.license-download-btn:hover {
+  background-color: #7e8f7c;
+  color: var(--text-white);
+}
+
+/* ==========================================================================
+   DOCTORS & EXPERTS TAB STYLES
+   ========================================================================== */
+
+.doctors-main-count {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 37.5px;
+  color: var(--text-black);
+  margin-bottom: 32px;
+  letter-spacing: 0;
+}
+
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 365px);
+  gap: 8px;
+  justify-content: start;
+  width: 100%;
+}
+
+.doctor-card {
+  width: 365px;
+  height: 510px;
+  background-color: var(--bg-card-white);
+  border-radius: 20px; /* 20px rounded corners exactly from Figma */
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform var(--transition-speed) var(--ease-smooth), box-shadow var(--transition-speed) ease;
+  box-sizing: border-box;
+}
+
+.doctor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
+}
+
+.doctor-photo-wrapper {
+  width: 317px;
+  height: 317px;
+  border-radius: 20px; /* 20px rounded corners matching Figma */
+  overflow: hidden;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doctor-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.doctor-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.doctor-name {
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--text-black);
+  line-height: 1.2;
+}
+
+.doctor-title {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-black);
+  opacity: 0.6;
+}
+
+.doctor-materials-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 21px;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 10px; /* 10px rounded corners exactly from Figma */
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-black);
+  cursor: pointer;
+  width: fit-content;
+  transition: background-color var(--transition-speed) ease;
+}
+
+.doctor-materials-btn:hover {
+  background-color: #e9e9e9;
+}
+
+/* ==========================================================================
+   CONTACTS TAB STYLES
+   ========================================================================== */
+
+.contacts-tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  width: 100%;
+}
+
+/* Desktop: wrapper is position:relative so card can overlay the map */
+.contacts-map-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1115px;
+}
+
+/* Map container — 1115x517 in Figma */
+.contacts-map-container {
+  width: 100%;
+  height: 517px;
+  background-color: #ededed;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.leaflet-map-element {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Contacts card — Frame 336180: 465x475, padding 32px
+   Desktop: absolute overlay on top of map
+   Mobile: static block below map (overridden in media query)
+*/
+.contacts-card {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  width: 465px;
+  height: 475px;
+  background-color: var(--bg-card-white);
+  border: 1px solid var(--border-color-grey);
+  border-radius: 0;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/* Frame 336146: upper info block — vertical gap 12px */
+.contacts-info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+/* Header row: dot + label */
+.contacts-header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contacts-badge-dot {
+  width: 4px;
+  height: 4px;
+  background-color: #b2b2b2;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.contacts-badge-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-black);
+  opacity: 0.5;
+  line-height: 1;
+}
+
+/* Frame 336185: details block — vertical gap 33px */
+.contacts-details-block {
+  display: flex;
+  flex-direction: column;
+  gap: 33px;
+}
+
+/* Frame 336184: address + phone/email — vertical gap 24px */
+.contacts-address-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Address: 32px Regular, line-height 37.5px */
+.contacts-address-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 37.5px;
+  color: var(--text-black);
+  margin: 0;
+}
+
+/* Frame 336181: phone + email — vertical gap 12px */
+.contacts-links-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Contact links: 21px Regular */
+.contacts-link-item {
+  font-family: 'Roboto', sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  color: var(--text-black);
+  text-decoration: none;
+  transition: opacity var(--transition-speed) ease;
+  line-height: 1;
+}
+
+.contacts-link-item:hover {
+  opacity: 0.7;
+}
+
+/* Frame 336175: schedule grid — 2 col: days(gray) + times(black), row-gap 4px */
+.contacts-schedule-grid {
+  display: grid;
+  grid-template-columns: 92px auto;
+  row-gap: 4px;
+  column-gap: 0;
+}
+
+/* Days labels: 16px Regular, gray color */
+.schedule-days {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #929292; /* color from Figma: r=0.572 g=0.572 b=0.572 */
+  line-height: 18.75px;
+}
+
+/* Time values: 16px Regular, black */
+.schedule-time {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-black);
+  line-height: 18.75px;
+}
+
+/* Action button — Frame 111: black, 72px height, 32px h-padding */
+.contacts-btn-map {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 72px;
+  padding: 0 32px;
+  background-color: var(--text-black);
+  border: none;
+  border-radius: 0;
+  color: var(--text-white);
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: opacity var(--transition-speed) ease;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.contacts-btn-map:hover {
+  opacity: 0.88;
+}
+
+.contacts-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Legal footer — Frame 335960: vertical gap 28px between legal and social row */
+.contacts-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  border-top: 1px solid var(--border-color-grey);
+  padding-top: 48px;
+}
+
+/* Legal info block */
+.footer-legal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-legal-info p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-black);
+  opacity: 0.5;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Social icons row — Frame 335961: horizontal gap 8px */
+.footer-social-links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Social icon link — inline block wrapping original SVG */
+.social-link-icon {
+  display: inline-block;
+  line-height: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  border-radius: 50%;
+}
+
+.social-link-icon:hover {
+  transform: translateY(-2px) scale(1.05);
+  opacity: 0.85;
+}
+
+/* Leaflet Custom Pin styling */
+.custom-map-pin {
+  width: 20px !important;
+  height: 20px !important;
+  background-color: #0066ff !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+  position: relative;
+}
+
+.map-pin-pulse {
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(0, 102, 255, 0.4);
+  border-radius: 50%;
+  animation: pinPulse 2s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes pinPulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================================================== */
+
+@media (max-width: 1440px) {
+  .page-container {
+    grid-template-columns: 550px 1fr;
+    gap: 40px;
+    padding: 0 40px 40px 0; /* Keep flush to the left edge */
+  }
+}
+
+@media (min-width: 769px) {
+  /* Ensure both columns are always visible on desktop/tablet */
+  .sidebar-container, .content-container {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .licenses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .doctors-grid {
+    grid-template-columns: repeat(2, 365px);
+    gap: 16px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Hide sidebar (left column, green card, etc.) completely on mobile */
+  .sidebar-container {
+    display: none !important;
+  }
+  .content-container {
+    display: flex !important;
+  }
+
+  /* Mobile Top Navigation Bar */
+  .mobile-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 72px;
+    padding: 24px 32px;
+    margin: 0 -16px 32px -16px;
+    background-color: var(--bg-card-white);
+    border-bottom: 1px solid var(--border-color-grey);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .mobile-back-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity var(--transition-speed) ease;
+  }
+
+  .mobile-back-button:hover {
+    opacity: 0.7;
+  }
+
+  /* Content padding adjustments on mobile */
+  .content-container {
+    padding: 0 16px 64px 16px !important;
+  }
+
+  /* Horizontal scrolling for navigation menu tabs */
+  .nav-menu {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    width: 100%;
+    margin: 0;
+  }
+
+  .nav-menu::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
+  }
+
+  .nav-item {
+    flex: 0 0 auto !important;
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+
+  /* Promo Card adjustments */
+  .promo-card {
+    height: auto;
+    min-height: 480px;
+    padding: 32px;
+  }
+
+  .promo-button-text {
+    font-size: 18px;
+  }
+
+  .cards-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sub-card {
+    height: 240px;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-color-grey);
+  }
+
+  .sub-card:first-child {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-color-grey);
+  }
+
+  /* Titles and typography matching Figma Mobile */
+  .main-title {
+    font-size: 32px !important;
+    font-weight: 400 !important;
+    line-height: 37.5px !important;
+  }
+
+  .licenses-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .license-card {
+    height: auto;
+    min-height: 220px;
+    padding: 20px;
+  }
+
+  .doctors-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    justify-content: center;
+    max-width: 388px;
+    margin: 0 auto;
+  }
+
+  .doctor-card {
+    width: 100%;
+    max-width: 388px;
+    height: 510px;
+    padding: 24px;
+  }
+
+  .doctor-photo-wrapper {
+    width: 317px;
+    height: 317px;
+  }
+
+  .doctor-materials-btn {
+    width: 178px;
+    height: 47px;
+    padding: 0;
+  }
+
+  /* Contacts Tab Mobile Styles (Figma 2084:2470)
+     Card 336180: 420x341, below map, padding 32px sides
+     Info 336146: 356x173
+     Button 111: 356x72
+     Footer 335960: y=909, gap from card bottom ~42px
+     Legal 335968: gap 38px between lines
+     Social 335961: gap 8px, 28px from legal
+  */
+  .contacts-tab-content {
+    gap: 0;
+  }
+
+  /* Wrapper: on mobile no position:relative needed, just stacks */
+  .contacts-map-wrapper {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Map: 420x283 — full width, fixed height */
+  .contacts-map-container {
+    width: 100%;
+    height: 283px;
+    overflow: hidden;
+  }
+
+  /* Card: flows below map as normal block, NOT absolute */
+  .contacts-card {
+    position: static !important;
+    width: 100%;
+    height: 341px;
+    padding: 32px;
+    justify-content: space-between;
+    gap: 0;
+    margin-top: 0;
+    top: auto;
+    left: auto;
+    border: none;
+    border-top: 1px solid var(--border-color-grey);
+    border-bottom: 1px solid var(--border-color-grey);
+    box-sizing: border-box;
+    z-index: auto;
+  }
+
+  /* Info block: 356x173, vertical gap 12px */
+  .contacts-info-block {
+    gap: 12px;
+    flex: unset;
+  }
+
+  /* Address: 18px on mobile (h=17 in Figma → ~18px) */
+  .contacts-address-text {
+    font-size: 18px;
+    line-height: 21px;
+    margin: 0;
+  }
+
+  /* Phone/email links: 16px on mobile */
+  .contacts-link-item {
+    font-size: 16px;
+  }
+
+  /* Button stays 356 wide = 420-64, auto height 72px */
+  .contacts-btn-map {
+    margin-top: 0;
+    height: 72px;
+  }
+
+  /* Footer: vertical stack, gap 28px between legal and social */
+  .contacts-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    padding-top: 42px;
+    margin-top: 0;
+  }
+
+  /* Legal: lines spaced 21px apart (38px line-height) */
+  .footer-legal-info {
+    gap: 0;
+  }
+
+  .footer-legal-info p {
+    font-size: 16px;
+    line-height: 38px;
+  }
+
+  /* Social row: horizontal, gap 8px */
+  .footer-social-links {
+    align-items: center;
+    gap: 8px;
+  }
+}

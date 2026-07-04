@@ -1,0 +1,523 @@
+╨У╨╗╨░╨▓╨╜╨░╤П (1571:11354, type=FRAME)
+  fills: [{"type":"SOLID","color":{"r":0.9619328379631042,"g":0.9619328379631042,"b":0.9619328379631042,"a":1}}]
+  bounds: w=1920, h=1080, x=-970, y=0
+  Frame 1 (1571:11355, type=FRAME)
+    bounds: w=677, h=1080, x=-970, y=0
+    Frame 52 (1571:11356, type=FRAME)
+      layoutMode=VERTICAL, spacing=undefined, padding=undefined/undefined/undefined/undefined
+      bounds: w=677, h=1016, x=-970, y=0
+      Frame 41 (1571:11357, type=FRAME)
+        layoutMode=VERTICAL, spacing=18, padding=24/24/24/24
+        fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"opacity":0.800000011920929},{"type":"GRADIENT_LINEAR","opacity":0.699999988079071}]
+        strokes: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1},"weight":0}]
+        bounds: w=677, h=567, x=-970, y=0
+        Frame 114 (1571:11358, type=FRAME)
+          layoutMode=VERTICAL, spacing=18, padding=undefined/undefined/undefined/undefined
+          bounds: w=444, h=215, x=-946, y=24
+          image 15 [Vectorized] (1571:11359, type=FRAME)
+            fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+            bounds: w=392, h=142, x=-946, y=24
+            Vector (1571:11360, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=94.09085845947266, h=89.12709045410156, x=-945.78125, y=39.46875
+            Vector (1571:11361, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=65.22518920898438, h=89.1868667602539, x=-760.7890625, y=39.40234375
+            Vector (1571:11362, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=63.588829040527344, h=89.09899139404297, x=-837.8828125, y=39.4296875
+            Vector (1571:11363, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=13.528538703918457, h=16.915639877319336, x=-793.0078125, y=145.75390625
+            Vector (1571:11364, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=12.148715019226074, h=16.601669311523438, x=-775.640625, y=145.83984375
+            Vector (1571:11365, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=12.03609848022461, h=16.57653045654297, x=-887.1171875, y=145.875
+            Vector (1571:11366, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=12.052973747253418, h=16.482892990112305, x=-745.0390625, y=145.828125
+            Vector (1571:11367, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=11.98316764831543, h=16.51152801513672, x=-820.9296875, y=145.8046875
+            Vector (1571:11368, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=12.044468879699707, h=12.365533828735352, x=-665.515625, y=99.95703125
+            Vector (1571:11369, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=12.358644485473633, h=11.594895362854004, x=-655.765625, y=113.37890625
+            Vector (1571:11370, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=12.079483032226562, h=11.46528148651123, x=-602.9140625, y=113.0234375
+            Vector (1571:11371, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=12.280351638793945, h=11.02895736694336, x=-645.3828125, y=126.15234375
+            Vector (1571:11372, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.545276641845703, h=11.937732696533203, x=-593.21875, y=99.96484375
+            Vector (1571:11373, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=12.10853385925293, h=11.435044288635254, x=-646.8984375, y=100.7265625
+            Vector (1571:11374, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=12.076207160949707, h=11.038511276245117, x=-612.765625, y=125.9296875
+            Vector (1571:11375, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.374235153198242, h=11.33899211883545, x=-656.5078125, y=87.421875
+            Vector (1571:11376, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.872345924377441, h=10.824021339416504, x=-636.4765625, y=114.12109375
+            Vector (1571:11377, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.977765083312988, h=10.62137508392334, x=-621.34375, y=114.1015625
+            Vector (1571:11378, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.488656997680664, h=11.486083984375, x=-610.984375, y=100.546875
+            Vector (1571:11379, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.51870059967041, h=10.987913131713867, x=-663.1640625, y=125.4453125
+            Vector (1571:11380, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.898954391479492, h=11.50858211517334, x=-672.5859375, y=112.66015625
+            Vector (1571:11381, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.256258964538574, h=11.014562606811523, x=-664.1796875, y=60.7265625
+            Vector (1571:11382, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.385608673095703, h=10.899540901184082, x=-656.34375, y=72.74609375
+            Vector (1571:11383, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.939702033996582, h=11.210641860961914, x=-600.875, y=87.546875
+            Vector (1571:11384, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.712203979492188, h=10.423568725585938, x=-646.140625, y=60.1875
+            Vector (1571:11385, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.687997817993164, h=10.47840690612793, x=-654.359375, y=49.26171875
+            Vector (1571:11386, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.0241117477417, h=10.888021469116211, x=-594.1015625, y=61.53515625
+            Vector (1571:11387, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.074079513549805, h=10.939770698547363, x=-595.1484375, y=124.65234375
+            Vector (1571:11388, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=13.754934310913086, h=16.62664031982422, x=-945.453125, y=145.875
+            Vector (1571:11389, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.231313705444336, h=10.386324882507324, x=-611.5859375, y=60.51171875
+            Vector (1571:11390, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.427206039428711, h=9.966392517089844, x=-604.1796875, y=50.03515625
+            Vector (1571:11391, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.579294204711914, h=10.714301109313965, x=-601.2109375, y=73.25390625
+            Vector (1571:11392, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.899842262268066, h=9.553332328796387, x=-653.515625, y=137.8046875
+            Vector (1571:11393, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.798188209533691, h=10.223837852478027, x=-628.3828125, y=102.8125
+            Vector (1571:11394, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.11040210723877, h=11.078230857849121, x=-585.4375, y=112.22265625
+            Vector (1571:11395, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.442872047424316, h=9.717720031738281, x=-604.796875, y=137.45703125
+            Vector (1571:11396, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.947028160095215, h=10.29862117767334, x=-670.6484375, y=50.65234375
+            Vector (1571:11397, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.199076652526855, h=10.324357986450195, x=-678.5703125, y=124.2578125
+            Vector (1571:11398, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.523785591125488, h=8.884162902832031, x=-644.375, y=39.171875
+            Vector (1571:11399, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.251948356628418, h=9.274986267089844, x=-636.015625, y=49.03515625
+            Vector (1571:11400, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.113286972045898, h=9.325379371643066, x=-621.59375, y=49.29296875
+            Vector (1571:11401, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=12.929396629333496, h=16.82525634765625, x=-872.0859375, y=145.765625
+            Vector (1571:11402, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.417218208312988, h=8.764365196228027, x=-613.7265625, y=39.453125
+            Vector (1571:11403, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=10.694365501403809, h=16.600048065185547, x=-902.0078125, y=145.83203125
+            Vector (1571:11404, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.166169166564941, h=9.563254356384277, x=-628.171875, y=60.7734375
+            Vector (1571:11405, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=10.785691261291504, h=16.6956844329834, x=-759.8359375, y=145.828125
+            Vector (1571:11406, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.76568603515625, h=9.64778995513916, x=-669.515625, y=136.32421875
+            Vector (1571:11407, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=11.40264892578125, h=8.959588050842285, x=-661.15625, y=40.52734375
+            Vector (1571:11408, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.231196403503418, h=10.413506507873535, x=-579.359375, y=123.3203125
+            Vector (1571:11409, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.124391555786133, h=9.800992012023926, x=-587.640625, y=51.984375
+            Vector (1571:11410, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.909757614135742, h=8.561541557312012, x=-659.734375, y=147.43359375
+            Vector (1571:11411, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.725122451782227, h=8.927858352661133, x=-597.453125, y=41.3984375
+            Vector (1571:11412, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=13.369733810424805, h=16.592552185058594, x=-837.421875, y=145.84765625
+            Vector (1571:11413, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.747871398925781, h=8.922959327697754, x=-636.84375, y=90.3515625
+            Vector (1571:11414, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.721582412719727, h=8.908628463745117, x=-618.171875, y=90.3671875
+            Vector (1571:11415, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.851713180541992, h=9.484527587890625, x=-588.6953125, y=135.171875
+            Vector (1571:11416, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.644515037536621, h=8.649930000305176, x=-636.828125, y=73.33984375
+            Vector (1571:11417, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.465093612670898, h=8.87592601776123, x=-618.1875, y=73.3984375
+            Vector (1571:11418, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.337794303894043, h=8.251328468322754, x=-597.75, y=147.41036987304688
+            Vector (1571:11419, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.701264381408691, h=7.477384567260742, x=-651.28125, y=31.65625
+            Vector (1571:11420, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.938516616821289, h=8.728950500488281, x=-675.78125, y=42.74609375
+            Vector (1571:11421, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.693933486938477, h=7.471900463104248, x=-606.6328125, y=31.828125
+            Vector (1571:11422, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.165497779846191, h=9.336143493652344, x=-683.21875, y=134.04296875
+            Vector (1571:11423, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.885567665100098, h=8.59980583190918, x=-674.5078125, y=145.18359375
+            Vector (1571:11424, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.142868041992188, h=7.855356216430664, x=-666.4609375, y=33.44140625
+            Vector (1571:11425, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=8.750288963317871, h=9.075109481811523, x=-574.75, y=132.921875
+            Vector (1571:11426, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=8.994269371032715, h=8.61990737915039, x=-582.40625, y=44.26171875
+            Vector (1571:11427, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.084013938903809, h=8.50922679901123, x=-583.5859375, y=143.734375
+            Vector (1571:11428, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=12.947673797607422, h=16.611848831176758, x=-857.6484375, y=145.7734375
+            Vector (1571:11429, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.425990104675293, h=7.240354061126709, x=-665.46875, y=155.27734375
+            Vector (1571:11430, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.673553466796875, h=7.702828884124756, x=-591.953125, y=34.92578125
+            Vector (1571:11431, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=10.448458671569824, h=6.443607330322266, x=-656.953125, y=25.80078125
+            Vector (1571:11432, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.471312522888184, h=7.357077598571777, x=-592.3671875, y=155.24609375
+            Vector (1571:11433, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=8.917769432067871, h=8.170511245727539, x=-679.5234375, y=36.12109375
+            Vector (1571:11434, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=8.353330612182617, h=8.250244140625, x=-686.734375, y=142.48046875
+            Vector (1571:11435, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=10.153667449951172, h=16.666812896728516, x=-805.390625, y=145.796875
+            Vector (1571:11436, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=9.823594093322754, h=16.54863739013672, x=-915.046875, y=145.83984375
+            Vector (1571:11437, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.59307861328125, h=6.395028114318848, x=-600.1953125, y=25.8984375
+            Vector (1571:11438, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":0.9960784316062927,"g":0.9960784316062927,"b":0.9960784316062927,"a":1}}]
+              bounds: w=9.911145210266113, h=16.625486373901367, x=-928.28125, y=145.8203125
+            Vector (1571:11439, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=7.726804256439209, h=7.020284652709961, x=-626.75, y=81.99609375
+            Vector (1571:11440, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=8.948083877563477, h=7.383228302001953, x=-678.203125, y=152.23828125
+            Vector (1571:11441, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=9.395373344421387, h=6.6472272872924805, x=-670.65625, y=28.26171875
+            Vector (1571:11442, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=7.854597091674805, h=8.589282035827637, x=-571.328125, y=140.5546875
+            Vector (1571:11443, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=7.379510879516602, h=6.77485466003418, x=-644.203125, y=82.265625
+            Vector (1571:11444, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=8.042994499206543, h=7.648604869842529, x=-578.46875, y=38.15625
+            Vector (1571:11445, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=7.152527332305908, h=6.708226680755615, x=-609.546875, y=82.27734375
+            Vector (1571:11446, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=8.37723159790039, h=7.389256000518799, x=-579.7890625, y=150.6328125
+            Vector (1571:11447, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=8.479434967041016, h=6.545808792114258, x=-587.375, y=29.7265625
+            Vector (1571:11448, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=8.086895942687988, h=6.733823776245117, x=-682.0546875, y=31.68359375
+            Vector (1571:11449, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=7.343045711517334, h=7.048707485198975, x=-688.8671875, y=148.95703125
+            Vector (1571:11450, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=7.30879545211792, h=6.8476152420043945, x=-575.875, y=33.58984375
+            Vector (1571:11451, type=VECTOR)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=7.1494011878967285, h=7.238799095153809, x=-568.90625, y=146.80859375
+          ╨Ь╨╜╨╛╨│╨╛╨║╨╛╨╝╨┐╨╛╨╜╨╡╨╜╤В╨╜╤Л╨╣ ╨░╨╜╨░╨╗╨╕╨╖ ╨║╤А╨╛╨▓╨╕, ╨║╨╛╤В╨╛╤А╤Л╨╣ ╨╖╨░ ╨╛╨┤╨╕╨╜ ╨╖╨░╨▒╨╛╤А ╨║╤А╨╛╨▓╨╕ ╨┐╤А╨╛╨▓╨╡╤А╤П╨╡╤В ╨▒╨╛╨╗╨╡╨╡ 300 ╨░╨╗╨╗╨╡╤А╨│╨╡╨╜╨╛╨▓, ╨▓╤Л╤П╨▓╨╗╤П╤П ╨╕╤Б╤В╨╕╨╜╨╜╤Л╨╡ ╨┐╤А╨╕╤З╨╕╨╜╤Л ╤А╨╡╨░╨║╤Ж╨╕╨╕. (1571:11452, type=TEXT)
+            fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+            bounds: w=444, h=55, x=-946, y=184
+        Frame 111 (1571:11453, type=FRAME)
+          layoutMode=VERTICAL, spacing=12, padding=24/24/24/24
+          fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1},"opacity":0.1599999964237213}]
+          strokes: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1},"weight":1}]
+          bounds: w=629, h=80, x=-946, y=463
+          Frame 55 (1571:11454, type=FRAME)
+            layoutMode=HORIZONTAL, spacing=12, padding=undefined/undefined/undefined/undefined
+            bounds: w=581, h=32, x=-922, y=487
+            ╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П ╨╜╨░ ╤В╨╡╤Б╤В ╨╜╨░ ╨░╨╗╨╗╨╡╤А╨│╨╕╤О (1571:11455, type=TEXT)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=321, h=15, x=-922, y=495.5
+            Frame (1571:11456, type=FRAME)
+              fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+              bounds: w=32, h=32, x=-373, y=487
+              Vector (1571:11457, type=VECTOR)
+                strokes: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1},"weight":2}]
+                bounds: w=26.66666603088379, h=26.66666603088379, x=-370.3359375, y=489.6640625
+              Vector (1571:11458, type=VECTOR)
+                strokes: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1},"weight":2}]
+                bounds: w=5.333333492279053, h=10.666666984558105, x=-359.6640625, y=497.6640625
+      Frame 109 (1571:11459, type=FRAME)
+        layoutMode=HORIZONTAL, spacing=undefined, padding=undefined/undefined/undefined/undefined
+        bounds: w=677, h=297, x=-970, y=567
+        Frame 101 (1571:11460, type=FRAME)
+          layoutMode=VERTICAL, spacing=48, padding=32/32/32/32
+          fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+          strokes: [{"type":"SOLID","color":{"r":0.8746995329856873,"g":0.8746995329856873,"b":0.8746995329856873,"a":1},"weight":1}]
+          bounds: w=338.5, h=297, x=-970, y=567
+          Frame (1571:11461, type=FRAME)
+            fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+            bounds: w=42, h=42, x=-938, y=599
+            Vector (1571:11462, type=VECTOR)
+              strokes: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"weight":2}]
+              bounds: w=7.595000267028809, h=7.595000267028809, x=-908.84375, y=628.15625
+            Vector (1571:11463, type=VECTOR)
+              strokes: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"weight":2}]
+              bounds: w=27.999998092651367, h=27.999998092651367, x=-932.75, y=604.25
+          Frame 40 (1571:11464, type=FRAME)
+            layoutMode=VERTICAL, spacing=12, padding=undefined/undefined/undefined/undefined
+            bounds: w=274.5, h=61, x=-938, y=771
+            ╨Я╨╛╨╕╤Б╨║ ╨░╨╗╨╗╨╡╤А╨│╨╡╨╜╨╛╨▓ (1571:11465, type=TEXT)
+              fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+              bounds: w=182, h=15, x=-938, y=771
+            ╨г╨▒╨╡╨┤╨╕╤В╨╡╤Б╤М, ╤З╤В╨╛ ╤В╨╡╤Б╤В ╨┐╨╛╨║╨░╨╢╨╡╤В, ╤З╤В╨╛ ╨▓╨░╨╝ ╨╜╤Г╨╢╨╜╨╛ (1571:11466, type=TEXT)
+              fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+              bounds: w=209, h=34, x=-938, y=798
+        Frame 36 (1571:11467, type=FRAME)
+          layoutMode=VERTICAL, spacing=104, padding=32/32/32/32
+          fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+          strokes: [{"type":"SOLID","color":{"r":0.8746995329856873,"g":0.8746995329856873,"b":0.8746995329856873,"a":1},"weight":1}]
+          bounds: w=338.5, h=297, x=-631.5, y=567
+          Frame (1571:11468, type=FRAME)
+            fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+            bounds: w=42, h=42, x=-599.5, y=599
+            Vector (1571:11469, type=VECTOR)
+              strokes: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"weight":2}]
+              bounds: w=35.001766204833984, h=24.497844696044922, x=-596, y=607.75
+            Vector (1571:11470, type=VECTOR)
+              strokes: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"weight":2}]
+              bounds: w=10.5, h=10.5, x=-583.75, y=614.75
+          Frame 45 (1571:11471, type=FRAME)
+            layoutMode=VERTICAL, spacing=12, padding=undefined/undefined/undefined/undefined
+            bounds: w=274.5, h=86, x=-599.5, y=746
+            ╨Я╨╛╤Б╨╝╨╛╤В╤А╨╡╤В╤М ╨┤╨╡╨╝╨╛-╤А╨╡╨╖╤Г╨╗╤М╤В╨░╤В (1571:11472, type=TEXT)
+              fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+              bounds: w=274, h=40, x=-599.5, y=746
+            ╨Ю╨▒╤К╤П╤Б╨╜╤П╨╡╨╝ ╤А╨╡╨╖╤Г╨╗╤М╤В╨░╤В╤Л ╨╜╨░ ╤З╨╡╨╗╨╛╨▓╨╡╤З╨╡╤Б╨║╨╛╨╝ ╤П╨╖╤Л╨║╨╡ (1571:11473, type=TEXT)
+              fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+              bounds: w=274, h=34, x=-599.5, y=798
+      Frame 47 (1571:11474, type=FRAME)
+        layoutMode=HORIZONTAL, spacing=12, padding=24/24/24/24
+        fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+        strokes: [{"type":"SOLID","color":{"r":0.8746995329856873,"g":0.8746995329856873,"b":0.8746995329856873,"a":1},"weight":1}]
+        bounds: w=677, h=72, x=-970, y=864
+        Frame 42 (1571:11475, type=FRAME)
+          layoutMode=HORIZONTAL, spacing=10, padding=12/12/12/12
+          fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"opacity":0.07000000029802322}]
+          bounds: w=103, h=37, x=-946, y=881.5
+          ~5 ╨╝╨╕╨╜╤Г╤В (1571:11476, type=TEXT)
+            fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+            bounds: w=79, h=13, x=-934, y=893.5
+        ╨Ъ╨Т╨Ш╨Ч: ╨Э╤Г╨╢╨╡╨╜ ╨╗╨╕ ╨▓╨░╨╝ ╤В╨╡╤Б╤В ╨╜╨░ ╨░╨╗╨╗╨╡╤А╨│╨╡╨╜╤Л? (1571:11477, type=TEXT)
+          fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+          bounds: w=400, h=15, x=-831, y=892.5
+      Frame 38 (1571:11478, type=FRAME)
+        layoutMode=HORIZONTAL, spacing=undefined, padding=undefined/undefined/undefined/undefined
+        bounds: w=677, h=72, x=-970, y=936
+        Frame 47 (1571:11479, type=FRAME)
+          layoutMode=HORIZONTAL, spacing=12, padding=24/24/24/24
+          fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+          strokes: [{"type":"SOLID","color":{"r":0.8746995329856873,"g":0.8746995329856873,"b":0.8746995329856873,"a":1},"weight":1}]
+          bounds: w=677, h=72, x=-970, y=936
+          Frame (1571:11480, type=FRAME)
+            fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+            bounds: w=24, h=24, x=-946, y=960
+            Vector (1571:11481, type=VECTOR)
+              strokes: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"weight":2}]
+              bounds: w=20, h=20, x=-944, y=962
+            Vector (1571:11482, type=VECTOR)
+              strokes: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"weight":2}]
+              bounds: w=6, h=6, x=-937, y=967
+            Vector (1571:11483, type=VECTOR)
+              strokes: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"weight":2}]
+              bounds: w=10, h=3.6620006561279297, x=-939, y=977
+          ╨Ы╨╕╤З╨╜╤Л╨╣ ╨║╨░╨▒╨╕╨╜╨╡╤В (1571:11484, type=TEXT)
+            fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+            bounds: w=164, h=15, x=-910, y=964.5
+      Frame 113 (1571:11485, type=FRAME)
+        layoutMode=HORIZONTAL, spacing=undefined, padding=undefined/undefined/undefined/undefined
+        bounds: w=677, h=72, x=-970, y=1008
+        Frame 35 (1571:11486, type=FRAME)
+          layoutMode=HORIZONTAL, spacing=358, padding=24/24/24/24
+          fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+          strokes: [{"type":"SOLID","color":{"r":0.8746995329856873,"g":0.8746995329856873,"b":0.8746995329856873,"a":1},"weight":1}]
+          bounds: w=677, h=72, x=-970, y=1008
+          ╨Ы╨░╨▒╨╛╤А╨░╤В╨╛╤А╨╕╤П ALEX LAB (1571:11487, type=TEXT)
+            fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+            bounds: w=229, h=15, x=-946, y=1036.5
+          Frame (1571:11488, type=FRAME)
+            fills: [{"type":"SOLID","color":{"r":1,"g":1,"b":1,"a":1}}]
+            bounds: w=24, h=24, x=-341, y=1032
+            Vector (1571:11489, type=VECTOR)
+              strokes: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"weight":2}]
+              bounds: w=20, h=20, x=-339, y=1034
+            Vector (1571:11490, type=VECTOR)
+              strokes: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"weight":2}]
+              bounds: w=4, h=8, x=-331, y=1040
+  Frame 116 (1571:11491, type=FRAME)
+    layoutMode=VERTICAL, spacing=24, padding=undefined/undefined/undefined/undefined
+    bounds: w=723, h=118, x=-229, y=64
+    ╨Ы╨░╨▒╨╛╤А╨░╤В╨╛╤А╨╕╤П ALEX LAB (1571:11492, type=TEXT)
+      fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+      bounds: w=723, h=49, x=-229, y=64
+    Frame 293 (1571:11493, type=FRAME)
+      layoutMode=VERTICAL, spacing=16, padding=undefined/undefined/undefined/undefined
+      bounds: w=570, h=45, x=-229, y=137
+      Frame 278 (1571:11494, type=FRAME)
+        layoutMode=HORIZONTAL, spacing=4, padding=undefined/undefined/undefined/undefined
+        bounds: w=570, h=45, x=-229, y=137
+        Frame 279 (1571:11495, type=FRAME)
+          layoutMode=VERTICAL, spacing=10, padding=24/16/24/16
+          fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+          bounds: w=95, h=45, x=-229, y=137
+          ╨Ю ╨╜╨░╤Б (1571:11496, type=TEXT)
+            fills: [{"type":"SOLID","color":{"r":0.9619328379631042,"g":0.9619328379631042,"b":0.9619328379631042,"a":1}}]
+            bounds: w=47, h=13, x=-205, y=153
+        Frame 268 (1571:11497, type=FRAME)
+          layoutMode=HORIZONTAL, spacing=10, padding=24/16/24/16
+          strokes: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"weight":1}]
+          bounds: w=132, h=45, x=-130, y=137
+          ╨Ы╨╕╤Ж╨╡╨╜╨╖╨╕╨╕ (1571:11498, type=TEXT)
+            fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+            bounds: w=84, h=13, x=-106, y=153
+        Frame 276 (1571:11499, type=FRAME)
+          layoutMode=VERTICAL, spacing=10, padding=24/16/24/16
+          strokes: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"weight":1}]
+          bounds: w=200, h=45, x=6, y=137
+          ╨Т╤А╨░╤З╨╕ ╨╕ ╤Н╨║╤Б╨┐╨╡╤А╤В╤Л (1571:11500, type=TEXT)
+            fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+            bounds: w=152, h=13, x=30, y=153
+        Frame 277 (1571:11501, type=FRAME)
+          layoutMode=VERTICAL, spacing=10, padding=24/16/24/16
+          strokes: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1},"weight":1}]
+          bounds: w=131, h=45, x=210, y=137
+          ╨Ъ╨╛╨╜╤В╨░╨║╤В╤Л (1571:11502, type=TEXT)
+            fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+            bounds: w=83, h=13, x=234, y=153
+  Frame 117 (1571:11503, type=FRAME)
+    layoutMode=VERTICAL, spacing=48, padding=undefined/undefined/undefined/undefined
+    bounds: w=723, h=831, x=-229, y=246
+    Frame 336089 (1571:11596, type=FRAME)
+      layoutMode=VERTICAL, spacing=21, padding=24/24/24/24
+      fills: [{"type":"SOLID","color":{"r":0.940504789352417,"g":0.940504789352417,"b":0.940504789352417,"a":1}}]
+      bounds: w=723, h=128, x=-229, y=246
+      ╨б╨╛╨┤╨╡╤А╨╢╨░╨╜╨╕╨╡ (1571:11597, type=TEXT)
+        fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+        bounds: w=106, h=13, x=-205, y=270
+      Frame 336090 (1571:11598, type=FRAME)
+        layoutMode=VERTICAL, spacing=8, padding=undefined/undefined/undefined/undefined
+        bounds: w=339, h=46, x=-205, y=304
+        Frame 336091 (1571:11599, type=FRAME)
+          layoutMode=HORIZONTAL, spacing=6, padding=undefined/undefined/undefined/undefined
+          bounds: w=339, h=19, x=-205, y=304
+          Rectangle 120 (1571:11600, type=RECTANGLE)
+            fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+            bounds: w=4, h=4, x=-205, y=311.5
+          ╨з╤В╨╛ ╨▓╨╜╤Г╤В╤А╨╕ (1571:11601, type=TEXT)
+            fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+            bounds: w=84, h=19, x=-195, y=304
+        Frame 336094 (1571:11602, type=FRAME)
+          layoutMode=HORIZONTAL, spacing=6, padding=undefined/undefined/undefined/undefined
+          bounds: w=339, h=19, x=-205, y=331
+          Rectangle 120 (1571:11603, type=RECTANGLE)
+            fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+            bounds: w=4, h=4, x=-205, y=338.5
+          ╨а╨░╨▒╨╛╤В╨░╨╡╨╝ ╤Б 2001 (1571:11604, type=TEXT)
+            fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+            bounds: w=126, h=19, x=-195, y=331
+    ╨Ы╨░╨▒╨╛╤А╨░╤В╨╛╤А╨╕╤П Alex Lab┬атАФ ╨▓╨╡╨┤╤Г╤Й╨╕╨╣ ╨╜╨░╤Г╤З╨╜╨╛-╨╕╤Б╤Б╨╗╨╡╨┤╨╛╨▓╨░╤В╨╡╨╗╤М╤Б╨║╨╕╨╣ ╤Ж╨╡╨╜╤В╤А ╨╝╨╛╨╗╨╡╨║╤Г╨╗╤П╤А╨╜╨╛╨╣ ╨│╨╡╨╜╨╡╤В╨╕╨║╨╕ ╨╕ ╨▒╨╕╨╛╤В╨╡╤Е╨╜╨╛╨╗╨╛╨│╨╕╨╣, ╤Б╨╛╨╖╨┤╨░╨╜╨╜╤Л╨╣ ╨▓ 2018 ╨│╨╛╨┤╤Г. ╨Ь╤Л ╨╛╨▒╤К╨╡╨┤╨╕╨╜╨╕╨╗╨╕ ╨┐╨╡╤А╨╡╨┤╨╛╨▓╤Г╤О ╨╜╨░╤Г╨║╤Г ╨╕ ╨▓╤Л╤Б╨╛╨║╨╕╨╡ ╤В╨╡╤Е╨╜╨╛╨╗╨╛╨│╨╕╨╕, ╤З╤В╨╛╨▒╤Л ╤Б╨┤╨╡╨╗╨░╤В╤М ╤Б╨╗╨╛╨╢╨╜╨╡╨╣╤И╤Г╤О ╨▓╤Л╤Б╨╛╨║╨╛╤В╨╛╤З╨╜╤Г╤О ╨┤╨╕╨░╨│╨╜╨╛╤Б╤В╨╕╨║╤Г ╨┤╨╛╤Б╤В╤Г╨┐╨╜╨╛╨╣ ╨┤╨╗╤П ╨║╨░╨╢╨┤╨╛╨│╨╛ ╨┐╨░╤Ж╨╕╨╡╨╜╤В╨░. ╨Э╨░╤И╨░ ╨│╨╗╨░╨▓╨╜╨░╤П ╨╝╨╕╤Б╤Б╨╕╤П тАФ ╨▓╨╜╨╡╨┤╤А╨╡╨╜╨╕╨╡ ╨╕╨╜╨╜╨╛╨▓╨░╤Ж╨╕╨╛╨╜╨╜╤Л╤Е ╨╝╨╡╨┤╨╕╤Ж╨╕╨╜╤Б╨║╨╕╤Е ╤В╨╡╤Б╤В╨╛╨▓ ╨▓ ╨┐╨╛╨▓╤Б╨╡╨┤╨╜╨╡╨▓╨╜╤Г╤О ╨▓╤А╨░╤З╨╡╨▒╨╜╤Г╤О ╨┐╤А╨░╨║╤В╨╕╨║╤Г ╨┤╨╗╤П ╨▓╤Л╤П╨▓╨╗╨╡╨╜╨╕╤П ╤Б╨║╤А╤Л╤В╤Л╤Е ╤Г╨│╤А╨╛╨╖ ╨╖╨┤╨╛╤А╨╛╨▓╤М╤О ╨╜╨░ ╤Б╨░╨╝╤Л╤Е ╤А╨░╨╜╨╜╨╕╤Е ╤Б╤В╨░╨┤╨╕╤П╤Е. (1571:11504, type=TEXT)
+      fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+      bounds: w=723, h=118, x=-229, y=422
+    Frame 336114 (1571:11585, type=FRAME)
+      layoutMode=VERTICAL, spacing=32, padding=undefined/undefined/undefined/undefined
+      bounds: w=723, h=285, x=-229, y=588
+      Frame 336113 (1571:11584, type=FRAME)
+        layoutMode=VERTICAL, spacing=21, padding=undefined/undefined/undefined/undefined
+        bounds: w=723, h=156, x=-229, y=588
+        ╨з╤В╨╛ ╨▓╨╜╤Г╤В╤А╨╕? (1571:11582, type=TEXT)
+          fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+          bounds: w=723, h=17, x=-229, y=588
+        ╨Я╤А╨╛╨╕╨╖╨▓╨╛╨┤╤Б╤В╨▓╨╡╨╜╨╜╤Л╨╣ ╨║╨╛╨╝╨┐╨╗╨╡╨║╤Б ╨╗╨░╨▒╨╛╤А╨░╤В╨╛╤А╨╕╨╕ ╨╛╤Б╨╜╨░╤Й╨╡╨╜ ╤А╨╛╨▒╨╛╤В╨╕╨╖╨╕╤А╨╛╨▓╨░╨╜╨╜╤Л╨╝╨╕ ╨░╨╜╨░╨╗╨╕╨╖╨░╤В╨╛╤А╨░╨╝╨╕ ╨┐╨╛╤Б╨╗╨╡╨┤╨╜╨╡╨│╨╛ ╨┐╨╛╨║╨╛╨╗╨╡╨╜╨╕╤П ╨╛╤В ╨╗╨╕╨┤╨╡╤А╨╛╨▓ ╨╝╨╕╤А╨╛╨▓╨╛╨│╨╛ ╤А╤Л╨╜╨║╨░. ╨Я╨╛╨╗╨╜╨░╤П ╨░╨▓╤В╨╛╨╝╨░╤В╨╕╨╖╨░╤Ж╨╕╤П ╨┐╤А╨╛╤Ж╨╡╤Б╤Б╨╛╨▓ ╨╕╤Б╨║╨╗╤О╤З╨░╨╡╤В ╤З╨╡╨╗╨╛╨▓╨╡╤З╨╡╤Б╨║╨╕╨╣ ╤Д╨░╨║╤В╨╛╤А, ╨│╨░╤А╨░╨╜╤В╨╕╤А╤Г╤П ╨░╨▒╤Б╨╛╨╗╤О╤В╨╜╤Г╤О ╤В╨╛╤З╨╜╨╛╤Б╤В╤М ╤А╨╡╨╖╤Г╨╗╤М╤В╨░╤В╨╛╨▓. ╨С╨╗╨░╨│╨╛╨┤╨░╤А╤П ╨╛╨┐╤В╨╕╨╝╨╕╨╖╨░╤Ж╨╕╨╕ ╨╗╨╛╨│╨╕╤Б╤В╨╕╨║╨╕ ╨╕ ╤Б╨╛╨▒╤Б╤В╨▓╨╡╨╜╨╜╨╛╨╣ IT-╨┐╨╗╨░╤В╤Д╨╛╤А╨╝╨╡, ╨╝╤Л ╤Б╨╛╨║╤А╨░╤В╨╕╨╗╨╕ ╨▓╤А╨╡╨╝╤П ╨╛╨╢╨╕╨┤╨░╨╜╨╕╤П: ╨▒╨╛╨╗╤М╤И╨╕╨╜╤Б╤В╨▓╨╛ ╤Б╨╗╨╛╨╢╨╜╤Л╤Е ╨│╨╡╨╜╨╡╤В╨╕╤З╨╡╤Б╨║╨╕╤Е ╨╕╤Б╤Б╨╗╨╡╨┤╨╛╨▓╨░╨╜╨╕╨╣ ╨▓╤Л╨┐╨╛╨╗╨╜╤П╤О╤В╤Б╤П ╨▓╤Б╨╡╨│╨╛ ╨╖╨░ 24 ╤З╨░╤Б╨░. (1571:11568, type=TEXT)
+          fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+          bounds: w=723, h=118, x=-229, y=626
+      ╨ж╨╡╨╜╤В╤А ╤Б╤В╤А╨╛╨│╨╛ ╤Б╨╛╨▒╨╗╤О╨┤╨░╨╡╤В ╨┐╤А╨╕╨╜╤Ж╨╕╨┐╤Л ╨╝╨╡╨┤╨╕╤Ж╨╕╨╜╤Б╨║╨╛╨╣ ╤Н╤В╨╕╨║╨╕ ╨╕ ╨│╨░╤А╨░╨╜╤В╨╕╤А╤Г╨╡╤В ╨┐╨╛╨╗╨╜╤Г╤О ╨░╨╜╨╛╨╜╨╕╨╝╨╜╨╛╤Б╤В╤М ╨┐╨╡╤А╤Б╨╛╨╜╨░╨╗╤М╨╜╤Л╤Е ╨┤╨░╨╜╨╜╤Л╤Е. ╨Ъ╨░╨╢╨┤╤Л╨╣ ╤Н╤В╨░╨┐ тАФ ╨╛╤В ╨▓╨╖╤П╤В╨╕╤П ╨▒╨╕╨╛╨╝╨░╤В╨╡╤А╨╕╨░╨╗╨░ ╨┤╨╛ ╨▓╤Л╨┤╨░╤З╨╕ ╨╖╨░╨║╨╗╤О╤З╨╡╨╜╨╕╤П тАФ ╨╖╨░╤Й╨╕╤Й╨╡╨╜ ╤Б╨╛╨▓╤А╨╡╨╝╨╡╨╜╨╜╤Л╨╝╨╕ ╨┐╤А╨╛╤В╨╛╨║╨╛╨╗╨░╨╝╨╕ ╤И╨╕╤Д╤А╨╛╨▓╨░╨╜╨╕╤П. ╨Э╨░╨╝ ╨┤╨╛╨▓╨╡╤А╤П╤О╤В ╨║╨░╨║ ╤З╨░╤Б╤В╨╜╤Л╨╡ ╨┐╨░╤Ж╨╕╨╡╨╜╤В╤Л, ╤В╨░╨║ ╨╕ ╨║╤А╤Г╨┐╨╜╨╡╨╣╤И╨╕╨╡ ╨│╨╛╤Б╤Г╨┤╨░╤А╤Б╤В╨▓╨╡╨╜╨╜╤Л╨╡ ╨╕ ╨║╨╛╨╝╨╝╨╡╤А╤З╨╡╤Б╨║╨╕╨╡ ╨║╨╗╨╕╨╜╨╕╨║╨╕ ╨┐╨╛ ╨▓╤Б╨╡╨╣ ╤Б╤В╤А╨░╨╜╨╡. (1571:11580, type=TEXT)
+        fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+        bounds: w=723, h=97, x=-229, y=776
+    Frame 336113 (1571:11592, type=FRAME)
+      layoutMode=VERTICAL, spacing=21, padding=undefined/undefined/undefined/undefined
+      bounds: w=723, h=156, x=-229, y=921
+      ╨а╨░╨▒╨╛╤В╨░╨╡╨╝ ╤Б 2001 (1571:11593, type=TEXT)
+        fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+        bounds: w=723, h=17, x=-229, y=921
+      ╨Я╤А╨╛╨╕╨╖╨▓╨╛╨┤╤Б╤В╨▓╨╡╨╜╨╜╤Л╨╣ ╨║╨╛╨╝╨┐╨╗╨╡╨║╤Б ╨╗╨░╨▒╨╛╤А╨░╤В╨╛╤А╨╕╨╕ ╨╛╤Б╨╜╨░╤Й╨╡╨╜ ╤А╨╛╨▒╨╛╤В╨╕╨╖╨╕╤А╨╛╨▓╨░╨╜╨╜╤Л╨╝╨╕ ╨░╨╜╨░╨╗╨╕╨╖╨░╤В╨╛╤А╨░╨╝╨╕ ╨┐╨╛╤Б╨╗╨╡╨┤╨╜╨╡╨│╨╛ ╨┐╨╛╨║╨╛╨╗╨╡╨╜╨╕╤П ╨╛╤В ╨╗╨╕╨┤╨╡╤А╨╛╨▓ ╨╝╨╕╤А╨╛╨▓╨╛╨│╨╛ ╤А╤Л╨╜╨║╨░. ╨Я╨╛╨╗╨╜╨░╤П ╨░╨▓╤В╨╛╨╝╨░╤В╨╕╨╖╨░╤Ж╨╕╤П ╨┐╤А╨╛╤Ж╨╡╤Б╤Б╨╛╨▓ ╨╕╤Б╨║╨╗╤О╤З╨░╨╡╤В ╤З╨╡╨╗╨╛╨▓╨╡╤З╨╡╤Б╨║╨╕╨╣ ╤Д╨░╨║╤В╨╛╤А, ╨│╨░╤А╨░╨╜╤В╨╕╤А╤Г╤П ╨░╨▒╤Б╨╛╨╗╤О╤В╨╜╤Г╤О ╤В╨╛╤З╨╜╨╛╤Б╤В╤М ╤А╨╡╨╖╤Г╨╗╤М╤В╨░╤В╨╛╨▓. ╨С╨╗╨░╨│╨╛╨┤╨░╤А╤П ╨╛╨┐╤В╨╕╨╝╨╕╨╖╨░╤Ж╨╕╨╕ ╨╗╨╛╨│╨╕╤Б╤В╨╕╨║╨╕ ╨╕ ╤Б╨╛╨▒╤Б╤В╨▓╨╡╨╜╨╜╨╛╨╣ IT-╨┐╨╗╨░╤В╤Д╨╛╤А╨╝╨╡, ╨╝╤Л ╤Б╨╛╨║╤А╨░╤В╨╕╨╗╨╕ ╨▓╤А╨╡╨╝╤П ╨╛╨╢╨╕╨┤╨░╨╜╨╕╤П: ╨▒╨╛╨╗╤М╤И╨╕╨╜╤Б╤В╨▓╨╛ ╤Б╨╗╨╛╨╢╨╜╤Л╤Е ╨│╨╡╨╜╨╡╤В╨╕╤З╨╡╤Б╨║╨╕╤Е ╨╕╤Б╤Б╨╗╨╡╨┤╨╛╨▓╨░╨╜╨╕╨╣ ╨▓╤Л╨┐╨╛╨╗╨╜╤П╤О╤В╤Б╤П ╨▓╤Б╨╡╨│╨╛ ╨╖╨░ 24 ╤З╨░╤Б╨░. (1571:11594, type=TEXT)
+        fills: [{"type":"SOLID","color":{"r":0,"g":0,"b":0,"a":1}}]
+        bounds: w=723, h=118, x=-229, y=959
