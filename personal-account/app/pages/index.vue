@@ -33,7 +33,7 @@
         </NuxtLink>
 
         <!-- Карточка Пациента -->
-        <div @click="showPatientInfo" class="role-card patient-card">
+        <NuxtLink to="/patient/login" class="role-card patient-card">
           <div class="card-glow"></div>
           <div class="card-content">
             <div class="card-icon-wrapper">
@@ -52,36 +52,14 @@
               </svg>
             </div>
           </div>
-        </div>
+        </NuxtLink>
       </div>
     </div>
-
-    <!-- Модальное окно для Пациента -->
-    <Transition name="fade">
-      <div v-if="isModalOpen" class="modal-overlay" @click.self="closeModal">
-        <div class="modal-card">
-          <h3>Раздел для пациентов</h3>
-          <p>Личный кабинет пациента сейчас находится на стадии интеграции с медицинской информационной системой центра.</p>
-          <p>Пожалуйста, используйте личный кабинет врача для демонстрации.</p>
-          <button @click="closeModal" class="modal-btn">Понятно</button>
-        </div>
-      </div>
-    </Transition>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
-const isModalOpen = ref(false)
-
-const showPatientInfo = () => {
-  isModalOpen.value = true
-}
-
-const closeModal = () => {
-  isModalOpen.value = false
-}
+// Скрипт очищен от логики открытия модального окна
 </script>
 
 <style scoped>
