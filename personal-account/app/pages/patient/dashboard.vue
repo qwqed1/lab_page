@@ -320,9 +320,10 @@ const downloadPdf = () => {
 /* Тело карточки */
 .status-card-body {
   padding: 32px; /* 32px отступ по макету */
+  height: 393px; /* Фиксированная высота по макету */
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 48px; /* Расстояние между степпером и контентом */
 }
 
 /* Пошаговый индикатор (Stepper) */
@@ -365,10 +366,9 @@ const downloadPdf = () => {
 }
 
 .status-details {
-  min-height: 140px;
+  margin-top: auto; /* Прижимает текст к низу карточки по макету */
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 /* Шаг 1: кнопка отмены */
@@ -508,7 +508,12 @@ const downloadPdf = () => {
 
   .status-card-body {
     padding: 24px;
+    height: auto; /* Снимаем фикс. высоту на мобильных */
     gap: 36px;
+  }
+
+  .status-details {
+    margin-top: 0; /* Убираем авто-маргин */
   }
 
   .btn-cancel-appointment {
