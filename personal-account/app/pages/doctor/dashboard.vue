@@ -1,13 +1,13 @@
 <template>
   <div class="doctor-page-layout">
-    <!-- Шапка страницы (пустая или на главную как в макете, но в макете для дашборда шапки нет, хотя для других страниц есть. Сделаем её без кнопки Назад, или оставим только скрытую панель) -->
+    <!-- Шапка страницы -->
     <header class="header-nav dashboard-header">
       <div class="header-logo">ALEX LAB</div>
     </header>
 
     <main class="doctor-main-content">
       <div class="dashboard-container">
-        <!-- Приветствие -->
+        <!-- Приветствие (42px на десктопе, 32px на мобильном) -->
         <h2 class="welcome-title">Добрый день,<br>Бурмистров Павел Сергеевич!</h2>
 
         <!-- Основная карточка с промокодом -->
@@ -17,27 +17,94 @@
           </div>
 
           <div class="promo-body">
-            <!-- Блок промокода -->
-            <div class="code-display-wrapper" @click="copyPromoCode" title="Нажмите, чтобы скопировать">
-              <span class="promo-code">{{ promoCode }}</span>
-              <button class="copy-btn" aria-label="Скопировать промокод">
-                <!-- Иконка копирования (два квадрата) -->
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11 11H27V27H11V11Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M5 21V5H21" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              
-              <!-- Уведомление о копировании -->
-              <span class="copy-tooltip" :class="{ show: showTooltip }">Скопировано!</span>
+            <!-- ДЕСКТОПНАЯ ВЕРСИЯ: Текстовый промокод и кнопка скопировать (скрывается на мобильных) -->
+            <div class="desktop-promo-wrapper">
+              <div class="code-display-wrapper" @click="copyPromoCode" title="Нажмите, чтобы скопировать">
+                <span class="promo-code">{{ promoCode }}</span>
+                <button class="copy-btn" aria-label="Скопировать промокод">
+                  <!-- Иконка копирования (два квадрата) -->
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 11H27V27H11V11Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 21V5H21" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                
+                <!-- Уведомление о копировании -->
+                <span class="copy-tooltip" :class="{ show: showTooltip }">Скопировано!</span>
+              </div>
             </div>
 
-            <!-- Описание промокода -->
+            <!-- МОБИЛЬНАЯ ВЕРСИЯ: QR-код (скрывается на десктопе) -->
+            <div class="mobile-qr-wrapper">
+              <div class="qr-code-svg-container" @click="copyPromoCode" title="Нажмите, чтобы скопировать промокод">
+                <!-- Отрисовка QR-кода на базе SVG согласно Frame 1:743 -->
+                <svg width="154" height="154" viewBox="0 0 154 154" fill="none" xmlns="http://www.w3.org/2000/svg" class="qr-svg">
+                  <rect width="154" height="154" fill="white"/>
+                  <!-- Угловой маркер: Верхний-Левый -->
+                  <rect x="0" y="0" width="44" height="44" fill="black"/>
+                  <rect x="6.28" y="6.28" width="31.42" height="31.42" fill="white"/>
+                  <rect x="12.57" y="12.57" width="18.85" height="18.85" fill="black"/>
+
+                  <!-- Угловой маркер: Верхний-Правый -->
+                  <rect x="110" y="0" width="44" height="44" fill="black"/>
+                  <rect x="116.28" y="6.28" width="31.42" height="31.42" fill="white"/>
+                  <rect x="122.57" y="12.57" width="18.85" height="18.85" fill="black"/>
+
+                  <!-- Угловой маркер: Нижний-Левый -->
+                  <rect x="0" y="110" width="44" height="44" fill="black"/>
+                  <rect x="6.28" y="116.28" width="31.42" height="31.42" fill="white"/>
+                  <rect x="12.57" y="122.57" width="18.85" height="18.85" fill="black"/>
+
+                  <!-- Выравнивающий маркер (внизу справа) -->
+                  <rect x="116.28" y="116.28" width="18.85" height="18.85" fill="black"/>
+                  <rect x="122.57" y="122.57" width="6.28" height="6.28" fill="white"/>
+                  <rect x="128.85" y="128.85" width="6.28" height="6.28" fill="black"/>
+
+                  <!-- Генеративные блоки QR-кода -->
+                  <rect x="56.5" y="6.28" width="6.28" height="12.57" fill="black"/>
+                  <rect x="75.4" y="0" width="12.57" height="6.28" fill="black"/>
+                  <rect x="94.2" y="12.57" width="6.28" height="6.28" fill="black"/>
+                  
+                  <rect x="50.2" y="25.1" width="18.8" height="6.28" fill="black"/>
+                  <rect x="81.7" y="18.8" width="6.28" height="12.57" fill="black"/>
+                  <rect x="94.2" y="31.4" width="12.57" height="6.28" fill="black"/>
+
+                  <rect x="6.28" y="56.5" width="12.57" height="6.28" fill="black"/>
+                  <rect x="31.4" y="50.2" width="6.28" height="12.57" fill="black"/>
+                  <rect x="50.2" y="50.2" width="12.57" height="6.28" fill="black"/>
+                  <rect x="69.1" y="56.5" width="6.28" height="18.8" fill="black"/>
+                  <rect x="87.9" y="50.2" width="18.8" height="6.28" fill="black"/>
+                  <rect x="116.2" y="56.5" width="12.57" height="6.28" fill="black"/>
+                  <rect x="138.2" y="50.2" width="6.28" height="12.57" fill="black"/>
+
+                  <rect x="12.5" y="75.4" width="6.28" height="12.57" fill="black"/>
+                  <rect x="31.4" y="81.7" width="12.57" height="6.28" fill="black"/>
+                  <rect x="56.5" y="75.4" width="6.28" height="6.28" fill="black"/>
+                  <rect x="81.7" y="75.4" width="12.57" height="12.57" fill="black"/>
+                  <rect x="106.8" y="75.4" width="18.8" height="6.28" fill="black"/>
+                  <rect x="131.9" y="81.7" width="12.57" height="12.57" fill="black"/>
+
+                  <rect x="50.2" y="94.2" width="6.28" height="18.8" fill="black"/>
+                  <rect x="69.1" y="100.5" width="12.57" height="6.28" fill="black"/>
+                  <rect x="94.2" y="94.2" width="6.28" height="12.57" fill="black"/>
+                  
+                  <rect x="56.5" y="116.2" width="12.57" height="6.28" fill="black"/>
+                  <rect x="81.7" y="122.5" width="6.28" height="18.8" fill="black"/>
+                  <rect x="94.2" y="131.9" width="12.57" height="6.28" fill="black"/>
+                  
+                  <rect x="6.28" y="25.1" width="31.4" height="2" fill="black" opacity="0.3"/>
+                  <rect x="25.1" y="6.28" width="2" height="31.4" fill="black" opacity="0.3"/>
+                </svg>
+              </div>
+              <div class="qr-toast" :class="{ show: showTooltip }">Промокод скопирован!</div>
+            </div>
+
+            <!-- Описание промокода (18px) -->
             <p class="promo-desc">
-              Это ваш личный промокод — поделитесь им с вашими пациентами. Вы получите бонусные баллы, а пациент 10% скидки. Промокод вводится на странице корзина.
+              Это ваш личный промокод — поделитесь им с вашими пациентами. Вы получите ______, а пациент 10% скидки. Промокод вводится на странице корзина.
             </p>
 
-            <!-- Ссылка подробнее -->
+            <!-- Ссылка подробнее (18px) -->
             <a href="#" @click.prevent="showMechanicInfo" class="mechanic-link">Подробнее о механике</a>
           </div>
         </div>
@@ -90,7 +157,7 @@ const copyPromoCode = async () => {
 }
 
 const showMechanicInfo = () => {
-  alert('Механика начисления: \nЗа каждого пациента, воспользовавшегося вашим промокодом, вы получаете 500 бонусных баллов на ваш счет. Пациент получает 10% скидку на любые лабораторные исследования.')
+  alert('Механика начисления: \nЗа каждого пациента, воспользовавшегося вашим промокодом, вы получаете бонусные баллы на ваш счет. Пациент получает 10% скидку на любые лабораторные исследования.')
 }
 </script>
 
@@ -125,13 +192,6 @@ const showMechanicInfo = () => {
   display: flex;
   flex-direction: column;
   gap: 64px; /* gap 64px по макету */
-}
-
-@media (max-width: 840px) {
-  .dashboard-container {
-    width: 100%;
-    gap: 40px;
-  }
 }
 
 .welcome-title {
@@ -248,17 +308,112 @@ const showMechanicInfo = () => {
   flex-grow: 1;
 }
 
-@media (max-width: 600px) {
+/* Мобильный QR-код и стили адаптивности */
+.mobile-qr-wrapper {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.qr-code-svg-container {
+  width: 154px;
+  height: 154px;
+  border: 1px solid #dfdfdf;
+  padding: 8px;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.qr-code-svg-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.qr-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.qr-toast {
+  position: absolute;
+  bottom: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000000;
+  color: #ffffff;
+  padding: 6px 12px;
+  font-size: 14px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 5;
+}
+
+.qr-toast.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Стили адаптивности под мобильный макет Frame 1:734 */
+@media (max-width: 768px) {
+  .dashboard-container {
+    width: 100%;
+    gap: 32px; /* gap 32px на мобильных */
+    padding: 0 16px;
+  }
+  
+  .welcome-title {
+    font-size: 32px; /* 32px по мобильному макету */
+    text-align: left; /* Текст выравнивается по левому краю */
+  }
+
+  .promo-card {
+    padding: 32px; /* Внутренний отступ 32px со всех сторон */
+    gap: 64px; /* gap 64px сохраняется */
+  }
+
+  .usage-count {
+    font-size: 16px; /* 16px на мобильных */
+  }
+
+  /* Переключение промокода на QR-код */
+  .desktop-promo-wrapper {
+    display: none;
+  }
+
+  .mobile-qr-wrapper {
+    display: flex;
+    align-self: flex-start; /* Прижимается к левой стороне по макету */
+  }
+
+  .promo-desc {
+    font-size: 18px;
+    max-width: 320px; /* Ширина 320px на мобильных */
+  }
+
+  .mechanic-link {
+    font-size: 18px;
+  }
+
+  /* Смена раскладки кнопок на вертикальный стек */
   .dashboard-actions {
     flex-direction: column;
   }
+
   .dashboard-btn-left {
-    width: 100%;
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: none;
+    width: 100% !important;
+    height: 66px !important; /* Высота 66px */
+    border: 1px solid #dfdfdf !important;
+    border-bottom: none !important; /* Убираем двойную рамку посередине */
   }
+
   .dashboard-btn-right {
-    width: 100%;
+    width: 100% !important;
+    height: 66px !important; /* Высота 66px */
+    border: 1px solid #dfdfdf !important;
   }
 }
 </style>

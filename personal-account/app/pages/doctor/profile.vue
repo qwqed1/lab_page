@@ -66,9 +66,10 @@
             <button type="submit" class="btn-black btn-save">
               <span>{{ saveButtonText }}</span>
               <span class="btn-icon">
-                <!-- Иконка галочки / сохранения -->
+                <!-- Галочка в круге -->
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 13l4 4L19 7" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="12" cy="12" r="10" stroke="#FFFFFF" stroke-width="2"/>
+                  <path d="M8 12L11 15L16 9" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </button>
