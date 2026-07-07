@@ -3,35 +3,22 @@
     <!-- Шапка дашборда -->
     <header class="header-nav dashboard-header">
       <div class="header-logo">ALEX LAB</div>
-      
-      <!-- Демо-переключатель статусов анализов для демонстрации всех экранов макета -->
-      <div class="demo-status-selector">
-        <span class="selector-label">Статус:</span>
-        <button 
-          v-for="statusNum in [1, 2, 3, 4]" 
-          :key="statusNum" 
-          @click="currentStatus = statusNum"
-          class="status-tab-btn"
-          :class="{ active: currentStatus === statusNum }"
-        >
-          {{ statusNum }}
-        </button>
-      </div>
     </header>
 
     <main class="patient-main-content">
       <div class="dashboard-container">
         
-        <!-- СТАТУС 1: Ожидание сдачи крови (Frame 1:14) -->
-        <div v-if="currentStatus === 1" class="status-content-wrapper">
-          <div class="status-card-header">
-            <h2 class="patient-welcome-title">Иван, вас ждут по адресу Казань, Островского 9. Здание Invitro.</h2>
-            <p class="patient-welcome-desc">Сдайте кровь до 31 июля — потом запись автоматически отменится</p>
-          </div>
+        <!-- Приветственный блок сверху (только для статуса 1 по макету) -->
+        <div v-if="currentStatus === 1" class="status-card-header">
+          <h2 class="patient-welcome-title">Иван, вас ждут по адресу Казань, Островского 9. Здание Invitro.</h2>
+          <p class="patient-welcome-desc">Сдайте кровь до 31 июля — потом запись автоматически отменится</p>
+        </div>
 
-          <!-- Заглушка под карту по ТЗ пользователя (размер 805x291px на десктопе) -->
-          <div class="map-placeholder-box">
-            <!-- Координатная сетка на SVG для имитации карты -->
+        <!-- Единая карточка статуса пациента (Frame 336211) -->
+        <div class="status-card">
+          <!-- Карта на статус 1 (заглушка) -->
+          <div v-if="currentStatus === 1" class="map-placeholder-box">
+            <!-- Сетка координат на базе SVG -->
             <svg class="map-grid-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -59,78 +46,119 @@
             </div>
           </div>
 
-          <!-- Кнопка Отменить запись -->
-          <div class="status-action-row">
-            <button @click="cancelAppointment" class="btn-cancel-appointment">
-              <span>Отменить запись</span>
-              <span class="btn-icon-circle-small">
-                <!-- Восклицательный знак в круге -->
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="12" r="10" stroke="#000000" stroke-width="2"/>
-                  <path d="M12 8V12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
-                  <circle cx="12" cy="16" r="1" fill="#000000"/>
-                </svg>
-              </span>
-            </button>
-          </div>
-        </div>
-
-        <!-- СТАТУС 2: Материал получен (Frame 1:188) -->
-        <div v-else-if="currentStatus === 2" class="status-content-wrapper text-status-wrapper">
-          <div class="text-status-card">
-            <span class="status-badge">Новый статус</span>
-            <h2 class="status-main-title">Материал получен,<br>ожидает расшифровки</h2>
-            <p class="status-sub-desc">О новых статусах сообщаем по СМС<br>и на электронной почте</p>
-          </div>
-        </div>
-
-        <!-- СТАТУС 3: Расшифровка (Frame 1:215) -->
-        <div v-else-if="currentStatus === 3" class="status-content-wrapper text-status-wrapper">
-          <div class="text-status-card">
-            <span class="status-badge">Текущий статус</span>
-            <h2 class="status-main-title">Расшифровка материала</h2>
-            <p class="status-sub-desc">Всё будет готово примерно 29 августа</p>
-          </div>
-        </div>
-
-        <!-- СТАТУС 4: Результат готов (Frame 1:240) -->
-        <div v-else-if="currentStatus === 4" class="status-content-wrapper text-status-wrapper">
-          <div class="text-status-card result-ready-card">
-            <span class="status-badge success-badge">Результат готов</span>
-            <h2 class="status-main-title">Ваш результат готов</h2>
-            <p class="status-sub-desc">Его можно посмотреть здесь,<br>а также на электронной почте</p>
+          <!-- Контентная часть карточки -->
+          <div class="status-card-body">
             
-            <!-- Кнопки действий по результатам -->
-            <div class="result-actions-group">
-              <!-- Посмотреть онлайн -->
-              <button @click="viewOnline" class="btn-black btn-result-action">
-                <span>Посмотреть онлайн</span>
-                <span class="btn-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="#FFFFFF" stroke-width="2"/>
-                    <path d="M11 8L15 12L11 16" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </button>
+            <!-- Пошаговый интерактивный элемент (Stepper) на макете Frame 336201 -->
+            <div class="stepper-container">
+              <!-- Шаг 1 -->
+              <button 
+                class="step-dot" 
+                :class="{ filled: currentStatus >= 1 }" 
+                @click="currentStatus = 1"
+                title="Шаг 1: Запись на анализы"
+                aria-label="Шаг 1"
+              ></button>
+              <span class="step-line"></span>
 
-              <!-- Скачать PDF -->
-              <a href="#" @click.prevent="downloadPdf" class="btn-outline btn-result-action">
-                <span>Скачать PDF</span>
-                <span class="btn-icon">
-                  <!-- Иконка скачивания файла -->
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 4V16M12 16L8 12M12 16L16 12" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M4 20H20" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                </span>
-              </a>
+              <!-- Шаг 2 -->
+              <button 
+                class="step-dot" 
+                :class="{ filled: currentStatus >= 2 }" 
+                @click="currentStatus = 2"
+                title="Шаг 2: Материал получен"
+                aria-label="Шаг 2"
+              ></button>
+              <span class="step-line"></span>
+
+              <!-- Шаг 3 -->
+              <button 
+                class="step-dot" 
+                :class="{ filled: currentStatus >= 3 }" 
+                @click="currentStatus = 3"
+                title="Шаг 3: Расшифровка материала"
+                aria-label="Шаг 3"
+              ></button>
+              <span class="step-line"></span>
+
+              <!-- Шаг 4 -->
+              <button 
+                class="step-dot" 
+                :class="{ filled: currentStatus >= 4 }" 
+                @click="currentStatus = 4"
+                title="Шаг 4: Результат готов"
+                aria-label="Шаг 4"
+              ></button>
+            </div>
+
+            <!-- Контент в зависимости от выбранного шага -->
+            <div class="status-details">
+              
+              <!-- Шаг 1: Карта и Отмена записи -->
+              <div v-if="currentStatus === 1" class="step-content">
+                <div class="status-action-row">
+                  <button @click="cancelAppointment" class="btn-cancel-appointment">
+                    <span>Отменить запись</span>
+                    <span class="btn-icon-circle-small">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#000000" stroke-width="2"/>
+                        <path d="M12 8V12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="12" cy="16" r="1" fill="#000000"/>
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Шаг 2: Материал получен (Frame 1:188) -->
+              <div v-else-if="currentStatus === 2" class="step-content text-left">
+                <span class="status-badge">Новый статус</span>
+                <h2 class="status-main-title">Материал получен,<br>ожидает расшифровки</h2>
+                <p class="status-sub-desc">О новых статусах сообщаем по СМС<br>и на электронной почте</p>
+              </div>
+
+              <!-- Шаг 3: Расшифровка (Frame 1:215) -->
+              <div v-else-if="currentStatus === 3" class="step-content text-left">
+                <span class="status-badge">Текущий статус</span>
+                <h2 class="status-main-title">Расшифровка материала</h2>
+                <p class="status-sub-desc">Всё будет готово примерно 29 августа</p>
+              </div>
+
+              <!-- Шаг 4: Результат готов (Frame 1:240) -->
+              <div v-else-if="currentStatus === 4" class="step-content text-left">
+                <span class="status-badge success-badge">Результат готов</span>
+                <h2 class="status-main-title">Ваш результат готов</h2>
+                <p class="status-sub-desc">Его можно посмотреть здесь,<br>а также на электронной почте</p>
+                
+                <div class="result-actions-group">
+                  <button @click="viewOnline" class="btn-black btn-result-action">
+                    <span>Посмотреть онлайн</span>
+                    <span class="btn-icon">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#FFFFFF" stroke-width="2"/>
+                        <path d="M11 8L15 12L11 16" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </button>
+
+                  <a href="#" @click.prevent="downloadPdf" class="btn-outline btn-result-action">
+                    <span>Скачать PDF</span>
+                    <span class="btn-icon">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 4V16M12 16L8 12M12 16L16 12" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 20H20" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+                      </svg>
+                    </span>
+                  </a>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
 
         <!-- Нижний блок кнопок управления аккаунтом (Frame 1:37) -->
         <div class="dashboard-actions">
-          <!-- Данные аккаунта -->
           <NuxtLink to="/patient/profile" class="btn-outline dashboard-btn-left">
             <span>Данные аккаунта</span>
             <span class="btn-icon">
@@ -140,7 +168,6 @@
             </span>
           </NuxtLink>
 
-          <!-- Выйти из аккаунта -->
           <NuxtLink to="/patient/login" class="btn-outline dashboard-btn-right">
             <span>Выйти из аккаунта</span>
             <span class="btn-icon">
@@ -158,7 +185,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const currentStatus = ref(1) // Демо-статус по умолчанию (1, 2, 3 или 4)
+const currentStatus = ref(1) // Текущий статус по умолчанию (1, 2, 3 или 4)
 
 const cancelAppointment = () => {
   if (confirm('Вы уверены, что хотите отменить запись на анализы?')) {
@@ -185,51 +212,12 @@ const downloadPdf = () => {
 
 .dashboard-header {
   justify-content: space-between;
-  gap: 20px;
 }
 
 .header-logo {
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.1em;
-}
-
-/* Демо-селектор статусов */
-.demo-status-selector {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #f0f2f5;
-  padding: 6px 12px;
-  border-radius: 30px;
-  border: 1px solid #dfdfdf;
-}
-
-.selector-label {
-  font-size: 12px;
-  text-transform: uppercase;
-  color: rgba(0,0,0,0.5);
-  font-weight: 700;
-}
-
-.status-tab-btn {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 1px solid rgba(0,0,0,0.1);
-  background: white;
-  font-size: 12px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.status-tab-btn.active {
-  background-color: #000000;
-  color: white;
-  border-color: #000000;
 }
 
 .patient-main-content {
@@ -254,12 +242,6 @@ const downloadPdf = () => {
   }
 }
 
-.status-content-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
 .status-card-header {
   text-align: left;
   display: flex;
@@ -268,24 +250,33 @@ const downloadPdf = () => {
 }
 
 .patient-welcome-title {
-  font-size: 24px; /* 24px по макету */
+  font-size: 24px;
   font-weight: 400;
   line-height: 1.3;
   color: #000000;
 }
 
 .patient-welcome-desc {
-  font-size: 21px; /* 21px по макету */
+  font-size: 21px;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.5); /* opacity 0.5 */
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Карточка статуса */
+.status-card {
+  background-color: #ffffff;
+  border: 1px solid #dfdfdf;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 /* Заглушка карты */
 .map-placeholder-box {
   width: 100%;
-  height: 291px; /* 291px по макету */
+  height: 291px;
   background-color: #ffffff;
-  border: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
   position: relative;
   overflow: hidden;
 }
@@ -326,17 +317,69 @@ const downloadPdf = () => {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.status-action-row {
+/* Тело карточки */
+.status-card-body {
+  padding: 32px; /* 32px отступ по макету */
   display: flex;
+  flex-direction: column;
+  gap: 48px; /* Расстояние между степпером и контентом */
 }
 
-/* Кнопка отмены */
+/* Пошаговый индикатор (Stepper) */
+.stepper-container {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  align-self: flex-start; /* Размещается слева */
+}
+
+.step-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #000000;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+  box-shadow: 0 0 0 4px #ffffff; /* Чтобы перекрывать линию */
+}
+
+.step-dot:hover {
+  transform: scale(1.15);
+}
+
+.step-dot.filled {
+  background-color: #000000;
+}
+
+.step-line {
+  width: 12px; /* 12px длина линии по макету */
+  height: 1px;
+  background-color: #000000; /* всегда черная линия */
+  z-index: 1;
+}
+
+.status-details {
+  min-height: 140px; /* Чтобы не прыгала верстка при переключении */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Шаг 1: кнопка отмены */
+.status-action-row {
+  display: flex;
+  align-self: flex-start;
+}
+
 .btn-cancel-appointment {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 251px; /* ширина по макету */
-  height: 56px;  /* высота по макету */
+  width: 251px;
+  height: 56px;
   background-color: #ffffff;
   border: 1px solid #dfdfdf;
   padding: 16px 24px;
@@ -360,19 +403,15 @@ const downloadPdf = () => {
   height: 24px;
 }
 
-/* Текстовые дашборды для статусов 2, 3, 4 */
-.text-status-wrapper {
-  background-color: #ffffff;
-  border: 1px solid #dfdfdf;
-  padding: 64px 32px;
-  text-align: left;
-}
-
-.text-status-card {
+/* Шаги 2, 3, 4: текстовые стили */
+.step-content {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-width: 600px;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .status-badge {
@@ -401,11 +440,11 @@ const downloadPdf = () => {
   color: rgba(0, 0, 0, 0.5);
 }
 
-/* Кнопки действий результатов */
+/* Группа кнопок результатов */
 .result-actions-group {
   display: flex;
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 8px;
 }
 
 .btn-result-action {
@@ -424,7 +463,7 @@ const downloadPdf = () => {
   }
 }
 
-/* Стили нижних кнопок управления аккаунтом */
+/* Нижний блок кнопок управления аккаунтом */
 .dashboard-actions {
   display: flex;
   width: 100%;
@@ -460,8 +499,13 @@ const downloadPdf = () => {
     height: 250px;
   }
 
+  .status-card-body {
+    padding: 24px;
+    gap: 36px;
+  }
+
   .btn-cancel-appointment {
-    width: 100%; /* На мобильном кнопка отмены на всю ширину */
+    width: 100%;
   }
 
   .status-main-title {
@@ -470,10 +514,6 @@ const downloadPdf = () => {
 
   .status-sub-desc {
     font-size: 16px;
-  }
-
-  .text-status-wrapper {
-    padding: 40px 24px;
   }
 
   .dashboard-actions {
