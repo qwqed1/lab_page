@@ -509,19 +509,11 @@ const downloadPdf = () => {
   }
 
   .map-placeholder-box {
-    height: 250px;
+    height: 161px; /* 161px по мобильному макету */
   }
 
-  .status-card-body {
-    padding: 24px;
-    height: 301px; /* Фиксированная высота для мобильных по макету */
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .status-details {
-    margin-top: auto; /* Прижимает текст к низу на мобильных по макету */
+  .status-badge-blue {
+    padding: 8px 12px; /* Компактные отступы плашки на мобильных */
   }
 
   .btn-cancel-appointment {
