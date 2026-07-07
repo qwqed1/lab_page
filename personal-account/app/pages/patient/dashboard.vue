@@ -131,7 +131,7 @@
                 <p class="status-sub-desc">Его можно посмотреть здесь,<br>а также на электронной почте</p>
                 
                 <div class="result-actions-group">
-                  <button @click="viewOnline" class="btn-black btn-result-action">
+                  <button @click="viewOnline" class="btn-black btn-view-online">
                     <span>Посмотреть онлайн</span>
                     <span class="btn-icon">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -141,7 +141,7 @@
                     </span>
                   </button>
 
-                  <a href="#" @click.prevent="downloadPdf" class="btn-outline btn-result-action">
+                  <a href="#" @click.prevent="downloadPdf" class="btn-outline btn-download-pdf">
                     <span>Скачать PDF</span>
                     <span class="btn-icon">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -341,9 +341,10 @@ const downloadPdf = () => {
   background-color: transparent;
   cursor: pointer;
   padding: 0;
+  margin: 0;
   transition: background-color 0.2s ease, transform 0.2s ease;
   z-index: 2;
-  box-shadow: 0 0 0 4px #ffffff; /* Чтобы перекрывать линию */
+  box-sizing: border-box;
 }
 
 .step-dot:hover {
@@ -355,14 +356,16 @@ const downloadPdf = () => {
 }
 
 .step-line {
-  width: 12px; /* 12px длина линии по макету */
+  width: 12px; /* ровно 12px по макету */
   height: 1px;
-  background-color: #000000; /* всегда черная линия */
+  background-color: #000000; /* сплошная линия */
+  margin: 0;
+  padding: 0;
   z-index: 1;
 }
 
 .status-details {
-  min-height: 140px; /* Чтобы не прыгала верстка при переключении */
+  min-height: 140px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -443,13 +446,16 @@ const downloadPdf = () => {
 /* Группа кнопок результатов */
 .result-actions-group {
   display: flex;
-  gap: 12px;
+  gap: 4px; /* gap 4px по макету */
   margin-top: 8px;
 }
 
-.btn-result-action {
-  flex: 1;
-  max-width: 270px;
+.btn-view-online {
+  width: 265px; /* ширина по макету */
+}
+
+.btn-download-pdf {
+  width: 197px; /* ширина по макету */
 }
 
 @media (max-width: 600px) {
@@ -457,9 +463,10 @@ const downloadPdf = () => {
     flex-direction: column;
     width: 100%;
   }
-  .btn-result-action {
+  .btn-view-online,
+  .btn-download-pdf {
+    width: 100% !important;
     max-width: 100%;
-    width: 100%;
   }
 }
 
