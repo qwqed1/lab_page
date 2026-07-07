@@ -112,21 +112,21 @@
 
               <!-- Шаг 2: Материал получен (Frame 1:188) -->
               <div v-else-if="currentStatus === 2" class="step-content text-left">
-                <span class="status-badge">Новый статус</span>
+                <div class="status-badge-container">
+                  <span class="status-badge-blue">Новый статус</span>
+                </div>
                 <h2 class="status-main-title">Материал получен,<br>ожидает расшифровки</h2>
                 <p class="status-sub-desc">О новых статусах сообщаем по СМС<br>и на электронной почте</p>
               </div>
 
               <!-- Шаг 3: Расшифровка (Frame 1:215) -->
               <div v-else-if="currentStatus === 3" class="step-content text-left">
-                <span class="status-badge">Текущий статус</span>
                 <h2 class="status-main-title">Расшифровка материала</h2>
                 <p class="status-sub-desc">Всё будет готово примерно 29 августа</p>
               </div>
 
               <!-- Шаг 4: Результат готов (Frame 1:240) -->
               <div v-else-if="currentStatus === 4" class="step-content text-left">
-                <span class="status-badge success-badge">Результат готов</span>
                 <h2 class="status-main-title">Ваш результат готов</h2>
                 <p class="status-sub-desc">Его можно посмотреть здесь,<br>а также на электронной почте</p>
                 
@@ -417,17 +417,23 @@ const downloadPdf = () => {
   text-align: left;
 }
 
-.status-badge {
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: rgba(0,0,0,0.5);
-  font-weight: 700;
-  align-self: flex-start;
+.status-badge-container {
+  display: flex;
+  margin-bottom: 8px;
 }
 
-.success-badge {
-  color: #008800;
+.status-badge-blue {
+  background-color: #f1faff;
+  color: #2baac9;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  border: 1px solid rgba(0,0,0,0.03);
 }
 
 .status-main-title {
@@ -508,12 +514,14 @@ const downloadPdf = () => {
 
   .status-card-body {
     padding: 24px;
-    height: auto; /* Снимаем фикс. высоту на мобильных */
-    gap: 36px;
+    height: 301px; /* Фиксированная высота для мобильных по макету */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   }
 
   .status-details {
-    margin-top: 0; /* Убираем авто-маргин */
+    margin-top: auto; /* Прижимает текст к низу на мобильных по макету */
   }
 
   .btn-cancel-appointment {
