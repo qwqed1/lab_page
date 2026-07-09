@@ -65,10 +65,20 @@ const getAllergenDetail = (name) => {
   }
 }
 
+const popularAllergens = [
+  'Кошачья шерсть', 'Банан', 'Пыль', 'Клубника', 'Тараканы', 'Пыльца берёзы',
+  'Кошачья шерсть', 'Банан', 'Пыль', 'Клубника', 'Тараканы', 'Пыльца берёзы',
+  'Кошачья шерсть', 'Банан', 'Пыль', 'Клубника', 'Тараканы', 'Пыльца берёзы'
+]
+
 const filteredAllergens = computed(() => {
-  if (!searchQuery.value.trim()) return []
+  if (!searchQuery.value.trim()) {
+    return popularAllergens
+  }
   const q = searchQuery.value.toLowerCase()
-  return allergensList.filter(a => a.toLowerCase().includes(q))
+  // Объединяем оба списка, чтобы гарантировать поиск по всем аллергенам
+  const combinedList = Array.from(new Set([...popularAllergens, ...allergensList]))
+  return combinedList.filter(a => a.toLowerCase().includes(q))
 })
 
 const selectAllergen = (name) => {
@@ -178,7 +188,7 @@ watch(searchQuery, (newVal) => {
           <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7 13L1 7L7 1" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          На главную
+          <span class="back-text">На главную</span>
         </button>
       </div>
 
@@ -194,7 +204,7 @@ watch(searchQuery, (newVal) => {
             v-model="searchQuery"
             type="text"
             class="search-input"
-            placeholder="Апельсин"
+            placeholder="Введите продукт"
             autocomplete="off"
           />
           <button class="search-icon-btn" aria-label="Поиск">
@@ -604,16 +614,28 @@ watch(searchQuery, (newVal) => {
    ======================================== */
 
 @media (max-width: 1024px) {
+  .search-page-container {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
   .sidebar-container {
     display: none;
   }
 
+  .back-text {
+    display: none;
+  }
+
   .search-back-row {
-    padding: 16px 20px 0;
+    padding: 24px 16px;
+    height: 72px;
+    border-bottom: 1px solid #dfdfdf;
+    background: #ffffff;
   }
 
   .search-center {
-    padding: 40px 20px 32px;
+    padding: 40px 16px 32px;
   }
 
   .search-heading {
@@ -648,17 +670,22 @@ watch(searchQuery, (newVal) => {
   }
 
   .details-left-main {
-    border-right: 1px solid #dfdfdf;
+    border: 1px solid #dfdfdf;
     height: auto;
     min-height: 250px;
   }
 
   .details-left-footer {
-    border-right: 1px solid #dfdfdf;
+    order: -1; /* Кнопка Назад перемещается наверх над карточкой детального просмотра */
+    border: 1px solid #dfdfdf;
+    margin-bottom: 16px;
   }
 
   .details-right-col {
+    border: 1px solid #dfdfdf;
+    padding: 24px 16px;
     min-height: auto;
+    background: #ffffff;
   }
 }
 </style>
