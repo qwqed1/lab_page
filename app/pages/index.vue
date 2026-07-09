@@ -244,7 +244,7 @@ const scrollToSection = (id) => {
       <!-- Side-by-side cards (Frame 109) -->
       <div class="cards-row">
         <!-- Search Card (Frame 101) -->
-        <div class="sub-card" id="card-search" @click="showSearchModal = true">
+        <div class="sub-card" id="card-search" @click="$router.push('/search')">
           <div class="card-icon-wrapper">
             <img src="/assets/search-icon.svg" alt="search" />
           </div>
