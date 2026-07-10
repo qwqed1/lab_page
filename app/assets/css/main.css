@@ -946,14 +946,7 @@ body {
 }
 
 .video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.55);
-  z-index: 1;
-  pointer-events: none;
+  display: none;
 }
 
 .scroll-sections-layer {
@@ -1585,6 +1578,15 @@ body {
   gap: 48px;
 }
 
+/* White frosted glass card behind advantages text */
+.figma-step-block.advantages-pos .figma-step-text-stack {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
 .figma-step-block.results-pos {
   top: 58.0%; /* Raised from 76.8% to 58.0% to prevent overflow on laptops */
   width: 491px;
@@ -1766,10 +1768,15 @@ body {
   position: absolute;
   left: 5.15%;
   top: 56.0%;
-  width: 85%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  width: 44%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background: rgba(255, 255, 255, 0.80);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 14px;
+  padding: 24px 28px;
 }
 
 .story-block-title {
