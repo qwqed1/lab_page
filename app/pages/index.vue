@@ -84,6 +84,7 @@ const videoA = ref(null)
 const videoB = ref(null)
 const activeVideoElement = ref('A') // 'A' or 'B'
 let videoRequestId = 0
+const REVERSE_PLAYBACK_RATE = 1.5
 
 const navigateToExternal = (url) => {
   window.location.href = url
@@ -179,7 +180,7 @@ const showMenu = computed(() => {
 
 const showSmokeCloud = computed(() => {
   const idx = currentSlideIndex.value
-  return (idx >= 2 && idx <= 6) || (idx >= 12 && idx <= 14)
+  return (idx >= 2 && idx <= 10) || (idx >= 12 && idx <= 14)
 })
 
 const isVideoBackgroundVisible = computed(() => {
@@ -376,7 +377,7 @@ const preloadUpcomingVideo = () => {
   inactiveEl.load()
 }
 
-const playVideoShot = async (src) => {
+const playVideoShot = async (src, playbackRate = 1) => {
   if (!src) return
 
   const requestId = ++videoRequestId
@@ -400,6 +401,7 @@ const playVideoShot = async (src) => {
     if (requestId !== videoRequestId) return
 
     incomingEl.currentTime = 0
+    incomingEl.playbackRate = playbackRate
     await incomingEl.play()
     await waitForVideoFrame(incomingEl)
     if (requestId !== videoRequestId) return
@@ -429,7 +431,7 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
     nextSrc = slide.video
   }
 
-  playVideoShot(nextSrc)
+  playVideoShot(nextSrc, goingBack ? REVERSE_PLAYBACK_RATE : 1)
 })
 
 onMounted(() => {
@@ -599,7 +601,7 @@ onUnmounted(() => {
           class="slide-layer"
           :class="getSlideClass(index)"
           :data-direction="slide.direction"
-          :data-has-video="!!slide.video"
+          :data-has-video="!!(slide.video || slide.holdVideo)"
         >
           <!-- Slide 1: Hero -->
           <template v-if="slide.id === 'slide-1'">
