@@ -310,12 +310,32 @@ const getStoryAfter = (tab) => {
 // Watch currentSlideIndex to load videos and init map
 watch(currentSlideIndex, (newIndex, oldIndex) => {
   const slide = slides.value[newIndex]
+  const oldSlide = slides.value[oldIndex]
   const goingBack = newIndex < oldIndex
-  const nextSrc = (goingBack && slide.reverseVideo) ? slide.reverseVideo : slide.video
+
+  // Play the reverse video of the slide we are LEAVING, or fallback to the forward video of the slide we are ENTERING
+  let nextSrc = null
+  if (goingBack) {
+    nextSrc = (oldSlide && oldSlide.reverseVideo) ? oldSlide.reverseVideo : slide.video
+  } else {
+    nextSrc = slide.video
+  }
 
   if (nextSrc) {
     const activeEl = activeVideoElement.value === 'A' ? videoA.value : videoB.value
     const inactiveEl = activeVideoElement.value === 'A' ? videoB.value : videoA.value
+
+    if (activeEl && activeEl.src && typeof window !== 'undefined') {
+      try {
+        const absoluteNextSrc = new URL(nextSrc, window.location.origin).href
+        if (activeEl.src === absoluteNextSrc) {
+          // Video is already playing this source, prevent restart and skip reload
+          return
+        }
+      } catch (e) {
+        console.warn('URL parsing failed', e)
+      }
+    }
 
     if (inactiveEl) {
       inactiveEl.src = nextSrc
