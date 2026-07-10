@@ -917,7 +917,7 @@ body {
   display: none;
 }
 
-.figma-smoke-cloud {
+.figma-smoke-cloud-fixed {
   position: absolute;
   left: -200px;
   top: 150px;
@@ -927,13 +927,18 @@ body {
   border-radius: 50%;
   filter: blur(140px);
   -webkit-filter: blur(140px);
-  opacity: 0.85;
+  opacity: 0;
   z-index: 1;
   pointer-events: none;
+  transition: opacity 1.0s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.figma-smoke-cloud-fixed.visible {
+  opacity: 0.85;
 }
 
 @media (max-width: 1440px) {
-  .figma-smoke-cloud {
+  .figma-smoke-cloud-fixed {
     width: 650px !important;
     height: 600px !important;
     left: -150px !important;
@@ -1475,6 +1480,7 @@ body {
   height: 100%;
   overflow: hidden;
   background-color: transparent;
+  z-index: 2;
 }
 
 /* Base style for every slide layer */

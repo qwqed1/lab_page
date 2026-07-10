@@ -176,6 +176,11 @@ const showMenu = computed(() => {
   return activeMenuIndex.value !== -1
 })
 
+const showSmokeCloud = computed(() => {
+  const idx = currentSlideIndex.value
+  return (idx >= 2 && idx <= 6) || (idx >= 12 && idx <= 14)
+})
+
 let isScrolling = false
 const SCROLL_LOCK_DURATION = 800
 
@@ -490,6 +495,9 @@ onUnmounted(() => {
         <div class="video-overlay"></div>
       </div>
 
+      <!-- Static Smoke Cloud (Fixed, transitions opacity, does not slide) -->
+      <div class="figma-smoke-cloud-fixed" :class="{ visible: showSmokeCloud }"></div>
+
       <!-- Slides Deck -->
       <div class="slides-deck-container">
         <div
@@ -500,9 +508,6 @@ onUnmounted(() => {
           :data-direction="slide.direction"
           :data-has-video="!!slide.video"
         >
-          <!-- Smoke Cloud behind text for Advantages & Stories -->
-          <div v-if="slide.label === 'Преимущества' || slide.type === 'story'" class="figma-smoke-cloud"></div>
-
           <!-- Slide 1: Hero -->
           <template v-if="slide.id === 'slide-1'">
             <h1 class="figma-hero-title">
