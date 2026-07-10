@@ -156,7 +156,7 @@ const downloadPDF = () => {
       </div>
 
       <!-- Quiz Card -->
-      <div class="sidebar-row-card" id="row-quiz" @click="redirect('https://quiz-tan.vercel.app')">
+      <div class="sidebar-row-card" id="row-quiz" @click="redirect('https://quiz-kappa-black.vercel.app')">
         <div class="row-left-content">
           <span class="tag-badge">~5 минут</span>
           <span class="row-text">КВИЗ: Нужен ли вам тест на аллергены?</span>
