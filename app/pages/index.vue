@@ -709,7 +709,13 @@ onUnmounted(() => {
             <div class="figma-content-wrapper contacts-wrapper">
               <div class="figma-contacts-header-group">
                 <h2 class="figma-contacts-title-inline">Тест на аллергию ALEX² — один анализ, который даёт ответы</h2>
-                <button class="figma-contacts-cta-btn-inline" @click="showRegisterModal = true">Записаться на тест на аллергию</button>
+                <button class="figma-contacts-cta-btn-inline" @click="showRegisterModal = true">
+                  <span>Записаться на тест на аллергию</span>
+                  <svg class="cta-btn-arrow" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="16" cy="16" r="14" />
+                    <path d="M13 11l5 5-5 5" />
+                  </svg>
+                </button>
               </div>
 
               <div class="figma-contacts-grid">
@@ -740,11 +746,26 @@ onUnmounted(() => {
                 </div>
               </div>
 
+              <div class="contacts-footer-container">
+                <div class="contacts-footer-links">
+                  <a href="/policy">Политика конфиденциальности</a>
+                  <a href="/terms">Условия использования материалов сайта</a>
+                </div>
+                
+                <div class="studio-credits">
+                  <svg class="studio-logo" width="79" height="35" viewBox="0 0 79 35">
+                    <path d="M 5,20 A 12,12 0 0,1 29,20 Z" fill="currentColor" />
+                    <line x1="7" y1="24" x2="27" y2="24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                    <line x1="11" y1="28" x2="23" y2="28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                    <line x1="15" y1="32" x2="19" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
 
-
-              <div class="contacts-footer-links">
-                <a href="/policy">Политика конфиденциальности</a>
-                <a href="/terms">Условия использования материалов сайта</a>
+                    <path d="M 44,6 L 48,6 L 52,22 L 67,22 L 72,6 L 50,6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                    <path d="M 44,6 L 42,2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                    <circle cx="54" cy="28" r="3" fill="currentColor" />
+                    <circle cx="65" cy="28" r="3" fill="currentColor" />
+                  </svg>
+                  <span class="studio-text">сайт сделан в студии<br>«созерцание»</span>
+                </div>
               </div>
             </div>
           </template>
