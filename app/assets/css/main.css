@@ -1991,7 +1991,7 @@ body {
 /* Laptop responsive styles for Contacts */
 @media (max-width: 1440px) {
   .figma-contacts-header-group {
-    top: 22.0%;
+    top: 20.0%;
     gap: 16px;
   }
   .figma-contacts-title-inline {
@@ -2002,12 +2002,29 @@ body {
     padding: 12px 28px;
     font-size: 16px;
   }
+  .figma-contacts-grid {
+    bottom: 90px !important;
+    top: auto !important;
+  }
+  .figma-map-element {
+    bottom: 90px !important;
+    top: auto !important;
+    height: 220px !important;
+  }
+  .contacts-footer-links {
+    bottom: 32px !important;
+    top: auto !important;
+  }
+  .contacts-legal {
+    margin-top: 12px !important;
+    gap: 4px !important;
+  }
 }
 
 .figma-contacts-grid {
   position: absolute;
   left: 5.15%;
-  top: 59.26%;
+  bottom: 220px;
   width: 42%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2069,9 +2086,9 @@ body {
 .figma-map-element {
   position: absolute;
   left: 50.0%;
-  top: 59.26%;
+  bottom: 220px;
   width: 45%;
-  height: 28%;
+  height: 280px;
   border: 1px solid #e2e8f0;
   background: #eee;
   z-index: 10;
@@ -2080,7 +2097,7 @@ body {
 .contacts-footer-links {
   position: absolute;
   left: 5.15%;
-  top: 92%;
+  bottom: 64px;
   display: flex;
   gap: 32px;
 }
