@@ -500,6 +500,9 @@ onUnmounted(() => {
           :data-direction="slide.direction"
           :data-has-video="!!slide.video"
         >
+          <!-- Smoke Cloud behind text for Advantages & Stories -->
+          <div v-if="slide.label === 'Преимущества' || slide.type === 'story'" class="figma-smoke-cloud"></div>
+
           <!-- Slide 1: Hero -->
           <template v-if="slide.id === 'slide-1'">
             <h1 class="figma-hero-title">
@@ -584,14 +587,14 @@ onUnmounted(() => {
             <div class="figma-content-wrapper story-wrapper">
               <span class="figma-category-label">{{ slide.label }}</span>
               
-              <!-- Tab Bar (Figma bounds: left 6.44%, top 51.2%) -->
+              <!-- Tab Bar -->
               <div class="figma-story-tabs">
                 <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Misha' }" @click="goToSlideById('slide-13')">Миша</button>
                 <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Alexandra' }" @click="goToSlideById('slide-14')">Александра</button>
                 <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Pasha' }" @click="goToSlideById('slide-15')">Паша</button>
               </div>
 
-              <!-- Stories Details Grid -->
+              <!-- Stories Details content list -->
               <div class="figma-story-content">
                 <!-- After ALEX2 (Header & List) -->
                 <div class="story-block-after">
@@ -610,10 +613,17 @@ onUnmounted(() => {
                 </div>
               </div>
 
-              <!-- Read More Button -->
-              <button class="figma-story-btn" @click="showDemoModal = true">
-                Читать подробнее
-              </button>
+              <!-- Horizontal divider and Read More -->
+              <div class="figma-story-footer">
+                <div class="story-footer-divider"></div>
+                <div class="story-read-more" @click="showDemoModal = true">
+                  <span>Читать подробнее</span>
+                  <svg class="read-more-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M10 8l4 4-4 4" />
+                  </svg>
+                </div>
+              </div>
             </div>
           </template>
 

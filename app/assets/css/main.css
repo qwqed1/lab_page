@@ -913,6 +913,35 @@ body {
    SCROLL-DRIVEN VIDEO BACKGROUND & SECTION STYLES (DESKTOP)
    ========================================================================== */
 
+.video-overlay {
+  display: none;
+}
+
+.figma-smoke-cloud {
+  position: absolute;
+  left: -200px;
+  top: 150px;
+  width: 1000px;
+  height: 900px;
+  background: #ffffff;
+  border-radius: 50%;
+  filter: blur(140px);
+  -webkit-filter: blur(140px);
+  opacity: 0.85;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 1440px) {
+  .figma-smoke-cloud {
+    width: 650px !important;
+    height: 600px !important;
+    left: -150px !important;
+    top: 100px !important;
+    filter: blur(90px) !important;
+  }
+}
+
 .video-bg-container {
   position: absolute;
   top: 0;
@@ -1574,17 +1603,17 @@ body {
 
 .figma-step-block.advantages-pos {
   top: 40.1%; /* y: 434 / 1080 = 40.1% */
-  width: 455px;
+  width: 512px;
   gap: 48px;
+  z-index: 2;
 }
 
-/* White frosted glass card behind advantages text */
+/* Let the smoke cloud handle contrast, no card backgrounds */
 .figma-step-block.advantages-pos .figma-step-text-stack {
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 12px;
-  padding: 20px 24px;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0;
 }
 
 .figma-step-block.results-pos {
@@ -1737,31 +1766,31 @@ body {
 
 .figma-story-tabs {
   position: absolute;
-  left: 6.44%;
-  top: 49.0%;
+  left: 5.15%;
+  top: 45.0%;
   display: flex;
-  gap: 24px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  width: 40%;
+  gap: 12px;
+  z-index: 2;
 }
 
 .figma-tab-btn {
   background: transparent;
-  border: none;
+  border: 2px solid #000000;
+  border-radius: 120px;
   font-size: 18px;
-  color: #888888;
-  padding: 8px 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #000000;
+  padding: 12px 24px;
   cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: color 0.3s, border-color 0.3s;
+  opacity: 0.32;
+  transition: opacity 0.3s ease;
 }
 .figma-tab-btn:hover {
-  color: #000000;
+  opacity: 0.7;
 }
 .figma-tab-btn.active {
-  color: #000000;
-  border-bottom-color: #000000;
-  font-weight: 600;
+  opacity: 1;
 }
 
 .figma-story-content {
@@ -1771,22 +1800,23 @@ body {
   width: 44%;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  background: rgba(255, 255, 255, 0.80);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: 14px;
-  padding: 24px 28px;
+  gap: 48px;
+  z-index: 2;
 }
 
 .story-block-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: #cc6666;
-  margin: 0 0 16px;
+  font-size: 42px;
+  font-weight: 400;
+  color: #000000;
+  margin: 0 0 24px;
 }
 .story-block-title.green {
-  color: #4a6a4a;
+  color: #000000;
+}
+.story-block-before .story-block-title {
+  font-size: 32px;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0 0 24px;
 }
 
 .story-bullets {
@@ -1795,44 +1825,64 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 .story-bullets li {
-  font-size: 18px;
-  color: #000000;
+  font-size: 21px;
+  color: rgba(0, 0, 0, 0.8);
   position: relative;
-  padding-left: 24px;
-  line-height: 1.4;
+  padding-left: 16px;
+  line-height: 1.3;
 }
 .story-bullets li::before {
-  content: "✓";
-  color: #4a6a4a;
+  content: "";
   position: absolute;
   left: 0;
-  font-weight: bold;
+  top: 10px;
+  width: 4px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.8);
 }
 .story-bullets.gray li::before {
-  content: "✗";
-  color: #cc6666;
+  background: rgba(0, 0, 0, 0.6);
+  top: 9px;
 }
 .story-bullets.gray li {
-  color: #666666;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
-.figma-story-btn {
+.figma-story-footer {
   position: absolute;
   left: 5.15%;
-  top: 91.0%;
-  background: #000000;
-  color: #ffffff;
-  border: none;
-  padding: 12px 32px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background 0.3s;
+  top: 90.0%;
+  width: 44%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  z-index: 2;
 }
-.figma-story-btn:hover {
-  background: #222222;
+.story-footer-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.2);
+}
+.story-read-more {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 24px;
+  color: #000000;
+  cursor: pointer;
+  width: fit-content;
+  transition: opacity 0.2s ease;
+}
+.story-read-more:hover {
+  opacity: 0.7;
+}
+.read-more-arrow {
+  color: #000000;
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -2063,6 +2113,51 @@ body {
   .contacts-nav-links li a {
     font-size: 13px !important;
   }
+  
+  /* Laptop responsive overrides for Stories */
+  .figma-story-tabs {
+    top: 40.0% !important;
+  }
+  .figma-tab-btn {
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+  }
+  .figma-story-content {
+    top: 48.0% !important;
+    gap: 20px !important;
+  }
+  .story-block-title {
+    font-size: 24px !important;
+    margin-bottom: 12px !important;
+  }
+  .story-block-before .story-block-title {
+    font-size: 20px !important;
+    margin-bottom: 12px !important;
+  }
+  .story-bullets {
+    gap: 10px !important;
+  }
+  .story-bullets li {
+    font-size: 15px !important;
+    padding-left: 12px !important;
+  }
+  .story-bullets.gray li {
+    font-size: 14px !important;
+  }
+  .story-bullets li::before {
+    top: 7px !important;
+  }
+  .story-bullets.gray li::before {
+    top: 6px !important;
+  }
+  .figma-story-footer {
+    top: 86.0% !important;
+    gap: 12px !important;
+  }
+  .story-read-more {
+    font-size: 18px !important;
+    gap: 8px !important;
+  }
 }
 
 .figma-contacts-grid {
@@ -2189,6 +2284,7 @@ body {
 .slide-layer:not(:first-child) .figma-section-title,
 .slide-layer:not(:first-child) .figma-story-tabs,
 .slide-layer:not(:first-child) .figma-story-content,
+.slide-layer:not(:first-child) .figma-story-footer,
 .slide-layer:not(:first-child) .faq-wrapper,
 .slide-layer:not(:first-child) .figma-blog-card,
 .slide-layer:not(:first-child) .figma-blog-all-btn,
@@ -2258,6 +2354,11 @@ body {
 .slide-layer.active[data-has-video="true"] .figma-story-content {
   animation: cinematic-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 1.3s;
+}
+
+.slide-layer.active[data-has-video="true"] .figma-story-footer {
+  animation: cinematic-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 1.5s;
 }
 
 /* --------------------------------------------------------------------------
