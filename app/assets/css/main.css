@@ -31,7 +31,7 @@ body {
 
 .page-container {
   display: grid;
-  grid-template-columns: 45% 55%;
+  grid-template-columns: 50% 50%;
   gap: 0;
   max-width: 1920px;
   margin: 0; /* Align to the left edge */
@@ -1181,7 +1181,7 @@ body {
 
 @media (max-width: 1440px) {
   .page-container {
-    grid-template-columns: 45% 55%;
+    grid-template-columns: 50% 50%;
     gap: 0;
     padding: 0; /* Keep flush to the left edge */
   }
@@ -2085,13 +2085,14 @@ body {
   gap: 32px;
 }
 .contacts-footer-links a {
-  font-size: 16px;
-  color: #888888;
-  text-decoration: none;
+  font-size: 13px;
+  color: #333333;
+  font-weight: 500;
+  text-decoration: underline;
+  transition: color 0.2s ease;
 }
 .contacts-footer-links a:hover {
   color: #000000;
-  text-decoration: underline;
 }
 
 /* ==========================================================================
@@ -2114,6 +2115,12 @@ body {
 .slide-layer:not(:first-child) .figma-map-element {
   opacity: 0;
   will-change: transform, opacity, filter;
+}
+
+/* Disable sliding transform for slides 16 to 21 (FAQ, Blog, How to, Contacts) to make them crossfade only */
+.slide-layer:nth-child(n+16) {
+  transform: none !important;
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
 /* Keyframes for premium fade-in animations (only opacity, no slide or blur) */

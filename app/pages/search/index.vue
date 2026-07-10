@@ -1,6 +1,10 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 
+const redirect = (url) => {
+  window.location.href = url
+}
+
 const searchQuery = ref('')
 const selectedAllergen = ref(null)
 
@@ -149,7 +153,7 @@ watch(searchQuery, (newVal) => {
       </div>
 
       <!-- Quiz -->
-      <div class="sidebar-row-card" id="row-quiz">
+      <div class="sidebar-row-card" id="row-quiz" @click="redirect('https://quiz-tan.vercel.app')">
         <div class="row-left-content">
           <span class="tag-badge">~5 минут</span>
           <span class="row-text">КВИЗ: Нужен ли вам тест на аллергены?</span>
@@ -157,7 +161,7 @@ watch(searchQuery, (newVal) => {
       </div>
 
       <!-- Profile -->
-      <div class="sidebar-row-card" id="row-profile">
+      <div class="sidebar-row-card" id="row-profile" @click="redirect('https://personal-account-tan.vercel.app')">
         <div class="row-left-content">
           <div class="row-icon-icon" style="margin-right: 4px;">
             <img src="/assets/profile-icon.svg" alt="profile" />
@@ -167,7 +171,7 @@ watch(searchQuery, (newVal) => {
       </div>
 
       <!-- Lab -->
-      <div class="sidebar-row-card" id="row-about">
+      <div class="sidebar-row-card" id="row-about" @click="$router.push('/')">
         <div class="row-left-content">
           <span class="row-text">Лаборатория ALEX LAB</span>
         </div>

@@ -84,6 +84,10 @@ const videoA = ref(null)
 const videoB = ref(null)
 const activeVideoElement = ref('A') // 'A' or 'B'
 
+const navigateToExternal = (url) => {
+  window.location.href = url
+}
+
 const slides = ref([
   { id: 'slide-1', label: '', title: 'Тест на аллергию ALEX² — один анализ, который даёт ответы', subtitle: '', direction: 'down', video: '/videos/1.mp4' },
   { id: 'slide-2', label: '', title: 'Почему ALEX2?', subtitle: '', direction: 'down', video: '/videos/2.mp4' },
@@ -477,7 +481,7 @@ onUnmounted(() => {
       </div>
 
       <!-- Quiz Card (Frame 47) -->
-      <div class="sidebar-row-card" id="row-quiz" @click="showQuizModal = true">
+      <div class="sidebar-row-card" id="row-quiz" @click="navigateToExternal('https://quiz-tan.vercel.app')">
         <div class="row-left-content">
           <span class="tag-badge">~5 минут</span>
           <span class="row-text">КВИЗ: Нужен ли вам тест на аллергены?</span>
@@ -485,7 +489,7 @@ onUnmounted(() => {
       </div>
 
       <!-- Profile Card (Frame 38) -->
-      <div class="sidebar-row-card" id="row-profile">
+      <div class="sidebar-row-card" id="row-profile" @click="navigateToExternal('https://personal-account-tan.vercel.app')">
         <div class="row-left-content">
           <div class="row-icon-icon" style="margin-right: 4px;">
             <img src="/assets/profile-icon.svg" alt="profile" />

@@ -1,6 +1,10 @@
 <script setup>
 import { ref, computed } from 'vue'
 
+const redirect = (url) => {
+  window.location.href = url
+}
+
 // Search query for the results table
 const searchQuery = ref('')
 
@@ -152,7 +156,7 @@ const downloadPDF = () => {
       </div>
 
       <!-- Quiz Card -->
-      <div class="sidebar-row-card" id="row-quiz" @click="$router.push('/')">
+      <div class="sidebar-row-card" id="row-quiz" @click="redirect('https://quiz-tan.vercel.app')">
         <div class="row-left-content">
           <span class="tag-badge">~5 минут</span>
           <span class="row-text">КВИЗ: Нужен ли вам тест на аллергены?</span>
@@ -160,7 +164,7 @@ const downloadPDF = () => {
       </div>
 
       <!-- Profile Card -->
-      <div class="sidebar-row-card" id="row-profile" @click="$router.push('/')">
+      <div class="sidebar-row-card" id="row-profile" @click="redirect('https://personal-account-tan.vercel.app')">
         <div class="row-left-content">
           <div class="row-icon-icon" style="margin-right: 4px;">
             <img src="/assets/profile-icon.svg" alt="profile" />
@@ -403,7 +407,7 @@ const downloadPDF = () => {
 <style scoped>
 /* Page container styling overrides/additions to main.css */
 .results-page-content {
-  padding: 40px 64px 60px 0;
+  padding: 40px 64px 60px 64px;
   display: flex;
   flex-direction: column;
   gap: 24px;
