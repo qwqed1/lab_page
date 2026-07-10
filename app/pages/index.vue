@@ -481,7 +481,7 @@ onUnmounted(() => {
       </div>
 
       <!-- Quiz Card (Frame 47) -->
-      <div class="sidebar-row-card" id="row-quiz" @click="navigateToExternal('https://quiz-kappa-black.vercel.app')">
+      <div class="sidebar-row-card" id="row-quiz" @click="$router.push('/quiz')">
         <div class="row-left-content">
           <span class="tag-badge">~5 минут</span>
           <span class="row-text">КВИЗ: Нужен ли вам тест на аллергены?</span>

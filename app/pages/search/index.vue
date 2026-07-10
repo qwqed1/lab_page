@@ -153,7 +153,7 @@ watch(searchQuery, (newVal) => {
       </div>
 
       <!-- Quiz -->
-      <div class="sidebar-row-card" id="row-quiz" @click="redirect('https://quiz-kappa-black.vercel.app')">
+      <div class="sidebar-row-card" id="row-quiz" @click="$router.push('/quiz')">
         <div class="row-left-content">
           <span class="tag-badge">~5 минут</span>
           <span class="row-text">КВИЗ: Нужен ли вам тест на аллергены?</span>
