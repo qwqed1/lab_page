@@ -31,7 +31,7 @@ body {
 
 .page-container {
   display: grid;
-  grid-template-columns: 35.26% 64.74%;
+  grid-template-columns: 677px 1fr;
   gap: 0;
   max-width: 1920px;
   margin: 0; /* Align to the left edge */
@@ -937,6 +937,15 @@ body {
   opacity: 0.85;
 }
 
+.figma-smoke-cloud-fixed.results-cloud {
+  width: 600px !important;
+  height: 550px !important;
+  left: -150px !important;
+  top: 350px !important;
+  filter: blur(80px) !important;
+  -webkit-filter: blur(80px) !important;
+}
+
 @media (max-width: 1440px) {
   .figma-smoke-cloud-fixed {
     width: 650px !important;
@@ -944,6 +953,14 @@ body {
     left: -150px !important;
     top: 100px !important;
     filter: blur(90px) !important;
+  }
+  .figma-smoke-cloud-fixed.results-cloud {
+    width: 450px !important;
+    height: 400px !important;
+    left: -100px !important;
+    top: 250px !important;
+    filter: blur(65px) !important;
+    -webkit-filter: blur(65px) !important;
   }
 }
 
@@ -956,8 +973,10 @@ body {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   opacity: 1;
+  transform: translateZ(0);
+  contain: paint;
 }
 
 .video-bg-container.no-video {
@@ -972,10 +991,10 @@ body {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  /* The clips are consecutive shots. Cross-fading them shows two different
-     moments at once, so the prepared first frame is swapped atomically. */
-  transition: none;
-  will-change: opacity;
+  transition: opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+  transform: translateZ(0) scale(1.001);
+  backface-visibility: hidden;
 }
 
 .bg-video.active {
@@ -1211,7 +1230,7 @@ body {
 
 @media (max-width: 1440px) {
   .page-container {
-    grid-template-columns: 35.26% 64.74%;
+    grid-template-columns: 677px 1fr;
     gap: 0;
     padding: 0; /* Keep flush to the left edge */
   }
@@ -1235,7 +1254,7 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .page-container {
     grid-template-columns: 1fr;
     gap: 0;
@@ -1495,38 +1514,130 @@ body {
   height: 100%;
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 1.05s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .slide-layer.active {
   opacity: 1;
-  transform: translate(0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
   pointer-events: auto;
   z-index: 5;
 }
 
 /* Incoming directions (Future) */
 .slide-layer.future-right {
-  transform: translateX(100%);
+  transform: translate3d(100%, 0, 0);
   z-index: 4;
 }
 .slide-layer.future-down {
-  transform: translateY(100%);
+  transform: translate3d(0, 100%, 0);
   z-index: 4;
 }
 
 /* Outgoing directions (Past) */
 .slide-layer.past-left {
-  transform: translateX(-100%);
+  transform: translate3d(-100%, 0, 0);
   z-index: 3;
 }
 .slide-layer.past-up {
-  transform: translateY(-100%);
+  transform: translate3d(0, -100%, 0);
   z-index: 3;
 }
 
 /* Figma exact font size and positions (Responsive via percentages) */
+/* Scroll icon on first slide */
+.figma-scroll-icon {
+  position: absolute;
+  left: 2.09%; /* 26 / 1242 */
+  top: 69.35%; /* 749 / 1080 */
+  width: 102px;
+  height: 114px;
+  z-index: 2;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-layer.active .figma-scroll-icon {
+  opacity: 1;
+}
+
+/* Smooth floating/bouncing animation for the entire icon */
+.figma-scroll-icon svg {
+  animation: float-icon 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes float-icon {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Cinematic scrolling wave animation for the arrows */
+.figma-scroll-icon .chevron {
+  transform-origin: center;
+}
+
+.figma-scroll-icon .chevron-1 {
+  animation: chevron-pulse-1 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.figma-scroll-icon .chevron-2 {
+  animation: chevron-pulse-2 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.figma-scroll-icon .chevron-3 {
+  animation: chevron-pulse-3 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes chevron-pulse-1 {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  33% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes chevron-pulse-2 {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  33% {
+    opacity: 0.2;
+  }
+  66% {
+    opacity: 1;
+  }
+}
+
+@keyframes chevron-pulse-3 {
+  0%, 100% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0.6;
+  }
+  66% {
+    opacity: 0.2;
+  }
+}
+
 .figma-hero-title {
   position: absolute;
   left: 4.99%;
@@ -2310,28 +2421,32 @@ body {
   transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
-/* Keyframes for premium fade-in animations (only opacity, no slide or blur) */
-@keyframes cinematic-fade-in {
+/* Keyframes for premium fade-in-up animations (subtle 20px translation for cinematic entrance) */
+@keyframes cinematic-fade-in-up {
   0% {
     opacity: 0;
+    transform: translateY(20px);
   }
   100% {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@keyframes cinematic-fade-in-desc {
+@keyframes cinematic-fade-in-up-desc {
   0% {
     opacity: 0;
+    transform: translateY(20px);
   }
   100% {
     opacity: 0.8;
+    transform: translateY(0);
   }
 }
 
 /* Slide 2: "Почему ALEX2?" special long delay (2.5s) so it appears only at the end of the video */
 .slide-layer.active #slide-2-title {
-  animation: cinematic-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  animation: cinematic-fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
   animation-delay: 2.5s !important;
 }
 
@@ -2344,29 +2459,29 @@ body {
 .slide-layer.active[data-has-video="true"] .figma-intro-title,
 .slide-layer.active[data-has-video="true"] .figma-section-title,
 .slide-layer.active[data-has-video="true"] .figma-step-indicator {
-  animation: cinematic-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 1.0s;
 }
 
 /* Description */
 .slide-layer.active[data-has-video="true"] .figma-slide-desc-inline {
-  animation: cinematic-fade-in-desc 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in-up-desc 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 1.3s;
 }
 
 /* Stories Tabs & Bullet content */
 .slide-layer.active[data-has-video="true"] .figma-story-tabs {
-  animation: cinematic-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 1.0s;
 }
 
 .slide-layer.active[data-has-video="true"] .figma-story-content {
-  animation: cinematic-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 1.3s;
 }
 
 .slide-layer.active[data-has-video="true"] .figma-story-footer {
-  animation: cinematic-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 1.5s;
 }
 
@@ -2379,13 +2494,13 @@ body {
 .slide-layer.active[data-has-video="false"] .figma-intro-title,
 .slide-layer.active[data-has-video="false"] .figma-section-title,
 .slide-layer.active[data-has-video="false"] .figma-step-indicator {
-  animation: cinematic-fade-in 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.2s;
 }
 
 /* Description */
 .slide-layer.active[data-has-video="false"] .figma-slide-desc-inline {
-  animation: cinematic-fade-in-desc 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in-up-desc 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.5s;
 }
 
@@ -2393,14 +2508,13 @@ body {
 .slide-layer.active[data-has-video="false"] .faq-wrapper,
 .slide-layer.active[data-has-video="false"] .figma-blog-card,
 .slide-layer.active[data-has-video="false"] .figma-contacts-header-group {
-  animation: cinematic-fade-in 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.2s;
 }
 
 .slide-layer.active[data-has-video="false"] .figma-blog-all-btn,
 .slide-layer.active[data-has-video="false"] .figma-contacts-grid,
 .slide-layer.active[data-has-video="false"] .figma-map-element {
-  animation: cinematic-fade-in 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.5s;
 }
-

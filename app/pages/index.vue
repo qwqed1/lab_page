@@ -91,30 +91,30 @@ const navigateToExternal = (url) => {
 }
 
 const slides = ref([
-  { id: 'slide-1',  label: '', title: 'Тест на аллергию ALEX² — один анализ, который даёт ответы', subtitle: '', direction: 'down', video: '/videos/Нарезка/video/scr1.mp4',  reverseVideo: '/videos/Нарезка/reverse/scrr1.mp4' },
-  { id: 'slide-2',  label: '', title: 'Почему ALEX2?', subtitle: '', direction: 'down', video: '/videos/Нарезка/video/scr2.mp4',  reverseVideo: '/videos/Нарезка/reverse/scrr2.mp4' },
+  { id: 'slide-1',  label: '', title: 'Тест на аллергию ALEX² — один анализ, который даёт ответы', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr1.mp4',  reverseVideo: '/videos/scroll/reverse/scrr1.mp4' },
+  { id: 'slide-2',  label: '', title: 'Почему ALEX2?', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr2.mp4',  reverseVideo: '/videos/scroll/reverse/scrr2.mp4' },
   
   // Advantages
-  { id: 'slide-3',  step: '1', totalSteps: '5', label: 'Преимущества', title: 'Всё за один сеанс', subtitle: 'За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое.', direction: 'down', video: '/videos/Нарезка/video/scr3.mp4',  reverseVideo: '/videos/Нарезка/reverse/scrr3.mp4' },
-  { id: 'slide-4',  step: '2', totalSteps: '5', label: 'Преимущества', title: 'Точечный результат', subtitle: 'В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.', direction: 'right', video: '/videos/Нарезка/video/scr4.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr4.mp4' },
-  { id: 'slide-5',  step: '3', totalSteps: '5', label: 'Преимущества', title: 'Отчёт и консультация', subtitle: 'Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.', direction: 'right', video: '/videos/Нарезка/video/scr5.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr5.mp4' },
-  { id: 'slide-6',  step: '4', totalSteps: '5', label: 'Преимущества', title: 'Без диет и отмены лекарств', subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.', direction: 'right', video: '/videos/Нарезка/video/scr6.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr6.mp4' },
-  { id: 'slide-7',  step: '5', totalSteps: '5', label: 'Преимущества', title: 'Подходит детям', subtitle: 'Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.', direction: 'right', video: '/videos/Нарезка/video/scr7.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr7.mp4' },
+  { id: 'slide-3',  step: '1', totalSteps: '5', label: 'Преимущества', title: 'Всё за один сеанс', subtitle: 'За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое.', direction: 'down', video: '/videos/scroll/forward/scr3.mp4',  reverseVideo: '/videos/scroll/reverse/scrr3.mp4' },
+  { id: 'slide-4',  step: '2', totalSteps: '5', label: 'Преимущества', title: 'Точечный результат', subtitle: 'В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.', direction: 'right', video: '/videos/scroll/forward/scr4.mp4', reverseVideo: '/videos/scroll/reverse/scrr4.mp4' },
+  { id: 'slide-5',  step: '3', totalSteps: '5', label: 'Преимущества', title: 'Отчёт и консультация', subtitle: 'Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.', direction: 'right', video: '/videos/scroll/forward/scr5.mp4', reverseVideo: '/videos/scroll/reverse/scrr5.mp4' },
+  { id: 'slide-6',  step: '4', totalSteps: '5', label: 'Преимущества', title: 'Без диет и отмены лекарств', subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.', direction: 'right', video: '/videos/scroll/forward/scr6.mp4', reverseVideo: '/videos/scroll/reverse/scrr6.mp4' },
+  { id: 'slide-7',  step: '5', totalSteps: '5', label: 'Преимущества', title: 'Подходит детям', subtitle: 'Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.', direction: 'right', video: '/videos/scroll/forward/scr7.mp4', reverseVideo: '/videos/scroll/reverse/scrr7.mp4' },
   
   // Results Intro keeps the final frame of scr7. The results sequence starts on the first result itself.
   { id: 'slide-8',  label: 'О результатах', title: 'Что вы получите по итогам теста на аллергию', subtitle: '', direction: 'down', video: '', reverseVideo: '', holdVideo: true },
   
   // Results Steps
-  { id: 'slide-9',  step: '1', totalSteps: '3', label: 'О результатах', title: 'Аллерго-паспорт', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'down', video: '/videos/Нарезка/video/scr8.mp4',  reverseVideo: '/videos/Нарезка/reverse/scrr8.mp4' },
-  { id: 'slide-10', step: '2', totalSteps: '3', label: 'О результатах', title: 'Рекомендации по аллергенам', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/Нарезка/video/scr9.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr9.mp4' },
-  { id: 'slide-11', step: '3', totalSteps: '3', label: 'О результатах', badge: 'Опционально', title: 'Консультация', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/Нарезка/video/scr10.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr10.mp4' },
+  { id: 'slide-9',  step: '1', totalSteps: '3', label: 'О результатах', title: 'Аллерго-паспорт', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'down', video: '/videos/scroll/forward/scr8.mp4',  reverseVideo: '/videos/scroll/reverse/scrr8.mp4' },
+  { id: 'slide-10', step: '2', totalSteps: '3', label: 'О результатах', title: 'Рекомендации по аллергенам', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/scroll/forward/scr9.mp4', reverseVideo: '/videos/scroll/reverse/scrr9.mp4' },
+  { id: 'slide-11', step: '3', totalSteps: '3', label: 'О результатах', badge: 'Опционально', title: 'Консультация', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/scroll/forward/scr10.mp4', reverseVideo: '/videos/scroll/reverse/scrr10.mp4' },
   
   // Stories Intro
-  { id: 'slide-12', label: 'Истории людей', title: 'Истории людей', subtitle: '', direction: 'down', video: '/videos/Нарезка/video/scr11.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr11.mp4' },
+  { id: 'slide-12', label: 'Истории людей', title: 'Истории людей', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr11.mp4', reverseVideo: '/videos/scroll/reverse/scrr11.mp4' },
   
   // Stories Tabs
-  { id: 'slide-13', label: 'Истории людей', type: 'story', activeTab: 'Misha',      direction: 'down',  video: '/videos/Нарезка/video/scr12.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr12.mp4' },
-  { id: 'slide-14', label: 'Истории людей', type: 'story', activeTab: 'Alexandra', direction: 'right', video: '/videos/Нарезка/video/scr13.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr13.mp4' },
+  { id: 'slide-13', label: 'Истории людей', type: 'story', activeTab: 'Misha',      direction: 'down',  video: '/videos/scroll/forward/scr12.mp4', reverseVideo: '/videos/scroll/reverse/scrr12.mp4' },
+  { id: 'slide-14', label: 'Истории людей', type: 'story', activeTab: 'Alexandra', direction: 'right', video: '/videos/scroll/forward/scr13.mp4', reverseVideo: '/videos/scroll/reverse/scrr13.mp4' },
   { id: 'slide-15', label: 'Истории людей', type: 'story', activeTab: 'Pasha',      direction: 'right', video: '', reverseVideo: '', holdVideo: true },
   
   // FAQ (Video ends here)
@@ -183,13 +183,18 @@ const showSmokeCloud = computed(() => {
   return (idx >= 2 && idx <= 10) || (idx >= 12 && idx <= 14)
 })
 
+const isResultsSection = computed(() => {
+  const idx = currentSlideIndex.value
+  return idx >= 7 && idx <= 10
+})
+
 const isVideoBackgroundVisible = computed(() => {
   const slide = slides.value[currentSlideIndex.value]
   return Boolean(slide?.video || slide?.holdVideo)
 })
 
 let isScrolling = false
-const SCROLL_LOCK_DURATION = 800
+const SCROLL_LOCK_DURATION = 950
 
 const goNext = () => {
   if (currentSlideIndex.value < slides.value.length - 1) {
@@ -325,12 +330,21 @@ const getAbsoluteVideoUrl = (src) => {
 }
 
 const waitForVideoFrame = (video) => new Promise((resolve) => {
+  let settled = false
+  const finish = () => {
+    if (settled) return
+    settled = true
+    window.clearTimeout(timeoutId)
+    resolve()
+  }
+  const timeoutId = window.setTimeout(finish, 450)
+
   if (typeof video.requestVideoFrameCallback === 'function') {
-    video.requestVideoFrameCallback(() => resolve())
+    video.requestVideoFrameCallback(finish)
     return
   }
 
-  requestAnimationFrame(() => requestAnimationFrame(resolve))
+  requestAnimationFrame(() => requestAnimationFrame(finish))
 })
 
 const waitUntilVideoCanPlay = (video) => new Promise((resolve, reject) => {
@@ -348,13 +362,46 @@ const waitUntilVideoCanPlay = (video) => new Promise((resolve, reject) => {
     reject(video.error || new Error('Video loading failed'))
   }
   const cleanup = () => {
+    window.clearTimeout(timeoutId)
     video.removeEventListener('loadeddata', onReady)
     video.removeEventListener('error', onError)
   }
 
+  const timeoutId = window.setTimeout(() => {
+    cleanup()
+    reject(new Error('Video loading timed out'))
+  }, 10000)
+
   video.addEventListener('loadeddata', onReady, { once: true })
   video.addEventListener('error', onError, { once: true })
 })
+
+const seekVideo = (video, time) => new Promise((resolve) => {
+  const targetTime = Math.max(0, Math.min(time, Number.isFinite(video.duration) ? video.duration : time))
+  if (Math.abs(video.currentTime - targetTime) < 0.02) {
+    resolve()
+    return
+  }
+
+  let settled = false
+  const finish = () => {
+    if (settled) return
+    settled = true
+    window.clearTimeout(timeoutId)
+    video.removeEventListener('seeked', finish)
+    resolve()
+  }
+  const timeoutId = window.setTimeout(finish, 1200)
+  video.addEventListener('seeked', finish, { once: true })
+  video.currentTime = targetTime
+})
+
+const configureVideoElement = (video) => {
+  video.muted = true
+  video.defaultMuted = true
+  video.playsInline = true
+  video.disablePictureInPicture = true
+}
 
 const preloadUpcomingVideo = () => {
   const inactiveEl = activeVideoElement.value === 'A' ? videoB.value : videoA.value
@@ -373,11 +420,45 @@ const preloadUpcomingVideo = () => {
   if (!nextSrc || inactiveEl.src === getAbsoluteVideoUrl(nextSrc)) return
 
   inactiveEl.pause()
+  configureVideoElement(inactiveEl)
   inactiveEl.src = nextSrc
   inactiveEl.load()
 }
 
-const playVideoShot = async (src, playbackRate = 1) => {
+const settleOnSlideFrame = async (src, requestId) => {
+  if (!src || requestId !== videoRequestId) return
+
+  const activeEl = activeVideoElement.value === 'A' ? videoA.value : videoB.value
+  const stillEl = activeVideoElement.value === 'A' ? videoB.value : videoA.value
+  if (!activeEl || !stillEl) return
+
+  try {
+    stillEl.pause()
+    configureVideoElement(stillEl)
+
+    if (stillEl.src !== getAbsoluteVideoUrl(src)) {
+      stillEl.src = src
+      stillEl.load()
+    }
+
+    await waitUntilVideoCanPlay(stillEl)
+    if (requestId !== videoRequestId) return
+
+    await seekVideo(stillEl, Math.max(0, stillEl.duration - (1 / 30)))
+    await waitForVideoFrame(stillEl)
+    if (requestId !== videoRequestId) return
+
+    activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
+    activeEl.pause()
+    preloadUpcomingVideo()
+  } catch (error) {
+    if (requestId === videoRequestId) {
+      console.warn('Failed to settle destination video frame:', error)
+    }
+  }
+}
+
+const playVideoShot = async (src, { playbackRate = 1, settleSrc = '' } = {}) => {
   if (!src) return
 
   const requestId = ++videoRequestId
@@ -391,6 +472,7 @@ const playVideoShot = async (src, playbackRate = 1) => {
 
   try {
     incomingEl.pause()
+    configureVideoElement(incomingEl)
 
     if (incomingEl.src !== absoluteSrc) {
       incomingEl.src = src
@@ -408,7 +490,14 @@ const playVideoShot = async (src, playbackRate = 1) => {
 
     activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
     activeEl.pause()
-    preloadUpcomingVideo()
+
+    if (settleSrc) {
+      const settle = () => settleOnSlideFrame(settleSrc, requestId)
+      if (incomingEl.ended) settle()
+      else incomingEl.addEventListener('ended', settle, { once: true })
+    } else {
+      preloadUpcomingVideo()
+    }
   } catch (error) {
     if (requestId === videoRequestId) {
       console.warn('Failed to play next video shot:', error)
@@ -423,15 +512,20 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   const oldSlide = slides.value[oldIndex]
   const goingBack = newIndex < oldIndex
 
-  // Play the reverse video of the slide we are LEAVING, or fallback to the forward video of the slide we are ENTERING
-  let nextSrc = null
   if (goingBack) {
-    nextSrc = (oldSlide && oldSlide.reverseVideo) ? oldSlide.reverseVideo : slide.video
-  } else {
-    nextSrc = slide.video
+    if (oldSlide?.reverseVideo) {
+      playVideoShot(oldSlide.reverseVideo, {
+        playbackRate: REVERSE_PLAYBACK_RATE,
+        settleSrc: slide.video
+      })
+    } else {
+      const requestId = ++videoRequestId
+      settleOnSlideFrame(slide.video, requestId)
+    }
+    return
   }
 
-  playVideoShot(nextSrc, goingBack ? REVERSE_PLAYBACK_RATE : 1)
+  playVideoShot(slide.video)
 })
 
 onMounted(() => {
@@ -450,6 +544,7 @@ onMounted(() => {
     const slide = slides.value[currentSlideIndex.value]
     const initialSrc = slide ? slide.video : null
     if (initialSrc && videoA.value) {
+      configureVideoElement(videoA.value)
       videoA.value.src = initialSrc
       videoA.value.load()
       videoA.value.play().catch(() => {})
@@ -591,7 +686,7 @@ onUnmounted(() => {
       </div>
 
       <!-- Static Smoke Cloud (Fixed, transitions opacity, does not slide) -->
-      <div class="figma-smoke-cloud-fixed" :class="{ visible: showSmokeCloud }"></div>
+      <div class="figma-smoke-cloud-fixed" :class="{ visible: showSmokeCloud, 'results-cloud': isResultsSection }"></div>
 
       <!-- Slides Deck -->
       <div class="slides-deck-container">
@@ -605,6 +700,14 @@ onUnmounted(() => {
         >
           <!-- Slide 1: Hero -->
           <template v-if="slide.id === 'slide-1'">
+            <div class="figma-scroll-icon">
+              <svg width="128" height="142" viewBox="0 0 128 142" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="mouse-body" d="M64.0001 18.5013V30.8346M64.0001 6.16797C75.9202 6.16797 85.5834 15.8312 85.5834 27.7513V46.2513C85.5834 58.1714 75.9202 67.8346 64.0001 67.8346C52.0799 67.8346 42.4167 58.1714 42.4167 46.2513V27.7513C42.4167 15.8312 52.0799 6.16797 64.0001 6.16797Z" stroke="black" stroke-opacity="0.8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="chevron chevron-1" d="M49 82L64 93L79 82" stroke="black" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="chevron chevron-2" d="M49 100L64 111L79 100" stroke="black" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="chevron chevron-3" d="M49 118L64 129L79 118" stroke="black" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
             <h1 class="figma-hero-title">
               Тест на аллергию ALEX² — один анализ, который даёт ответы
             </h1>

@@ -105,6 +105,10 @@ watch(searchQuery, (newVal) => {
     selectedAllergen.value = null
   }
 })
+
+const redirectToCart = () => {
+  window.location.href = 'https://cart-tan.vercel.app'
+}
 </script>
 
 <template>
@@ -114,13 +118,13 @@ watch(searchQuery, (newVal) => {
       <!-- Promo Banner Card -->
       <div class="promo-card" id="card-promo">
         <div class="promo-content">
-          <img src="/assets/banner.svg" alt="ALEX2" class="promo-banner-img" />
+          <img src="/assets/banner.svg" alt="Анализ крови" class="promo-banner-img" />
           <p class="promo-text">
             Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
           </p>
         </div>
-        <button class="promo-button" id="btn-register">
-          <span class="promo-button-text">Записаться на тест</span>
+        <button class="promo-button" id="btn-register" @click="redirectToCart">
+          <span class="promo-button-text">Записаться на тест на аллергию</span>
           <div class="promo-button-icon">
             <img src="/assets/arrow-right-btn.svg" alt="arrow" />
           </div>
@@ -130,7 +134,7 @@ watch(searchQuery, (newVal) => {
       <!-- Side-by-side cards -->
       <div class="cards-row">
         <!-- Search Card -->
-        <div class="sub-card" id="card-search">
+        <div class="sub-card active-card" id="card-search">
           <div class="card-icon-wrapper">
             <img src="/assets/search-icon.svg" alt="search" />
           </div>
@@ -308,9 +312,13 @@ watch(searchQuery, (newVal) => {
 </template>
 
 <style scoped>
+.active-card {
+  background-color: #fafafa !important;
+}
+
 /* ========================================
    ОБЩАЯ СЕТКА СТРАНИЦЫ ПОИСКА (БЕЗ GAP)
-   ======================================== */
+   ======================================= */
 
 .search-page-container {
   display: grid;
