@@ -2049,7 +2049,7 @@ body {
 .figma-contacts-grid {
   position: absolute;
   left: 5.15%;
-  bottom: 220px;
+  bottom: 80px;
   width: 42%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2111,9 +2111,9 @@ body {
 .figma-map-element {
   position: absolute;
   left: 50.0%;
-  bottom: 220px;
+  bottom: 80px;
   width: 45%;
-  height: 280px;
+  height: 240px;
   border: 1px solid #e2e8f0;
   background: #eee;
   z-index: 10;
@@ -2122,7 +2122,7 @@ body {
 .contacts-footer-links {
   position: absolute;
   left: 5.15%;
-  bottom: 64px;
+  bottom: 24px;
   display: flex;
   gap: 32px;
 }
