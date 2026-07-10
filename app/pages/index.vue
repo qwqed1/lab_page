@@ -89,31 +89,31 @@ const navigateToExternal = (url) => {
 }
 
 const slides = ref([
-  { id: 'slide-1', label: '', title: 'Тест на аллергию ALEX² — один анализ, который даёт ответы', subtitle: '', direction: 'down', video: '/videos/1.mp4' },
-  { id: 'slide-2', label: '', title: 'Почему ALEX2?', subtitle: '', direction: 'down', video: '/videos/2.mp4' },
+  { id: 'slide-1', label: '', title: 'Тест на аллергию ALEX² — один анализ, который даёт ответы', subtitle: '', direction: 'down', video: '/videos/Нарезка/video/scr1.mp4' },
+  { id: 'slide-2', label: '', title: 'Почему ALEX2?', subtitle: '', direction: 'down', video: '/videos/Нарезка/video/scr2.mp4' },
   
   // Advantages
-  { id: 'slide-3', step: '1', totalSteps: '5', label: 'Преимущества', title: 'Всё за один сеанс', subtitle: 'За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое.', direction: 'down', video: '/videos/3.mp4' },
-  { id: 'slide-4', step: '2', totalSteps: '5', label: 'Преимущества', title: 'Точечный результат', subtitle: 'В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.', direction: 'right', video: '/videos/4.mp4' },
-  { id: 'slide-5', step: '3', totalSteps: '5', label: 'Преимущества', title: 'Отчёт и консультация', subtitle: 'Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.', direction: 'right', video: '/videos/5.mp4' },
-  { id: 'slide-6', step: '4', totalSteps: '5', label: 'Преимущества', title: 'Без диет и отмены лекарств', subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.', direction: 'right', video: '/videos/6.mp4' },
-  { id: 'slide-7', step: '5', totalSteps: '5', label: 'Преимущества', title: 'Подходит детям', subtitle: 'Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.', direction: 'right', video: '/videos/7.mp4' },
+  { id: 'slide-3', step: '1', totalSteps: '5', label: 'Преимущества', title: 'Всё за один сеанс', subtitle: 'За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое.', direction: 'down', video: '/videos/Нарезка/video/scr3.mp4' },
+  { id: 'slide-4', step: '2', totalSteps: '5', label: 'Преимущества', title: 'Точечный результат', subtitle: 'В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.', direction: 'right', video: '/videos/Нарезка/video/scr4.mp4' },
+  { id: 'slide-5', step: '3', totalSteps: '5', label: 'Преимущества', title: 'Отчёт и консультация', subtitle: 'Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.', direction: 'right', video: '/videos/Нарезка/video/scr5.mp4' },
+  { id: 'slide-6', step: '4', totalSteps: '5', label: 'Преимущества', title: 'Без диет и отмены лекарств', subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.', direction: 'right', video: '/videos/Нарезка/video/scr6.mp4' },
+  { id: 'slide-7', step: '5', totalSteps: '5', label: 'Преимущества', title: 'Подходит детям', subtitle: 'Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.', direction: 'right', video: '/videos/Нарезка/video/scr7.mp4' },
   
   // Results Intro
-  { id: 'slide-8', label: 'О результатах', title: 'Что вы получите по итогам теста на аллергию', subtitle: '', direction: 'down', video: '/videos/8.mp4' },
+  { id: 'slide-8', label: 'О результатах', title: 'Что вы получите по итогам теста на аллергию', subtitle: '', direction: 'down', video: '/videos/Нарезка/video/scr8.mp4' },
   
   // Results Steps
-  { id: 'slide-9', step: '1', totalSteps: '3', label: 'О результатах', title: 'Аллерго-паспорт', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'down', video: '/videos/9.mp4' },
-  { id: 'slide-10', step: '2', totalSteps: '3', label: 'О результатах', title: 'Рекомендации по аллергенам', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/10.mp4' },
-  { id: 'slide-11', step: '3', totalSteps: '3', label: 'О результатах', badge: 'Опционально', title: 'Консультация', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/11.mp4' },
+  { id: 'slide-9', step: '1', totalSteps: '3', label: 'О результатах', title: 'Аллерго-паспорт', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'down', video: '/videos/Нарезка/video/scr9.mp4' },
+  { id: 'slide-10', step: '2', totalSteps: '3', label: 'О результатах', title: 'Рекомендации по аллергенам', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/Нарезка/video/scr10.mp4' },
+  { id: 'slide-11', step: '3', totalSteps: '3', label: 'О результатах', badge: 'Опционально', title: 'Консультация', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/Нарезка/video/scr11.mp4' },
   
   // Stories Intro
-  { id: 'slide-12', label: 'Истории людей', title: 'Истории людей', subtitle: '', direction: 'down', video: '/videos/12.mp4' },
+  { id: 'slide-12', label: 'Истории людей', title: 'Истории людей', subtitle: '', direction: 'down', video: '/videos/Нарезка/video/scr12.mp4' },
   
   // Stories Tabs
-  { id: 'slide-13', label: 'Истории людей', type: 'story', activeTab: 'Misha', direction: 'down', video: '/videos/13.mp4' },
-  { id: 'slide-14', label: 'Истории людей', type: 'story', activeTab: 'Alexandra', direction: 'right', video: '/videos/14.mp4' },
-  { id: 'slide-15', label: 'Истории людей', type: 'story', activeTab: 'Pasha', direction: 'right', video: '/videos/15.mp4' },
+  { id: 'slide-13', label: 'Истории людей', type: 'story', activeTab: 'Misha', direction: 'down', video: '/videos/Нарезка/video/scr13.mp4' },
+  { id: 'slide-14', label: 'Истории людей', type: 'story', activeTab: 'Alexandra', direction: 'right', video: '/videos/Нарезка/video/scr13.mp4' },
+  { id: 'slide-15', label: 'Истории людей', type: 'story', activeTab: 'Pasha', direction: 'right', video: '/videos/Нарезка/video/scr13.mp4' },
   
   // FAQ (Video ends here)
   { id: 'slide-16', label: 'FAQ', type: 'faq', title: 'FAQ', subtitle: '', direction: 'down', video: '' },
