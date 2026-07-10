@@ -29,15 +29,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Page Layout Container */
 .page-container {
   display: grid;
-  grid-template-columns: 677px 723px;
-  gap: 64px;
+  grid-template-columns: 40% 60%;
+  gap: 0;
   max-width: 1920px;
   margin: 0; /* Align to the left edge */
   padding: 0; /* No margins or paddings from screen edges */
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* Mobile Top Navigation Bar (Default hidden on desktop) */
@@ -54,7 +54,14 @@ body {
   flex-direction: column;
   gap: 0; /* Zero gaps, elements touch in sidebar */
   width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   border-right: 1px solid var(--border-color-grey); /* Right border separating sidebar from content */
+}
+.sidebar-container::-webkit-scrollbar {
+  display: none;
 }
 
 /* Promo Green Card (Frame 41) */
@@ -62,6 +69,7 @@ body {
   position: relative;
   width: 100%;
   height: 567px;
+  flex-shrink: 0; /* Prevent vertical squishing */
   border-radius: 0; /* Completely square, no rounding */
   padding: 48px;
   display: flex;
@@ -154,6 +162,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0; 
+  flex-shrink: 0; /* Prevent vertical squishing */
   border-radius: 0; /* Completely square, no rounding */
   overflow: hidden;
 }
@@ -219,6 +228,7 @@ body {
 .sidebar-row-card {
   width: 100%;
   height: 72px;
+  flex-shrink: 0; /* Prevent vertical squishing */
   background-color: var(--bg-card-white);
   border: none;
   border-bottom: 1px solid var(--border-color-grey); /* Bottom border separator */
@@ -272,11 +282,16 @@ body {
    ========================================================================== */
 
 .content-container {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
+  position: relative;
   width: 100%;
-  padding-top: 64px; /* Align content Y offset (Y=64 in Figma) */
+  height: 100vh;
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  background-color: #f5f5f5;
+}
+.content-container::-webkit-scrollbar {
+  display: none;
 }
 
 /* Header Area (Frame 116) */
@@ -909,14 +924,280 @@ body {
 }
 
 /* ==========================================================================
+   SCROLL-DRIVEN VIDEO BACKGROUND & SECTION STYLES (DESKTOP)
+   ========================================================================== */
+
+.video-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
+.video-bg-container.no-video {
+  opacity: 0;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.bg-video.active {
+  opacity: 1;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.55);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.scroll-sections-layer {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.scroll-section {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 80px 64px;
+  box-sizing: border-box;
+}
+
+.scroll-section#hero {
+  align-items: flex-end;
+  padding-bottom: 96px;
+}
+
+.scroll-section-content {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 800px;
+}
+
+.scroll-section-content.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Typography on background video */
+.hero-title {
+  color: var(--text-white);
+  font-family: var(--font-family);
+  font-size: 52px;
+  line-height: 60px;
+  font-weight: 400;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+.section-title {
+  color: var(--text-white);
+  font-family: var(--font-family);
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 400;
+  margin-bottom: 24px;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+.section-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-family);
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 400;
+  max-width: 680px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.register-cta-btn {
+  margin-top: 32px;
+  background: var(--text-white);
+  color: var(--text-black);
+  border: none;
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.register-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* Bounce arrow for Hero section */
+.bounce-arrow-wrapper {
+  margin-bottom: 32px;
+  padding-left: 20px;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite ease-in-out;
+}
+
+/* Section Menu Overlay */
+.sections-nav-menu {
+  position: fixed;
+  top: 50%;
+  right: 48px;
+  transform: translateY(-50%);
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.sections-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  padding: 24px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.section-nav-item {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: right;
+  padding: 4px 8px;
+}
+
+.section-nav-item:hover {
+  color: rgba(255, 255, 255, 0.85);
+  transform: translateX(-4px);
+}
+
+.section-nav-item.active {
+  color: var(--text-white);
+  font-weight: 600;
+  transform: translateX(-8px);
+  text-shadow: 0 0 8px rgba(255,255,255,0.4);
+}
+
+/* Special Contacts styling inside scrolling sections */
+.contacts-section .scroll-section-content {
+  max-width: 1000px;
+  width: 100%;
+}
+
+.section-contacts-card {
+  display: flex;
+  gap: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 24px;
+  margin-top: 32px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  width: 100%;
+}
+
+.section-contacts-card .leaflet-map-element {
+  width: 480px;
+  height: 300px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.section-contacts-card .contacts-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  color: var(--text-white);
+  padding: 8px 0;
+}
+
+.section-contacts-card .contacts-address {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 34px;
+}
+
+.section-contacts-card .contacts-phone a,
+.section-contacts-card .contacts-email a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.section-contacts-card .contacts-phone a:hover,
+.section-contacts-card .contacts-email a:hover {
+  color: var(--text-white);
+}
+
+.section-contacts-card .contacts-map-btn {
+  background: var(--text-white);
+  color: var(--text-black);
+  border: none;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.section-contacts-card .contacts-map-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
    RESPONSIVE DESIGN (MEDIA QUERIES)
    ========================================================================== */
 
 @media (max-width: 1440px) {
   .page-container {
-    grid-template-columns: 550px 1fr;
-    gap: 40px;
-    padding: 0 40px 40px 0; /* Keep flush to the left edge */
+    grid-template-columns: 40% 60%;
+    gap: 0;
+    padding: 0; /* Keep flush to the left edge */
   }
 }
 
@@ -1175,3 +1456,806 @@ body {
     gap: 8px;
   }
 }
+
+/* ==========================================================================
+   SLIDES DECK & CINEMATIC TRANSITIONS
+   ========================================================================== */
+
+.slides-deck-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+/* Base style for every slide layer */
+.slide-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden;
+}
+
+.slide-layer.active {
+  opacity: 1;
+  transform: translate(0, 0) !important;
+  pointer-events: auto;
+  z-index: 5;
+}
+
+/* Incoming directions (Future) */
+.slide-layer.future-right {
+  transform: translateX(100%);
+  z-index: 4;
+}
+.slide-layer.future-down {
+  transform: translateY(100%);
+  z-index: 4;
+}
+
+/* Outgoing directions (Past) */
+.slide-layer.past-left {
+  transform: translateX(-100%);
+  z-index: 3;
+}
+.slide-layer.past-up {
+  transform: translateY(-100%);
+  z-index: 3;
+}
+
+/* Figma exact font size and positions (Responsive via percentages) */
+.figma-hero-title {
+  position: absolute;
+  left: 4.99%;
+  top: 85.00%;
+  width: 76.75%;
+  font-size: 42px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.figma-intro-title {
+  position: absolute;
+  left: 4.26%;
+  top: 47.13%;
+  width: 59.53%;
+  font-size: 42px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 1.2;
+  margin: 0;
+}
+.figma-intro-title.white {
+  color: #000000; /* Use black even here to keep layout consistent and clean on white overlay */
+}
+
+/* Base Wrapper for detail slides content */
+.figma-content-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Step category tag (e.g. Преимущества) */
+.figma-category-label {
+  position: absolute;
+  left: 5.15%;
+  top: 39.0%;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #97af96;
+  letter-spacing: 1.5px;
+  margin: 0;
+}
+
+/* Step Counter (e.g. 1/5) */
+.figma-step-counter {
+  position: absolute;
+  left: 5.15%;
+  top: 42.0%;
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+}
+.figma-step-counter .step-num {
+  font-size: 54px;
+  font-weight: 300;
+  color: #000000;
+  line-height: 1;
+}
+.figma-step-counter .step-separator {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.25);
+  margin: 0 8px;
+}
+.figma-step-counter .step-total {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+/* Step indicator pagination (Horizontal row of circles matching Figma layout) */
+.figma-step-block {
+  position: absolute;
+  left: 5.15%;
+  display: flex;
+  flex-direction: column;
+}
+
+.figma-step-block.advantages-pos {
+  top: 40.1%; /* y: 434 / 1080 = 40.1% */
+  width: 455px;
+  gap: 48px;
+}
+
+.figma-step-block.results-pos {
+  top: 58.0%; /* Raised from 76.8% to 58.0% to prevent overflow on laptops */
+  width: 491px;
+  gap: 48px;
+}
+
+.figma-step-block.howto-pos {
+  top: 55.0%; /* Raised from 73.5% to 55.0% to prevent overflow on laptops */
+  width: 491px;
+  gap: 21px; /* Gap between indicators and text block in How-to is 21px */
+}
+
+.figma-step-indicator {
+  display: flex;
+  flex-direction: row;
+  gap: 10px; /* 10px visual spacing between circle borders */
+}
+
+.figma-step-circle {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(0, 0, 0, 0.32);
+  border-radius: 50%;
+  font-size: 24px;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.32);
+  box-sizing: border-box;
+}
+
+.figma-step-circle.active {
+  border-color: #000000;
+  color: #000000;
+}
+
+.figma-step-text-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Gap between Title and Description is 12px */
+}
+
+.figma-slide-title-inline {
+  font-size: 32px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.figma-slide-desc-inline {
+  font-size: 21px;
+  font-weight: 400;
+  color: #000000;
+  opacity: 0; /* Hidden by default */
+  line-height: 1.5;
+  margin: 0;
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0s;
+}
+
+.slide-layer.active .figma-slide-desc-inline {
+  opacity: 0.8; /* Fades in when slide is active */
+  transition-delay: 0.5s; /* Delay for cinematic sequential entry */
+}
+.figma-section-title {
+  position: absolute;
+  left: 5.15%;
+  top: 30.2%; /* y: 326 / 1080 = 30.2% */
+  font-size: 42px;
+  font-weight: 400;
+  color: #000000;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Persistent overlay menu on the right column */
+.figma-right-menu {
+  position: absolute;
+  left: 5.15%;
+  top: 5.9%; /* y: 64 / 1080 = 5.9% */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Gap from Figma Frame 270 (16px) */
+  z-index: 10;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.figma-right-menu.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.figma-menu-indicator {
+  position: absolute;
+  left: -11px; /* 11px to the left of the text list */
+  width: 5px;
+  height: 5px;
+  background-color: #000000;
+  border-radius: 0; /* Square indicator */
+  transition: top 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.figma-menu-item {
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #000000;
+  opacity: 0.4;
+  cursor: pointer;
+  line-height: 13px; /* Exact height of text node from Figma */
+  transition: opacity 0.3s ease;
+  user-select: none;
+}
+
+.figma-menu-item.active {
+  opacity: 1;
+}
+
+.figma-menu-item:hover {
+  opacity: 0.8;
+}
+
+.figma-menu-item.active:hover {
+  opacity: 1;
+}
+
+.figma-badge {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #000000;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-left: 12px;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   STORIES SLIDES (MIsha, Alexandra, Pasha)
+   ========================================================================== */
+
+.figma-story-tabs {
+  position: absolute;
+  left: 6.44%;
+  top: 49.0%;
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  width: 40%;
+}
+
+.figma-tab-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #888888;
+  padding: 8px 0;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
+}
+.figma-tab-btn:hover {
+  color: #000000;
+}
+.figma-tab-btn.active {
+  color: #000000;
+  border-bottom-color: #000000;
+  font-weight: 600;
+}
+
+.figma-story-content {
+  position: absolute;
+  left: 5.15%;
+  top: 56.0%;
+  width: 85%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.story-block-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #cc6666;
+  margin: 0 0 16px;
+}
+.story-block-title.green {
+  color: #4a6a4a;
+}
+
+.story-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.story-bullets li {
+  font-size: 18px;
+  color: #000000;
+  position: relative;
+  padding-left: 24px;
+  line-height: 1.4;
+}
+.story-bullets li::before {
+  content: "✓";
+  color: #4a6a4a;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+.story-bullets.gray li::before {
+  content: "✗";
+  color: #cc6666;
+}
+.story-bullets.gray li {
+  color: #666666;
+}
+
+.figma-story-btn {
+  position: absolute;
+  left: 5.15%;
+  top: 91.0%;
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 12px 32px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.figma-story-btn:hover {
+  background: #222222;
+}
+
+/* ==========================================================================
+   FAQ SLIDES
+   ========================================================================== */
+
+.figma-faq-list {
+  position: absolute;
+  left: 5.15%;
+  top: 45.0%;
+  width: 85%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.figma-faq-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+}
+
+.figma-faq-q {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0 0 8px;
+}
+
+.figma-faq-a {
+  font-size: 15px;
+  color: #555555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.figma-faq-all-btn {
+  position: absolute;
+  left: 5.15%;
+  top: 92.18%;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+/* ==========================================================================
+   BLOG SLIDES
+   ========================================================================== */
+
+.figma-blog-list {
+  position: absolute;
+  left: 5.15%;
+  top: 45.0%;
+  width: 85%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.figma-blog-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.figma-blog-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.blog-meta {
+  font-size: 13px;
+  color: #97af96;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.blog-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0 0 16px;
+  line-height: 1.3;
+}
+
+.blog-author {
+  margin-bottom: 16px;
+}
+.author-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+}
+.author-title {
+  font-size: 13px;
+  color: #888888;
+  margin: 0;
+}
+
+.figma-blog-all-btn {
+  position: absolute;
+  left: 5.15%;
+  top: 92.08%;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+/* ==========================================================================
+   CONTACTS SLIDES
+   ========================================================================== */
+
+.contacts-wrapper {
+  color: #000000;
+}
+
+.figma-contacts-header-group {
+  position: absolute;
+  left: 5.15%;
+  top: 25.0%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.figma-contacts-title-inline {
+  font-size: 42px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 1.2;
+  margin: 0;
+  max-width: 650px;
+}
+
+.figma-contacts-cta-btn-inline {
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 14px 36px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  width: fit-content;
+  transition: background 0.3s;
+}
+
+.figma-contacts-cta-btn-inline:hover {
+  background: #222222;
+}
+
+/* Laptop responsive styles for Contacts */
+@media (max-width: 1440px) {
+  .figma-contacts-header-group {
+    top: 22.0%;
+    gap: 16px;
+  }
+  .figma-contacts-title-inline {
+    font-size: 32px;
+    max-width: 550px;
+  }
+  .figma-contacts-cta-btn-inline {
+    padding: 12px 28px;
+    font-size: 16px;
+  }
+}
+
+.figma-contacts-grid {
+  position: absolute;
+  left: 5.15%;
+  top: 59.26%;
+  width: 42%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.contacts-sub {
+  font-size: 18px;
+  font-weight: 600;
+  color: #888888;
+  margin: 0 0 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contacts-link {
+  font-size: 16px;
+  color: #000000;
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+.contacts-link a {
+  color: inherit;
+  text-decoration: none;
+}
+.contacts-link a:hover {
+  text-decoration: underline;
+}
+
+.contacts-legal {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  color: #888888;
+}
+
+.contacts-nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contacts-nav-links li, 
+.contacts-nav-links li a {
+  font-size: 16px;
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.contacts-nav-links li a:hover, 
+.contacts-nav-links li:hover {
+  text-decoration: underline;
+}
+
+.figma-map-element {
+  position: absolute;
+  left: 50.0%;
+  top: 59.26%;
+  width: 45%;
+  height: 28%;
+  border: 1px solid #e2e8f0;
+  background: #eee;
+  z-index: 10;
+}
+
+.contacts-footer-links {
+  position: absolute;
+  left: 5.15%;
+  top: 92%;
+  display: flex;
+  gap: 32px;
+}
+.contacts-footer-links a {
+  font-size: 16px;
+  color: #888888;
+  text-decoration: none;
+}
+.contacts-footer-links a:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   CINEMATIC SLIDE CONTENT ANIMATIONS
+   ========================================================================== */
+
+/* Initial hidden state for slide-layer (except the first slide) text contents */
+.slide-layer:not(:first-child) .figma-slide-title-inline,
+.slide-layer:not(:first-child) .figma-slide-desc-inline,
+.slide-layer:not(:first-child) .figma-intro-title,
+.slide-layer:not(:first-child) .figma-step-indicator,
+.slide-layer:not(:first-child) .figma-section-title,
+.slide-layer:not(:first-child) .figma-story-tabs,
+.slide-layer:not(:first-child) .figma-story-content,
+.slide-layer:not(:first-child) .faq-wrapper,
+.slide-layer:not(:first-child) .figma-blog-card,
+.slide-layer:not(:first-child) .figma-blog-all-btn,
+.slide-layer:not(:first-child) .figma-contacts-header-group,
+.slide-layer:not(:first-child) .figma-contacts-grid,
+.slide-layer:not(:first-child) .figma-map-element {
+  opacity: 0;
+  will-change: transform, opacity, filter;
+}
+
+/* Keyframes for premium cinematic animations */
+@keyframes cinematic-slide-up {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translate3d(0, 45px, 0);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes cinematic-slide-left {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translate3d(60px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes cinematic-fade-blur {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Animations for ACTIVE slides WITH video (long delay: 1.0s / 1.3s)
+   -------------------------------------------------------------------------- */
+
+/* Title & Indicators (Slide from Bottom) */
+.slide-layer.active[data-has-video="true"][data-direction="down"] .figma-slide-title-inline,
+.slide-layer.active[data-has-video="true"][data-direction="down"] .figma-intro-title,
+.slide-layer.active[data-has-video="true"][data-direction="down"] .figma-section-title,
+.slide-layer.active[data-has-video="true"][data-direction="down"] .figma-step-indicator {
+  animation: cinematic-slide-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 1.0s;
+}
+
+/* Description (Slide from Bottom) */
+.slide-layer.active[data-has-video="true"][data-direction="down"] .figma-slide-desc-inline {
+  animation: cinematic-slide-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 1.3s;
+}
+
+/* Title & Indicators (Slide from Right) */
+.slide-layer.active[data-has-video="true"][data-direction="right"] .figma-slide-title-inline,
+.slide-layer.active[data-has-video="true"][data-direction="right"] .figma-step-indicator {
+  animation: cinematic-slide-left 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 1.0s;
+}
+
+/* Description (Slide from Right) */
+.slide-layer.active[data-has-video="true"][data-direction="right"] .figma-slide-desc-inline {
+  animation: cinematic-slide-left 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 1.3s;
+}
+
+/* Stories Tabs & Bullet content (Fade & Blur) */
+.slide-layer.active[data-has-video="true"] .figma-story-tabs {
+  animation: cinematic-fade-blur 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 1.0s;
+}
+
+.slide-layer.active[data-has-video="true"] .figma-story-content {
+  animation: cinematic-fade-blur 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 1.3s;
+}
+
+/* --------------------------------------------------------------------------
+   Animations for ACTIVE slides WITHOUT video (short delay: 0.2s / 0.5s)
+   -------------------------------------------------------------------------- */
+
+/* Title & Indicators (Slide from Bottom) */
+.slide-layer.active[data-has-video="false"][data-direction="down"] .figma-slide-title-inline,
+.slide-layer.active[data-has-video="false"][data-direction="down"] .figma-intro-title,
+.slide-layer.active[data-has-video="false"][data-direction="down"] .figma-section-title,
+.slide-layer.active[data-has-video="false"][data-direction="down"] .figma-step-indicator {
+  animation: cinematic-slide-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+/* Description (Slide from Bottom) */
+.slide-layer.active[data-has-video="false"][data-direction="down"] .figma-slide-desc-inline {
+  animation: cinematic-slide-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.5s;
+}
+
+/* Title & Indicators (Slide from Right) */
+.slide-layer.active[data-has-video="false"][data-direction="right"] .figma-slide-title-inline,
+.slide-layer.active[data-has-video="false"][data-direction="right"] .figma-step-indicator {
+  animation: cinematic-slide-left 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+/* Description (Slide from Right) */
+.slide-layer.active[data-has-video="false"][data-direction="right"] .figma-slide-desc-inline {
+  animation: cinematic-slide-left 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.5s;
+}
+
+/* FAQ, Blog Cards, Contacts layout (Fade & Blur) */
+.slide-layer.active[data-has-video="false"] .faq-wrapper,
+.slide-layer.active[data-has-video="false"] .figma-blog-card,
+.slide-layer.active[data-has-video="false"] .figma-contacts-header-group {
+  animation: cinematic-fade-blur 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+.slide-layer.active[data-has-video="false"] .figma-blog-all-btn,
+.slide-layer.active[data-has-video="false"] .figma-contacts-grid,
+.slide-layer.active[data-has-video="false"] .figma-map-element {
+  animation: cinematic-fade-blur 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.5s;
+}
+
+

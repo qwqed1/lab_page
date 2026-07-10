@@ -1,67 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, watch, nextTick } from 'vue'
-
-// Active tab for the top navigation menu
-const activeTab = ref('about') // 'about', 'licenses', 'doctors', 'contacts'
-
-// Licenses and Certificates Data
-const licenseSearchQuery = ref('')
-const licenses = ref([
-  { id: 1, title: '№ Л041-01126-23/00345678', date: 'От 12.04.2022', type: 'medical' },
-  { id: 2, title: 'Стандарт ISO', date: 'От 12.04.2024', type: 'iso' },
-  { id: 3, title: 'Ежегодный аудит 2025', date: 'От 02.01.2025', type: 'audit' },
-  { id: 4, title: '№ Л041-01126-23/00345678', date: 'От 12.04.2022', type: 'medical' },
-  { id: 5, title: '№ Л041-01126-23/00345678', date: 'От 12.04.2022', type: 'medical' },
-  { id: 6, title: 'Стандарт ISO', date: 'От 12.04.2024', type: 'iso' },
-  { id: 7, title: 'Ежегодный аудит 2025', date: 'От 02.01.2025', type: 'audit' },
-  { id: 8, title: 'Ежегодный аудит 2025', date: 'От 02.01.2025', type: 'audit' }
-])
-
-const filteredLicenses = computed(() => {
-  if (!licenseSearchQuery.value.trim()) {
-    return licenses.value
-  }
-  const query = licenseSearchQuery.value.toLowerCase()
-  return licenses.value.filter(l => 
-    l.title.toLowerCase().includes(query) || 
-    l.date.toLowerCase().includes(query)
-  )
-})
-
-const doctors = ref([
-  { id: 1, name: 'Александра Ковальчук', title: 'Профессор МГУ', materials: 6, image: '/assets/doctor1.png' },
-  { id: 2, name: 'Александра Ковальчук', title: 'Профессор МГУ', materials: 32, image: '/assets/doctor2.png' },
-  { id: 3, name: 'Александра Ковальчук', title: 'Профессор МГУ', materials: 6, image: '/assets/doctor3.png' },
-  { id: 4, name: 'Александра Ковальчук', title: 'Профессор МГУ', materials: 6, image: '/assets/doctor4.png' },
-  { id: 5, name: 'Александра Ковальчук', title: 'Профессор МГУ', materials: 6, image: '/assets/doctor5.png' },
-  { id: 6, name: 'Александра Ковальчук', title: 'Профессор МГУ', materials: 6, image: '/assets/doctor6.png' },
-  { id: 7, name: 'Александра Ковальчук', title: 'Профессор МГУ', materials: 6, image: '/assets/doctor7.png' },
-  { id: 8, name: 'Александра Ковальчук', title: 'Профессор МГУ', materials: 6, image: '/assets/doctor8.png' },
-  { id: 9, name: 'Александра Ковальчук', title: 'Профессор МГУ', materials: 6, image: '/assets/doctor9.png' }
-])
-
-const getMaterialsWord = (count) => {
-  const mod10 = count % 10
-  const mod100 = count % 100
-  if (mod100 >= 11 && mod100 <= 19) {
-    return 'материалов'
-  }
-  if (mod10 === 1) {
-    return 'материал'
-  }
-  if (mod10 >= 2 && mod10 <= 4) {
-    return 'материала'
-  }
-  return 'материалов'
-}
-
-
-const tabs = [
-  { id: 'about', label: 'О нас' },
-  { id: 'licenses', label: 'Лицензии' },
-  { id: 'doctors', label: 'Врачи и эксперты' },
-  { id: 'contacts', label: 'Контакты' }
-]
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 
 // Modal states
 const showDemoModal = ref(false)
@@ -138,30 +76,229 @@ const resetQuiz = () => {
   quizAnswers.value = []
 }
 
+// 21 Slides Definition (Extracted directly from Figma bridged mockup)
+const currentSlideIndex = ref(0)
+const scrollContainer = ref(null)
+
+const videoA = ref(null)
+const videoB = ref(null)
+const activeVideoElement = ref('A') // 'A' or 'B'
+
+const slides = ref([
+  { id: 'slide-1', label: '', title: 'Тест на аллергию ALEX² — один анализ, который даёт ответы', subtitle: '', direction: 'down', video: '/videos/1.mp4' },
+  { id: 'slide-2', label: '', title: 'Почему ALEX2?', subtitle: '', direction: 'down', video: '/videos/2.mp4' },
+  
+  // Advantages
+  { id: 'slide-3', step: '1', totalSteps: '5', label: 'Преимущества', title: 'Всё за один сеанс', subtitle: 'За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое.', direction: 'down', video: '/videos/3.mp4' },
+  { id: 'slide-4', step: '2', totalSteps: '5', label: 'Преимущества', title: 'Точечный результат', subtitle: 'В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.', direction: 'right', video: '/videos/4.mp4' },
+  { id: 'slide-5', step: '3', totalSteps: '5', label: 'Преимущества', title: 'Отчёт и консультация', subtitle: 'Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.', direction: 'right', video: '/videos/5.mp4' },
+  { id: 'slide-6', step: '4', totalSteps: '5', label: 'Преимущества', title: 'Без диет и отмены лекарств', subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.', direction: 'right', video: '/videos/6.mp4' },
+  { id: 'slide-7', step: '5', totalSteps: '5', label: 'Преимущества', title: 'Подходит детям', subtitle: 'Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.', direction: 'right', video: '/videos/7.mp4' },
+  
+  // Results Intro
+  { id: 'slide-8', label: 'О результатах', title: 'Что вы получите по итогам теста на аллергию', subtitle: '', direction: 'down', video: '/videos/8.mp4' },
+  
+  // Results Steps
+  { id: 'slide-9', step: '1', totalSteps: '3', label: 'О результатах', title: 'Аллерго-паспорт', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'down', video: '/videos/9.mp4' },
+  { id: 'slide-10', step: '2', totalSteps: '3', label: 'О результатах', title: 'Рекомендации по аллергенам', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/10.mp4' },
+  { id: 'slide-11', step: '3', totalSteps: '3', label: 'О результатах', badge: 'Опционально', title: 'Консультация', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/11.mp4' },
+  
+  // Stories Intro
+  { id: 'slide-12', label: 'Истории людей', title: 'Истории людей', subtitle: '', direction: 'down', video: '/videos/12.mp4' },
+  
+  // Stories Tabs
+  { id: 'slide-13', label: 'Истории людей', type: 'story', activeTab: 'Misha', direction: 'down', video: '/videos/13.mp4' },
+  { id: 'slide-14', label: 'Истории людей', type: 'story', activeTab: 'Alexandra', direction: 'right', video: '/videos/14.mp4' },
+  { id: 'slide-15', label: 'Истории людей', type: 'story', activeTab: 'Pasha', direction: 'right', video: '/videos/15.mp4' },
+  
+  // FAQ (Video ends here)
+  { id: 'slide-16', label: 'FAQ', type: 'faq', title: 'FAQ', subtitle: '', direction: 'down', video: '' },
+  
+  // Blog
+  { id: 'slide-17', label: 'Блог про аллергию', type: 'blog', title: 'Блог про аллергию', subtitle: '', direction: 'down', video: '' },
+  
+  // How to сдавать Steps
+  { id: 'slide-18', step: '1', totalSteps: '3', label: 'Как сдать тест', title: 'Запишитесь на тест через наш сайт', subtitle: 'А если хотите получить дополнительно консультацию бесплатно — выберите сдачу теста в лабораториях ALEX', direction: 'down', video: '' },
+  { id: 'slide-19', step: '2', totalSteps: '3', label: 'Как сдать тест', title: 'Сдайте кровь в выбранной лаборатории', subtitle: 'Важно: За 4 часа до сдачи крови нужно не кушать. Кровь берут из вены.', direction: 'right', video: '' },
+  { id: 'slide-20', step: '3', totalSteps: '3', label: 'Как сдать тест', title: 'Отслеживайте результат в личном кабинете и на электронной почте', subtitle: 'В личном кабинете показываем статусы — туда же придёт результат. Дополнительно всё дублируем на почту.', direction: 'right', video: '' },
+  
+  // Contacts
+  { id: 'slide-21', label: 'Контакты', type: 'contacts', title: 'Контакты', subtitle: '', direction: 'down', video: '' }
+])
+
+const getSlideClass = (index) => {
+  if (index === currentSlideIndex.value) {
+    return 'active'
+  }
+  if (index > currentSlideIndex.value) {
+    const slide = slides.value[index]
+    return slide.direction === 'right' ? 'future-right' : 'future-down'
+  }
+  if (index < currentSlideIndex.value) {
+    const nextSlide = slides.value[index + 1]
+    return nextSlide.direction === 'right' ? 'past-left' : 'past-up'
+  }
+  return ''
+}
+
+const goToSlideById = (id) => {
+  const idx = slides.value.findIndex(s => s.id === id)
+  if (idx !== -1) {
+    currentSlideIndex.value = idx
+  }
+}
+
+const menuItems = [
+  { label: 'Преимущества', slideId: 'slide-3' },
+  { label: 'О результатах', slideId: 'slide-9' },
+  { label: 'Истории людей', slideId: 'slide-13' },
+  { label: 'FAQ', slideId: 'slide-16' },
+  { label: 'Блог про аллергию', slideId: 'slide-17' },
+  { label: 'Как сдать тест', slideId: 'slide-18' }
+]
+
+const activeMenuIndex = computed(() => {
+  const idx = currentSlideIndex.value
+  if (idx >= 2 && idx <= 6) return 0 // Преимущества
+  if (idx >= 7 && idx <= 10) return 1 // О результатах
+  if (idx >= 11 && idx <= 14) return 2 // Истории людей
+  if (idx === 15) return 3 // FAQ
+  if (idx === 16) return 4 // Блог про аллергию
+  if (idx >= 17 && idx <= 19) return 5 // Как сдать тест
+  return -1
+})
+
+const showMenu = computed(() => {
+  return activeMenuIndex.value !== -1
+})
+
+let isScrolling = false
+const SCROLL_LOCK_DURATION = 800
+
+const goNext = () => {
+  if (currentSlideIndex.value < slides.value.length - 1) {
+    isScrolling = true
+    currentSlideIndex.value++
+    setTimeout(() => {
+      isScrolling = false
+    }, SCROLL_LOCK_DURATION)
+  }
+}
+
+const goPrev = () => {
+  if (currentSlideIndex.value > 0) {
+    isScrolling = true
+    currentSlideIndex.value--
+    setTimeout(() => {
+      isScrolling = false
+    }, SCROLL_LOCK_DURATION)
+  }
+}
+
+const handleWheel = (e) => {
+  if (isScrolling) {
+    e.preventDefault()
+    return
+  }
+
+  if (e.deltaY > 30) {
+    e.preventDefault()
+    goNext()
+  } else if (e.deltaY < -30) {
+    e.preventDefault()
+    goPrev()
+  }
+}
+
+const handleKeydown = (e) => {
+  if (isScrolling) return
+
+  switch (e.key) {
+    case 'ArrowDown':
+    case 'PageDown':
+    case ' ':
+      e.preventDefault()
+      goNext()
+      break
+    case 'ArrowUp':
+    case 'PageUp':
+      e.preventDefault()
+      goPrev()
+      break
+    case 'Home':
+      e.preventDefault()
+      currentSlideIndex.value = 0
+      break
+    case 'End':
+      e.preventDefault()
+      currentSlideIndex.value = slides.value.length - 1
+      break
+  }
+}
+
+let touchStartY = 0
+const handleTouchStart = (e) => {
+  touchStartY = e.touches[0].clientY
+}
+
+const handleTouchEnd = (e) => {
+  if (isScrolling) return
+
+  const touchEndY = e.changedTouches[0].clientY
+  const diff = touchStartY - touchEndY
+
+  if (Math.abs(diff) > 50) {
+    if (diff > 0) goNext()
+    else goPrev()
+  }
+}
+
+const getStoryBefore = (tab) => {
+  if (tab === 'Misha') {
+    return [
+      'Неуверенность в аллергии, вроде есть, а вроде и нет',
+      'Боится выходить из дома',
+      'При аллергии просто замирает в страхе'
+    ]
+  } else if (tab === 'Alexandra') {
+    return [
+      'Постоянный насморк без простуды весной и летом',
+      'Не понимала, на какое именно растение реакция',
+      'Горсти антигистаминных наугад'
+    ]
+  } else {
+    return [
+      'Пищевая аллергия',
+      'Исключал почти все продукты, боясь приступов',
+      'Постоянные ограничения и стресс при походах в рестораны'
+    ]
+  }
+}
+
+const getStoryAfter = (tab) => {
+  if (tab === 'Misha') {
+    return [
+      'Точно знает, на что аллергия',
+      'Знает, в какие конкретно недели пик цветения',
+      'Пьёт конкретные таблетки'
+    ]
+  } else if (tab === 'Alexandra') {
+    return [
+      'Исключила из рациона яблоки и орехи (перекрестная реакция на березу)',
+      'Подготовилась к сезону пыления заранее'
+    ]
+  } else {
+    return [
+      'Выявил точные белковые аллергены',
+      'Понял, какие продукты безопасны при термообработке',
+      'Вернул разнообразие в диету'
+    ]
+  }
+}
+
 // Map Initialization and Contacts Logic
 let mapInstance = null
 let isLeafletLoaded = false
-
-onMounted(() => {
-  if (process.client) {
-    // Dynamically inject Leaflet CSS
-    const link = document.createElement('link')
-    link.rel = 'stylesheet'
-    link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
-    document.head.appendChild(link)
-
-    // Dynamically inject Leaflet JS
-    const script = document.createElement('script')
-    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
-    script.onload = () => {
-      isLeafletLoaded = true
-      if (activeTab.value === 'contacts') {
-        initMap()
-      }
-    }
-    document.head.appendChild(script)
-  }
-})
 
 const initMap = () => {
   if (!window.L) return
@@ -196,8 +333,39 @@ const initMap = () => {
   L.marker(coords, { icon: customIcon }).addTo(mapInstance)
 }
 
-watch(activeTab, (newTab) => {
-  if (newTab === 'contacts') {
+const openMapLink = () => {
+  window.open('https://yandex.ru/maps/?text=Москва, Пречистенка 30/2', '_blank')
+}
+
+// Watch currentSlideIndex to load videos and init map
+watch(currentSlideIndex, (newIndex) => {
+  const slide = slides.value[newIndex]
+  const nextSrc = slide.video
+
+  if (nextSrc) {
+    const activeEl = activeVideoElement.value === 'A' ? videoA.value : videoB.value
+    const inactiveEl = activeVideoElement.value === 'A' ? videoB.value : videoA.value
+
+    if (inactiveEl) {
+      inactiveEl.src = nextSrc
+      inactiveEl.load()
+      
+      inactiveEl.play().then(() => {
+        activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
+        
+        setTimeout(() => {
+          if (activeEl && activeEl.src !== inactiveEl.src) {
+            activeEl.pause()
+          }
+        }, 600)
+      }).catch((err) => {
+        console.warn('Failed to play next video shot:', err)
+        activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
+      })
+    }
+  }
+
+  if (slide.type === 'contacts') {
     nextTick(() => {
       if (isLeafletLoaded) {
         initMap()
@@ -206,22 +374,64 @@ watch(activeTab, (newTab) => {
   }
 })
 
-const openMapLink = () => {
-  window.open('https://yandex.ru/maps/?text=Москва, Пречистенка 30/2', '_blank')
-}
+onMounted(() => {
+  if (process.client) {
+    // Dynamically inject Leaflet CSS
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
+    document.head.appendChild(link)
 
-// Smooth scroll to sections
-const scrollToSection = (id) => {
-  const el = document.getElementById(id)
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' })
+    // Dynamically inject Leaflet JS
+    const script = document.createElement('script')
+    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
+    script.onload = () => {
+      isLeafletLoaded = true
+      const slide = slides.value[currentSlideIndex.value]
+      if (slide && slide.type === 'contacts') {
+        initMap()
+      }
+    }
+    document.head.appendChild(script)
   }
-}
+
+  nextTick(() => {
+    const container = scrollContainer.value
+    if (!container) return
+
+    container.addEventListener('wheel', handleWheel, { passive: false })
+    container.addEventListener('touchstart', handleTouchStart, { passive: true })
+    container.addEventListener('touchend', handleTouchEnd, { passive: true })
+    window.addEventListener('keydown', handleKeydown)
+
+    // Load initial video
+    const slide = slides.value[currentSlideIndex.value]
+    const initialSrc = slide ? slide.video : null
+    if (initialSrc && videoA.value) {
+      videoA.value.src = initialSrc
+      videoA.value.load()
+      videoA.value.play().catch(() => {})
+    }
+  })
+})
+
+onUnmounted(() => {
+  const container = scrollContainer.value
+  if (container) {
+    container.removeEventListener('wheel', handleWheel)
+    container.removeEventListener('touchstart', handleTouchStart)
+    container.removeEventListener('touchend', handleTouchEnd)
+  }
+  window.removeEventListener('keydown', handleKeydown)
+
+  if (videoA.value) videoA.value.pause()
+  if (videoB.value) videoB.value.pause()
+})
 </script>
 
 <template>
   <div class="page-container">
-    <!-- Left Column: Navigation controls & cards (Frame 1 / Frame 52) -->
+    <!-- Left Column: Navigation controls & cards (Static, Non-scrolling) -->
     <aside class="sidebar-container">
       <!-- Promo Banner Card (Frame 41) -->
       <div class="promo-card" id="card-promo">
@@ -285,7 +495,7 @@ const scrollToSection = (id) => {
       </div>
 
       <!-- About/Bottom Card (Frame 113) -->
-      <div class="sidebar-row-card" id="row-about" @click="scrollToSection('section-about')">
+      <div class="sidebar-row-card" id="row-about" @click="goToSlideById('slide-1')">
         <div class="row-left-content">
           <span class="row-text">Лаборатория ALEX LAB</span>
         </div>
@@ -299,291 +509,312 @@ const scrollToSection = (id) => {
       </div>
     </aside>
 
-    <!-- Right Column: Content & Navigation (Frame 116 / Frame 117) -->
-    <main class="content-container">
-      <!-- Mobile Top Navigation Bar (Frame 290) -->
-      <div class="mobile-top-bar">
-        <button class="mobile-back-button" aria-label="Назад">
-          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7 13L1 7L7 1" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Header with nav tabs -->
-      <header class="content-header">
-        <h1 class="main-title">Лаборатория ALEX LAB</h1>
-        
-        <nav class="nav-menu">
-          <button 
-            v-for="tab in tabs" 
-            :key="tab.id"
-            :class="['nav-item', activeTab === tab.id ? 'active' : 'outline']"
-            @click="activeTab = tab.id"
-          >
-            {{ tab.label }}
-          </button>
-        </nav>
-      </header>
-
-      <!-- Main Body content -->
-      <div class="content-body" v-if="activeTab === 'about'">
-        <!-- Table of contents (Frame 336089) -->
-        <div class="toc-card">
-          <h4 class="toc-title">Содержание</h4>
-          <ul class="toc-list">
-            <li class="toc-item" @click="scrollToSection('section-inside')">
-              <span class="toc-dot"></span>
-              Что внутри
-            </li>
-            <li class="toc-item" @click="scrollToSection('section-history')">
-              <span class="toc-dot"></span>
-              Работаем с 2001
-            </li>
-          </ul>
-        </div>
-
-        <!-- Intro Text -->
-        <p class="intro-text" id="section-about">
-          Лаборатория Alex Lab — ведущий научно-исследовательский центр молекулярной генетики и биотехнологий, созданный в 2018 году. Мы объединили передовую науку и высокие технологии, чтобы сделать сложнейшую высокоточную диагностику доступной для каждого пациента. Наша главная миссия — внедрение инновационных медицинских тестов в повседневную врачебную практику для выявления скрытых угроз здоровью на самых ранних стадиях.
-        </p>
-
-        <!-- Information Sections -->
-        <div class="sections-wrapper">
-          <!-- Section: Что внутри? (Frame 336113) -->
-          <section class="info-section" id="section-inside">
-            <h2 class="section-title">Что внутри?</h2>
-            <p class="section-body">
-              Производственный комплекс лаборатории оснащен роботизированными анализаторами последнего поколения от лидеров мирового рынка. Полная автоматизация процессов исключает человеческий фактор, гарантируя абсолютную точность результатов. Благодаря оптимизации логистики и собственной IT-платформе, мы сократили время ожидания: большинство сложных генетических исследований выполняются всего за 24 часа.
-            </p>
-            <p class="section-body-secondary">
-              Центр строго соблюдает принципы медицинской этики и гарантирует полную анонимность персональных данных. Каждый этап — от взятия биоматериала до выдачи заключения — защищен современными протоколами шифрования. Нам доверяют как частные пациенты, так и крупнейшие государственные и коммерческие клиники по всей стране.
-            </p>
-          </section>
-
-          <!-- Section: Работаем с 2001 -->
-          <section class="info-section" id="section-history">
-            <h2 class="section-title">Работаем с 2001</h2>
-            <p class="section-body">
-              Производственный комплекс лаборатории оснащен роботизированными анализаторами последнего поколения от лидеров мирового рынка. Полная автоматизация процессов исключает человеческий фактор, гарантируя абсолютную точность результатов. Благодаря оптимизации логистики и собственной IT-платформе, мы сократили время ожидания: большинство сложных генетических исследований выполняются всего за 24 часа.
-            </p>
-          </section>
+    <!-- Right Column: Content Container with Slide Deck -->
+    <main class="content-container" ref="scrollContainer">
+      <!-- Persistent Right Menu overlay -->
+      <div class="figma-right-menu" :class="{ visible: showMenu }">
+        <div class="figma-menu-indicator" :style="{ top: (activeMenuIndex * 29 + 4) + 'px' }"></div>
+        <div 
+          v-for="(item, idx) in menuItems" 
+          :key="item.label" 
+          class="figma-menu-item"
+          :class="{ active: idx === activeMenuIndex }"
+          @click="goToSlideById(item.slideId)"
+        >
+          {{ item.label }}
         </div>
       </div>
 
-      <!-- Licenses Tab content (Figma Frame 1570:11040) -->
-      <div class="content-body" v-else-if="activeTab === 'licenses'">
-        <section class="info-section">
-          <!-- Search Bar -->
-          <div class="licenses-search-wrapper">
-            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input 
-              type="text" 
-              v-model="licenseSearchQuery" 
-              placeholder="Поиск лицензии по названию или дате..." 
-              class="licenses-search-input"
-            />
-          </div>
+      <!-- Fixed Video Background Layer -->
+      <div class="video-bg-container" :class="{ 'no-video': !slides[currentSlideIndex]?.video }">
+        <video 
+          ref="videoA" 
+          class="bg-video" 
+          :class="{ active: activeVideoElement === 'A' }"
+          autoplay
+          loop
+          muted 
+          playsinline 
+          preload="auto"
+        ></video>
+        <video 
+          ref="videoB" 
+          class="bg-video" 
+          :class="{ active: activeVideoElement === 'B' }"
+          autoplay
+          loop
+          muted 
+          playsinline 
+          preload="auto"
+        ></video>
+        <div class="video-overlay"></div>
+      </div>
 
-          <!-- Licenses Grid -->
-          <div class="licenses-grid">
-            <div 
-              class="license-card" 
-              v-for="license in filteredLicenses" 
-              :key="license.id"
-            >
-              <div class="license-icon">
-                <!-- Premium Sage-green PDF document icon -->
-                <svg width="40" height="48" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22 2V14H34" stroke="#7e8f7c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M34 14V42C34 43.1 33.1 44 32 44H8C6.9 44 6 43.1 6 42V6C6 4.9 6.9 4 8 4H22L34 14Z" stroke="#7e8f7c" stroke-width="2" stroke-linejoin="round"/>
-                  <path d="M12 24H28" stroke="#7e8f7c" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M12 32H28" stroke="#7e8f7c" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M12 16H16" stroke="#7e8f7c" stroke-width="2" stroke-linecap="round"/>
-                </svg>
+      <!-- Slides Deck -->
+      <div class="slides-deck-container">
+        <div
+          v-for="(slide, index) in slides"
+          :key="slide.id"
+          class="slide-layer"
+          :class="getSlideClass(index)"
+          :data-direction="slide.direction"
+          :data-has-video="!!slide.video"
+        >
+          <!-- Slide 1: Hero -->
+          <template v-if="slide.id === 'slide-1'">
+            <h1 class="figma-hero-title">
+              Тест на аллергию ALEX² — один анализ, который даёт ответы
+            </h1>
+          </template>
+
+          <!-- Slide 2: Why ALEX2 Intro -->
+          <template v-else-if="slide.id === 'slide-2'">
+            <h2 class="figma-intro-title white">
+              Почему ALEX2?
+            </h2>
+          </template>
+
+          <!-- Advantages detail slides (Slide 3 to 7) -->
+          <template v-else-if="slide.label === 'Преимущества'">
+            <div class="figma-content-wrapper">
+              <div class="figma-step-block advantages-pos">
+                <!-- Step circles indicator -->
+                <div class="figma-step-indicator">
+                  <div 
+                    v-for="i in 5" 
+                    :key="i"
+                    class="figma-step-circle"
+                    :class="{ active: i === parseInt(slide.step) }"
+                  >
+                    {{ i }}
+                  </div>
+                </div>
+                <!-- Text stack -->
+                <div class="figma-step-text-stack">
+                  <h2 class="figma-slide-title-inline">{{ slide.title }}</h2>
+                  <p class="figma-slide-desc-inline">{{ slide.subtitle }}</p>
+                </div>
               </div>
-              <div class="license-info">
-                <h4 class="license-title">{{ license.title }}</h4>
-                <p class="license-date">{{ license.date }}</p>
+            </div>
+          </template>
+
+          <!-- Results Intro (Slide 8) -->
+          <template v-else-if="slide.id === 'slide-8'">
+            <h2 class="figma-intro-title">
+              Что вы получите <br>по итогам теста на аллергию
+            </h2>
+          </template>
+
+          <!-- Results Steps (Slide 9 to 11) -->
+          <template v-else-if="slide.label === 'О результатах' && slide.step">
+            <div class="figma-content-wrapper results-wrapper">
+              <div class="figma-step-block results-pos">
+                <!-- Step circles indicator -->
+                <div class="figma-step-indicator">
+                  <div 
+                    v-for="i in 3" 
+                    :key="i"
+                    class="figma-step-circle"
+                    :class="{ active: i === parseInt(slide.step) }"
+                  >
+                    {{ i }}
+                  </div>
+                </div>
+                <!-- Text stack -->
+                <div class="figma-step-text-stack">
+                  <h2 class="figma-slide-title-inline">
+                    {{ slide.title }}
+                    <span v-if="slide.badge" class="figma-badge">{{ slide.badge }}</span>
+                  </h2>
+                  <p class="figma-slide-desc-inline">{{ slide.subtitle }}</p>
+                </div>
               </div>
-              <button 
-                class="license-download-btn"
-                @click="alert(`Скачивание документа: ${license.title}`)"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                <span>Скачать PDF</span>
+            </div>
+          </template>
+
+          <!-- Stories Intro (Slide 12) -->
+          <template v-else-if="slide.id === 'slide-12'">
+            <h2 class="figma-intro-title">
+              {{ slide.title }}
+            </h2>
+          </template>
+
+          <!-- Stories Detail (Slide 13 to 15) -->
+          <template v-else-if="slide.type === 'story'">
+            <div class="figma-content-wrapper story-wrapper">
+              <span class="figma-category-label">{{ slide.label }}</span>
+              
+              <!-- Tab Bar (Figma bounds: left 6.44%, top 51.2%) -->
+              <div class="figma-story-tabs">
+                <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Misha' }" @click="goToSlideById('slide-13')">Миша</button>
+                <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Alexandra' }" @click="goToSlideById('slide-14')">Александра</button>
+                <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Pasha' }" @click="goToSlideById('slide-15')">Паша</button>
+              </div>
+
+              <!-- Stories Details Grid -->
+              <div class="figma-story-content">
+                <!-- After ALEX2 (Header & List) -->
+                <div class="story-block-after">
+                  <h3 class="story-block-title green">После теста ALEX2</h3>
+                  <ul class="story-bullets">
+                    <li v-for="item in getStoryAfter(slide.activeTab)" :key="item">{{ item }}</li>
+                  </ul>
+                </div>
+
+                <!-- Before (Header & List) -->
+                <div class="story-block-before">
+                  <h3 class="story-block-title">До</h3>
+                  <ul class="story-bullets gray">
+                    <li v-for="item in getStoryBefore(slide.activeTab)" :key="item">{{ item }}</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Read More Button -->
+              <button class="figma-story-btn" @click="showDemoModal = true">
+                Читать подробнее
               </button>
             </div>
-          </div>
-        </section>
-      </div>
+          </template>
 
-      <!-- Doctors Tab content (Figma Frame 1571:11833) -->
-      <div class="content-body" v-else-if="activeTab === 'doctors'">
-        <section class="info-section">
-          <!-- Main count title block -->
-          <h2 class="doctors-main-count">Всего 482 специалиста</h2>
-
-          <!-- Doctors Grid -->
-          <div class="doctors-grid">
-            <div 
-              class="doctor-card" 
-              v-for="doctor in doctors" 
-              :key="doctor.id"
-            >
-              <!-- Card Photo wrapper -->
-              <div class="doctor-photo-wrapper">
-                <img :src="doctor.image" :alt="doctor.name" class="doctor-photo" />
+          <!-- FAQ (Slide 16) -->
+          <template v-else-if="slide.type === 'faq'">
+            <div class="figma-content-wrapper faq-wrapper">
+              <span class="figma-category-label">{{ slide.label }}</span>
+              
+              <div class="figma-faq-list">
+                <div class="figma-faq-item">
+                  <h4 class="figma-faq-q">Это больно?</h4>
+                  <p class="figma-faq-a">Забор крови из вены производится тонкой иглой, процедура быстрая и практически безболезненная.</p>
+                </div>
+                <div class="figma-faq-item">
+                  <h4 class="figma-faq-q">Сколько аллергенов в тесте?</h4>
+                  <p class="figma-faq-a">Аллергочип ALEX2 проверяет более 300 аллергенов одновременно.</p>
+                </div>
+                <div class="figma-faq-item">
+                  <h4 class="figma-faq-q">Через сколько будет результат?</h4>
+                  <p class="figma-faq-a">Готовность — через 4–7 рабочих дней.</p>
+                </div>
+                <div class="figma-faq-item">
+                  <h4 class="figma-faq-q">У вас есть сертификаты?</h4>
+                  <p class="figma-faq-a">Да, тест ALEX2 сертифицирован и признан во всем мире.</p>
+                </div>
               </div>
               
-              <!-- Card Text info -->
-              <div class="doctor-info">
-                <h3 class="doctor-name">{{ doctor.name }}</h3>
-                <p class="doctor-title">{{ doctor.title }}</p>
-              </div>
-
-              <!-- Button materials -->
-              <button 
-                class="doctor-materials-btn"
-                @click="alert(`Переход к материалам автора: ${doctor.name}`)"
-              >
-                <span>{{ doctor.materials }} {{ getMaterialsWord(doctor.materials) }}</span>
-              </button>
+              <button class="figma-faq-all-btn" @click="showDemoModal = true">Все вопросы</button>
             </div>
-          </div>
-        </section>
-      </div>
+          </template>
 
-      <!-- Contacts Tab content (Figma Frame 1805:137 + 1805:342 + 1805:286) -->
-      <div class="content-body contacts-tab-content" v-else-if="activeTab === 'contacts'">
-        <!-- Map + Card wrapper (desktop: card overlays map; mobile: card flows below) -->
-        <div class="contacts-map-wrapper">
-          <!-- Map Container (Frame 336147: 1115x517) -->
-          <div class="contacts-map-container">
-            <div id="leaflet-map" class="leaflet-map-element"></div>
-          </div>
+          <!-- Blog (Slide 17) -->
+          <template v-else-if="slide.type === 'blog'">
+            <div class="figma-content-wrapper blog-wrapper">
+              <span class="figma-category-label">{{ slide.label }}</span>
+              
+              <div class="figma-blog-list">
+                <!-- Blog Card 1 -->
+                <div class="figma-blog-card">
+                  <div class="blog-meta">~16 минут • Наука</div>
+                  <h3 class="blog-title">Как сдать тест: подготовка и процесс</h3>
+                  <div class="blog-author">
+                    <p class="author-name">Александра Ковальчук</p>
+                    <p class="author-title">Профессор МГУ</p>
+                  </div>
+                  <p class="blog-desc">Cursor представила модель Composer 2.5 — в тестах она сопоставима c Opus 4.7 и GPT-5.5, но стоит примерно в 10 раз дешевле </p>
+                </div>
 
-          <!-- Contacts Card (Frame 336180: desktop=465x475 overlaid; mobile=420x341 below) -->
-          <div class="contacts-card">
-            <!-- Frame 336146: upper info block -->
-            <div class="contacts-info-block">
-              <!-- Header row: dot + "Главный офис" (Frame 336186) -->
-              <div class="contacts-header-row">
-                <span class="contacts-badge-dot"></span>
-                <span class="contacts-badge-text">Главный офис</span>
+                <!-- Blog Card 2 -->
+                <div class="figma-blog-card">
+                  <div class="blog-meta">~16 минут • Наука</div>
+                  <h3 class="blog-title">Как сдать тест: подготовка и процесс</h3>
+                  <div class="blog-author">
+                    <p class="author-name">Александра Ковальчук</p>
+                    <p class="author-title">Профессор МГУ</p>
+                  </div>
+                  <p class="blog-desc">Cursor представила модель Composer 2.5 — в тестах она сопоставима c Opus 4.7 и GPT-5.5, но стоит примерно в 10 раз дешевле </p>
+                </div>
               </div>
 
-              <!-- Frame 336185: address + contacts + schedule -->
-              <div class="contacts-details-block">
-                <!-- Frame 336184: address + phone/email -->
-                <div class="contacts-address-contacts">
-                  <!-- Address: Roboto 32px, line-height 37.5px -->
-                  <h2 class="contacts-address-text">Москва, Пречистенка 30/2</h2>
-                  <!-- Frame 336181: phone + email, vertical gap 12px -->
-                  <div class="contacts-links-group">
-                    <a href="tel:+74955076485" class="contacts-link-item">+7 495 507-64-85</a>
-                    <a href="mailto:alex@lab.com" class="contacts-link-item">alex@lab.com</a>
+              <button class="figma-blog-all-btn" @click="showDemoModal = true">Все материалы</button>
+            </div>
+          </template>
+
+          <!-- How to сдавать Steps (Slide 18 to 20) -->
+          <template v-else-if="slide.label === 'Как сдать тест'">
+            <div class="figma-content-wrapper howto-wrapper">
+              <h2 class="figma-section-title">Как сдать тест: подготовка и процесс</h2>
+              <div class="figma-step-block howto-pos">
+                <!-- Step circles indicator -->
+                <div class="figma-step-indicator">
+                  <div 
+                    v-for="i in 3" 
+                    :key="i"
+                    class="figma-step-circle"
+                    :class="{ active: i === parseInt(slide.step) }"
+                  >
+                    {{ i }}
+                  </div>
+                </div>
+                <!-- Text stack -->
+                <div class="figma-step-text-stack">
+                  <h2 class="figma-slide-title-inline">{{ slide.title }}</h2>
+                  <p class="figma-slide-desc-inline">{{ slide.subtitle }}</p>
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <!-- Contacts (Slide 21) -->
+          <template v-else-if="slide.type === 'contacts'">
+            <div class="figma-content-wrapper contacts-wrapper">
+              <div class="figma-contacts-header-group">
+                <h2 class="figma-contacts-title-inline">Тест на аллергию ALEX² — один анализ, который даёт ответы</h2>
+                <button class="figma-contacts-cta-btn-inline" @click="showRegisterModal = true">Записаться на тест на аллергию</button>
+              </div>
+
+              <div class="figma-contacts-grid">
+                <!-- Info Column -->
+                <div class="contacts-info-col">
+                  <h3 class="contacts-sub">Контакты</h3>
+                  <p class="contacts-link"><a href="https://yandex.ru/maps/?text=Москва, Пречистенка 30/2" target="_blank">Москва, Пречистенка 30/2</a></p>
+                  <p class="contacts-link"><a href="tel:+74955076485">+7 495 507-64-85</a></p>
+                  <p class="contacts-link"><a href="mailto:info@kupitkartinu.ru">info@kupitkartinu.ru</a></p>
+                  
+                  <div class="contacts-legal">
+                    <span>ИНН: 9703021385</span>
+                    <span>ОГРН: 1207700425602</span>
+                    <span>КПП: 770301001</span>
                   </div>
                 </div>
 
-                <!-- Frame 336175: Schedule grid (193x42) -->
-                <div class="contacts-schedule-grid">
-                  <span class="schedule-days">ПН — ПТ</span>
-                  <span class="schedule-time">9:00 — 19:00</span>
-                  <span class="schedule-days">СБ — ВС</span>
-                  <span class="schedule-time">Выходные</span>
+                <!-- Nav Column -->
+                <div class="contacts-nav-col">
+                  <h3 class="contacts-sub">Навигация по сайту</h3>
+                  <ul class="contacts-nav-links">
+                    <li><a href="/search">Поиск аллергенов</a></li>
+                    <li><a href="/demo-result">Демо-результат</a></li>
+                    <li @click="showQuizModal = true; goToSlideById('slide-1')">КВИЗ: Нужен ли вам тест</li>
+                    <li><a href="/profile">Личный кабинет</a></li>
+                    <li @click="goToSlideById('slide-2')">О лаборатории ALEXLAB</li>
+                  </ul>
                 </div>
               </div>
-            </div>
 
-            <!-- Action Button (Frame 111: black bg, 72px height) -->
-            <button class="contacts-btn-map" @click="openMapLink">
-              <span class="contacts-btn-text">Открыть на картах</span>
-              <div class="contacts-btn-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="10 8 14 12 10 16"/>
-                </svg>
+              <!-- Map container -->
+              <div id="leaflet-map" class="figma-map-element"></div>
+
+              <div class="contacts-footer-links">
+                <a href="/policy">Политика конфиденциальности</a>
+                <a href="/terms">Условия использования материалов сайта</a>
               </div>
-            </button>
-          </div>
-        </div>
-
-        <!-- Legal Footer (Figma Frame 335960: vertical gap 28px) -->
-        <div class="contacts-footer">
-          <!-- Legal info block (Frame 335968: 3 lines) -->
-          <div class="footer-legal-info">
-            <p>ИНН: 9703021385</p>
-            <p>ОГРН: 1207700425602</p>
-            <p>КПП: 770301001</p>
-          </div>
-          
-          <!-- Social icons (Frame 335961: horizontal gap 8px) -->
-          <div class="footer-social-links">
-            <!-- Telegram (Logo 1: 56x56) — Original Figma SVG -->
-            <a href="https://t.me/alexlab" target="_blank" class="social-link-icon" aria-label="Telegram">
-              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_tg)">
-                  <path d="M28 56C43.464 56 56 43.464 56 28C56 12.536 43.464 0 28 0C12.536 0 0 12.536 0 28C0 43.464 12.536 56 28 56Z" fill="black"/>
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6724 27.7046C20.835 24.1483 26.278 21.8037 29.0014 20.671C36.7773 17.4367 38.3931 16.8749 39.4462 16.8563C39.6778 16.8523 40.1957 16.9097 40.5312 17.1819C40.8145 17.4117 40.8924 17.7222 40.9297 17.9402C40.967 18.1581 41.0134 18.6545 40.9765 19.0424C40.5551 23.4699 38.7318 34.2142 37.8042 39.173C37.4117 41.2713 36.6389 41.9748 35.8907 42.0436C34.2647 42.1933 33.03 40.9691 31.4551 39.9367C28.9907 38.3213 27.5985 37.3157 25.2064 35.7393C22.442 33.9176 24.2341 32.9163 25.8095 31.28C26.2218 30.8517 33.3861 24.3353 33.5247 23.7442C33.5421 23.6702 33.5582 23.3946 33.3945 23.2491C33.2307 23.1036 32.9891 23.1534 32.8147 23.1929C32.5676 23.249 28.6307 25.8512 21.0042 30.9993C19.8867 31.7666 18.8745 32.1405 17.9677 32.1209C16.9679 32.0993 15.0448 31.5556 13.6152 31.0909C11.8617 30.5209 10.468 30.2196 10.5894 29.2515C10.6526 28.7473 11.3469 28.2317 12.6724 27.7046Z" fill="white"/>
-                </g>
-                <defs>
-                  <clipPath id="clip0_tg">
-                    <rect width="56" height="56" fill="white"/>
-                  </clipPath>
-                </defs>
-              </svg>
-            </a>
-            
-            <!-- VK (VK Logo 1: 57x56) — Original Figma SVG -->
-            <a href="https://vk.com/alexlab" target="_blank" class="social-link-icon" aria-label="VK">
-              <svg width="57" height="56" viewBox="0 0 57 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_vk)">
-                  <mask id="mask0_vk" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="57" height="56">
-                    <path d="M56.7188 0H0.283203V56H56.7188V0Z" fill="white"/>
-                  </mask>
-                  <g mask="url(#mask0_vk)">
-                    <path d="M0.283203 26.88C0.283203 14.2087 0.283203 7.87298 4.25031 3.93649C8.21743 0 14.6024 0 27.3723 0H29.6297C42.3997 0 48.7846 0 52.7518 3.93649C56.7188 7.87298 56.7188 14.2087 56.7188 26.88V29.12C56.7188 41.7913 56.7188 48.127 52.7518 52.0635C48.7846 56 42.3997 56 29.6297 56H27.3723C14.6024 56 8.21743 56 4.25031 52.0635C0.283203 48.127 0.283203 41.7913 0.283203 29.12V26.88Z" fill="black"/>
-                    <path d="M30.3155 40.3434C17.4528 40.3434 10.1163 31.5934 9.81055 17.0334H16.2536C16.4653 27.7201 21.2152 32.2467 24.9775 33.1801V17.0334H31.0446V26.25C34.7599 25.8534 38.6629 21.6534 39.9797 17.0334H46.0467C45.0356 22.7268 40.8029 26.9267 37.793 28.6534C40.8029 30.0534 45.6237 33.7167 47.4579 40.3434H40.7794C39.345 35.9101 35.7711 32.4801 31.0446 32.0134V40.3434H30.3155Z" fill="white"/>
-                  </g>
-                </g>
-                <defs>
-                  <clipPath id="clip0_vk">
-                    <rect width="57" height="56" fill="white"/>
-                  </clipPath>
-                </defs>
-              </svg>
-            </a>
-            
-            <!-- YouTube (youtube-sign-logo 1: 76x56) — Original Figma SVG -->
-            <a href="https://youtube.com/alexlab" target="_blank" class="social-link-icon" aria-label="YouTube">
-              <svg width="76" height="56" viewBox="0 0 76 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_yt)">
-                  <path d="M74.4116 8.744C73.5376 5.304 70.9612 2.592 67.6932 1.672C61.7652 0 38 0 38 0C38 0 14.2348 0 8.3068 1.672C5.0388 2.592 2.4624 5.304 1.5884 8.744C0 14.984 0 28 0 28C0 28 0 41.016 1.5884 47.256C2.4624 50.696 5.0388 53.408 8.3068 54.328C14.2348 56 38 56 38 56C38 56 61.7652 56 67.6932 54.328C70.9612 53.408 73.5376 50.696 74.4116 47.256C76 41.016 76 28 76 28C76 28 76 14.984 74.4116 8.744Z" fill="black"/>
-                  <path d="M30.3984 39.9999L50.1432 27.9999L30.3984 15.9999V39.9999Z" fill="white"/>
-                </g>
-                <defs>
-                  <clipPath id="clip0_yt">
-                    <rect width="76" height="56" fill="white"/>
-                  </clipPath>
-                </defs>
-              </svg>
-            </a>
-          </div>
+            </div>
+          </template>
         </div>
       </div>
     </main>
   </div>
 
   <!-- ==========================================================================
-       MODALS & OVERLAYS
+       MODALS & OVERLAYS (Preserved from original)
        ========================================================================== -->
 
   <!-- Modal: Demo Results -->
@@ -684,7 +915,7 @@ const scrollToSection = (id) => {
             {{ getQuizRecommendation() }}
           </p>
           <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
-            <button @click="showQuizModal = false; $router.push('/demo-result')" class="quiz-btn-primary">Посмотреть демо-отчет</button>
+            <button @click="showQuizModal = false; showDemoModal = true" class="quiz-btn-primary">Посмотреть демо-отчет</button>
             <div style="display: flex; gap: 12px;">
               <button @click="resetQuiz" class="quiz-btn-choice outline" style="flex: 1;">Пройти заново</button>
               <button @click="showQuizModal = false; showRegisterModal = true" class="quiz-btn-choice" style="flex: 1;">Записаться на тест</button>
