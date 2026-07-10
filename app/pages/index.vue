@@ -300,46 +300,7 @@ const getStoryAfter = (tab) => {
   }
 }
 
-// Map Initialization and Contacts Logic
-let mapInstance = null
-let isLeafletLoaded = false
 
-const initMap = () => {
-  if (!window.L) return
-  
-  if (mapInstance) {
-    mapInstance.remove()
-    mapInstance = null
-  }
-  
-  const coords = [55.741487, 37.594754] // Москва, Пречистенка 30/2
-  
-  mapInstance = L.map('leaflet-map', {
-    center: coords,
-    zoom: 16,
-    zoomControl: false,
-    attributionControl: false
-  })
-
-  // CartoDB Positron - grayscale tiles
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    maxZoom: 19
-  }).addTo(mapInstance)
-
-  // Custom pulsing location marker matching Figma blue dot
-  const customIcon = L.divIcon({
-    className: 'custom-map-pin',
-    html: '<div class="map-pin-pulse"></div>',
-    iconSize: [20, 20],
-    iconAnchor: [10, 10]
-  })
-
-  L.marker(coords, { icon: customIcon }).addTo(mapInstance)
-}
-
-const openMapLink = () => {
-  window.open('https://yandex.ru/maps/?text=Москва, Пречистенка 30/2', '_blank')
-}
 
 // Watch currentSlideIndex to load videos and init map
 watch(currentSlideIndex, (newIndex) => {
@@ -369,35 +330,11 @@ watch(currentSlideIndex, (newIndex) => {
     }
   }
 
-  if (slide.type === 'contacts') {
-    nextTick(() => {
-      if (isLeafletLoaded) {
-        initMap()
-      }
-    })
-  }
+
 })
 
 onMounted(() => {
-  if (process.client) {
-    // Dynamically inject Leaflet CSS
-    const link = document.createElement('link')
-    link.rel = 'stylesheet'
-    link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
-    document.head.appendChild(link)
 
-    // Dynamically inject Leaflet JS
-    const script = document.createElement('script')
-    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
-    script.onload = () => {
-      isLeafletLoaded = true
-      const slide = slides.value[currentSlideIndex.value]
-      if (slide && slide.type === 'contacts') {
-        initMap()
-      }
-    }
-    document.head.appendChild(script)
-  }
 
   nextTick(() => {
     const container = scrollContainer.value
@@ -803,8 +740,7 @@ onUnmounted(() => {
                 </div>
               </div>
 
-              <!-- Map container -->
-              <div id="leaflet-map" class="figma-map-element"></div>
+
 
               <div class="contacts-footer-links">
                 <a href="/policy">Политика конфиденциальности</a>

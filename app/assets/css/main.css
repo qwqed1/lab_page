@@ -2015,11 +2015,7 @@ body {
     top: auto !important;
     gap: 20px !important;
   }
-  .figma-map-element {
-    bottom: 80px !important;
-    top: auto !important;
-    height: 180px !important;
-  }
+
   .contacts-footer-links {
     bottom: 24px !important;
     top: auto !important;
@@ -2050,9 +2046,9 @@ body {
   position: absolute;
   left: 5.15%;
   bottom: 80px;
-  width: 42%;
+  width: 90%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 299px 1fr;
   gap: 40px;
 }
 
@@ -2108,16 +2104,7 @@ body {
   text-decoration: underline;
 }
 
-.figma-map-element {
-  position: absolute;
-  left: 50.0%;
-  bottom: 80px;
-  width: 45%;
-  height: 240px;
-  border: 1px solid #e2e8f0;
-  background: #eee;
-  z-index: 10;
-}
+
 
 .contacts-footer-links {
   position: absolute;
