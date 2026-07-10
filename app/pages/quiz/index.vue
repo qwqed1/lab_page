@@ -189,6 +189,9 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useRouter } from '#app'
+
+const router = useRouter()
 
 const step = ref('intro')
 const currentQuestionIndex = ref(0)
@@ -302,7 +305,7 @@ const prevQuestion = () => {
 }
 
 const redirectToProfile = () => {
-  window.location.href = 'https://personal-account-tan.vercel.app'
+  router.push('/personal-account')
 }
 
 const redirectToCart = () => {

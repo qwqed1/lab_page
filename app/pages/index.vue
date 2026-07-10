@@ -489,7 +489,7 @@ onUnmounted(() => {
       </div>
 
       <!-- Profile Card (Frame 38) -->
-      <div class="sidebar-row-card" id="row-profile" @click="navigateToExternal('https://personal-account-tan.vercel.app')">
+      <div class="sidebar-row-card" id="row-profile" @click="$router.push('/personal-account')">
         <div class="row-left-content">
           <div class="row-icon-icon" style="margin-right: 4px;">
             <img src="/assets/profile-icon.svg" alt="profile" />
