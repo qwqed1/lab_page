@@ -474,7 +474,6 @@ onUnmounted(() => {
           class="bg-video" 
           :class="{ active: activeVideoElement === 'A' }"
           autoplay
-          loop
           muted 
           playsinline 
           preload="auto"
@@ -484,7 +483,6 @@ onUnmounted(() => {
           class="bg-video" 
           :class="{ active: activeVideoElement === 'B' }"
           autoplay
-          loop
           muted 
           playsinline 
           preload="auto"
