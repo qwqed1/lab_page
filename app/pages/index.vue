@@ -83,6 +83,8 @@ const scrollContainer = ref(null)
 const videoA = ref(null)
 const videoB = ref(null)
 const activeVideoElement = ref('A') // 'A' or 'B'
+let videoRequestId = 0
+const REVERSE_PLAYBACK_RATE = 1.5
 
 const navigateToExternal = (url) => {
   window.location.href = url
@@ -99,21 +101,21 @@ const slides = ref([
   { id: 'slide-6',  step: '4', totalSteps: '5', label: 'Преимущества', title: 'Без диет и отмены лекарств', subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.', direction: 'right', video: '/videos/Нарезка/video/scr6.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr6.mp4' },
   { id: 'slide-7',  step: '5', totalSteps: '5', label: 'Преимущества', title: 'Подходит детям', subtitle: 'Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.', direction: 'right', video: '/videos/Нарезка/video/scr7.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr7.mp4' },
   
-  // Results Intro
-  { id: 'slide-8',  label: 'О результатах', title: 'Что вы получите по итогам теста на аллергию', subtitle: '', direction: 'down', video: '/videos/Нарезка/video/scr8.mp4',  reverseVideo: '/videos/Нарезка/reverse/scrr8.mp4' },
+  // Results Intro keeps the final frame of scr7. The results sequence starts on the first result itself.
+  { id: 'slide-8',  label: 'О результатах', title: 'Что вы получите по итогам теста на аллергию', subtitle: '', direction: 'down', video: '', reverseVideo: '', holdVideo: true },
   
   // Results Steps
-  { id: 'slide-9',  step: '1', totalSteps: '3', label: 'О результатах', title: 'Аллерго-паспорт', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'down', video: '/videos/Нарезка/video/scr9.mp4',  reverseVideo: '/videos/Нарезка/reverse/scrr9.mp4' },
-  { id: 'slide-10', step: '2', totalSteps: '3', label: 'О результатах', title: 'Рекомендации по аллергенам', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/Нарезка/video/scr10.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr10.mp4' },
-  { id: 'slide-11', step: '3', totalSteps: '3', label: 'О результатах', badge: 'Опционально', title: 'Консультация', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/Нарезка/video/scr11.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr11.mp4' },
+  { id: 'slide-9',  step: '1', totalSteps: '3', label: 'О результатах', title: 'Аллерго-паспорт', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'down', video: '/videos/Нарезка/video/scr8.mp4',  reverseVideo: '/videos/Нарезка/reverse/scrr8.mp4' },
+  { id: 'slide-10', step: '2', totalSteps: '3', label: 'О результатах', title: 'Рекомендации по аллергенам', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/Нарезка/video/scr9.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr9.mp4' },
+  { id: 'slide-11', step: '3', totalSteps: '3', label: 'О результатах', badge: 'Опционально', title: 'Консультация', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/Нарезка/video/scr10.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr10.mp4' },
   
   // Stories Intro
-  { id: 'slide-12', label: 'Истории людей', title: 'Истории людей', subtitle: '', direction: 'down', video: '/videos/Нарезка/video/scr12.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr12.mp4' },
+  { id: 'slide-12', label: 'Истории людей', title: 'Истории людей', subtitle: '', direction: 'down', video: '/videos/Нарезка/video/scr11.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr11.mp4' },
   
   // Stories Tabs
-  { id: 'slide-13', label: 'Истории людей', type: 'story', activeTab: 'Misha',     direction: 'down',  video: '/videos/Нарезка/video/scr13.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr13.mp4' },
+  { id: 'slide-13', label: 'Истории людей', type: 'story', activeTab: 'Misha',      direction: 'down',  video: '/videos/Нарезка/video/scr12.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr12.mp4' },
   { id: 'slide-14', label: 'Истории людей', type: 'story', activeTab: 'Alexandra', direction: 'right', video: '/videos/Нарезка/video/scr13.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr13.mp4' },
-  { id: 'slide-15', label: 'Истории людей', type: 'story', activeTab: 'Pasha',     direction: 'right', video: '/videos/Нарезка/video/scr13.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr13.mp4' },
+  { id: 'slide-15', label: 'Истории людей', type: 'story', activeTab: 'Pasha',      direction: 'right', video: '', reverseVideo: '', holdVideo: true },
   
   // FAQ (Video ends here)
   { id: 'slide-16', label: 'FAQ', type: 'faq', title: 'FAQ', subtitle: '', direction: 'down', video: '', reverseVideo: '' },
@@ -178,7 +180,12 @@ const showMenu = computed(() => {
 
 const showSmokeCloud = computed(() => {
   const idx = currentSlideIndex.value
-  return (idx >= 2 && idx <= 6) || (idx >= 12 && idx <= 14)
+  return (idx >= 2 && idx <= 10) || (idx >= 12 && idx <= 14)
+})
+
+const isVideoBackgroundVisible = computed(() => {
+  const slide = slides.value[currentSlideIndex.value]
+  return Boolean(slide?.video || slide?.holdVideo)
 })
 
 let isScrolling = false
@@ -307,7 +314,110 @@ const getStoryAfter = (tab) => {
 
 
 
-// Watch currentSlideIndex to load videos and init map
+const getAbsoluteVideoUrl = (src) => {
+  if (!src || typeof window === 'undefined') return ''
+
+  try {
+    return new URL(src, window.location.origin).href
+  } catch {
+    return src
+  }
+}
+
+const waitForVideoFrame = (video) => new Promise((resolve) => {
+  if (typeof video.requestVideoFrameCallback === 'function') {
+    video.requestVideoFrameCallback(() => resolve())
+    return
+  }
+
+  requestAnimationFrame(() => requestAnimationFrame(resolve))
+})
+
+const waitUntilVideoCanPlay = (video) => new Promise((resolve, reject) => {
+  if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+    resolve()
+    return
+  }
+
+  const onReady = () => {
+    cleanup()
+    resolve()
+  }
+  const onError = () => {
+    cleanup()
+    reject(video.error || new Error('Video loading failed'))
+  }
+  const cleanup = () => {
+    video.removeEventListener('loadeddata', onReady)
+    video.removeEventListener('error', onError)
+  }
+
+  video.addEventListener('loadeddata', onReady, { once: true })
+  video.addEventListener('error', onError, { once: true })
+})
+
+const preloadUpcomingVideo = () => {
+  const inactiveEl = activeVideoElement.value === 'A' ? videoB.value : videoA.value
+  if (!inactiveEl) return
+
+  let nextSrc = ''
+  for (let index = currentSlideIndex.value + 1; index < slides.value.length; index++) {
+    const nextSlide = slides.value[index]
+    if (nextSlide.video) {
+      nextSrc = nextSlide.video
+      break
+    }
+    if (!nextSlide.holdVideo) break
+  }
+
+  if (!nextSrc || inactiveEl.src === getAbsoluteVideoUrl(nextSrc)) return
+
+  inactiveEl.pause()
+  inactiveEl.src = nextSrc
+  inactiveEl.load()
+}
+
+const playVideoShot = async (src, playbackRate = 1) => {
+  if (!src) return
+
+  const requestId = ++videoRequestId
+  const activeEl = activeVideoElement.value === 'A' ? videoA.value : videoB.value
+  const incomingEl = activeVideoElement.value === 'A' ? videoB.value : videoA.value
+
+  if (!activeEl || !incomingEl) return
+
+  const absoluteSrc = getAbsoluteVideoUrl(src)
+  if (activeEl.src === absoluteSrc) return
+
+  try {
+    incomingEl.pause()
+
+    if (incomingEl.src !== absoluteSrc) {
+      incomingEl.src = src
+      incomingEl.load()
+    }
+
+    await waitUntilVideoCanPlay(incomingEl)
+    if (requestId !== videoRequestId) return
+
+    incomingEl.currentTime = 0
+    incomingEl.playbackRate = playbackRate
+    await incomingEl.play()
+    await waitForVideoFrame(incomingEl)
+    if (requestId !== videoRequestId) return
+
+    activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
+    activeEl.pause()
+    preloadUpcomingVideo()
+  } catch (error) {
+    if (requestId === videoRequestId) {
+      console.warn('Failed to play next video shot:', error)
+    }
+  }
+}
+
+// Every numbered file is a transition into its slide. When moving back, play
+// the matching reverse transition of the slide being left.
 watch(currentSlideIndex, (newIndex, oldIndex) => {
   const slide = slides.value[newIndex]
   const oldSlide = slides.value[oldIndex]
@@ -321,42 +431,7 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
     nextSrc = slide.video
   }
 
-  if (nextSrc) {
-    const activeEl = activeVideoElement.value === 'A' ? videoA.value : videoB.value
-    const inactiveEl = activeVideoElement.value === 'A' ? videoB.value : videoA.value
-
-    if (activeEl && activeEl.src && typeof window !== 'undefined') {
-      try {
-        const absoluteNextSrc = new URL(nextSrc, window.location.origin).href
-        if (activeEl.src === absoluteNextSrc) {
-          // Video is already playing this source, prevent restart and skip reload
-          return
-        }
-      } catch (e) {
-        console.warn('URL parsing failed', e)
-      }
-    }
-
-    if (inactiveEl) {
-      inactiveEl.src = nextSrc
-      inactiveEl.load()
-      
-      inactiveEl.play().then(() => {
-        activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
-        
-        setTimeout(() => {
-          if (activeEl && activeEl.src !== inactiveEl.src) {
-            activeEl.pause()
-          }
-        }, 600)
-      }).catch((err) => {
-        console.warn('Failed to play next video shot:', err)
-        activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
-      })
-    }
-  }
-
-
+  playVideoShot(nextSrc, goingBack ? REVERSE_PLAYBACK_RATE : 1)
 })
 
 onMounted(() => {
@@ -378,6 +453,7 @@ onMounted(() => {
       videoA.value.src = initialSrc
       videoA.value.load()
       videoA.value.play().catch(() => {})
+      preloadUpcomingVideo()
     }
   })
 })
@@ -393,6 +469,7 @@ onUnmounted(() => {
 
   if (videoA.value) videoA.value.pause()
   if (videoB.value) videoB.value.pause()
+  videoRequestId++
 })
 </script>
 
@@ -493,12 +570,11 @@ onUnmounted(() => {
       </div>
 
       <!-- Fixed Video Background Layer -->
-      <div class="video-bg-container" :class="{ 'no-video': !slides[currentSlideIndex]?.video }">
+      <div class="video-bg-container" :class="{ 'no-video': !isVideoBackgroundVisible }" aria-hidden="true">
         <video 
           ref="videoA" 
           class="bg-video" 
           :class="{ active: activeVideoElement === 'A' }"
-          autoplay
           muted 
           playsinline 
           preload="auto"
@@ -507,7 +583,6 @@ onUnmounted(() => {
           ref="videoB" 
           class="bg-video" 
           :class="{ active: activeVideoElement === 'B' }"
-          autoplay
           muted 
           playsinline 
           preload="auto"
@@ -526,7 +601,7 @@ onUnmounted(() => {
           class="slide-layer"
           :class="getSlideClass(index)"
           :data-direction="slide.direction"
-          :data-has-video="!!slide.video"
+          :data-has-video="!!(slide.video || slide.holdVideo)"
         >
           <!-- Slide 1: Hero -->
           <template v-if="slide.id === 'slide-1'">

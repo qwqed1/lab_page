@@ -972,7 +972,10 @@ body {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.6s ease-in-out;
+  /* The clips are consecutive shots. Cross-fading them shows two different
+     moments at once, so the prepared first frame is swapped atomically. */
+  transition: none;
+  will-change: opacity;
 }
 
 .bg-video.active {
@@ -2400,5 +2403,4 @@ body {
   animation: cinematic-fade-in 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.5s;
 }
-
 
