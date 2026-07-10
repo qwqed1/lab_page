@@ -31,7 +31,7 @@ body {
 
 .page-container {
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 45% 55%;
   gap: 0;
   max-width: 1920px;
   margin: 0; /* Align to the left edge */
@@ -134,10 +134,6 @@ body {
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-.promo-button:active {
-  transform: scale(0.99);
-}
-
 .promo-button-text {
   color: var(--text-white);
   font-size: 21px;
@@ -150,11 +146,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.4s var(--ease-bounce);
-}
-
-.promo-button:hover .promo-button-icon {
-  transform: translateX(6px);
 }
 
 /* Cards Row (Frame 109) */
@@ -186,7 +177,7 @@ body {
 }
 
 .sub-card:hover {
-  background-color: #fafafa;
+  background-color: #f0f0f0;
 }
 
 .card-icon-wrapper {
@@ -197,11 +188,6 @@ body {
   justify-content: flex-start; /* Align left */
   background-color: transparent; /* No grey background box */
   border-radius: 0;
-  transition: transform var(--transition-speed) var(--ease-bounce);
-}
-
-.sub-card:hover .card-icon-wrapper {
-  transform: scale(1.1) rotate(2deg);
 }
 
 .card-text-group {
@@ -242,7 +228,7 @@ body {
 }
 
 .sidebar-row-card:hover {
-  background-color: #fafafa;
+  background-color: #f0f0f0;
 }
 
 .row-left-content {
@@ -1195,7 +1181,7 @@ body {
 
 @media (max-width: 1440px) {
   .page-container {
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 45% 55%;
     gap: 0;
     padding: 0; /* Keep flush to the left edge */
   }
@@ -2130,84 +2116,58 @@ body {
   will-change: transform, opacity, filter;
 }
 
-/* Keyframes for premium cinematic animations */
-@keyframes cinematic-slide-up {
+/* Keyframes for premium fade-in animations (only opacity, no slide or blur) */
+@keyframes cinematic-fade-in {
   0% {
     opacity: 0;
-    filter: blur(8px);
-    transform: translate3d(0, 45px, 0);
   }
   100% {
     opacity: 1;
-    filter: blur(0);
-    transform: translate3d(0, 0, 0);
   }
 }
 
-@keyframes cinematic-slide-left {
+@keyframes cinematic-fade-in-desc {
   0% {
     opacity: 0;
-    filter: blur(8px);
-    transform: translate3d(60px, 0, 0);
   }
   100% {
-    opacity: 1;
-    filter: blur(0);
-    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
   }
 }
 
-@keyframes cinematic-fade-blur {
-  0% {
-    opacity: 0;
-    filter: blur(12px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0);
-  }
+/* Slide 2: "Почему ALEX2?" special long delay (2.5s) so it appears only at the end of the video */
+.slide-layer.active #slide-2-title {
+  animation: cinematic-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  animation-delay: 2.5s !important;
 }
 
 /* --------------------------------------------------------------------------
    Animations for ACTIVE slides WITH video (long delay: 1.0s / 1.3s)
    -------------------------------------------------------------------------- */
 
-/* Title & Indicators (Slide from Bottom) */
-.slide-layer.active[data-has-video="true"][data-direction="down"] .figma-slide-title-inline,
-.slide-layer.active[data-has-video="true"][data-direction="down"] .figma-intro-title,
-.slide-layer.active[data-has-video="true"][data-direction="down"] .figma-section-title,
-.slide-layer.active[data-has-video="true"][data-direction="down"] .figma-step-indicator {
-  animation: cinematic-slide-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Title & Indicators */
+.slide-layer.active[data-has-video="true"] .figma-slide-title-inline,
+.slide-layer.active[data-has-video="true"] .figma-intro-title,
+.slide-layer.active[data-has-video="true"] .figma-section-title,
+.slide-layer.active[data-has-video="true"] .figma-step-indicator {
+  animation: cinematic-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 1.0s;
 }
 
-/* Description (Slide from Bottom) */
-.slide-layer.active[data-has-video="true"][data-direction="down"] .figma-slide-desc-inline {
-  animation: cinematic-slide-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Description */
+.slide-layer.active[data-has-video="true"] .figma-slide-desc-inline {
+  animation: cinematic-fade-in-desc 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 1.3s;
 }
 
-/* Title & Indicators (Slide from Right) */
-.slide-layer.active[data-has-video="true"][data-direction="right"] .figma-slide-title-inline,
-.slide-layer.active[data-has-video="true"][data-direction="right"] .figma-step-indicator {
-  animation: cinematic-slide-left 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 1.0s;
-}
-
-/* Description (Slide from Right) */
-.slide-layer.active[data-has-video="true"][data-direction="right"] .figma-slide-desc-inline {
-  animation: cinematic-slide-left 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 1.3s;
-}
-
-/* Stories Tabs & Bullet content (Fade & Blur) */
+/* Stories Tabs & Bullet content */
 .slide-layer.active[data-has-video="true"] .figma-story-tabs {
-  animation: cinematic-fade-blur 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 1.0s;
 }
 
 .slide-layer.active[data-has-video="true"] .figma-story-content {
-  animation: cinematic-fade-blur 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 1.3s;
 }
 
@@ -2215,46 +2175,33 @@ body {
    Animations for ACTIVE slides WITHOUT video (short delay: 0.2s / 0.5s)
    -------------------------------------------------------------------------- */
 
-/* Title & Indicators (Slide from Bottom) */
-.slide-layer.active[data-has-video="false"][data-direction="down"] .figma-slide-title-inline,
-.slide-layer.active[data-has-video="false"][data-direction="down"] .figma-intro-title,
-.slide-layer.active[data-has-video="false"][data-direction="down"] .figma-section-title,
-.slide-layer.active[data-has-video="false"][data-direction="down"] .figma-step-indicator {
-  animation: cinematic-slide-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Title & Indicators */
+.slide-layer.active[data-has-video="false"] .figma-slide-title-inline,
+.slide-layer.active[data-has-video="false"] .figma-intro-title,
+.slide-layer.active[data-has-video="false"] .figma-section-title,
+.slide-layer.active[data-has-video="false"] .figma-step-indicator {
+  animation: cinematic-fade-in 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.2s;
 }
 
-/* Description (Slide from Bottom) */
-.slide-layer.active[data-has-video="false"][data-direction="down"] .figma-slide-desc-inline {
-  animation: cinematic-slide-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Description */
+.slide-layer.active[data-has-video="false"] .figma-slide-desc-inline {
+  animation: cinematic-fade-in-desc 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.5s;
 }
 
-/* Title & Indicators (Slide from Right) */
-.slide-layer.active[data-has-video="false"][data-direction="right"] .figma-slide-title-inline,
-.slide-layer.active[data-has-video="false"][data-direction="right"] .figma-step-indicator {
-  animation: cinematic-slide-left 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.2s;
-}
-
-/* Description (Slide from Right) */
-.slide-layer.active[data-has-video="false"][data-direction="right"] .figma-slide-desc-inline {
-  animation: cinematic-slide-left 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.5s;
-}
-
-/* FAQ, Blog Cards, Contacts layout (Fade & Blur) */
+/* FAQ, Blog Cards, Contacts layout */
 .slide-layer.active[data-has-video="false"] .faq-wrapper,
 .slide-layer.active[data-has-video="false"] .figma-blog-card,
 .slide-layer.active[data-has-video="false"] .figma-contacts-header-group {
-  animation: cinematic-fade-blur 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.2s;
 }
 
 .slide-layer.active[data-has-video="false"] .figma-blog-all-btn,
 .slide-layer.active[data-has-video="false"] .figma-contacts-grid,
 .slide-layer.active[data-has-video="false"] .figma-map-element {
-  animation: cinematic-fade-blur 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.5s;
 }
 

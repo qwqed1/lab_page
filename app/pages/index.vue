@@ -569,7 +569,7 @@ onUnmounted(() => {
 
           <!-- Slide 2: Why ALEX2 Intro -->
           <template v-else-if="slide.id === 'slide-2'">
-            <h2 class="figma-intro-title white">
+            <h2 id="slide-2-title" class="figma-intro-title white">
               Почему ALEX2?
             </h2>
           </template>
