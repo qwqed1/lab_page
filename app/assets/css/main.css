@@ -31,7 +31,7 @@ body {
 
 .page-container {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 35.26% 64.74%;
   gap: 0;
   max-width: 1920px;
   margin: 0; /* Align to the left edge */
@@ -1181,7 +1181,7 @@ body {
 
 @media (max-width: 1440px) {
   .page-container {
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 35.26% 64.74%;
     gap: 0;
     padding: 0; /* Keep flush to the left edge */
   }
@@ -1956,32 +1956,31 @@ body {
 .figma-contacts-header-group {
   position: absolute;
   left: 5.15%;
-  top: 40px;
+  top: 15.0%;
   width: 90%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   gap: 24px;
 }
 
 .figma-contacts-title-inline {
-  font-size: 28px;
+  font-size: 38px;
   font-weight: 400;
   color: #000000;
   line-height: 1.2;
   margin: 0;
-  max-width: 60%;
+  max-width: 800px;
 }
 
 .figma-contacts-cta-btn-inline {
   background: #000000;
   color: #ffffff;
   border: none;
-  padding: 14px 28px;
-  font-size: 16px;
+  padding: 16px 36px;
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
+  width: fit-content;
   white-space: nowrap;
   transition: background 0.3s;
 }
@@ -2050,7 +2049,7 @@ body {
 .figma-contacts-grid {
   position: absolute;
   left: 5.15%;
-  bottom: 120px;
+  bottom: 220px;
   width: 42%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2112,9 +2111,9 @@ body {
 .figma-map-element {
   position: absolute;
   left: 50.0%;
-  bottom: 120px;
+  bottom: 220px;
   width: 45%;
-  height: 240px;
+  height: 280px;
   border: 1px solid #e2e8f0;
   background: #eee;
   z-index: 10;
@@ -2123,7 +2122,7 @@ body {
 .contacts-footer-links {
   position: absolute;
   left: 5.15%;
-  bottom: 40px;
+  bottom: 64px;
   display: flex;
   gap: 32px;
 }
