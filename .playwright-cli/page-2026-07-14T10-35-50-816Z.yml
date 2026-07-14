@@ -1,0 +1,56 @@
+- generic [active] [ref=f7e1]:
+  - generic [ref=f7e3]:
+    - status [ref=f7e133]: Корзина — ALEX LAB
+    - generic [ref=f7e312]:
+      - banner [ref=f7e313]:
+        - button "Назад" [ref=f7e314] [cursor=pointer]
+      - generic [ref=f7e319]:
+        - complementary [ref=f7e320]:
+          - generic [ref=f7e353]:
+            - generic [ref=f7e354]:
+              - generic [ref=f7e355]: Москва
+              - button "Изменить город" [ref=f7e359] [cursor=pointer]
+            - heading "Выберите лабораторию" [level=2] [ref=f7e360]
+            - generic [ref=f7e361]:
+              - heading "Бесплатная консультация в лабораториях ALEX" [level=4] [ref=f7e362]
+              - paragraph [ref=f7e363]: Выберите точку ALEX как место сдачи крови и скидка автоматически появится в корзине
+            - generic [ref=f7e364]:
+              - generic [ref=f7e366] [cursor=pointer]:
+                - generic [ref=f7e367]: "-100% на консультацию"
+                - heading "ALEX, Маршала Бирюзова 9" [level=3] [ref=f7e368]
+                - generic [ref=f7e369]:
+                  - generic [ref=f7e370]:
+                    - generic [ref=f7e371]: ПН – ПТ
+                    - generic [ref=f7e372]: 9:00 – 19:00
+                  - generic [ref=f7e373]:
+                    - generic [ref=f7e374]: СБ – ВС
+                    - generic [ref=f7e375]: Выходные
+              - generic [ref=f7e377] [cursor=pointer]:
+                - generic [ref=f7e378]: "-100% на консультацию"
+                - heading "ALEX, Ленинградская 4" [level=3] [ref=f7e379]
+                - generic [ref=f7e380]:
+                  - generic [ref=f7e381]:
+                    - generic [ref=f7e382]: ПН – ПТ
+                    - generic [ref=f7e383]: 9:00 – 19:00
+                  - generic [ref=f7e384]:
+                    - generic [ref=f7e385]: СБ – ВС
+                    - generic [ref=f7e386]: 11:00 – 16:00
+              - generic [ref=f7e388] [cursor=pointer]:
+                - heading "Invitro, Большая морская 55" [level=3] [ref=f7e389]
+                - generic [ref=f7e390]:
+                  - generic [ref=f7e391]:
+                    - generic [ref=f7e392]: ПН – ПТ
+                    - generic [ref=f7e393]: 9:00 – 19:00
+                  - generic [ref=f7e394]:
+                    - generic [ref=f7e395]: СБ – ВС
+                    - generic [ref=f7e396]: 11:00 – 16:00
+        - main [ref=f7e329]:
+          - img [ref=f7e398]:
+            - generic [ref=f7e399] [cursor=pointer]: "%"
+            - generic [ref=f7e403] [cursor=pointer]: "%"
+  - generic [ref=f7e134]:
+    - button "Toggle Nuxt DevTools" [ref=f7e135] [cursor=pointer]
+    - generic "Page load time" [ref=f7e139]:
+      - generic [ref=f7e140]: "23"
+      - generic [ref=f7e141]: ms
+    - button "Toggle Component Inspector" [ref=f7e143] [cursor=pointer]

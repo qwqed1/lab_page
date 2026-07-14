@@ -84,41 +84,47 @@ const videoA = ref(null)
 const videoB = ref(null)
 const activeVideoElement = ref('A') // 'A' or 'B'
 let videoRequestId = 0
-const REVERSE_PLAYBACK_RATE = 1.5
+// The updated reverse clips are already rendered at their intended speed.
+const REVERSE_PLAYBACK_RATE = 1
+const VIDEO_LAYER_FADE_DURATION = 140
+const contentReadySlideIndex = ref(0)
+const videoLayerTimers = new Set()
 
 const navigateToExternal = (url) => {
   window.location.href = url
 }
 
+const openCart = () => navigateTo('/cart')
+
 const slides = ref([
-  { id: 'slide-1',  label: '', title: 'Тест на аллергию ALEX² — один анализ, который даёт ответы', subtitle: '', direction: 'down', video: '/videos/Нарезка/video/scr1.mp4',  reverseVideo: '/videos/Нарезка/reverse/scrr1.mp4' },
-  { id: 'slide-2',  label: '', title: 'Почему ALEX2?', subtitle: '', direction: 'down', video: '/videos/Нарезка/video/scr2.mp4',  reverseVideo: '/videos/Нарезка/reverse/scrr2.mp4' },
+  { id: 'slide-1',  label: '', title: 'Тест на аллергию ALEX² — один анализ, который даёт ответы', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr1.mp4',  reverseVideo: '/videos/scroll/reverse/scrr1.mp4' },
+  { id: 'slide-2',  label: '', title: 'Почему ALEX2?', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr2.mp4',  reverseVideo: '/videos/scroll/reverse/scrr2.mp4' },
   
   // Advantages
-  { id: 'slide-3',  step: '1', totalSteps: '5', label: 'Преимущества', title: 'Всё за один сеанс', subtitle: 'За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое.', direction: 'down', video: '/videos/Нарезка/video/scr3.mp4',  reverseVideo: '/videos/Нарезка/reverse/scrr3.mp4' },
-  { id: 'slide-4',  step: '2', totalSteps: '5', label: 'Преимущества', title: 'Точечный результат', subtitle: 'В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.', direction: 'right', video: '/videos/Нарезка/video/scr4.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr4.mp4' },
-  { id: 'slide-5',  step: '3', totalSteps: '5', label: 'Преимущества', title: 'Отчёт и консультация', subtitle: 'Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.', direction: 'right', video: '/videos/Нарезка/video/scr5.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr5.mp4' },
-  { id: 'slide-6',  step: '4', totalSteps: '5', label: 'Преимущества', title: 'Без диет и отмены лекарств', subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.', direction: 'right', video: '/videos/Нарезка/video/scr6.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr6.mp4' },
-  { id: 'slide-7',  step: '5', totalSteps: '5', label: 'Преимущества', title: 'Подходит детям', subtitle: 'Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.', direction: 'right', video: '/videos/Нарезка/video/scr7.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr7.mp4' },
+  { id: 'slide-3',  step: '1', totalSteps: '5', label: 'Преимущества', title: 'Всё за один сеанс', subtitle: 'За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое.', direction: 'down', video: '/videos/scroll/forward/scr3.mp4',  reverseVideo: '/videos/scroll/reverse/scrr3.mp4' },
+  { id: 'slide-4',  step: '2', totalSteps: '5', label: 'Преимущества', title: 'Точечный результат', subtitle: 'В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.', direction: 'right', video: '/videos/scroll/forward/scr4.mp4', reverseVideo: '/videos/scroll/reverse/scrr4.mp4' },
+  { id: 'slide-5',  step: '3', totalSteps: '5', label: 'Преимущества', title: 'Отчёт и консультация', subtitle: 'Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.', direction: 'right', video: '/videos/scroll/forward/scr5.mp4', reverseVideo: '/videos/scroll/reverse/scrr5.mp4' },
+  { id: 'slide-6',  step: '4', totalSteps: '5', label: 'Преимущества', title: 'Без диет и отмены лекарств', subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.', direction: 'right', video: '/videos/scroll/forward/scr6.mp4', reverseVideo: '/videos/scroll/reverse/scrr6.mp4' },
+  { id: 'slide-7',  step: '5', totalSteps: '5', label: 'Преимущества', title: 'Подходит детям', subtitle: 'Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.', direction: 'right', video: '/videos/scroll/forward/scr7.mp4', reverseVideo: '/videos/scroll/reverse/scrr7.mp4' },
   
   // Results Intro keeps the final frame of scr7. The results sequence starts on the first result itself.
   { id: 'slide-8',  label: 'О результатах', title: 'Что вы получите по итогам теста на аллергию', subtitle: '', direction: 'down', video: '', reverseVideo: '', holdVideo: true },
   
   // Results Steps
-  { id: 'slide-9',  step: '1', totalSteps: '3', label: 'О результатах', title: 'Аллерго-паспорт', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'down', video: '/videos/Нарезка/video/scr8.mp4',  reverseVideo: '/videos/Нарезка/reverse/scrr8.mp4' },
-  { id: 'slide-10', step: '2', totalSteps: '3', label: 'О результатах', title: 'Рекомендации по аллергенам', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/Нарезка/video/scr9.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr9.mp4' },
-  { id: 'slide-11', step: '3', totalSteps: '3', label: 'О результатах', badge: 'Опционально', title: 'Консультация', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/Нарезка/video/scr10.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr10.mp4' },
+  { id: 'slide-9',  step: '1', totalSteps: '3', label: 'О результатах', title: 'Аллерго-паспорт', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'down', video: '/videos/scroll/forward/scr8.mp4',  reverseVideo: '/videos/scroll/reverse/scrr8.mp4' },
+  { id: 'slide-10', step: '2', totalSteps: '3', label: 'О результатах', title: 'Рекомендации по аллергенам', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/scroll/forward/scr9.mp4', reverseVideo: '/videos/scroll/reverse/scrr9.mp4' },
+  { id: 'slide-11', step: '3', totalSteps: '3', label: 'О результатах', badge: 'Опционально', title: 'Консультация', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/scroll/forward/scr10.mp4', reverseVideo: '/videos/scroll/reverse/scrr10.mp4' },
   
   // Stories Intro
-  { id: 'slide-12', label: 'Истории людей', title: 'Истории людей', subtitle: '', direction: 'down', video: '/videos/Нарезка/video/scr11.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr11.mp4' },
+  { id: 'slide-12', label: 'Истории людей', title: 'Истории людей', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr11.mp4', reverseVideo: '/videos/scroll/reverse/scrr11.mp4' },
   
   // Stories Tabs
-  { id: 'slide-13', label: 'Истории людей', type: 'story', activeTab: 'Misha',      direction: 'down',  video: '/videos/Нарезка/video/scr12.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr12.mp4' },
-  { id: 'slide-14', label: 'Истории людей', type: 'story', activeTab: 'Alexandra', direction: 'right', video: '/videos/Нарезка/video/scr13.mp4', reverseVideo: '/videos/Нарезка/reverse/scrr13.mp4' },
-  { id: 'slide-15', label: 'Истории людей', type: 'story', activeTab: 'Pasha',      direction: 'right', video: '', reverseVideo: '', holdVideo: true },
+  { id: 'slide-13', label: 'Истории людей', type: 'story', activeTab: 'Misha',      direction: 'down',  video: '', reverseVideo: '', holdVideo: true },
+  { id: 'slide-14', label: 'Истории людей', type: 'story', activeTab: 'Alexandra', direction: 'right', video: '/videos/scroll/forward/scr12.mp4', reverseVideo: '/videos/scroll/reverse/scrr12.mp4' },
+  { id: 'slide-15', label: 'Истории людей', type: 'story', activeTab: 'Pasha',      direction: 'right', video: '/videos/scroll/forward/scr13.mp4', reverseVideo: '/videos/scroll/reverse/scrr13.mp4' },
   
-  // FAQ (Video ends here)
-  { id: 'slide-16', label: 'FAQ', type: 'faq', title: 'FAQ', subtitle: '', direction: 'down', video: '', reverseVideo: '' },
+  // FAQ
+  { id: 'slide-16', label: 'FAQ', type: 'faq', title: 'FAQ', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr14.mp4', reverseVideo: '/videos/scroll/reverse/scrr14.mp4' },
   
   // Blog
   { id: 'slide-17', label: 'Блог про аллергию', type: 'blog', title: 'Блог про аллергию', subtitle: '', direction: 'down', video: '', reverseVideo: '' },
@@ -171,6 +177,7 @@ const activeMenuIndex = computed(() => {
   if (idx === 15) return 3 // FAQ
   if (idx === 16) return 4 // Блог про аллергию
   if (idx >= 17 && idx <= 19) return 5 // Как сдать тест
+  if (idx === 20) return 0 // Final Figma frame keeps the full list with the first item selected
   return -1
 })
 
@@ -180,7 +187,40 @@ const showMenu = computed(() => {
 
 const showSmokeCloud = computed(() => {
   const idx = currentSlideIndex.value
+
+  // Result clouds must not start during the video transition: they enter with
+  // the text once the result slide has become readable.
+  if (idx >= 7 && idx <= 10) {
+    return contentReadySlideIndex.value === idx
+  }
+
   return (idx >= 2 && idx <= 10) || (idx >= 12 && idx <= 14)
+})
+
+const isResultsSection = computed(() => {
+  const idx = currentSlideIndex.value
+  return idx >= 7 && idx <= 10
+})
+
+const resultsCloudVariant = computed(() => {
+  const idx = currentSlideIndex.value
+
+  if (idx >= 8 && idx <= 10) return 'results-cloud-primary'
+  return ''
+})
+
+const persistentStepGroup = computed(() => {
+  const idx = currentSlideIndex.value
+
+  if (idx >= 2 && idx <= 6) {
+    return { type: 'advantages', total: 5, current: idx - 1 }
+  }
+
+  if (idx >= 8 && idx <= 10) {
+    return { type: 'results', total: 3, current: idx - 7 }
+  }
+
+  return null
 })
 
 const isVideoBackgroundVisible = computed(() => {
@@ -189,15 +229,61 @@ const isVideoBackgroundVisible = computed(() => {
 })
 
 let isScrolling = false
-const SCROLL_LOCK_DURATION = 800
+const SCROLL_LOCK_DURATION = 950
+const CONTENT_REVEAL_DURATION = 1200
+const CONTENT_EXIT_DURATION = 650
+const SLIDE_THREE_CONTENT_DELAY = 3000
+const RESULTS_INTRO_DURATION = 2000
+const STORIES_INTRO_DURATION = 2000
+let scrollUnlockTimer = 0
+let contentExitTimer = 0
+let earlyContentRevealTimer = 0
+let resultsIntroTimer = 0
+let storiesIntroTimer = 0
+let shouldAutoAdvanceStoriesIntro = false
+const exitingContentSlideIndex = ref(-1)
+
+const unlockScrollAfter = (delay) => {
+  window.clearTimeout(scrollUnlockTimer)
+  scrollUnlockTimer = window.setTimeout(() => {
+    isScrolling = false
+  }, delay)
+}
+
+const revealSlideContent = (index) => {
+  if (currentSlideIndex.value !== index) return
+
+  contentReadySlideIndex.value = index
+  unlockScrollAfter(CONTENT_REVEAL_DURATION)
+
+  if (index === 11 && shouldAutoAdvanceStoriesIntro) {
+    window.clearTimeout(storiesIntroTimer)
+    storiesIntroTimer = window.setTimeout(() => {
+      if (currentSlideIndex.value !== 11 || contentReadySlideIndex.value !== 11) return
+      shouldAutoAdvanceStoriesIntro = false
+      animateOutgoingContent(11)
+
+      storiesIntroTimer = window.setTimeout(() => {
+        if (currentSlideIndex.value !== 11) return
+        isScrolling = true
+        currentSlideIndex.value = 12
+      }, CONTENT_EXIT_DURATION)
+    }, STORIES_INTRO_DURATION)
+  }
+}
+
+const animateOutgoingContent = (index) => {
+  window.clearTimeout(contentExitTimer)
+  exitingContentSlideIndex.value = index
+  contentExitTimer = window.setTimeout(() => {
+    if (exitingContentSlideIndex.value === index) exitingContentSlideIndex.value = -1
+  }, CONTENT_EXIT_DURATION)
+}
 
 const goNext = () => {
   if (currentSlideIndex.value < slides.value.length - 1) {
     isScrolling = true
     currentSlideIndex.value++
-    setTimeout(() => {
-      isScrolling = false
-    }, SCROLL_LOCK_DURATION)
   }
 }
 
@@ -205,9 +291,6 @@ const goPrev = () => {
   if (currentSlideIndex.value > 0) {
     isScrolling = true
     currentSlideIndex.value--
-    setTimeout(() => {
-      isScrolling = false
-    }, SCROLL_LOCK_DURATION)
   }
 }
 
@@ -325,12 +408,21 @@ const getAbsoluteVideoUrl = (src) => {
 }
 
 const waitForVideoFrame = (video) => new Promise((resolve) => {
+  let settled = false
+  const finish = () => {
+    if (settled) return
+    settled = true
+    window.clearTimeout(timeoutId)
+    resolve()
+  }
+  const timeoutId = window.setTimeout(finish, 450)
+
   if (typeof video.requestVideoFrameCallback === 'function') {
-    video.requestVideoFrameCallback(() => resolve())
+    video.requestVideoFrameCallback(finish)
     return
   }
 
-  requestAnimationFrame(() => requestAnimationFrame(resolve))
+  requestAnimationFrame(() => requestAnimationFrame(finish))
 })
 
 const waitUntilVideoCanPlay = (video) => new Promise((resolve, reject) => {
@@ -348,13 +440,46 @@ const waitUntilVideoCanPlay = (video) => new Promise((resolve, reject) => {
     reject(video.error || new Error('Video loading failed'))
   }
   const cleanup = () => {
+    window.clearTimeout(timeoutId)
     video.removeEventListener('loadeddata', onReady)
     video.removeEventListener('error', onError)
   }
 
+  const timeoutId = window.setTimeout(() => {
+    cleanup()
+    reject(new Error('Video loading timed out'))
+  }, 10000)
+
   video.addEventListener('loadeddata', onReady, { once: true })
   video.addEventListener('error', onError, { once: true })
 })
+
+const seekVideo = (video, time) => new Promise((resolve) => {
+  const targetTime = Math.max(0, Math.min(time, Number.isFinite(video.duration) ? video.duration : time))
+  if (Math.abs(video.currentTime - targetTime) < 0.02) {
+    resolve()
+    return
+  }
+
+  let settled = false
+  const finish = () => {
+    if (settled) return
+    settled = true
+    window.clearTimeout(timeoutId)
+    video.removeEventListener('seeked', finish)
+    resolve()
+  }
+  const timeoutId = window.setTimeout(finish, 1200)
+  video.addEventListener('seeked', finish, { once: true })
+  video.currentTime = targetTime
+})
+
+const configureVideoElement = (video) => {
+  video.muted = true
+  video.defaultMuted = true
+  video.playsInline = true
+  video.disablePictureInPicture = true
+}
 
 const preloadUpcomingVideo = () => {
   const inactiveEl = activeVideoElement.value === 'A' ? videoB.value : videoA.value
@@ -373,24 +498,79 @@ const preloadUpcomingVideo = () => {
   if (!nextSrc || inactiveEl.src === getAbsoluteVideoUrl(nextSrc)) return
 
   inactiveEl.pause()
+  configureVideoElement(inactiveEl)
   inactiveEl.src = nextSrc
   inactiveEl.load()
 }
 
-const playVideoShot = async (src, playbackRate = 1) => {
-  if (!src) return
+const finishVideoLayerSwap = (outgoingEl, requestId, { preload = false } = {}) => new Promise((resolve) => {
+  const timerId = window.setTimeout(() => {
+    videoLayerTimers.delete(timerId)
+    outgoingEl.pause()
+
+    if (requestId === videoRequestId && preload) preloadUpcomingVideo()
+    resolve()
+  }, VIDEO_LAYER_FADE_DURATION)
+
+  videoLayerTimers.add(timerId)
+})
+
+const settleOnSlideFrame = async (src, requestId) => {
+  if (!src || requestId !== videoRequestId) return
+
+  const activeEl = activeVideoElement.value === 'A' ? videoA.value : videoB.value
+  const stillEl = activeVideoElement.value === 'A' ? videoB.value : videoA.value
+  if (!activeEl || !stillEl) return
+
+  try {
+    stillEl.pause()
+    configureVideoElement(stillEl)
+
+    if (stillEl.src !== getAbsoluteVideoUrl(src)) {
+      stillEl.src = src
+      stillEl.load()
+    }
+
+    await waitUntilVideoCanPlay(stillEl)
+    if (requestId !== videoRequestId) return
+
+    await seekVideo(stillEl, Math.max(0, stillEl.duration - (1 / 30)))
+    await waitForVideoFrame(stillEl)
+    if (requestId !== videoRequestId) return
+
+    activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
+    await finishVideoLayerSwap(activeEl, requestId, { preload: true })
+  } catch (error) {
+    if (requestId === videoRequestId) {
+      console.warn('Failed to settle destination video frame:', error)
+    }
+  }
+}
+
+const playVideoShot = async (src, { playbackRate = 1, settleSrc = '', onComplete } = {}) => {
+  if (!src) {
+    onComplete?.()
+    return
+  }
 
   const requestId = ++videoRequestId
   const activeEl = activeVideoElement.value === 'A' ? videoA.value : videoB.value
   const incomingEl = activeVideoElement.value === 'A' ? videoB.value : videoA.value
 
-  if (!activeEl || !incomingEl) return
+  if (!activeEl || !incomingEl) {
+    onComplete?.()
+    return
+  }
 
   const absoluteSrc = getAbsoluteVideoUrl(src)
-  if (activeEl.src === absoluteSrc) return
+  if (activeEl.src === absoluteSrc) {
+    onComplete?.()
+    return
+  }
 
   try {
     incomingEl.pause()
+    configureVideoElement(incomingEl)
 
     if (incomingEl.src !== absoluteSrc) {
       incomingEl.src = src
@@ -407,11 +587,24 @@ const playVideoShot = async (src, playbackRate = 1) => {
     if (requestId !== videoRequestId) return
 
     activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
-    activeEl.pause()
-    preloadUpcomingVideo()
+    finishVideoLayerSwap(activeEl, requestId, { preload: !settleSrc })
+
+    const finishTransition = async () => {
+      if (requestId !== videoRequestId) return
+
+      if (settleSrc) {
+        await settleOnSlideFrame(settleSrc, requestId)
+      }
+
+      if (requestId === videoRequestId) onComplete?.()
+    }
+
+    if (incomingEl.ended) finishTransition()
+    else incomingEl.addEventListener('ended', finishTransition, { once: true })
   } catch (error) {
     if (requestId === videoRequestId) {
       console.warn('Failed to play next video shot:', error)
+      onComplete?.()
     }
   }
 }
@@ -422,16 +615,53 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   const slide = slides.value[newIndex]
   const oldSlide = slides.value[oldIndex]
   const goingBack = newIndex < oldIndex
-
-  // Play the reverse video of the slide we are LEAVING, or fallback to the forward video of the slide we are ENTERING
-  let nextSrc = null
-  if (goingBack) {
-    nextSrc = (oldSlide && oldSlide.reverseVideo) ? oldSlide.reverseVideo : slide.video
-  } else {
-    nextSrc = slide.video
+  const revealCurrentSlide = () => {
+    if (contentReadySlideIndex.value !== newIndex) revealSlideContent(newIndex)
   }
 
-  playVideoShot(nextSrc, goingBack ? REVERSE_PLAYBACK_RATE : 1)
+  window.clearTimeout(earlyContentRevealTimer)
+  window.clearTimeout(resultsIntroTimer)
+  window.clearTimeout(storiesIntroTimer)
+  shouldAutoAdvanceStoriesIntro = newIndex === 11 && oldIndex === 10
+  animateOutgoingContent(oldIndex)
+  isScrolling = true
+  contentReadySlideIndex.value = -1
+  window.clearTimeout(scrollUnlockTimer)
+
+  if (newIndex === 7 && oldIndex === 6) {
+    resultsIntroTimer = window.setTimeout(() => {
+      if (currentSlideIndex.value !== 7) return
+      isScrolling = true
+      currentSlideIndex.value = 8
+    }, RESULTS_INTRO_DURATION)
+  }
+
+  if (goingBack) {
+    if (oldSlide?.reverseVideo) {
+      playVideoShot(oldSlide.reverseVideo, {
+        playbackRate: REVERSE_PLAYBACK_RATE,
+        settleSrc: slide.video,
+        onComplete: revealCurrentSlide
+      })
+    } else {
+      const requestId = ++videoRequestId
+      settleOnSlideFrame(slide.video, requestId).finally(revealCurrentSlide)
+    }
+    return
+  }
+
+  if (slide.video) {
+    if (newIndex === 2) {
+      earlyContentRevealTimer = window.setTimeout(
+        revealCurrentSlide,
+        SLIDE_THREE_CONTENT_DELAY
+      )
+    }
+    playVideoShot(slide.video, { onComplete: revealCurrentSlide })
+  } else {
+    revealCurrentSlide()
+    unlockScrollAfter(SCROLL_LOCK_DURATION)
+  }
 })
 
 onMounted(() => {
@@ -450,6 +680,7 @@ onMounted(() => {
     const slide = slides.value[currentSlideIndex.value]
     const initialSrc = slide ? slide.video : null
     if (initialSrc && videoA.value) {
+      configureVideoElement(videoA.value)
       videoA.value.src = initialSrc
       videoA.value.load()
       videoA.value.play().catch(() => {})
@@ -469,95 +700,35 @@ onUnmounted(() => {
 
   if (videoA.value) videoA.value.pause()
   if (videoB.value) videoB.value.pause()
+  window.clearTimeout(scrollUnlockTimer)
+  window.clearTimeout(contentExitTimer)
+  window.clearTimeout(earlyContentRevealTimer)
+  window.clearTimeout(resultsIntroTimer)
+  window.clearTimeout(storiesIntroTimer)
+  videoLayerTimers.forEach(timerId => window.clearTimeout(timerId))
+  videoLayerTimers.clear()
   videoRequestId++
 })
 </script>
 
 <template>
-  <div class="page-container">
-    <!-- Left Column: Navigation controls & cards (Static, Non-scrolling) -->
-    <aside class="sidebar-container">
-      <!-- Promo Banner Card (Frame 41) -->
-      <div class="promo-card" id="card-promo">
-        <div class="promo-content">
-          <img src="/assets/banner.svg" alt="Анализ крови" class="promo-banner-img" />
-          <p class="promo-text">
-            Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
-          </p>
-        </div>
-        
-        <!-- Button (Frame 111) -->
-        <button class="promo-button" id="btn-register" @click="showRegisterModal = true">
-          <span class="promo-button-text">Записаться на тест на аллергию</span>
-          <div class="promo-button-icon">
-            <img src="/assets/arrow-right-btn.svg" alt="arrow" />
-          </div>
-        </button>
-      </div>
-
-      <!-- Side-by-side cards (Frame 109) -->
-      <div class="cards-row">
-        <!-- Search Card (Frame 101) -->
-        <div class="sub-card" id="card-search" @click="$router.push('/search')">
-          <div class="card-icon-wrapper">
-            <img src="/assets/search-icon.svg" alt="search" />
-          </div>
-          <div class="card-text-group">
-            <h3 class="card-title">Поиск аллергенов</h3>
-            <p class="card-subtitle">Убедитесь, что тест покажет, что вам нужно</p>
-          </div>
-        </div>
-
-        <!-- Demo Card (Frame 36) -->
-        <div class="sub-card" id="card-demo" @click="$router.push('/demo-result')">
-          <div class="card-icon-wrapper">
-            <img src="/assets/doc-icon.svg" alt="doc" />
-          </div>
-          <div class="card-text-group">
-            <h3 class="card-title">Посмотреть демо-результат</h3>
-            <p class="card-subtitle">Объясняем результаты на человеческом языке</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Quiz Card (Frame 47) -->
-      <div class="sidebar-row-card" id="row-quiz" @click="$router.push('/quiz')">
-        <div class="row-left-content">
-          <span class="tag-badge">~5 минут</span>
-          <span class="row-text">КВИЗ: Нужен ли вам тест на аллергены?</span>
-        </div>
-      </div>
-
-      <!-- Profile Card (Frame 38) -->
-      <div class="sidebar-row-card" id="row-profile" @click="$router.push('/personal-account')">
-        <div class="row-left-content">
-          <div class="row-icon-icon" style="margin-right: 4px;">
-            <img src="/assets/profile-icon.svg" alt="profile" />
-          </div>
-          <span class="row-text">Личный кабинет</span>
-        </div>
-      </div>
-
-      <!-- About/Bottom Card (Frame 113) -->
-      <div class="sidebar-row-card" id="row-about" @click="goToSlideById('slide-1')">
-        <div class="row-left-content">
-          <span class="row-text">Лаборатория ALEX LAB</span>
-        </div>
-        <div class="row-icon-icon">
-          <!-- Circular chevron SVG matching Figma -->
-          <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15.9974 29.3307C23.3612 29.3307 29.3307 23.3612 29.3307 15.9974C29.3307 8.6336 23.3612 2.66406 15.9974 2.66406C8.6336 2.66406 2.66406 8.6336 2.66406 15.9974C2.66406 23.3612 8.6336 29.3307 15.9974 29.3307Z" />
-            <path d="M13.3359 10.6641L18.6693 15.9974L13.3359 21.3307" />
-          </svg>
-        </div>
-      </div>
-    </aside>
+  <div class="page-container home-page-container site-sidebar-layout">
+    <SiteSidebar
+      @register="openCart"
+      @about="goToSlideById('slide-1')"
+    />
 
     <!-- Right Column: Content Container with Slide Deck -->
-    <main class="content-container" ref="scrollContainer">
+    <main class="content-container home-content" ref="scrollContainer">
+      <Transition name="fade">
+        <button v-if="currentSlideIndex === 0" class="figma-doctors-button" type="button" disabled>
+          <span>Для врачей</span>
+          <img src="/assets/figma-doctors-icon.svg" alt="" />
+        </button>
+      </Transition>
+
       <!-- Persistent Right Menu overlay -->
       <div class="figma-right-menu" :class="{ visible: showMenu }">
-        <div class="figma-menu-indicator" :style="{ top: (activeMenuIndex * 29 + 4) + 'px' }"></div>
         <div 
           v-for="(item, idx) in menuItems" 
           :key="item.label" 
@@ -591,7 +762,31 @@ onUnmounted(() => {
       </div>
 
       <!-- Static Smoke Cloud (Fixed, transitions opacity, does not slide) -->
-      <div class="figma-smoke-cloud-fixed" :class="{ visible: showSmokeCloud }"></div>
+      <div
+        class="figma-smoke-cloud-fixed"
+        :class="[
+          { visible: showSmokeCloud, 'results-cloud': isResultsSection },
+          resultsCloudVariant
+        ]"
+      ></div>
+
+      <!-- Persistent pagination stays mounted while text slides change -->
+      <Transition name="persistent-steps">
+        <div
+          v-if="persistentStepGroup"
+          class="persistent-step-indicator"
+          :class="`persistent-step-indicator--${persistentStepGroup.type}`"
+        >
+          <div
+            v-for="i in persistentStepGroup.total"
+            :key="i"
+            class="figma-step-circle"
+            :class="{ active: i === persistentStepGroup.current }"
+          >
+            {{ i }}
+          </div>
+        </div>
+      </Transition>
 
       <!-- Slides Deck -->
       <div class="slides-deck-container">
@@ -599,12 +794,19 @@ onUnmounted(() => {
           v-for="(slide, index) in slides"
           :key="slide.id"
           class="slide-layer"
-          :class="getSlideClass(index)"
+          :class="[getSlideClass(index), { 'content-exiting': index === exitingContentSlideIndex }]"
           :data-direction="slide.direction"
           :data-has-video="!!(slide.video || slide.holdVideo)"
+          :data-content-ready="index === contentReadySlideIndex"
         >
           <!-- Slide 1: Hero -->
           <template v-if="slide.id === 'slide-1'">
+            <div class="figma-scroll-icon">
+              <img class="scroll-mouse" src="/assets/figma-mouse.svg" alt="" />
+              <img class="scroll-chevron scroll-chevron-1" src="/assets/figma-scroll-chevron-1.svg" alt="" />
+              <img class="scroll-chevron scroll-chevron-2" src="/assets/figma-scroll-chevron-2.svg" alt="" />
+              <img class="scroll-chevron scroll-chevron-3" src="/assets/figma-scroll-chevron-3.svg" alt="" />
+            </div>
             <h1 class="figma-hero-title">
               Тест на аллергию ALEX² — один анализ, который даёт ответы
             </h1>
@@ -620,18 +822,7 @@ onUnmounted(() => {
           <!-- Advantages detail slides (Slide 3 to 7) -->
           <template v-else-if="slide.label === 'Преимущества'">
             <div class="figma-content-wrapper">
-              <div class="figma-step-block advantages-pos">
-                <!-- Step circles indicator -->
-                <div class="figma-step-indicator">
-                  <div 
-                    v-for="i in 5" 
-                    :key="i"
-                    class="figma-step-circle"
-                    :class="{ active: i === parseInt(slide.step) }"
-                  >
-                    {{ i }}
-                  </div>
-                </div>
+              <div class="figma-step-block advantages-pos text-only">
                 <!-- Text stack -->
                 <div class="figma-step-text-stack">
                   <h2 class="figma-slide-title-inline">{{ slide.title }}</h2>
@@ -651,24 +842,13 @@ onUnmounted(() => {
           <!-- Results Steps (Slide 9 to 11) -->
           <template v-else-if="slide.label === 'О результатах' && slide.step">
             <div class="figma-content-wrapper results-wrapper">
-              <div class="figma-step-block results-pos">
-                <!-- Step circles indicator -->
-                <div class="figma-step-indicator">
-                  <div 
-                    v-for="i in 3" 
-                    :key="i"
-                    class="figma-step-circle"
-                    :class="{ active: i === parseInt(slide.step) }"
-                  >
-                    {{ i }}
-                  </div>
-                </div>
+              <div class="figma-step-block results-pos text-only">
                 <!-- Text stack -->
                 <div class="figma-step-text-stack">
-                  <h2 class="figma-slide-title-inline">
-                    {{ slide.title }}
+                  <div class="figma-result-title-row">
+                    <h2 class="figma-slide-title-inline">{{ slide.title }}</h2>
                     <span v-if="slide.badge" class="figma-badge">{{ slide.badge }}</span>
-                  </h2>
+                  </div>
                   <p class="figma-slide-desc-inline">{{ slide.subtitle }}</p>
                 </div>
               </div>
@@ -685,31 +865,31 @@ onUnmounted(() => {
           <!-- Stories Detail (Slide 13 to 15) -->
           <template v-else-if="slide.type === 'story'">
             <div class="figma-content-wrapper story-wrapper">
-              <span class="figma-category-label">{{ slide.label }}</span>
-              
-              <!-- Tab Bar -->
-              <div class="figma-story-tabs">
-                <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Misha' }" @click="goToSlideById('slide-13')">Миша</button>
-                <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Alexandra' }" @click="goToSlideById('slide-14')">Александра</button>
-                <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Pasha' }" @click="goToSlideById('slide-15')">Паша</button>
-              </div>
-
-              <!-- Stories Details content list -->
-              <div class="figma-story-content">
-                <!-- After ALEX2 (Header & List) -->
-                <div class="story-block-after">
-                  <h3 class="story-block-title green">После теста ALEX2</h3>
-                  <ul class="story-bullets">
-                    <li v-for="item in getStoryAfter(slide.activeTab)" :key="item">{{ item }}</li>
-                  </ul>
+              <div class="figma-story-body">
+                <!-- Tab Bar -->
+                <div class="figma-story-tabs">
+                  <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Misha' }" @click="goToSlideById('slide-13')">Миша</button>
+                  <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Alexandra' }" @click="goToSlideById('slide-14')">Александра</button>
+                  <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Pasha' }" @click="goToSlideById('slide-15')">Паша</button>
                 </div>
 
-                <!-- Before (Header & List) -->
-                <div class="story-block-before">
-                  <h3 class="story-block-title">До</h3>
-                  <ul class="story-bullets gray">
-                    <li v-for="item in getStoryBefore(slide.activeTab)" :key="item">{{ item }}</li>
-                  </ul>
+                <!-- Stories Details content list -->
+                <div class="figma-story-content">
+                  <!-- After ALEX2 (Header & List) -->
+                  <div class="story-block-after">
+                    <h3 class="story-block-title green">После теста ALEX2</h3>
+                    <ul class="story-bullets">
+                      <li v-for="item in getStoryAfter(slide.activeTab)" :key="item">{{ item }}</li>
+                    </ul>
+                  </div>
+
+                  <!-- Before (Header & List) -->
+                  <div class="story-block-before">
+                    <h3 class="story-block-title">До</h3>
+                    <ul class="story-bullets gray">
+                      <li v-for="item in getStoryBefore(slide.activeTab)" :key="item">{{ item }}</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
@@ -718,13 +898,15 @@ onUnmounted(() => {
                 <div class="story-footer-divider"></div>
                 <div class="story-read-more" @click="showDemoModal = true">
                   <span>Читать подробнее</span>
-                  <svg class="read-more-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M10 8l4 4-4 4" />
-                  </svg>
+                  <img class="read-more-arrow" src="/assets/figma-story-read-more.svg" alt="" />
                 </div>
               </div>
             </div>
+          </template>
+
+          <!-- Figma-exact FAQ, Blog and How-to frames (nodes 39:2029–39:2726) -->
+          <template v-else-if="['slide-16', 'slide-17', 'slide-18', 'slide-19', 'slide-20'].includes(slide.id)">
+            <FigmaInfoSlide :slide="slide" @action="showDemoModal = true" />
           </template>
 
           <!-- FAQ (Slide 16) -->
@@ -815,68 +997,11 @@ onUnmounted(() => {
 
           <!-- Contacts (Slide 21) -->
           <template v-else-if="slide.type === 'contacts'">
-            <div class="figma-content-wrapper contacts-wrapper">
-              <div class="figma-contacts-header-group">
-                <h2 class="figma-contacts-title-inline">Тест на аллергию ALEX² — один анализ, который даёт ответы</h2>
-                <button class="figma-contacts-cta-btn-inline" @click="showRegisterModal = true">
-                  <span>Записаться на тест на аллергию</span>
-                  <svg class="cta-btn-arrow" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="16" cy="16" r="14" />
-                    <path d="M13 11l5 5-5 5" />
-                  </svg>
-                </button>
-              </div>
-
-              <div class="figma-contacts-grid">
-                <!-- Info Column -->
-                <div class="contacts-info-col">
-                  <h3 class="contacts-sub">Контакты</h3>
-                  <p class="contacts-link"><a href="https://yandex.ru/maps/?text=Москва, Пречистенка 30/2" target="_blank">Москва, Пречистенка 30/2</a></p>
-                  <p class="contacts-link"><a href="tel:+74955076485">+7 495 507-64-85</a></p>
-                  <p class="contacts-link"><a href="mailto:info@kupitkartinu.ru">info@kupitkartinu.ru</a></p>
-                  
-                  <div class="contacts-legal">
-                    <span>ИНН: 9703021385</span>
-                    <span>ОГРН: 1207700425602</span>
-                    <span>КПП: 770301001</span>
-                  </div>
-                </div>
-
-                <!-- Nav Column -->
-                <div class="contacts-nav-col">
-                  <h3 class="contacts-sub">Навигация по сайту</h3>
-                  <ul class="contacts-nav-links">
-                    <li><a href="/search">Поиск аллергенов</a></li>
-                    <li><a href="/demo-result">Демо-результат</a></li>
-                    <li @click="showQuizModal = true; goToSlideById('slide-1')">КВИЗ: Нужен ли вам тест</li>
-                    <li><a href="/profile">Личный кабинет</a></li>
-                    <li @click="goToSlideById('slide-2')">О лаборатории ALEXLAB</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="contacts-footer-container">
-                <div class="contacts-footer-links">
-                  <a href="/policy">Политика конфиденциальности</a>
-                  <a href="/terms">Условия использования материалов сайта</a>
-                </div>
-                
-                <div class="studio-credits">
-                  <svg class="studio-logo" width="79" height="35" viewBox="0 0 79 35">
-                    <path d="M 5,20 A 12,12 0 0,1 29,20 Z" fill="currentColor" />
-                    <line x1="7" y1="24" x2="27" y2="24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
-                    <line x1="11" y1="28" x2="23" y2="28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
-                    <line x1="15" y1="32" x2="19" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
-
-                    <path d="M 44,6 L 48,6 L 52,22 L 67,22 L 72,6 L 50,6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-                    <path d="M 44,6 L 42,2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none" />
-                    <circle cx="54" cy="28" r="3" fill="currentColor" />
-                    <circle cx="65" cy="28" r="3" fill="currentColor" />
-                  </svg>
-                  <span class="studio-text">сайт сделан в студии<br>«созерцание»</span>
-                </div>
-              </div>
-            </div>
+            <FigmaContactsSlide
+              @register="openCart"
+              @quiz="showQuizModal = true; goToSlideById('slide-1')"
+              @navigate="goToSlideById"
+            />
           </template>
         </div>
       </div>
@@ -988,7 +1113,7 @@ onUnmounted(() => {
             <button @click="showQuizModal = false; showDemoModal = true" class="quiz-btn-primary">Посмотреть демо-отчет</button>
             <div style="display: flex; gap: 12px;">
               <button @click="resetQuiz" class="quiz-btn-choice outline" style="flex: 1;">Пройти заново</button>
-              <button @click="showQuizModal = false; showRegisterModal = true" class="quiz-btn-choice" style="flex: 1;">Записаться на тест</button>
+              <button @click="showQuizModal = false; openCart()" class="quiz-btn-choice" style="flex: 1;">Записаться на тест</button>
             </div>
           </div>
         </div>

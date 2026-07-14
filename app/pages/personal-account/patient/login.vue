@@ -2,14 +2,7 @@
   <div class="patient-page-layout">
     <!-- Шапка страницы -->
     <header class="header-nav">
-      <NuxtLink to="/" class="back-link">
-        <span class="back-arrow">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        На главную
-      </NuxtLink>
+      <HomeBackLink />
     </header>
 
     <!-- Основной контент (Вход пациента) -->
@@ -124,7 +117,9 @@ const handleLogin = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  min-height: calc(100vh - 72px);
+  padding: 0 20px;
+  transform: translateY(-36px);
 }
 
 .login-card-container {
@@ -132,13 +127,6 @@ const handleLogin = () => {
   display: flex;
   flex-direction: column;
   gap: 64px; /* gap 64px из макета */
-}
-
-@media (max-width: 600px) {
-  .login-card-container {
-    width: 100%;
-    gap: 40px;
-  }
 }
 
 .title-block {
@@ -155,7 +143,7 @@ const handleLogin = () => {
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 48px; /* gap 48px из макета */
+  gap: 0;
 }
 
 .form-inputs-group {
@@ -168,6 +156,7 @@ const handleLogin = () => {
   display: flex;
   flex-direction: column;
   gap: 4px; /* Расстояние между кнопками 4px */
+  margin-top: 32px;
 }
 
 .btn-full {
@@ -179,6 +168,7 @@ const handleLogin = () => {
   gap: 16px; /* gap 16px из макета */
   align-items: flex-start;
   text-align: left;
+  margin-top: 48px;
 }
 
 .info-icon {
@@ -190,7 +180,35 @@ const handleLogin = () => {
 
 .info-text {
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.2;
   color: #000000;
+}
+
+@media (max-width: 600px) {
+  .patient-main-content {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 77px 16px 40px;
+    transform: none;
+  }
+
+  .login-card-container {
+    width: 100%;
+    gap: 64px;
+  }
+
+  .login-title {
+    font-size: 32px;
+    line-height: 38px;
+    white-space: nowrap;
+  }
+
+  .form-actions {
+    margin-top: 24px;
+  }
+
+  .info-block {
+    margin-top: 32px;
+  }
 }
 </style>

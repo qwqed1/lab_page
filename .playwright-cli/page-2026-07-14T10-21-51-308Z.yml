@@ -1,0 +1,28 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e3]:
+    - status [ref=f5e136]: Корзина — ALEX LAB
+    - generic [ref=f5e366]:
+      - banner [ref=f5e367]:
+        - button [ref=f5e368] [cursor=pointer]
+      - main [ref=f5e437]:
+        - img [ref=f5e439]:
+          - generic [ref=f5e440] [cursor=pointer]: "%"
+          - generic [ref=f5e444] [cursor=pointer]: "%"
+        - generic [ref=f5e459]:
+          - button [ref=f5e460] [cursor=pointer]
+          - generic [ref=f5e463]: "-100% на консультацию"
+          - heading "ALEX, Маршала Бирюзова 9" [level=3] [ref=f5e464]
+          - generic [ref=f5e465]:
+            - generic [ref=f5e466]:
+              - generic [ref=f5e467]: ПН – ПТ
+              - generic [ref=f5e468]: 9:00 – 19:00
+            - generic [ref=f5e469]:
+              - generic [ref=f5e470]: СБ – ВС
+              - generic [ref=f5e471]: Выходные
+          - button "Выбрать" [ref=f5e472] [cursor=pointer]
+  - generic [ref=f5e137]:
+    - button "Toggle Nuxt DevTools" [ref=f5e138] [cursor=pointer]
+    - generic "Page load time" [ref=f5e142]:
+      - generic [ref=f5e143]: "10"
+      - generic [ref=f5e144]: ms
+    - button "Toggle Component Inspector" [ref=f5e146] [cursor=pointer]

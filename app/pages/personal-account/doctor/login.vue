@@ -2,15 +2,7 @@
   <div class="doctor-page-layout">
     <!-- Шапка страницы -->
     <header class="header-nav">
-      <NuxtLink to="/" class="back-link">
-        <span class="back-arrow">
-          <!-- Стрелка влево -->
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        На главную
-      </NuxtLink>
+      <HomeBackLink />
     </header>
 
     <!-- Основной контент (Центрированный блок) -->
@@ -127,7 +119,8 @@ const handleForgotPassword = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  min-height: calc(100vh - 72px);
+  padding: 0 20px;
 }
 
 .login-card-container {
@@ -135,13 +128,6 @@ const handleForgotPassword = () => {
   display: flex;
   flex-direction: column;
   gap: 64px; /* gap 64px из макета */
-}
-
-@media (max-width: 600px) {
-  .login-card-container {
-    width: 100%;
-    gap: 40px;
-  }
 }
 
 .title-block {
@@ -169,7 +155,7 @@ const handleForgotPassword = () => {
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 48px; /* gap 48px из макета */
+  gap: 24px;
 }
 
 .form-inputs-group {
@@ -197,6 +183,27 @@ const handleForgotPassword = () => {
 }
 
 @media (max-width: 480px) {
+  .doctor-main-content {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 77px 16px 40px;
+  }
+
+  .login-card-container {
+    width: 100%;
+    gap: 64px;
+  }
+
+  .login-title {
+    font-size: 32px;
+    line-height: 38px;
+    white-space: nowrap;
+  }
+
+  .login-subtitle {
+    line-height: 1.2;
+  }
+
   .secondary-actions {
     flex-direction: column;
   }

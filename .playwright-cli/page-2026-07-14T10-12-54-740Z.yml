@@ -1,0 +1,16 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e3]:
+    - status [ref=f5e136]: Корзина — ALEX LAB
+    - generic [ref=f5e151]:
+      - banner [ref=f5e152]:
+        - button [ref=f5e153] [cursor=pointer]
+      - main [ref=f5e222]:
+        - img [ref=f5e224]:
+          - generic [ref=f5e225] [cursor=pointer]: "%"
+          - generic [ref=f5e228] [cursor=pointer]: "%"
+  - generic [ref=f5e137]:
+    - button "Toggle Nuxt DevTools" [ref=f5e138] [cursor=pointer]
+    - generic "Page load time" [ref=f5e142]:
+      - generic [ref=f5e143]: "10"
+      - generic [ref=f5e144]: ms
+    - button "Toggle Component Inspector" [ref=f5e146] [cursor=pointer]

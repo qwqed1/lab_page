@@ -1,0 +1,85 @@
+- generic [ref=e4]:
+  - banner [ref=e5]:
+    - link "Назад" [ref=e6] [cursor=pointer]:
+      - /url: /
+  - generic [ref=e12]:
+    - main [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e16]: Добавлено
+          - generic [ref=e22]:
+            - generic [ref=e23]:
+              - heading "Сдача анализа ALEX2" [level=2] [ref=e24]
+              - paragraph [ref=e25]: Мультикомплексный анализ на 300 аллергенов за один забор крови. Включает в себя общий IgE
+              - generic [ref=e26]:
+                - generic [ref=e27]: + Забор крови
+                - generic [ref=e28]: +IgE
+            - generic [ref=e29]: 24 900₽
+        - generic [ref=e30]:
+          - generic [ref=e31] [cursor=pointer]: Добавить
+          - generic [ref=e37]:
+            - generic [ref=e38]:
+              - heading "Консультация" [level=2] [ref=e39]
+              - paragraph [ref=e40]: Онлайн-разбор результатов с профессиональными врачами
+              - generic [ref=e41]: Скидка 99% в лаборатории ALEX
+            - generic [ref=e46]: 2 000₽
+        - generic [ref=e47]:
+          - generic [ref=e48] [cursor=pointer]: Добавить
+          - generic [ref=e54]:
+            - generic [ref=e55]:
+              - heading "Срочный результат" [level=2] [ref=e56]
+              - paragraph [ref=e57]: Отправим за 24 часа
+            - generic [ref=e58]: 5 000₽
+      - generic [ref=e59]:
+        - heading "Место сдачи анализа" [level=2] [ref=e60]
+        - generic [ref=e62]:
+          - generic [ref=e63]: Выберите город
+          - generic [ref=e64] [cursor=pointer]: Выберите из списка
+      - generic [ref=e70]:
+        - heading "Личные данные" [level=2] [ref=e71]
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - generic [ref=e74]:
+              - generic [ref=e75]: ФИО
+              - textbox "Иванов Иван Иванович" [ref=e76]
+            - generic [ref=e77]:
+              - generic [ref=e78]: Дата рождения
+              - textbox "11.06.2006" [ref=e79]
+          - generic [ref=e80]:
+            - generic [ref=e81]: Номер телефона
+            - textbox "+7 999 999 99 99" [ref=e82]: +7 938 910 92 22
+          - generic [ref=e83]:
+            - generic [ref=e84]: E-mail
+            - textbox "max@inmuntex.com" [ref=e85]: hi@mail.com
+            - generic [ref=e86]: На указанную почту придут данные от личного кабинета.В нём можно онлайн отслеживать результаты.
+    - complementary [ref=e91]:
+      - generic [ref=e92]:
+        - heading "Место" [level=3] [ref=e93]
+        - paragraph [ref=e95]: Не выбрано
+      - generic [ref=e96]:
+        - heading "Время на результат" [level=3] [ref=e97]
+        - paragraph [ref=e98]: 3 дня
+      - generic [ref=e99]:
+        - heading "Комплектация" [level=3] [ref=e100]
+        - generic [ref=e101]:
+          - generic [ref=e102]:
+            - generic [ref=e103]: ALEX2
+            - generic [ref=e104]: 24 900₽
+          - generic [ref=e105]:
+            - generic [ref=e106]: Забор крови
+            - generic [ref=e107]: 0₽
+          - generic [ref=e108]:
+            - generic [ref=e109]: Общий IgE
+            - generic [ref=e110]: 0₽
+      - generic [ref=e111]:
+        - textbox "Введите промокод" [ref=e113]
+        - button [ref=e114] [cursor=pointer]
+      - generic [ref=e118]:
+        - generic [ref=e119]:
+          - generic [ref=e120]:
+            - generic [ref=e121]: Итого к оплате
+            - generic [ref=e122]: 24 900₽
+          - generic [ref=e123] [cursor=pointer]:
+            - checkbox "Я даю согласие на передачу моих персональных данных с целью осуществления доставки (возврата) товара третьим лицам" [ref=e124]
+            - generic [ref=e125]: Я даю согласие на передачу моих персональных данных с целью осуществления доставки (возврата) товара третьим лицам
+        - button "Продолжить" [disabled] [ref=e127]

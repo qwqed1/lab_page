@@ -49,14 +49,19 @@
 .form-input {
   width: 100%;
   height: 61px;
-  border: 1px solid var(--input-border);
+  border: 0;
+  border-bottom: 1px solid var(--input-border);
+  border-radius: 0;
   background-color: transparent;
-  padding: 24px;
+  padding: 0 24px;
   font-size: 18px;
+  line-height: 61px;
   font-family: 'Roboto', sans-serif;
   color: var(--text-color);
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: none;
+  appearance: none;
+  transition: border-color 0.2s ease;
 }
 
 .form-input::placeholder {
@@ -65,8 +70,8 @@
 }
 
 .form-input:focus {
-  border-color: #000000;
-  box-shadow: 0 0 0 1px #000000;
+  border-bottom-color: #000000;
+  box-shadow: none;
 }
 
 /* Кнопки */
@@ -168,4 +173,41 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .patient-page-layout .header-nav,
+  .doctor-page-layout .header-nav {
+    height: 72px;
+    padding: 24px 32px;
+    position: relative;
+  }
+
+  .patient-page-layout .back-link,
+  .doctor-page-layout .back-link {
+    gap: 0;
+    font-size: 0;
+  }
+
+  .patient-page-layout .form-label,
+  .doctor-page-layout .form-label {
+    font-size: 16px;
+  }
+
+  .patient-page-layout .form-input,
+  .doctor-page-layout .form-input {
+    height: 61px;
+    padding: 0 24px;
+    font-size: 18px;
+    line-height: 61px;
+  }
+
+  .patient-page-layout .btn-black,
+  .patient-page-layout .btn-outline,
+  .doctor-page-layout .btn-black,
+  .doctor-page-layout .btn-outline {
+    min-height: 66px;
+    height: 66px;
+    padding: 21px 32px;
+  }
 }

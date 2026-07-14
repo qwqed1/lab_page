@@ -1,0 +1,49 @@
+- generic [ref=f1e3]:
+  - complementary "Навигация по сайту" [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - generic [ref=f1e6]:
+        - img "ALEX Allergy Xplorer" [ref=f1e7]
+        - paragraph [ref=f1e8]: Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
+      - button "Записаться на тест на аллергию" [ref=f1e9] [cursor=pointer]
+    - generic [ref=f1e12]:
+      - button "Поиск аллергенов Убедитесь, что тест покажет, что вам нужно" [ref=f1e13] [cursor=pointer]:
+        - generic [ref=f1e15]:
+          - heading "Поиск аллергенов" [level=3] [ref=f1e16]
+          - paragraph [ref=f1e17]: Убедитесь, что тест покажет, что вам нужно
+      - button "Посмотреть демо-результат Объясняем результаты на человеческом языке" [ref=f1e18] [cursor=pointer]:
+        - generic [ref=f1e20]:
+          - heading "Посмотреть демо-результат" [level=3] [ref=f1e21]: Посмотретьдемо-результат
+          - paragraph [ref=f1e22]: Объясняем результатына человеческом языке
+    - 'button "~5 минут КВИЗ: Нужен ли вам тест на аллергены?" [ref=f1e23] [cursor=pointer]':
+      - generic [ref=f1e24]:
+        - generic [ref=f1e25]: ~5 минут
+        - generic [ref=f1e26]: "КВИЗ: Нужен ли вам тест на аллергены?"
+    - button "Личный кабинет" [ref=f1e27] [cursor=pointer]
+    - button "Лаборатория ALEX LAB" [ref=f1e31] [cursor=pointer]
+  - main [ref=f1e35]:
+    - button "На главную" [ref=f1e37] [cursor=pointer]
+    - generic [ref=f1e41]:
+      - heading "Поиск аллергенов, которые покажет ALEX2" [level=1] [ref=f1e42]: Поиск аллергенов,которые покажет ALEX2
+      - paragraph [ref=f1e43]: Более 300 аллергенов в одном тесте —убедитесь сами
+      - generic [ref=f1e44]:
+        - textbox "Введите продукт" [ref=f1e45]
+        - button "Поиск" [ref=f1e46] [cursor=pointer]
+      - generic [ref=f1e52]:
+        - button "Кошачья шерсть" [ref=f1e53] [cursor=pointer]
+        - button "Банан" [ref=f1e54] [cursor=pointer]
+        - button "Пыль" [ref=f1e55] [cursor=pointer]
+        - button "Клубника" [ref=f1e56] [cursor=pointer]
+        - button "Тараканы" [ref=f1e57] [cursor=pointer]
+        - button "Пыльца берёзы" [ref=f1e58] [cursor=pointer]
+        - button "Кошачья шерсть" [ref=f1e59] [cursor=pointer]
+        - button "Банан" [ref=f1e60] [cursor=pointer]
+        - button "Пыль" [ref=f1e61] [cursor=pointer]
+        - button "Клубника" [ref=f1e62] [cursor=pointer]
+        - button "Тараканы" [ref=f1e63] [cursor=pointer]
+        - button "Пыльца берёзы" [ref=f1e64] [cursor=pointer]
+        - button "Кошачья шерсть" [ref=f1e65] [cursor=pointer]
+        - button "Банан" [ref=f1e66] [cursor=pointer]
+        - button "Пыль" [ref=f1e67] [cursor=pointer]
+        - button "Клубника" [ref=f1e68] [cursor=pointer]
+        - button "Тараканы" [ref=f1e69] [cursor=pointer]
+        - button "Пыльца берёзы" [ref=f1e70] [cursor=pointer]

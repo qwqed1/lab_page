@@ -114,7 +114,9 @@ const handleSave = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  min-height: calc(100vh - 72px);
+  padding: 0 20px;
+  transform: translateY(-23px);
 }
 
 .profile-card-container {
@@ -122,13 +124,6 @@ const handleSave = () => {
   display: flex;
   flex-direction: column;
   gap: 64px; /* gap 64px по макету */
-}
-
-@media (max-width: 840px) {
-  .profile-card-container {
-    width: 100%;
-    gap: 40px;
-  }
 }
 
 .profile-title {
@@ -159,5 +154,37 @@ const handleSave = () => {
 .form-actions {
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 840px) {
+  .doctor-main-content {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 116px 16px 48px;
+    transform: none;
+  }
+
+  .profile-card-container {
+    width: 100%;
+    gap: 48px;
+  }
+
+  .profile-title {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .profile-form {
+    gap: 32px;
+  }
+
+  .form-inputs-group {
+    gap: 24px;
+  }
+
+  .profile-label {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.5);
+  }
 }
 </style>

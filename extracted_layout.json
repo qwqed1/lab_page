@@ -1,0 +1,6481 @@
+{
+  "39:3673": [
+    {
+      "id": "39:3675",
+      "name": "Тест на аллергию ALEX² — один анализ, который даёт ответы",
+      "characters": "Тест на аллергию ALEX² — один анализ, который даёт ответы",
+      "relative_bounds": {
+        "x": 62,
+        "y": 918,
+        "width": 954,
+        "height": 98
+      },
+      "fontSize": 42,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3678",
+      "name": "Для врачей",
+      "characters": "Для врачей",
+      "relative_bounds": {
+        "x": 1044,
+        "y": 28.5,
+        "width": 115,
+        "height": 15
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#ffffff",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3685",
+      "name": "Сайт использует cookie с целью анализа поведения посетителей для улучшения Сайта. Продолжая пользоваться Сайтом, вы соглашаетесь на использование файлов cookie в соответствии с нашими Cookie-правилами.",
+      "characters": "Сайт использует cookie с целью анализа поведения посетителей для улучшения Сайта. Продолжая пользоваться Сайтом, вы соглашаетесь на использование файлов cookie в соответствии с нашими Cookie-правилами.",
+      "relative_bounds": {
+        "x": 567,
+        "y": 916,
+        "width": 636,
+        "height": 57
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3687",
+      "name": "Хорошо",
+      "characters": "Хорошо",
+      "relative_bounds": {
+        "x": 591,
+        "y": 1009,
+        "width": 60,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#ffffff",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:1066": [
+    {
+      "id": "39:1067",
+      "name": "Почему ALEX2?",
+      "characters": "Почему ALEX2?",
+      "relative_bounds": {
+        "x": 53,
+        "y": 509,
+        "width": 740,
+        "height": 49
+      },
+      "fontSize": 42,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#ffffff",
+          "opacity": 1
+        },
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1069",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1070",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1071",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1072",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1073",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1074",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:899": [
+    {
+      "id": "39:904",
+      "name": "1",
+      "characters": "1",
+      "relative_bounds": {
+        "x": 81,
+        "y": 450,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:907",
+      "name": "2",
+      "characters": "2",
+      "relative_bounds": {
+        "x": 129,
+        "y": 450,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:910",
+      "name": "3",
+      "characters": "3",
+      "relative_bounds": {
+        "x": 177,
+        "y": 450,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:913",
+      "name": "4",
+      "characters": "4",
+      "relative_bounds": {
+        "x": 225,
+        "y": 450,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:916",
+      "name": "5",
+      "characters": "5",
+      "relative_bounds": {
+        "x": 273,
+        "y": 450,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:918",
+      "name": "Всё за один сеанс",
+      "characters": "Всё за один сеанс",
+      "relative_bounds": {
+        "x": 64,
+        "y": 530,
+        "width": 271,
+        "height": 38
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:919",
+      "name": "За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое.",
+      "characters": "За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты \nи овощи), а также яды пчёл и ос, латекс и многое другое.",
+      "relative_bounds": {
+        "x": 64,
+        "y": 580,
+        "width": 671,
+        "height": 115
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:921",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:922",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:923",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:924",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:925",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:926",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:3504": [
+    {
+      "id": "39:3511",
+      "name": "1",
+      "characters": "1",
+      "relative_bounds": {
+        "x": 81,
+        "y": 449.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3514",
+      "name": "2",
+      "characters": "2",
+      "relative_bounds": {
+        "x": 129,
+        "y": 449.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3517",
+      "name": "3",
+      "characters": "3",
+      "relative_bounds": {
+        "x": 177,
+        "y": 449.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3520",
+      "name": "4",
+      "characters": "4",
+      "relative_bounds": {
+        "x": 225,
+        "y": 449.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3523",
+      "name": "5",
+      "characters": "5",
+      "relative_bounds": {
+        "x": 273,
+        "y": 449.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3525",
+      "name": "Точечный результат",
+      "characters": "Точечный результат",
+      "relative_bounds": {
+        "x": 64,
+        "y": 529.5,
+        "width": 306,
+        "height": 38
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3526",
+      "name": "В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.",
+      "characters": "В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию \nот таких совпадений.",
+      "relative_bounds": {
+        "x": 64,
+        "y": 579.5,
+        "width": 682,
+        "height": 115
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3528",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3529",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3530",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3531",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3532",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3533",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:3336": [
+    {
+      "id": "39:3342",
+      "name": "1",
+      "characters": "1",
+      "relative_bounds": {
+        "x": 81,
+        "y": 450.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3345",
+      "name": "2",
+      "characters": "2",
+      "relative_bounds": {
+        "x": 129,
+        "y": 450.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3348",
+      "name": "3",
+      "characters": "3",
+      "relative_bounds": {
+        "x": 177,
+        "y": 450.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3351",
+      "name": "4",
+      "characters": "4",
+      "relative_bounds": {
+        "x": 225,
+        "y": 450.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3354",
+      "name": "5",
+      "characters": "5",
+      "relative_bounds": {
+        "x": 273,
+        "y": 450.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3356",
+      "name": "Отчёт и консультация",
+      "characters": "Отчёт и консультация",
+      "relative_bounds": {
+        "x": 64,
+        "y": 530.5,
+        "width": 329,
+        "height": 38
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3357",
+      "name": "Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.",
+      "characters": "Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.",
+      "relative_bounds": {
+        "x": 64,
+        "y": 580.5,
+        "width": 491,
+        "height": 65
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3359",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3360",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3361",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3362",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3363",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3364",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:3168": [
+    {
+      "id": "39:3174",
+      "name": "1",
+      "characters": "1",
+      "relative_bounds": {
+        "x": 81,
+        "y": 474,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3177",
+      "name": "2",
+      "characters": "2",
+      "relative_bounds": {
+        "x": 129,
+        "y": 474,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3180",
+      "name": "3",
+      "characters": "3",
+      "relative_bounds": {
+        "x": 177,
+        "y": 474,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3183",
+      "name": "4",
+      "characters": "4",
+      "relative_bounds": {
+        "x": 225,
+        "y": 474,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3186",
+      "name": "5",
+      "characters": "5",
+      "relative_bounds": {
+        "x": 273,
+        "y": 474,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3188",
+      "name": "Без диет и отмены лекарств",
+      "characters": "Без диет и отмены лекарств",
+      "relative_bounds": {
+        "x": 64,
+        "y": 554,
+        "width": 430,
+        "height": 38
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3189",
+      "name": "Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.",
+      "characters": "Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи. ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 604,
+        "width": 679,
+        "height": 65
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3191",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3192",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3193",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3194",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3195",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:3196",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:1215": [
+    {
+      "id": "39:1221",
+      "name": "1",
+      "characters": "1",
+      "relative_bounds": {
+        "x": 78.5,
+        "y": 451,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1224",
+      "name": "2",
+      "characters": "2",
+      "relative_bounds": {
+        "x": 126.5,
+        "y": 451,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1227",
+      "name": "3",
+      "characters": "3",
+      "relative_bounds": {
+        "x": 174.5,
+        "y": 451,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1230",
+      "name": "4",
+      "characters": "4",
+      "relative_bounds": {
+        "x": 222.5,
+        "y": 451,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1233",
+      "name": "5",
+      "characters": "5",
+      "relative_bounds": {
+        "x": 270.5,
+        "y": 451,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1235",
+      "name": "Подходит детям",
+      "characters": "Подходит детям",
+      "relative_bounds": {
+        "x": 61.5,
+        "y": 531,
+        "width": 246,
+        "height": 38
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1236",
+      "name": "Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови",
+      "characters": "Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови",
+      "relative_bounds": {
+        "x": 61.5,
+        "y": 581,
+        "width": 434,
+        "height": 40
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1238",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1239",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1240",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1241",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1242",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1243",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:1552": [
+    {
+      "id": "39:1554",
+      "name": "Что вы получите по итогам теста на аллергию",
+      "characters": "Что вы получите \nпо итогам теста на аллергию",
+      "relative_bounds": {
+        "x": 53,
+        "y": 509,
+        "width": 405,
+        "height": 147
+      },
+      "fontSize": 42,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1556",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1557",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1558",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1559",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1560",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1561",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:1383": [
+    {
+      "id": "39:1389",
+      "name": "1",
+      "characters": "1",
+      "relative_bounds": {
+        "x": 81,
+        "y": 846,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1392",
+      "name": "2",
+      "characters": "2",
+      "relative_bounds": {
+        "x": 129,
+        "y": 846,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1395",
+      "name": "3",
+      "characters": "3",
+      "relative_bounds": {
+        "x": 177,
+        "y": 846,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1397",
+      "name": "Аллерго-паспорт",
+      "characters": "Аллерго-паспорт",
+      "relative_bounds": {
+        "x": 64,
+        "y": 926,
+        "width": 491,
+        "height": 38
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1398",
+      "name": "Список из 300 аллергенов, которые будут разделены по группам и уровням опасности",
+      "characters": "Список из 300 аллергенов, которые будут разделены по группам и уровням опасности",
+      "relative_bounds": {
+        "x": 64,
+        "y": 976,
+        "width": 491,
+        "height": 40
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1400",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1401",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1402",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1403",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1404",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1405",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:1701": [
+    {
+      "id": "39:1707",
+      "name": "1",
+      "characters": "1",
+      "relative_bounds": {
+        "x": 81,
+        "y": 846,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1710",
+      "name": "2",
+      "characters": "2",
+      "relative_bounds": {
+        "x": 129,
+        "y": 846,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1713",
+      "name": "3",
+      "characters": "3",
+      "relative_bounds": {
+        "x": 177,
+        "y": 846,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1715",
+      "name": "Рекомендации по аллергенам",
+      "characters": "Рекомендации по аллергенам",
+      "relative_bounds": {
+        "x": 64,
+        "y": 926,
+        "width": 456,
+        "height": 38
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1716",
+      "name": "Список из 300 аллергенов, которые будут разделены по группам и уровням опасности",
+      "characters": "Список из 300 аллергенов, которые будут разделены по группам и уровням опасности",
+      "relative_bounds": {
+        "x": 64,
+        "y": 976,
+        "width": 491,
+        "height": 40
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1718",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1719",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1720",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1721",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1722",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1723",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:1863": [
+    {
+      "id": "39:1869",
+      "name": "1",
+      "characters": "1",
+      "relative_bounds": {
+        "x": 81,
+        "y": 845.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1872",
+      "name": "2",
+      "characters": "2",
+      "relative_bounds": {
+        "x": 129,
+        "y": 845.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1875",
+      "name": "3",
+      "characters": "3",
+      "relative_bounds": {
+        "x": 177,
+        "y": 845.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1878",
+      "name": "Консультация",
+      "characters": "Консультация",
+      "relative_bounds": {
+        "x": 64,
+        "y": 925.5,
+        "width": 211,
+        "height": 38
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1880",
+      "name": "Опционально",
+      "characters": "Опционально",
+      "relative_bounds": {
+        "x": 303,
+        "y": 938.0,
+        "width": 116,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1881",
+      "name": "Список из 300 аллергенов, которые будут разделены по группам и уровням опасности",
+      "characters": "Список из 300 аллергенов, которые будут разделены по группам и уровням опасности",
+      "relative_bounds": {
+        "x": 64,
+        "y": 975.5,
+        "width": 491,
+        "height": 40
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1883",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1884",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1885",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1886",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1887",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:1888",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:232": [
+    {
+      "id": "39:235",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 53,
+        "y": 512,
+        "width": 308,
+        "height": 49
+      },
+      "fontSize": 42,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:237",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:238",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:239",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:240",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:241",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:242",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:118": [
+    {
+      "id": "39:123",
+      "name": "Миша",
+      "characters": "Миша",
+      "relative_bounds": {
+        "x": 80,
+        "y": 553,
+        "width": 51,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:125",
+      "name": "Александра",
+      "characters": "Александра",
+      "relative_bounds": {
+        "x": 167,
+        "y": 553,
+        "width": 102,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:127",
+      "name": "Паша",
+      "characters": "Паша",
+      "relative_bounds": {
+        "x": 305,
+        "y": 553,
+        "width": 48,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:131",
+      "name": "После теста ALEX2",
+      "characters": "После теста ALEX2",
+      "relative_bounds": {
+        "x": 64,
+        "y": 630,
+        "width": 512,
+        "height": 49
+      },
+      "fontSize": 42,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:135",
+      "name": "Точно знает, на что аллергия",
+      "characters": "Точно знает, на что аллергия",
+      "relative_bounds": {
+        "x": 74,
+        "y": 703,
+        "width": 288,
+        "height": 15
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:138",
+      "name": "Знает, где в какие конкретно недели пик цветения",
+      "characters": "Знает, где в какие конкретно недели пик цветения",
+      "relative_bounds": {
+        "x": 74,
+        "y": 734,
+        "width": 502,
+        "height": 15
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:141",
+      "name": "Пьёт конкретные таблетки",
+      "characters": "Пьёт конкретные таблетки",
+      "relative_bounds": {
+        "x": 74,
+        "y": 765,
+        "width": 267,
+        "height": 15
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:143",
+      "name": "До",
+      "characters": "До",
+      "relative_bounds": {
+        "x": 64,
+        "y": 828,
+        "width": 458,
+        "height": 38
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:147",
+      "name": "Неуверенность в аллергии, вроде есть, а вроде и нет",
+      "characters": "Неуверенность в аллергии, вроде есть, а вроде и нет",
+      "relative_bounds": {
+        "x": 74,
+        "y": 887,
+        "width": 448,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:150",
+      "name": "Боится выходить из дома",
+      "characters": "Боится выходить из дома",
+      "relative_bounds": {
+        "x": 74,
+        "y": 912,
+        "width": 219,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:153",
+      "name": "При аллергии просто замирает в страхе",
+      "characters": "При аллергии просто замирает в страхе",
+      "relative_bounds": {
+        "x": 74,
+        "y": 937,
+        "width": 341,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:157",
+      "name": "Читать подробнее",
+      "characters": "Читать подробнее",
+      "relative_bounds": {
+        "x": 64,
+        "y": 1025.5,
+        "width": 206,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:162",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:163",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:164",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:165",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:166",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:167",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:383": [
+    {
+      "id": "39:389",
+      "name": "Миша",
+      "characters": "Миша",
+      "relative_bounds": {
+        "x": 80,
+        "y": 553,
+        "width": 51,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:391",
+      "name": "Александра",
+      "characters": "Александра",
+      "relative_bounds": {
+        "x": 167,
+        "y": 553,
+        "width": 102,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:393",
+      "name": "Паша",
+      "characters": "Паша",
+      "relative_bounds": {
+        "x": 305,
+        "y": 553,
+        "width": 48,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:397",
+      "name": "После теста ALEX2",
+      "characters": "После теста ALEX2",
+      "relative_bounds": {
+        "x": 64,
+        "y": 630,
+        "width": 512,
+        "height": 49
+      },
+      "fontSize": 42,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:401",
+      "name": "Точно знает, на что аллергия",
+      "characters": "Точно знает, на что аллергия",
+      "relative_bounds": {
+        "x": 74,
+        "y": 703,
+        "width": 288,
+        "height": 15
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:404",
+      "name": "Знает, где в какие конкретно недели пик цветения",
+      "characters": "Знает, где в какие конкретно недели пик цветения",
+      "relative_bounds": {
+        "x": 74,
+        "y": 734,
+        "width": 502,
+        "height": 15
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:407",
+      "name": "Пьёт конкретные таблетки",
+      "characters": "Пьёт конкретные таблетки",
+      "relative_bounds": {
+        "x": 74,
+        "y": 765,
+        "width": 267,
+        "height": 15
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:409",
+      "name": "До",
+      "characters": "До",
+      "relative_bounds": {
+        "x": 64,
+        "y": 828,
+        "width": 458,
+        "height": 38
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:413",
+      "name": "Неуверенность в аллергии, вроде есть, а вроде и нет",
+      "characters": "Неуверенность в аллергии, вроде есть, а вроде и нет",
+      "relative_bounds": {
+        "x": 74,
+        "y": 887,
+        "width": 448,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:416",
+      "name": "Боится выходить из дома",
+      "characters": "Боится выходить из дома",
+      "relative_bounds": {
+        "x": 74,
+        "y": 912,
+        "width": 219,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:419",
+      "name": "При аллергии просто замирает в страхе",
+      "characters": "При аллергии просто замирает в страхе",
+      "relative_bounds": {
+        "x": 74,
+        "y": 937,
+        "width": 341,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:423",
+      "name": "Читать подробнее",
+      "characters": "Читать подробнее",
+      "relative_bounds": {
+        "x": 64,
+        "y": 1025.5,
+        "width": 206,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:428",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:429",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:430",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:431",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:432",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:433",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:710": [
+    {
+      "id": "39:715",
+      "name": "Миша",
+      "characters": "Миша",
+      "relative_bounds": {
+        "x": 80,
+        "y": 553,
+        "width": 51,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:717",
+      "name": "Александра",
+      "characters": "Александра",
+      "relative_bounds": {
+        "x": 167,
+        "y": 553,
+        "width": 102,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:719",
+      "name": "Паша",
+      "characters": "Паша",
+      "relative_bounds": {
+        "x": 305,
+        "y": 553,
+        "width": 48,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:723",
+      "name": "После теста ALEX2",
+      "characters": "После теста ALEX2",
+      "relative_bounds": {
+        "x": 64,
+        "y": 630,
+        "width": 512,
+        "height": 49
+      },
+      "fontSize": 42,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:727",
+      "name": "Точно знает, на что аллергия",
+      "characters": "Точно знает, на что аллергия",
+      "relative_bounds": {
+        "x": 74,
+        "y": 703,
+        "width": 288,
+        "height": 15
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:730",
+      "name": "Знает, где в какие конкретно недели пик цветения",
+      "characters": "Знает, где в какие конкретно недели пик цветения",
+      "relative_bounds": {
+        "x": 74,
+        "y": 734,
+        "width": 502,
+        "height": 15
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:733",
+      "name": "Пьёт конкретные таблетки",
+      "characters": "Пьёт конкретные таблетки",
+      "relative_bounds": {
+        "x": 74,
+        "y": 765,
+        "width": 267,
+        "height": 15
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:735",
+      "name": "До",
+      "characters": "До",
+      "relative_bounds": {
+        "x": 64,
+        "y": 828,
+        "width": 458,
+        "height": 38
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:739",
+      "name": "Неуверенность в аллергии, вроде есть, а вроде и нет",
+      "characters": "Неуверенность в аллергии, вроде есть, а вроде и нет",
+      "relative_bounds": {
+        "x": 74,
+        "y": 887,
+        "width": 448,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:742",
+      "name": "Боится выходить из дома",
+      "characters": "Боится выходить из дома",
+      "relative_bounds": {
+        "x": 74,
+        "y": 912,
+        "width": 219,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:745",
+      "name": "При аллергии просто замирает в страхе",
+      "characters": "При аллергии просто замирает в страхе",
+      "relative_bounds": {
+        "x": 74,
+        "y": 937,
+        "width": 341,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:749",
+      "name": "Читать подробнее",
+      "characters": "Читать подробнее",
+      "relative_bounds": {
+        "x": 64,
+        "y": 1025.5,
+        "width": 206,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:754",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:755",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:756",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:757",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:758",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:759",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:2029": [
+    {
+      "id": "39:2033",
+      "name": "Это больно?",
+      "characters": "Это больно?",
+      "relative_bounds": {
+        "x": 64,
+        "y": 706.5,
+        "width": 140,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2037",
+      "name": "Сколько аллергенов в тесте?",
+      "characters": "Сколько аллергенов в тесте?",
+      "relative_bounds": {
+        "x": 64,
+        "y": 762.5,
+        "width": 329,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2042",
+      "name": "Через сколько будет результат?",
+      "characters": "Через сколько будет результат?",
+      "relative_bounds": {
+        "x": 64,
+        "y": 818.5000009536743,
+        "width": 363,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2045",
+      "name": "Готовность — через 4–7 рабочих дней.",
+      "characters": "Готовность — через 4–7 рабочих дней.",
+      "relative_bounds": {
+        "x": 64,
+        "y": 851,
+        "width": 718,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2047",
+      "name": "У вас есть сертификаты?",
+      "characters": "У вас есть сертификаты?",
+      "relative_bounds": {
+        "x": 64,
+        "y": 899.5,
+        "width": 285,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2053",
+      "name": "Все вопросы",
+      "characters": "Все вопросы",
+      "relative_bounds": {
+        "x": 64,
+        "y": 995.5,
+        "width": 146,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2058",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2059",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2060",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2061",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2062",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2063",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:2204": [
+    {
+      "id": "39:2206",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 328,
+        "width": 1115,
+        "height": 49
+      },
+      "fontSize": 42,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2215",
+      "name": "~16 минут",
+      "characters": "~16 минут",
+      "relative_bounds": {
+        "x": 92,
+        "y": 422,
+        "width": 79,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2217",
+      "name": "Наука",
+      "characters": "Наука",
+      "relative_bounds": {
+        "x": 199,
+        "y": 422,
+        "width": 45,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2222",
+      "name": "Александра Ковальчук",
+      "characters": "Александра Ковальчук",
+      "relative_bounds": {
+        "x": 124,
+        "y": 762,
+        "width": 196,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2223",
+      "name": "Профессор МГУ",
+      "characters": "Профессор МГУ",
+      "relative_bounds": {
+        "x": 124,
+        "y": 781,
+        "width": 122,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2225",
+      "name": "Cursor представила модель Composer 2.5 — в тестах она сопоставима c Opus 4.7 и GPT-5.5, но стоит примерно в 10 раз дешевле Как сдать тест: подготовка и процесс",
+      "characters": "Cursor представила модель Composer 2.5 — в тестах она сопоставима c Opus 4.7 и GPT-5.5, но стоит примерно в 10 раз дешевле Как сдать тест: подготовка и процесс",
+      "relative_bounds": {
+        "x": 64,
+        "y": 829,
+        "width": 552,
+        "height": 90
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2231",
+      "name": "~16 минут",
+      "characters": "~16 минут",
+      "relative_bounds": {
+        "x": 656,
+        "y": 422,
+        "width": 79,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2233",
+      "name": "Наука",
+      "characters": "Наука",
+      "relative_bounds": {
+        "x": 763,
+        "y": 422,
+        "width": 45,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2238",
+      "name": "Александра Ковальчук",
+      "characters": "Александра Ковальчук",
+      "relative_bounds": {
+        "x": 688,
+        "y": 762,
+        "width": 196,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2239",
+      "name": "Профессор МГУ",
+      "characters": "Профессор МГУ",
+      "relative_bounds": {
+        "x": 688,
+        "y": 781,
+        "width": 122,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2241",
+      "name": "Cursor представила модель Composer 2.5 — в тестах она сопоставима c Opus 4.7 и GPT-5.5, но стоит примерно в 10 раз дешевле ",
+      "characters": "Cursor представила модель Composer 2.5 — в тестах она сопоставима c Opus 4.7 и GPT-5.5, но стоит примерно в 10 раз дешевле ",
+      "relative_bounds": {
+        "x": 628,
+        "y": 829,
+        "width": 552,
+        "height": 65
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2245",
+      "name": "Все материалы",
+      "characters": "Все материалы",
+      "relative_bounds": {
+        "x": 64,
+        "y": 994.5,
+        "width": 174,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2250",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2251",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2252",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2253",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2254",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2255",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:2396": [
+    {
+      "id": "39:2397",
+      "name": "Как сдать тест: подготовка и процесс",
+      "characters": "Как сдать тест: подготовка и процесс",
+      "relative_bounds": {
+        "x": 64,
+        "y": 326,
+        "width": 744,
+        "height": 49
+      },
+      "fontSize": 42,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2399",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2400",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2401",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2402",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2403",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2404",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2410",
+      "name": "1",
+      "characters": "1",
+      "relative_bounds": {
+        "x": 81,
+        "y": 809.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2413",
+      "name": "2",
+      "characters": "2",
+      "relative_bounds": {
+        "x": 129,
+        "y": 809.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2416",
+      "name": "3",
+      "characters": "3",
+      "relative_bounds": {
+        "x": 177,
+        "y": 809.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2418",
+      "name": "Запишитесь на тест через наш сайт",
+      "characters": "Запишитесь на тест через наш сайт",
+      "relative_bounds": {
+        "x": 64,
+        "y": 862.5,
+        "width": 365,
+        "height": 76
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2419",
+      "name": "А если хотите получить дополнительно консультацию бесплатно — выберите сдачу теста в лабораториях ALEX",
+      "characters": "А если хотите получить дополнительно консультацию бесплатно — выберите сдачу теста в лабораториях ALEX",
+      "relative_bounds": {
+        "x": 64,
+        "y": 950.5,
+        "width": 491,
+        "height": 65
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:2561": [
+    {
+      "id": "39:2562",
+      "name": "Как сдать тест: подготовка и процесс",
+      "characters": "Как сдать тест: подготовка и процесс",
+      "relative_bounds": {
+        "x": 64,
+        "y": 326,
+        "width": 744,
+        "height": 49
+      },
+      "fontSize": 42,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2564",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2565",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2566",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2567",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2568",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2569",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2575",
+      "name": "1",
+      "characters": "1",
+      "relative_bounds": {
+        "x": 81.5,
+        "y": 834.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2578",
+      "name": "2",
+      "characters": "2",
+      "relative_bounds": {
+        "x": 129.5,
+        "y": 834.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2581",
+      "name": "3",
+      "characters": "3",
+      "relative_bounds": {
+        "x": 177.5,
+        "y": 834.5,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 0.3199999928474426
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2583",
+      "name": "Сдайте кровь в выбранной лаборатории",
+      "characters": "Сдайте кровь в выбранной лаборатории",
+      "relative_bounds": {
+        "x": 64.5,
+        "y": 887.5,
+        "width": 412,
+        "height": 76
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2584",
+      "name": "Важно: За 4 часа до сдачи крови нужно не кушать. Кровь берут из вены.",
+      "characters": "Важно: За 4 часа до сдачи крови нужно не кушать. Кровь берут из вены.",
+      "relative_bounds": {
+        "x": 64.5,
+        "y": 975.5,
+        "width": 412,
+        "height": 40
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:2726": [
+    {
+      "id": "39:2728",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2729",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2730",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2731",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2732",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2733",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2739",
+      "name": "1",
+      "characters": "1",
+      "relative_bounds": {
+        "x": 81,
+        "y": 810,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2742",
+      "name": "2",
+      "characters": "2",
+      "relative_bounds": {
+        "x": 129,
+        "y": 810,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2745",
+      "name": "3",
+      "characters": "3",
+      "relative_bounds": {
+        "x": 177,
+        "y": 810,
+        "width": 14,
+        "height": 17
+      },
+      "fontSize": 24,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2747",
+      "name": "Отслеживайте результат в личном кабинете и на электронной почте",
+      "characters": "Отслеживайте результат \nв личном кабинете и на электронной почте",
+      "relative_bounds": {
+        "x": 64,
+        "y": 863,
+        "width": 698,
+        "height": 76
+      },
+      "fontSize": 32,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2748",
+      "name": "В личном кабинете показываем статусы — туда же придёт результат. Дополнительно всё дублируем на почту",
+      "characters": "В личном кабинете показываем статусы — туда же придёт результат. Дополнительно всё дублируем на почту",
+      "relative_bounds": {
+        "x": 64,
+        "y": 951,
+        "width": 415,
+        "height": 65
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2749",
+      "name": "Как сдать тест: подготовка и процесс",
+      "characters": "Как сдать тест: подготовка и процесс",
+      "relative_bounds": {
+        "x": 64,
+        "y": 326,
+        "width": 744,
+        "height": 49
+      },
+      "fontSize": 42,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ],
+  "39:2891": [
+    {
+      "id": "39:2893",
+      "name": "Преимущества",
+      "characters": "Преимущества",
+      "relative_bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 128,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2894",
+      "name": "Истории людей",
+      "characters": "Истории людей",
+      "relative_bounds": {
+        "x": 64,
+        "y": 93,
+        "width": 132,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2895",
+      "name": "О результатах",
+      "characters": "О результатах",
+      "relative_bounds": {
+        "x": 64,
+        "y": 122,
+        "width": 119,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2896",
+      "name": "FAQ",
+      "characters": "FAQ",
+      "relative_bounds": {
+        "x": 64,
+        "y": 151,
+        "width": 33,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2897",
+      "name": "Блог про аллергию",
+      "characters": "Блог про аллергию",
+      "relative_bounds": {
+        "x": 64,
+        "y": 180,
+        "width": 163,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2898",
+      "name": "Как сдать тест",
+      "characters": "Как сдать тест",
+      "relative_bounds": {
+        "x": 64,
+        "y": 209,
+        "width": 124,
+        "height": 13
+      },
+      "fontSize": 18,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2902",
+      "name": "Тест на аллергию ALEX² — один анализ, который даёт ответы",
+      "characters": "Тест на аллергию ALEX² — один анализ, который даёт ответы",
+      "relative_bounds": {
+        "x": 64,
+        "y": 366,
+        "width": 954,
+        "height": 98
+      },
+      "fontSize": 42,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2905",
+      "name": "Записаться на тест на аллергию",
+      "characters": "Записаться на тест на аллергию",
+      "relative_bounds": {
+        "x": 88,
+        "y": 528.5,
+        "width": 321,
+        "height": 15
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#ffffff",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2911",
+      "name": "Контакты",
+      "characters": "Контакты",
+      "relative_bounds": {
+        "x": 64,
+        "y": 640,
+        "width": 97,
+        "height": 15
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2914",
+      "name": "Москва, Пречистенка 30/2",
+      "characters": "Москва, Пречистенка 30/2",
+      "relative_bounds": {
+        "x": 64,
+        "y": 697,
+        "width": 201,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2915",
+      "name": "+7 495 507-64-85",
+      "characters": "+7 495 507-64-85",
+      "relative_bounds": {
+        "x": 64,
+        "y": 724,
+        "width": 125,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2916",
+      "name": "info@kupitkartinu.ru",
+      "characters": "info@kupitkartinu.ru",
+      "relative_bounds": {
+        "x": 64,
+        "y": 751,
+        "width": 145,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2918",
+      "name": "ИНН: 9703021385",
+      "characters": "ИНН: 9703021385",
+      "relative_bounds": {
+        "x": 64,
+        "y": 791,
+        "width": 116,
+        "height": 16
+      },
+      "fontSize": 14,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2919",
+      "name": "ОГРН: 1207700425602",
+      "characters": "ОГРН: 1207700425602",
+      "relative_bounds": {
+        "x": 64,
+        "y": 815,
+        "width": 146,
+        "height": 16
+      },
+      "fontSize": 14,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2920",
+      "name": "КПП: 770301001",
+      "characters": "КПП: 770301001",
+      "relative_bounds": {
+        "x": 64,
+        "y": 839,
+        "width": 107,
+        "height": 16
+      },
+      "fontSize": 14,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2922",
+      "name": "Навигация по сайту",
+      "characters": "Навигация по сайту",
+      "relative_bounds": {
+        "x": 395,
+        "y": 640,
+        "width": 197,
+        "height": 15
+      },
+      "fontSize": 21,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2925",
+      "name": "Поиск аллергентов",
+      "characters": "Поиск аллергентов",
+      "relative_bounds": {
+        "x": 395,
+        "y": 697,
+        "width": 146,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2926",
+      "name": "Демо-результат",
+      "characters": "Демо-результат",
+      "relative_bounds": {
+        "x": 395,
+        "y": 724,
+        "width": 121,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2927",
+      "name": "КВИЗ: Нужен ли вам тест",
+      "characters": "КВИЗ: Нужен ли вам тест",
+      "relative_bounds": {
+        "x": 395,
+        "y": 751,
+        "width": 190,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2928",
+      "name": "Личный кабинет",
+      "characters": "Личный кабинет",
+      "relative_bounds": {
+        "x": 395,
+        "y": 778,
+        "width": 125,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2929",
+      "name": "О лаборатории ALEXLAB",
+      "characters": "О лаборатории ALEXLAB",
+      "relative_bounds": {
+        "x": 395,
+        "y": 805,
+        "width": 184,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2930",
+      "name": "Блог",
+      "characters": "Блог",
+      "relative_bounds": {
+        "x": 395,
+        "y": 832,
+        "width": 36,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2933",
+      "name": "Политика конфиденциальности",
+      "characters": "Политика конфиденциальности",
+      "relative_bounds": {
+        "x": 64,
+        "y": 974,
+        "width": 325,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    },
+    {
+      "id": "39:2934",
+      "name": "Условия использования материалов сайта",
+      "characters": "Условия использования материалов сайта",
+      "relative_bounds": {
+        "x": 64,
+        "y": 997,
+        "width": 325,
+        "height": 19
+      },
+      "fontSize": 16,
+      "fontWeight": 400,
+      "color_fills": [
+        {
+          "type": "SOLID",
+          "color": "#000000",
+          "opacity": 1
+        }
+      ],
+      "alignment": {
+        "horizontal": "LEFT",
+        "vertical": "TOP"
+      }
+    }
+  ]
+}
