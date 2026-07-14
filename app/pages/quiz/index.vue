@@ -1,102 +1,20 @@
 <template>
-  <div class="page-container">
-    <!-- Left Column: Navigation controls & cards (Sidebar) -->
-    <aside class="sidebar-container">
-      <!-- Promo Banner Card -->
-      <div class="promo-card" id="card-promo">
-        <div class="promo-content">
-          <img src="/assets/banner.svg" alt="Анализ крови" class="promo-banner-img" />
-          <p class="promo-text">
-            Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
-          </p>
-        </div>
-
-        <button class="promo-button" id="btn-register" @click="redirectToCart">
-          <span class="promo-button-text">Записаться на тест на аллергию</span>
-          <div class="promo-button-icon">
-            <img src="/assets/arrow-right-btn.svg" alt="arrow" />
-          </div>
-        </button>
-      </div>
-
-      <!-- Side-by-side cards -->
-      <div class="cards-row">
-        <!-- Search Card -->
-        <div class="sub-card" id="card-search" @click="$router.push('/search')">
-          <div class="card-icon-wrapper">
-            <img src="/assets/search-icon.svg" alt="search" />
-          </div>
-          <div class="card-text-group">
-            <h3 class="card-title">Поиск аллергенов</h3>
-            <p class="card-subtitle">Убедитесь, что тест покажет, что вам нужно</p>
-          </div>
-        </div>
-
-        <!-- Demo Card -->
-        <div class="sub-card" id="card-demo" @click="$router.push('/demo-result')">
-          <div class="card-icon-wrapper">
-            <img src="/assets/doc-icon.svg" alt="doc" />
-          </div>
-          <div class="card-text-group">
-            <h3 class="card-title">Посмотреть демо-результат</h3>
-            <p class="card-subtitle">Объясняем результаты на человеческом языке</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Quiz Card (Active on /quiz) -->
-      <div class="sidebar-row-card active-row-card" id="row-quiz" @click="$router.push('/quiz')">
-        <div class="row-left-content">
-          <span class="tag-badge">~5 минут</span>
-          <span class="row-text">КВИЗ: Нужен ли вам тест на аллергены?</span>
-        </div>
-      </div>
-
-      <!-- Profile Card -->
-      <div class="sidebar-row-card" id="row-profile" @click="redirectToProfile">
-        <div class="row-left-content">
-          <div class="row-icon-icon" style="margin-right: 4px;">
-            <img src="/assets/profile-icon.svg" alt="profile" />
-          </div>
-          <span class="row-text">Личный кабинет</span>
-        </div>
-      </div>
-
-      <!-- About/Bottom Card -->
-      <div class="sidebar-row-card" id="row-about" @click="$router.push('/')">
-        <div class="row-left-content">
-          <span class="row-text">Лаборатория ALEX LAB</span>
-        </div>
-        <div class="row-icon-icon">
-          <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15.9974 29.3307C23.3612 29.3307 29.3307 23.3612 29.3307 15.9974C29.3307 8.6336 23.3612 2.66406 15.9974 2.66406C8.6336 2.66406 2.66406 8.6336 2.66406 15.9974C2.66406 23.3612 8.6336 29.3307 15.9974 29.3307Z" />
-            <path d="M13.3359 10.6641L18.6693 15.9974L13.3359 21.3307" />
-          </svg>
-        </div>
-      </div>
-    </aside>
+  <div class="page-container site-sidebar-layout">
+    <SiteSidebar
+      @register="redirectToCart"
+      @about="$router.push('/')"
+    />
 
     <!-- Right Column: Quiz App -->
     <main class="content-container quiz-page-content">
       <!-- Mobile Top Navigation Bar -->
       <div class="mobile-top-bar">
-        <NuxtLink to="/" class="mobile-back-button" aria-label="Назад">
-          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </NuxtLink>
+        <HomeBackLink />
         <span class="mobile-top-title">Квиз</span>
       </div>
 
       <header class="header-bar desktop-only">
-        <button class="back-home-btn" @click="$router.push('/')">
-          <!-- Back arrow matching Figma -->
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          <span>На главную</span>
-        </button>
+        <HomeBackLink />
       </header>
 
       <div class="card-container">
@@ -309,7 +227,7 @@ const redirectToProfile = () => {
 }
 
 const redirectToCart = () => {
-  window.location.href = 'https://cart-tan.vercel.app'
+  navigateTo('/cart')
 }
 </script>
 

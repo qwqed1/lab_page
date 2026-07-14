@@ -1,42 +1,22 @@
 <template>
   <div class="doctor-page-layout">
-    <!-- Шапка страницы -->
-    <header class="header-nav dashboard-header">
-      <div class="header-logo">ALEX LAB</div>
-    </header>
-
     <main class="doctor-main-content">
       <div class="dashboard-container">
         <!-- Приветствие (42px на десктопе, 32px на мобильном) -->
         <h2 class="welcome-title">Добрый день,<br>Бурмистров Павел Сергеевич!</h2>
 
-        <!-- Основная карточка с промокодом -->
+        <div class="promo-panel">
+        <!-- Основная карточка с QR-кодом -->
         <div class="promo-card">
           <div class="promo-header">
             <span class="usage-count">Использовано 0 раз</span>
           </div>
 
           <div class="promo-body">
-            <!-- ДЕСКТОПНАЯ ВЕРСИЯ: Текстовый промокод и кнопка скопировать (скрывается на мобильных) -->
-            <div class="desktop-promo-wrapper">
-              <div class="code-display-wrapper" @click="copyPromoCode" title="Нажмите, чтобы скопировать">
-                <span class="promo-code">{{ promoCode }}</span>
-                <button class="copy-btn" aria-label="Скопировать промокод">
-                  <!-- Иконка копирования (два квадрата) -->
-                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M11 11H27V27H11V11Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M5 21V5H21" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </button>
-                
-                <!-- Уведомление о копировании -->
-                <span class="copy-tooltip" :class="{ show: showTooltip }">Скопировано!</span>
-              </div>
-            </div>
-
-            <!-- МОБИЛЬНАЯ ВЕРСИЯ: QR-код (скрывается на десктопе) -->
+            <!-- Оригинальный QR-код из Figma (Frame 1:743) -->
             <div class="mobile-qr-wrapper">
               <div class="qr-code-svg-container" @click="copyPromoCode" title="Нажмите, чтобы скопировать промокод">
+                <img class="figma-qr-image" src="/assets/doctor-qr.png" alt="QR-код со скидкой для пациента">
                 <!-- Отрисовка QR-кода на базе SVG согласно Frame 1:743 -->
                 <svg width="154" height="154" viewBox="0 0 154 154" fill="none" xmlns="http://www.w3.org/2000/svg" class="qr-svg">
                   <rect width="154" height="154" fill="white"/>
@@ -115,10 +95,7 @@
           <NuxtLink to="/personal-account/doctor/profile" class="btn-outline dashboard-btn-left">
             <span>Данные аккаунта</span>
             <span class="btn-icon">
-              <!-- Иконка профиля/пользователя -->
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <img src="/assets/account-profile.svg" alt="" width="24" height="24">
             </span>
           </NuxtLink>
 
@@ -126,12 +103,10 @@
           <NuxtLink to="/personal-account/doctor/login" class="btn-outline dashboard-btn-right">
             <span>Выйти из аккаунта</span>
             <span class="btn-icon">
-              <!-- Иконка выхода -->
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <img src="/assets/account-logout.svg" alt="" width="24" height="24">
             </span>
           </NuxtLink>
+        </div>
         </div>
       </div>
     </main>
@@ -180,11 +155,11 @@ const showMechanicInfo = () => {
 }
 
 .doctor-main-content {
-  flex: 1;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 0 20px;
 }
 
 .dashboard-container {
@@ -192,6 +167,12 @@ const showMechanicInfo = () => {
   display: flex;
   flex-direction: column;
   gap: 64px; /* gap 64px по макету */
+}
+
+.promo-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .welcome-title {
@@ -203,17 +184,21 @@ const showMechanicInfo = () => {
 }
 
 .promo-card {
-  background-color: #ffffff;
+  background: #ffffff;
   border: 1px solid #dfdfdf;
   padding: 32px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   gap: 64px; /* gap 64px по макету */
+  height: auto;
+  min-height: 412px;
+  overflow: visible;
 }
 
 .usage-count {
   font-size: 18px;
-  color: #000000;
+  color: rgba(0, 0, 0, 0.5);
   font-weight: 400;
 }
 
@@ -284,7 +269,7 @@ const showMechanicInfo = () => {
 
 .mechanic-link {
   font-size: 18px;
-  color: #000000;
+  color: rgba(0, 0, 0, 0.2);
   text-decoration: underline;
   align-self: flex-start;
 }
@@ -310,9 +295,9 @@ const showMechanicInfo = () => {
 
 /* Мобильный QR-код и стили адаптивности */
 .mobile-qr-wrapper {
-  display: none;
+  display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   position: relative;
 }
@@ -320,8 +305,8 @@ const showMechanicInfo = () => {
 .qr-code-svg-container {
   width: 154px;
   height: 154px;
-  border: 1px solid #dfdfdf;
-  padding: 8px;
+  border: 0;
+  padding: 0;
   background-color: #ffffff;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -333,8 +318,14 @@ const showMechanicInfo = () => {
 }
 
 .qr-svg {
-  width: 100%;
-  height: 100%;
+  display: none;
+}
+
+.figma-qr-image {
+  display: block;
+  width: 154px;
+  height: 154px;
+  object-fit: contain;
 }
 
 .qr-toast {
@@ -359,38 +350,41 @@ const showMechanicInfo = () => {
 
 /* Стили адаптивности под мобильный макет Frame 1:734 */
 @media (max-width: 768px) {
+  .doctor-main-content {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 52px 16px 62px;
+  }
+
   .dashboard-container {
     width: 100%;
-    gap: 32px; /* gap 32px на мобильных */
-    padding: 0 16px;
+    gap: 32px;
+    padding: 0;
   }
   
   .welcome-title {
-    font-size: 32px; /* 32px по мобильному макету */
-    text-align: left; /* Текст выравнивается по левому краю */
+    font-size: 32px;
+    text-align: center;
   }
 
   .promo-card {
-    padding: 32px; /* Внутренний отступ 32px со всех сторон */
-    gap: 64px; /* gap 64px сохраняется */
+    padding: 32px;
+    gap: 56px;
+    min-height: 442px;
   }
 
   .usage-count {
     font-size: 16px; /* 16px на мобильных */
   }
 
-  /* Переключение промокода на QR-код */
-  .desktop-promo-wrapper {
-    display: none;
-  }
-
   .mobile-qr-wrapper {
     display: flex;
-    align-self: flex-start; /* Прижимается к левой стороне по макету */
+    align-self: flex-start;
   }
 
   .promo-desc {
     font-size: 18px;
+    line-height: 1.2;
     max-width: 320px; /* Ширина 320px на мобильных */
   }
 

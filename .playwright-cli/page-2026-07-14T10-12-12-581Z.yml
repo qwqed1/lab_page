@@ -1,0 +1,52 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e3]:
+    - status [ref=f5e136]: Корзина — ALEX LAB
+    - generic [ref=f5e151]:
+      - banner [ref=f5e152]:
+        - button [ref=f5e153] [cursor=pointer]
+      - complementary [ref=f5e158]:
+        - generic [ref=f5e173]:
+          - generic [ref=f5e174]:
+            - generic [ref=f5e175]: Москва
+            - button "Изменить город" [ref=f5e179] [cursor=pointer]
+          - heading "Выберите лабораторию" [level=2] [ref=f5e180]
+          - generic [ref=f5e181]:
+            - heading "Бесплатная консультация в лабораториях ALEX" [level=4] [ref=f5e182]
+            - paragraph [ref=f5e183]: Выберите точку ALEX как место сдачи крови и скидка автоматически появится в корзине
+          - generic [ref=f5e184]:
+            - generic [ref=f5e186] [cursor=pointer]:
+              - generic [ref=f5e187]: "-100% на консультацию"
+              - heading "ALEX, Маршала Бирюзова 9" [level=3] [ref=f5e188]
+              - generic [ref=f5e189]:
+                - generic [ref=f5e190]:
+                  - generic [ref=f5e191]: ПН – ПТ
+                  - generic [ref=f5e192]: 9:00 – 19:00
+                - generic [ref=f5e193]:
+                  - generic [ref=f5e194]: СБ – ВС
+                  - generic [ref=f5e195]: Выходные
+            - generic [ref=f5e197] [cursor=pointer]:
+              - generic [ref=f5e198]: "-100% на консультацию"
+              - heading "ALEX, Ленинградская 4" [level=3] [ref=f5e199]
+              - generic [ref=f5e200]:
+                - generic [ref=f5e201]:
+                  - generic [ref=f5e202]: ПН – ПТ
+                  - generic [ref=f5e203]: 9:00 – 19:00
+                - generic [ref=f5e204]:
+                  - generic [ref=f5e205]: СБ – ВС
+                  - generic [ref=f5e206]: 11:00 – 16:00
+            - generic [ref=f5e208] [cursor=pointer]:
+              - heading "Invitro, Большая морская 55" [level=3] [ref=f5e209]
+              - generic [ref=f5e210]:
+                - generic [ref=f5e211]:
+                  - generic [ref=f5e212]: ПН – ПТ
+                  - generic [ref=f5e213]: 9:00 – 19:00
+                - generic [ref=f5e214]:
+                  - generic [ref=f5e215]: СБ – ВС
+                  - generic [ref=f5e216]: 11:00 – 16:00
+          - button "Выбрать на карте" [ref=f5e217] [cursor=pointer]
+  - generic [ref=f5e137]:
+    - button "Toggle Nuxt DevTools" [ref=f5e138] [cursor=pointer]
+    - generic "Page load time" [ref=f5e142]:
+      - generic [ref=f5e143]: "10"
+      - generic [ref=f5e144]: ms
+    - button "Toggle Component Inspector" [ref=f5e146] [cursor=pointer]

@@ -93,7 +93,9 @@ const handleRecover = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  min-height: calc(100vh - 72px);
+  padding: 0 20px;
+  transform: translateY(-54px);
 }
 
 .recover-card-container {
@@ -101,13 +103,6 @@ const handleRecover = () => {
   display: flex;
   flex-direction: column;
   gap: 48px; /* gap 48px из макета */
-}
-
-@media (max-width: 600px) {
-  .recover-card-container {
-    width: 100%;
-    gap: 40px;
-  }
 }
 
 .title-block {
@@ -136,7 +131,7 @@ const handleRecover = () => {
 .recover-form {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 32px;
 }
 
 .form-inputs-group {
@@ -160,5 +155,33 @@ const handleRecover = () => {
 .form-actions {
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 600px) {
+  .patient-main-content {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 202px 16px 40px;
+    transform: none;
+  }
+
+  .recover-card-container {
+    width: 100%;
+    gap: 48px;
+  }
+
+  .recover-title {
+    font-size: clamp(28px, 7.62vw, 32px);
+    line-height: 38px;
+    white-space: nowrap;
+  }
+
+  .recover-subtitle {
+    line-height: 1.2;
+  }
+
+  .recover-form {
+    gap: 24px;
+  }
 }
 </style>

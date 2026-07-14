@@ -1,0 +1,22 @@
+- generic [ref=f1e3]:
+  - banner [ref=f1e4]:
+    - link "На главную" [ref=f1e5] [cursor=pointer]:
+      - /url: /
+  - main [ref=f1e9]:
+    - generic [ref=f1e10]:
+      - heading "Добро пожаловать!" [level=2] [ref=f1e12]
+      - generic [ref=f1e13]:
+        - generic [ref=f1e14]:
+          - generic [ref=f1e15]:
+            - generic [ref=f1e16]: E-mail
+            - textbox "E-mail" [ref=f1e17]:
+              - /placeholder: max@inmuntex.com
+          - generic [ref=f1e18]:
+            - generic [ref=f1e19]: Пароль
+            - textbox "Пароль" [ref=f1e20]:
+              - /placeholder: "*************"
+        - generic [ref=f1e21]:
+          - button "Войти" [ref=f1e22] [cursor=pointer]
+          - link "Забыли пароль?" [ref=f1e28] [cursor=pointer]:
+            - /url: /personal-account/patient/recover
+        - paragraph [ref=f1e39]: Первичные данные должны прийти на электронную почту, которую вы указали при оформлении заказа. Если что-то пошло не так — напишите нам.

@@ -1,0 +1,92 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e225]:
+    - banner [ref=e226]:
+      - link "Назад" [ref=e227] [cursor=pointer]:
+        - /url: /
+    - generic [ref=e233]:
+      - main [ref=e234]:
+        - generic [ref=e235]:
+          - generic [ref=e236]:
+            - generic [ref=e237]: Добавлено
+            - generic [ref=e243]:
+              - generic [ref=e244]:
+                - heading "Сдача анализа ALEX2" [level=2] [ref=e245]
+                - paragraph [ref=e246]: Мультикомплексный анализ на 300 аллергенов за один забор крови. Включает в себя общий IgE
+                - generic [ref=e247]:
+                  - generic [ref=e248]: + Забор крови
+                  - generic [ref=e249]: +IgE
+              - generic [ref=e250]: 24 900₽
+          - generic [ref=e251]:
+            - generic [ref=e252] [cursor=pointer]: Добавить
+            - generic [ref=e258]:
+              - generic [ref=e259]:
+                - heading "Консультация" [level=2] [ref=e260]
+                - paragraph [ref=e261]: Онлайн-разбор результатов с профессиональными врачами
+                - generic [ref=e262]: Скидка 99% в лаборатории ALEX
+              - generic [ref=e267]: 2 000₽
+          - generic [ref=e268]:
+            - generic [ref=e269] [cursor=pointer]: Добавить
+            - generic [ref=e275]:
+              - generic [ref=e276]:
+                - heading "Срочный результат" [level=2] [ref=e277]
+                - paragraph [ref=e278]: Отправим за 24 часа
+              - generic [ref=e279]: 5 000₽
+        - generic [ref=e280]:
+          - heading "Место сдачи анализа" [level=2] [ref=e281]
+          - generic [ref=e283]:
+            - generic [ref=e284]: Выберите город
+            - generic [ref=e285] [cursor=pointer]: Выберите из списка
+        - generic [ref=e291]:
+          - heading "Личные данные" [level=2] [ref=e292]
+          - generic [ref=e293]:
+            - generic [ref=e294]:
+              - generic [ref=e295]:
+                - generic [ref=e296]: ФИО
+                - textbox "Иванов Иван Иванович" [ref=e297]
+              - generic [ref=e298]:
+                - generic [ref=e299]: Дата рождения
+                - textbox "11.06.2006" [ref=e300]
+            - generic [ref=e301]:
+              - generic [ref=e302]: Номер телефона
+              - textbox "+7 999 999 99 99" [ref=e303]: +7 938 910 92 22
+            - generic [ref=e304]:
+              - generic [ref=e305]: E-mail
+              - textbox "max@inmuntex.com" [ref=e306]: hi@mail.com
+              - generic [ref=e307]: На указанную почту придут данные от личного кабинета.В нём можно онлайн отслеживать результаты.
+      - complementary [ref=e312]:
+        - generic [ref=e313]:
+          - heading "Место" [level=3] [ref=e314]
+          - paragraph [ref=e316]: Не выбрано
+        - generic [ref=e317]:
+          - heading "Время на результат" [level=3] [ref=e318]
+          - paragraph [ref=e319]: 3 дня
+        - generic [ref=e320]:
+          - heading "Комплектация" [level=3] [ref=e321]
+          - generic [ref=e322]:
+            - generic [ref=e323]:
+              - generic [ref=e324]: ALEX2
+              - generic [ref=e325]: 24 900₽
+            - generic [ref=e326]:
+              - generic [ref=e327]: Забор крови
+              - generic [ref=e328]: 0₽
+            - generic [ref=e329]:
+              - generic [ref=e330]: Общий IgE
+              - generic [ref=e331]: 0₽
+        - generic [ref=e332]:
+          - textbox "Введите промокод" [ref=e334]
+          - button [ref=e335] [cursor=pointer]
+        - generic [ref=e339]:
+          - generic [ref=e340]:
+            - generic [ref=e341]:
+              - generic [ref=e342]: Итого к оплате
+              - generic [ref=e343]: 24 900₽
+            - generic [ref=e344] [cursor=pointer]:
+              - checkbox "Я даю согласие на передачу моих персональных данных с целью осуществления доставки (возврата) товара третьим лицам" [ref=e345]
+              - generic [ref=e346]: Я даю согласие на передачу моих персональных данных с целью осуществления доставки (возврата) товара третьим лицам
+          - button "Продолжить" [disabled] [ref=e348]
+  - generic [ref=e45]:
+    - button "Toggle Nuxt DevTools" [ref=e46] [cursor=pointer]
+    - generic "Page load time" [ref=e50]:
+      - generic [ref=e51]: "9"
+      - generic [ref=e52]: ms
+    - button "Toggle Component Inspector" [ref=e54] [cursor=pointer]

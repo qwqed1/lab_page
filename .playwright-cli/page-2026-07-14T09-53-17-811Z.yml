@@ -1,0 +1,102 @@
+- generic [ref=e5]:
+  - banner [ref=e6]:
+    - link [ref=e7] [cursor=pointer]:
+      - /url: /
+  - generic [ref=e12]:
+    - main [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e16]: Добавлено
+          - generic [ref=e22]:
+            - generic [ref=e23]:
+              - heading "Сдача анализа ALEX2" [level=2] [ref=e24]
+              - paragraph [ref=e25]: Мультикомплексный анализ на 300 аллергеновза один забор крови. Включает в себя общий IgE
+              - generic [ref=e26]:
+                - generic [ref=e27]: + Забор крови
+                - generic [ref=e28]: +IgE
+            - generic [ref=e29]: 24 900₽
+        - generic [ref=e30]:
+          - generic [ref=e31] [cursor=pointer]: Добавить
+          - generic [ref=e37]:
+            - generic [ref=e38]:
+              - heading "Консультация" [level=2] [ref=e39]
+              - paragraph [ref=e40]: Онлайн-разбор результатов с профессиональными врачами
+              - generic [ref=e41]: Скидка 99% в лаборатории ALEX
+            - generic [ref=e46]: 2 000₽
+        - generic [ref=e47]:
+          - generic [ref=e48] [cursor=pointer]: Добавить
+          - generic [ref=e54]:
+            - generic [ref=e55]:
+              - heading "Срочный результат" [level=2] [ref=e56]
+              - paragraph [ref=e57]: Отправим за 24 часа
+            - generic [ref=e58]: 5 000₽
+      - generic [ref=e59]:
+        - heading "Место сдачи анализа" [level=2] [ref=e60]
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - generic [ref=e64]: "-100% на консультацию"
+            - paragraph [ref=e65]: ALEX, Москва, Маршала Бирюзова 9
+            - generic [ref=e66]:
+              - generic [ref=e67]: ПН – ПТ
+              - generic [ref=e68]: 9:00 – 19:00
+            - generic [ref=e69]:
+              - generic [ref=e70]: СБ – ВС
+              - generic [ref=e71]: Выходные
+          - button "Изменить" [ref=e72] [cursor=pointer]
+      - generic [ref=e76]:
+        - heading "Личные данные" [level=2] [ref=e77]
+        - generic [ref=e78]:
+          - generic [ref=e79]:
+            - generic [ref=e80]:
+              - generic [ref=e81]: ФИО
+              - textbox "Иванов Иван Иванович" [ref=e82]
+            - generic [ref=e83]:
+              - generic [ref=e84]: Дата рождения
+              - textbox "11.06.2006" [ref=e85]
+          - generic [ref=e86]:
+            - generic [ref=e87]: Номер телефона
+            - textbox "+7 999 999 99 99" [ref=e88]: +7 938 910 92 22
+          - generic [ref=e89]:
+            - generic [ref=e90]: E-mail
+            - textbox "max@inmuntex.com" [ref=e91]: hi@mail.com
+            - generic [ref=e92]: На указанную почту придут данные от личного кабинета.В нём можно онлайн отслеживать результаты.
+    - complementary [ref=e97]:
+      - generic [ref=e98]:
+        - heading "Место" [level=3] [ref=e99]
+        - generic [ref=e100]:
+          - generic [ref=e101]: "-100% на консультацию"
+          - paragraph [ref=e102]: ALEX, Москва, Маршала Бирюзова 9
+          - generic [ref=e103]:
+            - generic [ref=e104]:
+              - generic [ref=e105]: ПН – ПТ
+              - generic [ref=e106]: 9:00 – 19:00
+            - generic [ref=e107]:
+              - generic [ref=e108]: СБ – ВС
+              - generic [ref=e109]: Выходные
+      - generic [ref=e110]:
+        - heading "Время на результат" [level=3] [ref=e111]
+        - paragraph [ref=e112]: 3 дня
+      - generic [ref=e113]:
+        - heading "Комплектация" [level=3] [ref=e114]
+        - generic [ref=e115]:
+          - generic [ref=e116]:
+            - generic [ref=e117]: ALEX2
+            - generic [ref=e118]: 24 900₽
+          - generic [ref=e119]:
+            - generic [ref=e120]: Забор крови
+            - generic [ref=e121]: 0₽
+          - generic [ref=e122]:
+            - generic [ref=e123]: Общий IgE
+            - generic [ref=e124]: 0₽
+      - generic [ref=e125]:
+        - textbox "Введите промокод" [ref=e127]
+        - button [ref=e128] [cursor=pointer]
+      - generic [ref=e132]:
+        - generic [ref=e133]:
+          - generic [ref=e134]:
+            - generic [ref=e135]: Итого к оплате
+            - generic [ref=e136]: 24 900₽
+          - generic [ref=e137] [cursor=pointer]:
+            - checkbox "Я даю согласие на передачу моих персональных данных с целью осуществления доставки (возврата) товара третьим лицам" [ref=e138]
+            - generic [ref=e139]: Я даю согласие на передачу моих персональных данных с целью осуществления доставки (возврата) товара третьим лицам
+        - button "Продолжить" [disabled] [ref=e141]

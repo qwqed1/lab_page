@@ -71,47 +71,35 @@ body {
   height: 567px;
   flex-shrink: 0; /* Prevent vertical squishing */
   border-radius: 0; /* Completely square, no rounding */
-  padding: 48px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
   border: none;
-  border-bottom: 1px solid var(--border-color-grey);
-  /* Solid warm green / sage gradient matching screenshot */
-  background: linear-gradient(180deg, #7e8f7c 0%, #97af96 100%);
-  transition: opacity var(--transition-speed) ease;
-}
-
-.promo-card:hover {
-  opacity: 0.98;
+  border-bottom: none;
+  background: linear-gradient(178deg, #a0ae9d 0%, #7b8b7a 100%);
 }
 
 .promo-content {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
 }
 
 .promo-banner-img {
-  width: 100%;
-  max-width: 392px;
+  width: 392px;
+  max-width: 100%;
   height: 142px;
   object-fit: contain;
-  transition: transform 0.5s var(--ease-bounce);
-}
-
-.promo-card:hover .promo-banner-img {
-  transform: scale(1.03);
 }
 
 .promo-text {
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 18.3333px;
   color: var(--text-white);
   font-weight: 400;
   max-width: 444px;
-  opacity: 0.95;
 }
 
 /* Button "Записаться на тест" (Frame 111) */
@@ -123,8 +111,8 @@ body {
   height: 80px;
   padding: 24px;
   background-color: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 10px; /* Small rounding for buttons */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0;
   cursor: pointer;
   transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
@@ -137,7 +125,8 @@ body {
 .promo-button-text {
   color: var(--text-white);
   font-size: 21px;
-  font-weight: 500;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .promo-button-icon {
@@ -146,6 +135,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.promo-button-icon img {
+  width: 32px;
+  height: 32px;
 }
 
 /* Cards Row (Frame 109) */
@@ -166,10 +160,12 @@ body {
   border-bottom: 1px solid var(--border-color-grey);
   border-radius: 0; /* Completely square, no rounding */
   padding: 32px;
+  padding-bottom: 31px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: background-color var(--transition-speed) ease;
+  cursor: pointer;
 }
 
 .sub-card:first-child {
@@ -177,7 +173,7 @@ body {
 }
 
 .sub-card:hover {
-  background-color: #f0f0f0;
+  background-color: #FAFAFA;
 }
 
 .card-icon-wrapper {
@@ -190,6 +186,11 @@ body {
   border-radius: 0;
 }
 
+.card-icon-wrapper img {
+  width: 42px;
+  height: 42px;
+}
+
 .card-text-group {
   display: flex;
   flex-direction: column;
@@ -198,15 +199,20 @@ body {
 
 .card-title {
   font-size: 21px;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--text-black);
-  line-height: 1.3;
+  line-height: 20px;
+}
+
+#card-search .card-title {
+  line-height: 15px;
 }
 
 .card-subtitle {
-  font-size: 16px;
-  color: var(--text-muted);
-  line-height: 1.4;
+  font-size: 18px;
+  color: var(--text-black);
+  opacity: 0.5;
+  line-height: 17px;
   font-weight: 400;
 }
 
@@ -228,7 +234,7 @@ body {
 }
 
 .sidebar-row-card:hover {
-  background-color: #f0f0f0;
+  background-color: #FAFAFA;
 }
 
 .row-left-content {
@@ -239,19 +245,23 @@ body {
 
 /* Quiz badge / Tag */
 .tag-badge {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.07);
   border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 14px;
-  font-weight: 500;
+  width: 103px;
+  height: 37px;
+  padding: 12px;
+  font-size: 18px;
+  line-height: 13px;
+  font-weight: 400;
   color: var(--text-black);
-  letter-spacing: -0.2px;
+  letter-spacing: 0;
 }
 
 .row-text {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 21px;
+  font-weight: 400;
   color: var(--text-black);
+  line-height: normal;
 }
 
 .row-icon-icon {
@@ -260,6 +270,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.row-icon-icon img {
+  width: 24px;
+  height: 24px;
 }
 
 
@@ -938,12 +953,37 @@ body {
 }
 
 .figma-smoke-cloud-fixed.results-cloud {
-  width: 600px !important;
-  height: 550px !important;
-  left: -150px !important;
-  top: 350px !important;
-  filter: blur(80px) !important;
-  -webkit-filter: blur(80px) !important;
+  left: -21.88% !important;
+  top: 61.39% !important;
+  width: 88.09% !important;
+  height: 38.61% !important;
+  border-radius: 0;
+  background-color: transparent;
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  filter: none !important;
+  -webkit-filter: none !important;
+  -webkit-mask-image: radial-gradient(ellipse 84% 110% at 42% 100%, #000 0%, rgba(0, 0, 0, 0.9) 58%, transparent 100%);
+  mask-image: radial-gradient(ellipse 84% 110% at 42% 100%, #000 0%, rgba(0, 0, 0, 0.9) 58%, transparent 100%);
+}
+
+.figma-smoke-cloud-fixed.results-cloud.visible {
+  opacity: 1;
+  transition-delay: 0.12s;
+}
+
+.figma-smoke-cloud-fixed.results-cloud:not(.visible) {
+  transition-delay: 0s;
+}
+
+.figma-smoke-cloud-fixed.results-cloud-primary {
+  height: 65.37% !important;
+  background-image: url('/assets/figma-results-cloud-primary.svg');
+}
+
+.figma-smoke-cloud-fixed.results-cloud-soft {
+  background-image: url('/assets/figma-results-cloud-soft.svg');
 }
 
 @media (max-width: 1440px) {
@@ -955,12 +995,16 @@ body {
     filter: blur(90px) !important;
   }
   .figma-smoke-cloud-fixed.results-cloud {
-    width: 450px !important;
-    height: 400px !important;
-    left: -100px !important;
-    top: 250px !important;
-    filter: blur(65px) !important;
-    -webkit-filter: blur(65px) !important;
+    left: -21.88% !important;
+    top: 61.39% !important;
+    width: 88.09% !important;
+    height: 38.61% !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+
+  .figma-smoke-cloud-fixed.results-cloud-primary {
+    height: 65.37% !important;
   }
 }
 
@@ -991,7 +1035,7 @@ body {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.12s linear;
   will-change: opacity, transform;
   transform: translateZ(0) scale(1.001);
   backface-visibility: hidden;
@@ -1553,61 +1597,65 @@ body {
 .figma-scroll-icon {
   position: absolute;
   left: 2.09%; /* 26 / 1242 */
-  top: 69.35%; /* 749 / 1080 */
-  width: 102px;
-  height: 114px;
+  top: calc(69.35% - 32px); /* Figma position, raised 32px */
+  width: 128px;
+  height: 142px;
   z-index: 2;
   pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   opacity: 0;
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-height: 850px) {
+  .figma-scroll-icon {
+    top: min(calc(69.35% - 72px), calc(100% - 339px));
+  }
+
+  .figma-hero-title {
+    top: min(calc(69.35% + 97px), calc(100% - 170px)) !important;
+  }
 }
 
 .slide-layer.active .figma-scroll-icon {
   opacity: 1;
 }
 
-/* Smooth floating/bouncing animation for the entire icon */
-.figma-scroll-icon svg {
-  animation: float-icon 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-  width: 100%;
-  height: 100%;
+.scroll-mouse {
+  position: absolute;
+  left: 27px;
+  top: 0;
+  width: 74px;
+  height: 74px;
 }
 
-@keyframes float-icon {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+.scroll-chevron {
+  position: absolute;
+  left: 49px;
+  width: 30px;
+  height: 11px;
 }
 
-/* Cinematic scrolling wave animation for the arrows */
-.figma-scroll-icon .chevron {
-  transform-origin: center;
-}
-
-.figma-scroll-icon .chevron-1 {
+.scroll-chevron-1 {
+  top: 82px;
   animation: chevron-pulse-1 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-.figma-scroll-icon .chevron-2 {
+.scroll-chevron-2 {
+  top: 100px;
   animation: chevron-pulse-2 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-.figma-scroll-icon .chevron-3 {
+.scroll-chevron-3 {
+  top: 118px;
   animation: chevron-pulse-3 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes chevron-pulse-1 {
   0%, 100% {
-    opacity: 0.2;
+    opacity: 1;
   }
   33% {
-    opacity: 1;
+    opacity: 0.2;
   }
   66% {
     opacity: 0.6;
@@ -1619,29 +1667,29 @@ body {
     opacity: 0.6;
   }
   33% {
-    opacity: 0.2;
+    opacity: 1;
   }
   66% {
-    opacity: 1;
+    opacity: 0.2;
   }
 }
 
 @keyframes chevron-pulse-3 {
   0%, 100% {
-    opacity: 1;
+    opacity: 0.2;
   }
   33% {
     opacity: 0.6;
   }
   66% {
-    opacity: 0.2;
+    opacity: 1;
   }
 }
 
 .figma-hero-title {
   position: absolute;
   left: 4.99%;
-  top: 85.00%;
+  top: calc(69.35% + 137px); /* 27px below the raised 128×142 scroll icon */
   width: 76.75%;
   font-size: 42px;
   font-weight: 400;
@@ -1649,6 +1697,36 @@ body {
   line-height: 1.2;
   margin: 0;
   text-align: left;
+}
+
+.figma-doctors-button {
+  position: absolute;
+  top: 0;
+  right: 16px;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 215px;
+  height: 72px;
+  padding: 24px 32px;
+  border: 0;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  font: 400 21px/24px var(--font-family);
+  text-align: left;
+}
+
+.figma-doctors-button:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.figma-doctors-button img {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
 }
 
 .figma-intro-title {
@@ -1737,9 +1815,19 @@ body {
 }
 
 .figma-step-block.results-pos {
-  top: 58.0%; /* Raised from 76.8% to 58.0% to prevent overflow on laptops */
-  width: 491px;
+  top: min(77.315%, calc(100% - 213px));
+  width: min(689px, calc(100% - 10.3%));
   gap: 48px;
+}
+
+.figma-step-block.advantages-pos.text-only {
+  top: calc(40.1% + 86px);
+  gap: 0;
+}
+
+.figma-step-block.results-pos.text-only {
+  top: calc(min(77.315%, calc(100% - 213px)) + 91px);
+  gap: 0;
 }
 
 .figma-step-block.howto-pos {
@@ -1752,6 +1840,35 @@ body {
   display: flex;
   flex-direction: row;
   gap: 10px; /* 10px visual spacing between circle borders */
+}
+
+.persistent-step-indicator {
+  position: absolute;
+  left: 5.15%;
+  z-index: 8;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.persistent-step-indicator--advantages {
+  top: 40.1%;
+}
+
+.persistent-step-indicator--results {
+  top: min(77.315%, calc(100% - 213px));
+}
+
+.persistent-steps-enter-active,
+.persistent-steps-leave-active {
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.persistent-steps-enter-from,
+.persistent-steps-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
 }
 
 .figma-step-circle {
@@ -1767,6 +1884,7 @@ body {
   font-weight: 400;
   color: rgba(0, 0, 0, 0.32);
   box-sizing: border-box;
+  transition: border-color 0.3s ease, color 0.3s ease;
 }
 
 .figma-step-circle.active {
@@ -1799,6 +1917,58 @@ body {
   transition-delay: 0s;
 }
 
+.results-pos .figma-step-text-stack {
+  width: 100%;
+  gap: 12px;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+.figma-result-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  min-height: 38px;
+}
+
+/* The badge belongs to the title row, so it enters at exactly the same time
+   instead of being visible while the title is still animating in. */
+.slide-layer:not(:first-child) .figma-result-title-row {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.slide-layer.active[data-has-video="true"][data-content-ready="true"] .figma-result-title-row {
+  animation: cinematic-fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0s;
+}
+
+.slide-layer.active[data-has-video="false"] .figma-result-title-row {
+  animation: cinematic-fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+.results-pos .figma-result-title-row .figma-slide-title-inline {
+  animation: none !important;
+}
+
+.results-pos .figma-slide-title-inline {
+  flex: 0 1 auto;
+  max-width: 100%;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 38px;
+}
+
+.results-pos .figma-slide-desc-inline {
+  width: min(491px, 100%);
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
 .slide-layer.active .figma-slide-desc-inline {
   opacity: 0.8; /* Fades in when slide is active */
   transition-delay: 0.5s; /* Delay for cinematic sequential entry */
@@ -1821,7 +1991,7 @@ body {
   top: 5.9%; /* y: 64 / 1080 = 5.9% */
   display: flex;
   flex-direction: column;
-  gap: 16px; /* Gap from Figma Frame 270 (16px) */
+  gap: clamp(11px, 1.4815vh, 16px); /* 16px at the 1080px Figma frame */
   z-index: 10;
   transition: opacity 0.5s ease;
   opacity: 0;
@@ -1833,30 +2003,31 @@ body {
   pointer-events: auto;
 }
 
-.figma-menu-indicator {
-  position: absolute;
-  left: -11px; /* 11px to the left of the text list */
-  width: 5px;
-  height: 5px;
-  background-color: #000000;
-  border-radius: 0; /* Square indicator */
-  transition: top 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
 .figma-menu-item {
-  font-size: 18px;
+  position: relative;
+  font-size: clamp(13px, 1.6667vh, 18px);
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   color: #000000;
   opacity: 0.4;
   cursor: pointer;
-  line-height: 13px; /* Exact height of text node from Figma */
+  line-height: clamp(9px, 1.2037vh, 13px); /* 13px at the 1080px Figma frame */
   transition: opacity 0.3s ease;
   user-select: none;
 }
 
 .figma-menu-item.active {
   opacity: 1;
+}
+
+.figma-menu-item.active::before {
+  content: '';
+  position: absolute;
+  left: clamp(-11px, -1.0185vh, -8px);
+  top: clamp(3px, 0.3704vh, 4px);
+  width: clamp(4px, 0.463vh, 5px);
+  height: clamp(4px, 0.463vh, 5px);
+  background: #000;
 }
 
 .figma-menu-item:hover {
@@ -1868,43 +2039,82 @@ body {
 }
 
 .figma-badge {
-  display: inline-block;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 140px;
+  width: 140px;
+  min-width: 0;
+  height: 37px;
+  box-sizing: border-box;
+  background: transparent;
+  border: 2px solid #000000;
   color: #000000;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 4px 12px;
-  border-radius: 20px;
-  margin-left: 12px;
-  vertical-align: middle;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 13px;
+  padding: 0 10px;
+  border-radius: 120px;
+  white-space: nowrap;
 }
 
 /* ==========================================================================
    STORIES SLIDES (MIsha, Alexandra, Pasha)
    ========================================================================== */
 
+.figma-story-body {
+  position: absolute;
+  left: 5.15%;
+  bottom: 98px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(21px, 3.5185vh, 38px);
+  width: 89.7%;
+}
+
+.figma-story-body .figma-story-tabs,
+.figma-story-body .figma-story-content {
+  position: relative;
+  inset: auto;
+  margin-top: 0;
+  width: 100%;
+}
+
 .figma-story-tabs {
   position: absolute;
   left: 5.15%;
-  top: 45.0%;
+  top: min(49.7222%, max(57px, calc(100% - 543px)));
+  margin-top: clamp(16px, 2.5vh, 27px);
   display: flex;
-  gap: 12px;
+  gap: 4px;
   z-index: 2;
 }
 
 .figma-tab-btn {
+  height: 45px;
   background: transparent;
   border: 2px solid #000000;
   border-radius: 120px;
   font-size: 18px;
+  line-height: 13px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   color: #000000;
-  padding: 12px 24px;
+  padding: 0 16px;
   cursor: pointer;
   opacity: 0.32;
   transition: opacity 0.3s ease;
+}
+.figma-tab-btn:nth-child(1) {
+  width: 83px;
+}
+.figma-tab-btn:nth-child(2) {
+  width: 134px;
+}
+.figma-tab-btn:nth-child(3) {
+  width: 80px;
 }
 .figma-tab-btn:hover {
   opacity: 0.7;
@@ -1916,16 +2126,17 @@ body {
 .figma-story-content {
   position: absolute;
   left: 5.15%;
-  top: 56.0%;
-  width: 44%;
+  top: min(calc(58.3333% - 10px), max(150px, calc(100% - 460px)));
+  margin-top: clamp(16px, 2.5vh, 27px);
+  width: 89.7%;
   display: flex;
   flex-direction: column;
   gap: 48px;
   z-index: 2;
 }
-
 .story-block-title {
-  font-size: 42px;
+  font-size: clamp(30px, 3.8889vh, 42px);
+  line-height: clamp(35px, 4.537vh, 49px);
   font-weight: 400;
   color: #000000;
   margin: 0 0 24px;
@@ -1934,9 +2145,10 @@ body {
   color: #000000;
 }
 .story-block-before .story-block-title {
-  font-size: 32px;
+  font-size: clamp(22px, 2.963vh, 32px);
+  line-height: clamp(27px, 3.5185vh, 38px);
   color: rgba(0, 0, 0, 0.5);
-  margin: 0 0 24px;
+  margin: 0 0 21px;
 }
 
 .story-bullets {
@@ -1948,35 +2160,39 @@ body {
   gap: 16px;
 }
 .story-bullets li {
-  font-size: 21px;
+  font-size: clamp(15px, 1.9444vh, 21px);
   color: rgba(0, 0, 0, 0.8);
   position: relative;
-  padding-left: 16px;
-  line-height: 1.3;
+  padding-left: 10px;
+  line-height: clamp(12px, 1.3889vh, 15px);
 }
 .story-bullets li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 10px;
+  top: 5.5px;
   width: 4px;
   height: 4px;
   background: rgba(0, 0, 0, 0.8);
 }
 .story-bullets.gray li::before {
   background: rgba(0, 0, 0, 0.6);
-  top: 9px;
+  top: 4.5px;
 }
 .story-bullets.gray li {
-  font-size: 18px;
+  font-size: clamp(13px, 1.6667vh, 18px);
+  line-height: clamp(10px, 1.2037vh, 13px);
   color: rgba(0, 0, 0, 0.6);
+}
+.story-bullets.gray {
+  gap: 12px;
 }
 
 .figma-story-footer {
   position: absolute;
   left: 5.15%;
-  top: 90.0%;
-  width: 44%;
+  top: min(92.4074%, max(518px, calc(100% - 82px)));
+  width: 89.85%;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -1984,14 +2200,16 @@ body {
 }
 .story-footer-divider {
   width: 100%;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.2);
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: -1px;
 }
 .story-read-more {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 24px;
+  font-size: clamp(19px, 2.2222vh, 24px);
+  line-height: 24px;
   color: #000000;
   cursor: pointer;
   width: fit-content;
@@ -2001,8 +2219,114 @@ body {
   opacity: 0.7;
 }
 .read-more-arrow {
-  color: #000000;
+  display: block;
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
+}
+
+/* The desktop Figma frame is 1080px high. On short, wide browser windows the
+   story deck needs its own vertical layout so it never rises underneath the
+   section menu. */
+@media (max-height: 700px) {
+  .figma-story-tabs {
+    top: max(205px, calc(100% - 410px));
+  }
+
+  .figma-tab-btn {
+    height: 37px;
+    font-size: 16px;
+    line-height: 12px;
+    padding-inline: 12px;
+  }
+
+  .figma-tab-btn:nth-child(1) {
+    width: 76px;
+  }
+
+  .figma-tab-btn:nth-child(2) {
+    width: 124px;
+  }
+
+  .figma-tab-btn:nth-child(3) {
+    width: 72px;
+  }
+
+  .figma-story-content {
+    top: max(242px, calc(100% - 355px));
+    gap: 22px;
+  }
+
+  .story-block-title {
+    margin-bottom: 12px;
+    font-size: 28px;
+    line-height: 33px;
+  }
+
+  .story-block-before .story-block-title {
+    margin-bottom: 10px;
+    font-size: 22px;
+    line-height: 27px;
+  }
+
+  .story-bullets {
+    gap: 8px;
+  }
+
+  .story-bullets li {
+    font-size: 15px;
+    line-height: 12px;
+  }
+
+  .story-bullets li::before {
+    top: 4px;
+  }
+
+  .story-bullets.gray {
+    gap: 6px;
+  }
+
+  .story-bullets.gray li {
+    font-size: 13px;
+    line-height: 10px;
+  }
+
+  .story-bullets.gray li::before {
+    top: 3px;
+  }
+
+  .figma-story-footer {
+    gap: 16px;
+  }
+
+  .story-read-more {
+    font-size: 19px;
+    line-height: 24px;
+  }
+
+  .home-content .figma-faq-list {
+    top: 42%;
+    gap: 12px;
+  }
+
+  .home-content .figma-faq-item {
+    padding: 14px;
+  }
+
+  .home-content .figma-faq-q {
+    margin-bottom: 4px;
+    font-size: 16px;
+  }
+
+  .home-content .figma-faq-a {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+
+  .home-content .figma-faq-all-btn {
+    top: auto;
+    bottom: 32px;
+  }
 }
 
 /* ==========================================================================
@@ -2234,50 +2558,6 @@ body {
     font-size: 13px !important;
   }
   
-  /* Laptop responsive overrides for Stories */
-  .figma-story-tabs {
-    top: 40.0% !important;
-  }
-  .figma-tab-btn {
-    font-size: 14px !important;
-    padding: 8px 16px !important;
-  }
-  .figma-story-content {
-    top: 48.0% !important;
-    gap: 20px !important;
-  }
-  .story-block-title {
-    font-size: 24px !important;
-    margin-bottom: 12px !important;
-  }
-  .story-block-before .story-block-title {
-    font-size: 20px !important;
-    margin-bottom: 12px !important;
-  }
-  .story-bullets {
-    gap: 10px !important;
-  }
-  .story-bullets li {
-    font-size: 15px !important;
-    padding-left: 12px !important;
-  }
-  .story-bullets.gray li {
-    font-size: 14px !important;
-  }
-  .story-bullets li::before {
-    top: 7px !important;
-  }
-  .story-bullets.gray li::before {
-    top: 6px !important;
-  }
-  .figma-story-footer {
-    top: 86.0% !important;
-    gap: 12px !important;
-  }
-  .story-read-more {
-    font-size: 18px !important;
-    gap: 8px !important;
-  }
 }
 
 .figma-contacts-grid {
@@ -2405,6 +2685,7 @@ body {
 .slide-layer:not(:first-child) .figma-story-tabs,
 .slide-layer:not(:first-child) .figma-story-content,
 .slide-layer:not(:first-child) .figma-story-footer,
+.slide-layer:not(:first-child) .figma-category-label,
 .slide-layer:not(:first-child) .faq-wrapper,
 .slide-layer:not(:first-child) .figma-blog-card,
 .slide-layer:not(:first-child) .figma-blog-all-btn,
@@ -2444,45 +2725,40 @@ body {
   }
 }
 
-/* Slide 2: "Почему ALEX2?" special long delay (2.5s) so it appears only at the end of the video */
-.slide-layer.active #slide-2-title {
-  animation: cinematic-fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
-  animation-delay: 2.5s !important;
-}
-
 /* --------------------------------------------------------------------------
-   Animations for ACTIVE slides WITH video (long delay: 1.0s / 1.3s)
+   Video slide content starts only after the active video transition has ended.
    -------------------------------------------------------------------------- */
 
 /* Title & Indicators */
-.slide-layer.active[data-has-video="true"] .figma-slide-title-inline,
-.slide-layer.active[data-has-video="true"] .figma-intro-title,
-.slide-layer.active[data-has-video="true"] .figma-section-title,
-.slide-layer.active[data-has-video="true"] .figma-step-indicator {
+.slide-layer.active[data-has-video="true"][data-content-ready="true"] .figma-slide-title-inline,
+.slide-layer.active[data-has-video="true"][data-content-ready="true"] .figma-intro-title,
+.slide-layer.active[data-has-video="true"][data-content-ready="true"] .figma-section-title,
+.slide-layer.active[data-has-video="true"][data-content-ready="true"] .figma-step-indicator,
+.slide-layer.active[data-has-video="true"][data-content-ready="true"] .figma-category-label {
   animation: cinematic-fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 1.0s;
+  animation-delay: 0s;
 }
 
 /* Description */
-.slide-layer.active[data-has-video="true"] .figma-slide-desc-inline {
+.slide-layer.active[data-has-video="true"][data-content-ready="true"] .figma-slide-desc-inline {
   animation: cinematic-fade-in-up-desc 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 1.3s;
+  animation-delay: 0.15s;
 }
 
 /* Stories Tabs & Bullet content */
-.slide-layer.active[data-has-video="true"] .figma-story-tabs {
+.slide-layer.active[data-has-video="true"][data-content-ready="true"] .figma-story-tabs {
   animation: cinematic-fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 1.0s;
+  animation-delay: 0s;
 }
 
-.slide-layer.active[data-has-video="true"] .figma-story-content {
+.slide-layer.active[data-has-video="true"][data-content-ready="true"] .figma-story-content {
   animation: cinematic-fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 1.3s;
+  animation-delay: 0.15s;
 }
 
-.slide-layer.active[data-has-video="true"] .figma-story-footer {
+.slide-layer.active[data-has-video="true"][data-content-ready="true"] .figma-story-footer {
   animation: cinematic-fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 1.5s;
+  animation-delay: 0.3s;
 }
 
 /* --------------------------------------------------------------------------
@@ -2493,7 +2769,8 @@ body {
 .slide-layer.active[data-has-video="false"] .figma-slide-title-inline,
 .slide-layer.active[data-has-video="false"] .figma-intro-title,
 .slide-layer.active[data-has-video="false"] .figma-section-title,
-.slide-layer.active[data-has-video="false"] .figma-step-indicator {
+.slide-layer.active[data-has-video="false"] .figma-step-indicator,
+.slide-layer.active[data-has-video="false"] .figma-category-label {
   animation: cinematic-fade-in-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.2s;
 }
@@ -2517,4 +2794,224 @@ body {
 .slide-layer.active[data-has-video="false"] .figma-map-element {
   animation: cinematic-fade-in-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.5s;
+}
+
+@keyframes cinematic-fade-out-away {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.975);
+    filter: blur(2px);
+  }
+}
+
+@keyframes cinematic-fade-out-away-desc {
+  from {
+    opacity: 0.8;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.975);
+    filter: blur(2px);
+  }
+}
+
+.slide-layer.content-exiting .figma-slide-title-inline,
+.slide-layer.content-exiting .figma-intro-title,
+.slide-layer.content-exiting .figma-section-title,
+.slide-layer.content-exiting .figma-category-label,
+.slide-layer.content-exiting .figma-story-tabs,
+.slide-layer.content-exiting .figma-story-content,
+.slide-layer.content-exiting .figma-story-footer,
+.slide-layer.content-exiting .faq-wrapper,
+.slide-layer.content-exiting .figma-blog-card,
+.slide-layer.content-exiting .figma-blog-all-btn,
+.slide-layer.content-exiting .figma-contacts-header-group,
+.slide-layer.content-exiting .figma-contacts-grid,
+.slide-layer.content-exiting .figma-map-element {
+  animation: cinematic-fade-out-away 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+  animation-delay: 0s !important;
+}
+
+.slide-layer.content-exiting .figma-slide-desc-inline {
+  animation: cinematic-fade-out-away-desc 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+  animation-delay: 0s !important;
+}
+
+/* Keep the consultation title and its optional badge as one animated unit. */
+.slide-layer.active .results-pos .figma-result-title-row .figma-slide-title-inline {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ==========================================================================
+   SHARED FIGMA SIDEBAR — FLUID DESKTOP / LAPTOP LAYOUT
+   The Figma source is 1920×1080 with a 677px sidebar. These rules preserve
+   those exact dimensions at the reference size and continuously scale the
+   shared component down for common laptop viewports without sidebar scroll.
+   ========================================================================== */
+
+.site-sidebar-layout {
+  width: 100vw;
+  max-width: none;
+}
+
+.home-page-container .home-content {
+  min-width: 0;
+  height: 100dvh;
+  padding: 0 !important;
+}
+
+.home-content .figma-section-title {
+  width: 89.7%;
+}
+
+@media (min-width: 1025px) {
+  .site-sidebar-layout {
+    grid-template-columns: clamp(420px, 35.2604167vw, 677px) minmax(0, 1fr) !important;
+    height: 100dvh;
+  }
+
+  .site-sidebar-layout .site-sidebar {
+    --site-sidebar-pad: clamp(14px, 2.2222vh, 24px);
+    display: grid !important;
+    grid-template-rows: 567fr 297fr 72fr 72fr 72fr;
+    width: 100%;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+    border-right: 0;
+  }
+
+  .site-sidebar .promo-card,
+  .site-sidebar .cards-row,
+  .site-sidebar .sidebar-row-card {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    flex-shrink: 1;
+  }
+
+  .site-sidebar .promo-card {
+    padding: var(--site-sidebar-pad);
+  }
+
+  .site-sidebar .promo-content {
+    min-height: 0;
+    gap: clamp(10px, 1.6667vh, 18px);
+  }
+
+  .site-sidebar .promo-banner-img {
+    width: min(62.32%, 392px);
+    height: clamp(90px, 13.1481vh, 142px);
+    object-position: left top;
+  }
+
+  .site-sidebar .promo-text {
+    max-width: min(100%, 444px);
+    font-size: clamp(15px, 1.6667vh, 18px);
+    line-height: 1.02;
+  }
+
+  .site-sidebar .promo-button {
+    height: clamp(48px, 7.4074vh, 80px);
+    min-height: 0;
+    padding: 0 var(--site-sidebar-pad);
+    gap: 12px;
+  }
+
+  .site-sidebar .promo-button-text {
+    min-width: 0;
+    font-size: clamp(17px, 1.9444vh, 21px);
+    line-height: 1.05;
+    text-align: left;
+  }
+
+  .site-sidebar .promo-button-icon,
+  .site-sidebar .promo-button-icon img {
+    width: clamp(24px, 2.963vh, 32px);
+    height: clamp(24px, 2.963vh, 32px);
+    flex: 0 0 auto;
+  }
+
+  .site-sidebar .cards-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .site-sidebar .sub-card {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: clamp(14px, 2.963vh, 32px);
+  }
+
+  .site-sidebar .card-icon-wrapper,
+  .site-sidebar .card-icon-wrapper img {
+    width: clamp(28px, 3.8889vh, 42px);
+    height: clamp(28px, 3.8889vh, 42px);
+  }
+
+  .site-sidebar .card-text-group {
+    min-width: 0;
+    gap: clamp(7px, 1.1111vh, 12px);
+  }
+
+  .site-sidebar .card-title {
+    font-size: clamp(18px, 1.9444vh, 21px);
+    line-height: clamp(18px, 1.8519vh, 20px);
+  }
+
+  .site-sidebar #card-search .card-title {
+    line-height: 15px;
+  }
+
+  .site-sidebar .card-subtitle {
+    font-size: clamp(15px, 1.6667vh, 18px);
+    line-height: clamp(15px, 1.5741vh, 17px);
+  }
+
+  .site-sidebar .sidebar-row-card {
+    padding: 0 var(--site-sidebar-pad);
+  }
+
+  .site-sidebar .row-left-content {
+    min-width: 0;
+    gap: clamp(8px, 1.1111vh, 12px);
+  }
+
+  .site-sidebar .row-text {
+    min-width: 0;
+    font-size: clamp(18px, 1.9444vh, 21px);
+    line-height: 1.05;
+  }
+
+  .site-sidebar .tag-badge {
+    width: auto;
+    height: clamp(28px, 3.4259vh, 37px);
+    padding: 0 clamp(8px, 1.1111vh, 12px);
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    font-size: clamp(15px, 1.6667vh, 18px);
+    line-height: 1;
+  }
+
+  .site-sidebar .row-icon-icon,
+  .site-sidebar .row-icon-icon img {
+    width: clamp(20px, 2.2222vh, 24px);
+    height: clamp(20px, 2.2222vh, 24px);
+    flex: 0 0 auto;
+  }
+
+  .site-sidebar #row-about {
+    border-bottom: 0;
+  }
 }

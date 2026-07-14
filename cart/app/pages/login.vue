@@ -2,7 +2,7 @@
   <div class="page-layout">
     <!-- Header 72px — точно по макету -->
     <header class="header-nav">
-      <NuxtLink to="/" class="back-link">
+      <NuxtLink :to="cartHome" class="back-link">
         <span class="back-arrow">
           <!-- chevron-left 24x24, stroke #000, strokeWidth 1.5 -->
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +75,7 @@
             </button>
 
             <!-- Кнопка Забыли пароль: 541×72px, bg #fff, border rgba(0,0,0,0.1), text #000, 18px -->
-            <NuxtLink to="/recover" class="btn-secondary">
+            <NuxtLink :to="recoverPath" class="btn-secondary">
               <span>Забыли пароль?</span>
               <span class="btn-icon-wrap">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,9 +111,13 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from '#app'
+import { useRoute, useRouter } from '#app'
 
+const route = useRoute()
 const router = useRouter()
+const isEmbedded = route.path.startsWith('/cart')
+const cartHome = isEmbedded ? '/cart' : '/'
+const recoverPath = isEmbedded ? '/cart/recover' : '/recover'
 const email = ref('')
 const password = ref('')
 const loading = ref(false)
@@ -122,7 +126,7 @@ const handleLogin = async () => {
   loading.value = true
   await new Promise(r => setTimeout(r, 700))
   loading.value = false
-  router.push('/')
+  router.push(cartHome)
 }
 </script>
 
@@ -154,8 +158,9 @@ const handleLogin = async () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Helvetica', Arial, sans-serif;
-  font-size: 17px;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
   font-weight: 400;
   color: #000000;
   text-decoration: none;
@@ -173,6 +178,13 @@ const handleLogin = async () => {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .back-link {
+    gap: 0;
+    font-size: 0;
+  }
 }
 
 /* ─── Main: flex центр ───────────────────────────────── */

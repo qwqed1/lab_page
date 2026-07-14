@@ -1,0 +1,85 @@
+- generic [ref=f7e5]:
+  - banner [ref=f7e6]:
+    - link "Назад" [ref=f7e7] [cursor=pointer]:
+      - /url: /
+  - generic [ref=f7e13]:
+    - main [ref=f7e14]:
+      - generic [ref=f7e15]:
+        - generic [ref=f7e16]:
+          - generic [ref=f7e17]: Добавлено
+          - generic [ref=f7e23]:
+            - generic [ref=f7e24]:
+              - heading "Сдача анализа ALEX2" [level=2] [ref=f7e25]
+              - paragraph [ref=f7e26]: Мультикомплексный анализ на 300 аллергенов за один забор крови. Включает в себя общий IgE
+              - generic [ref=f7e27]:
+                - generic [ref=f7e28]: + Забор крови
+                - generic [ref=f7e29]: +IgE
+            - generic [ref=f7e30]: 24 900₽
+        - generic [ref=f7e31]:
+          - generic [ref=f7e32] [cursor=pointer]: Добавить
+          - generic [ref=f7e38]:
+            - generic [ref=f7e39]:
+              - heading "Консультация" [level=2] [ref=f7e40]
+              - paragraph [ref=f7e41]: Онлайн-разбор результатов с профессиональными врачами
+              - generic [ref=f7e42]: Скидка 99% в лаборатории ALEX
+            - generic [ref=f7e47]: 2 000₽
+        - generic [ref=f7e48]:
+          - generic [ref=f7e49] [cursor=pointer]: Добавить
+          - generic [ref=f7e55]:
+            - generic [ref=f7e56]:
+              - heading "Срочный результат" [level=2] [ref=f7e57]
+              - paragraph [ref=f7e58]: Отправим за 24 часа
+            - generic [ref=f7e59]: 5 000₽
+      - generic [ref=f7e60]:
+        - heading "Место сдачи анализа" [level=2] [ref=f7e61]
+        - generic [ref=f7e63]:
+          - generic [ref=f7e64]: Выберите город
+          - generic [ref=f7e65] [cursor=pointer]: Выберите из списка
+      - generic [ref=f7e71]:
+        - heading "Личные данные" [level=2] [ref=f7e72]
+        - generic [ref=f7e73]:
+          - generic [ref=f7e74]:
+            - generic [ref=f7e75]:
+              - generic [ref=f7e76]: ФИО
+              - textbox "Иванов Иван Иванович" [ref=f7e77]
+            - generic [ref=f7e78]:
+              - generic [ref=f7e79]: Дата рождения
+              - textbox "11.06.2006" [ref=f7e80]
+          - generic [ref=f7e81]:
+            - generic [ref=f7e82]: Номер телефона
+            - textbox "+7 999 999 99 99" [ref=f7e83]: +7 938 910 92 22
+          - generic [ref=f7e84]:
+            - generic [ref=f7e85]: E-mail
+            - textbox "max@inmuntex.com" [ref=f7e86]: hi@mail.com
+            - generic [ref=f7e87]: На указанную почту придут данные от личного кабинета.В нём можно онлайн отслеживать результаты.
+    - complementary [ref=f7e92]:
+      - generic [ref=f7e93]:
+        - heading "Место" [level=3] [ref=f7e94]
+        - paragraph [ref=f7e96]: Не выбрано
+      - generic [ref=f7e97]:
+        - heading "Время на результат" [level=3] [ref=f7e98]
+        - paragraph [ref=f7e99]: 3 дня
+      - generic [ref=f7e100]:
+        - heading "Комплектация" [level=3] [ref=f7e101]
+        - generic [ref=f7e102]:
+          - generic [ref=f7e103]:
+            - generic [ref=f7e104]: ALEX2
+            - generic [ref=f7e105]: 24 900₽
+          - generic [ref=f7e106]:
+            - generic [ref=f7e107]: Забор крови
+            - generic [ref=f7e108]: 0₽
+          - generic [ref=f7e109]:
+            - generic [ref=f7e110]: Общий IgE
+            - generic [ref=f7e111]: 0₽
+      - generic [ref=f7e112]:
+        - textbox "Введите промокод" [ref=f7e114]
+        - button [ref=f7e115] [cursor=pointer]
+      - generic [ref=f7e119]:
+        - generic [ref=f7e120]:
+          - generic [ref=f7e121]:
+            - generic [ref=f7e122]: Итого к оплате
+            - generic [ref=f7e123]: 24 900₽
+          - generic [ref=f7e124] [cursor=pointer]:
+            - checkbox "Я даю согласие на передачу моих персональных данных с целью осуществления доставки (возврата) товара третьим лицам" [ref=f7e125]
+            - generic [ref=f7e126]: Я даю согласие на передачу моих персональных данных с целью осуществления доставки (возврата) товара третьим лицам
+        - button "Продолжить" [disabled] [ref=f7e128]
