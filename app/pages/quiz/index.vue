@@ -8,13 +8,13 @@
     <!-- Right Column: Quiz App -->
     <main class="content-container quiz-page-content">
       <!-- Mobile Top Navigation Bar -->
-      <div class="mobile-top-bar">
-        <HomeBackLink />
+      <div class="mobile-top-bar home-back-area">
+        <HomeBackLink stretched />
         <span class="mobile-top-title">Квиз</span>
       </div>
 
-      <header class="header-bar desktop-only">
-        <HomeBackLink />
+      <header class="header-bar desktop-only home-back-area">
+        <HomeBackLink stretched />
       </header>
 
       <div class="card-container">
@@ -24,9 +24,9 @@
           <div v-if="step === 'intro'" class="quiz-card-wrapper intro-state">
             <div class="glass-card main-card">
               <div class="main-card-inner">
-                <h1 class="card-title">Нужно ли мне сдать тест на аллергию?</h1>
+                <h1 class="card-title">Нужно ли мне сдать<br>тест на аллергию?</h1>
                 <p class="card-subtitle">
-                  Не уверены в том, что тест подойдёт вам? Пройдите тест на ~5 минут и сделайте выбор
+                  Не уверены в том, что тест подойдёт вам?<br>Пройдите тест на ~5 минут и сделайте выбор
                 </p>
               </div>
             </div>

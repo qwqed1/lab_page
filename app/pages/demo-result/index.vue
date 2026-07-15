@@ -123,13 +123,13 @@ const downloadPDF = () => {
     <!-- Right Column: Patient report display -->
     <main class="content-container results-page-content">
       <!-- Mobile Top Navigation Bar (Frame 290) -->
-      <div class="mobile-top-bar">
-        <HomeBackLink />
+      <div class="mobile-top-bar home-back-area">
+        <HomeBackLink stretched />
       </div>
 
       <!-- Back Link (Desktop only) -->
-      <div class="back-link-wrapper desktop-only">
-        <HomeBackLink />
+      <div class="back-link-wrapper desktop-only home-back-area">
+        <HomeBackLink stretched />
       </div>
 
       <!-- Main report structure -->

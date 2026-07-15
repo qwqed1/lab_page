@@ -1,8 +1,15 @@
 <script setup>
-const isVisible = ref(true)
+const cookieConsent = useCookie('alexlab-cookie-consent', {
+  default: () => false,
+  maxAge: 60 * 60 * 24 * 365,
+  sameSite: 'lax',
+  path: '/'
+})
+
+const isVisible = computed(() => cookieConsent.value !== true)
 
 const acceptCookies = () => {
-  isVisible.value = false
+  cookieConsent.value = true
 }
 </script>
 

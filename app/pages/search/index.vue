@@ -141,15 +141,8 @@ const redirectToCart = () => {
     <!-- Правая панель — контент поиска -->
     <main class="search-main">
       <!-- "На главную" ссылка -->
-      <div class="search-back-row">
-        <NuxtLink to="/" class="search-back-btn" aria-label="На главную">
-          <span class="search-back-icon" aria-hidden="true">
-            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </span>
-          <span class="back-text">На главную</span>
-        </NuxtLink>
+      <div class="search-back-row home-back-area">
+        <HomeBackLink stretched />
       </div>
 
       <!-- Центрированный контент -->

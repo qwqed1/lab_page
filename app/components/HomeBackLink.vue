@@ -1,5 +1,19 @@
+<script setup>
+defineProps({
+  stretched: {
+    type: Boolean,
+    default: false
+  }
+})
+</script>
+
 <template>
-  <NuxtLink to="/" class="home-back-link" aria-label="На главную">
+  <NuxtLink
+    to="/"
+    class="home-back-link"
+    :class="{ 'home-back-link--stretched': stretched }"
+    aria-label="На главную"
+  >
     <span class="home-back-link__icon" aria-hidden="true">
       <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -27,6 +41,18 @@
 
 .home-back-link:hover {
   opacity: 0.7;
+}
+
+:global(.home-back-area) {
+  position: relative;
+  cursor: pointer;
+}
+
+.home-back-link--stretched::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
 .home-back-link__icon {

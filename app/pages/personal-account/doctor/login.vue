@@ -1,8 +1,8 @@
 <template>
   <div class="doctor-page-layout">
     <!-- Шапка страницы -->
-    <header class="header-nav">
-      <HomeBackLink />
+    <header class="header-nav home-back-area">
+      <HomeBackLink stretched />
     </header>
 
     <!-- Основной контент (Центрированный блок) -->

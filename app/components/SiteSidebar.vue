@@ -22,6 +22,10 @@ const goTo = (path) => router.push(path)
           :src="sidebarAssets.logo"
           alt="ALEX Allergy Xplorer"
           class="promo-banner-img"
+          width="392"
+          height="142"
+          decoding="sync"
+          fetchpriority="high"
         />
         <p class="promo-text">
           Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
@@ -31,7 +35,7 @@ const goTo = (path) => router.push(path)
       <button id="btn-register" class="promo-button" type="button" @click="emit('register')">
         <span class="promo-button-text">Записаться на тест на аллергию</span>
         <span class="promo-button-icon" aria-hidden="true">
-          <img :src="sidebarAssets.cta" alt="" />
+          <img :src="sidebarAssets.cta" alt="" width="32" height="32" decoding="sync" />
         </span>
       </button>
     </div>
@@ -47,7 +51,7 @@ const goTo = (path) => router.push(path)
         @keydown.space.prevent="goTo('/search')"
       >
         <div class="card-icon-wrapper">
-          <img :src="sidebarAssets.search" alt="" />
+          <img :src="sidebarAssets.search" alt="" width="42" height="42" decoding="sync" />
         </div>
         <div class="card-text-group">
           <h3 class="card-title">Поиск аллергенов</h3>
@@ -65,7 +69,7 @@ const goTo = (path) => router.push(path)
         @keydown.space.prevent="goTo('/demo-result')"
       >
         <div class="card-icon-wrapper">
-          <img :src="sidebarAssets.demo" alt="" />
+          <img :src="sidebarAssets.demo" alt="" width="42" height="42" decoding="sync" />
         </div>
         <div class="card-text-group">
           <h3 class="card-title">Посмотреть<br />демо-результат</h3>
@@ -100,7 +104,7 @@ const goTo = (path) => router.push(path)
     >
       <div class="row-left-content">
         <span class="row-icon-icon sidebar-profile-icon" aria-hidden="true">
-          <img :src="sidebarAssets.profile" alt="" />
+          <img :src="sidebarAssets.profile" alt="" width="24" height="24" decoding="sync" />
         </span>
         <span class="row-text">Личный кабинет</span>
       </div>
@@ -119,7 +123,7 @@ const goTo = (path) => router.push(path)
         <span class="row-text">Лаборатория ALEX LAB</span>
       </div>
       <span class="row-icon-icon" aria-hidden="true">
-        <img :src="sidebarAssets.about" alt="" />
+        <img :src="sidebarAssets.about" alt="" width="24" height="24" decoding="sync" />
       </span>
     </div>
   </aside>

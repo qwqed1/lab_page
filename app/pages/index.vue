@@ -84,8 +84,10 @@ const videoA = ref(null)
 const videoB = ref(null)
 const activeVideoElement = ref('A') // 'A' or 'B'
 let videoRequestId = 0
-// The updated reverse clips are already rendered at their intended speed.
-const REVERSE_PLAYBACK_RATE = 1
+// Keep reverse transitions at their natural speed. Only the third-to-second
+// slide transition needs a small boost to stay in sync with the content.
+const THIRD_TO_SECOND_REVERSE_PLAYBACK_RATE = 1.6
+const isReverseTransitioning = ref(false)
 const contentReadySlideIndex = ref(0)
 
 const navigateToExternal = (url) => {
@@ -152,6 +154,8 @@ const getSlideClass = (index) => {
 }
 
 const goToSlideById = (id) => {
+  if (isReverseTransitioning.value) return
+
   const idx = slides.value.findIndex(s => s.id === id)
   if (idx !== -1) {
     currentSlideIndex.value = idx
@@ -279,12 +283,16 @@ const animateOutgoingContent = (index) => {
 }
 
 const goNext = () => {
+  if (isReverseTransitioning.value) return
+
   if (currentSlideIndex.value < slides.value.length - 1) {
     currentSlideIndex.value++
   }
 }
 
 const goPrev = () => {
+  if (isReverseTransitioning.value) return
+
   if (currentSlideIndex.value > 0) {
     currentSlideIndex.value--
   }
@@ -637,7 +645,7 @@ const settleOnSlideFrame = async (src, requestId) => {
   }
 }
 
-const playVideoShot = async (src, { playbackRate = 1, settleSrc = '', onPlaybackStarted, onComplete } = {}) => {
+const playVideoShot = async (src, { playbackRate = 1, onPlaybackStarted, onComplete } = {}) => {
   if (!src) {
     onComplete?.()
     return
@@ -679,19 +687,14 @@ const playVideoShot = async (src, { playbackRate = 1, settleSrc = '', onPlayback
     if (requestId !== videoRequestId) return
 
     activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
-    await finishVideoLayerSwap(activeEl, requestId, { preload: !settleSrc })
+    await finishVideoLayerSwap(activeEl, requestId, { preload: true })
     if (requestId !== videoRequestId) return
 
     onPlaybackStarted?.(incomingEl, requestId)
 
-    const finishTransition = async () => {
+    const finishTransition = () => {
       if (requestId !== videoRequestId) return
-
-      if (settleSrc) {
-        await settleOnSlideFrame(settleSrc, requestId)
-      }
-
-      if (requestId === videoRequestId) onComplete?.()
+      onComplete?.()
     }
 
     if (incomingEl.ended) finishTransition()
@@ -710,8 +713,14 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   const slide = slides.value[newIndex]
   const oldSlide = slides.value[oldIndex]
   const goingBack = newIndex < oldIndex
+  isReverseTransitioning.value = goingBack
   const revealCurrentSlide = () => {
     if (contentReadySlideIndex.value !== newIndex) revealSlideContent(newIndex)
+  }
+  const finishCurrentTransition = () => {
+    if (currentSlideIndex.value !== newIndex) return
+    isReverseTransitioning.value = false
+    revealCurrentSlide()
   }
   const revealAtQuarter = (video, requestId) => {
     revealContentAtVideoProgress(video, newIndex, requestId, revealCurrentSlide)
@@ -733,15 +742,16 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
 
   if (goingBack) {
     if (oldSlide?.reverseVideo) {
+      const playbackRate = oldIndex === 2 && newIndex === 1
+        ? THIRD_TO_SECOND_REVERSE_PLAYBACK_RATE
+        : 1
       playVideoShot(oldSlide.reverseVideo, {
-        playbackRate: REVERSE_PLAYBACK_RATE,
-        settleSrc: slide.video,
-        onPlaybackStarted: revealAtQuarter,
-        onComplete: revealCurrentSlide
+        playbackRate,
+        onComplete: finishCurrentTransition
       })
     } else {
       const requestId = ++videoRequestId
-      settleOnSlideFrame(slide.video, requestId).finally(revealCurrentSlide)
+      settleOnSlideFrame(slide.video, requestId).finally(finishCurrentTransition)
     }
     return
   }
@@ -749,10 +759,10 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   if (slide.video) {
     playVideoShot(slide.video, {
       onPlaybackStarted: revealAtQuarter,
-      onComplete: revealCurrentSlide
+      onComplete: finishCurrentTransition
     })
   } else {
-    revealCurrentSlide()
+    finishCurrentTransition()
   }
 })
 
