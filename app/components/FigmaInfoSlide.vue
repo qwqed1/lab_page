@@ -8,7 +8,7 @@ const props = defineProps({
 
 const emit = defineEmits(['action'])
 
-const openFaqIndex = ref(2)
+const openFaqIndex = ref(-1)
 
 const faqItems = [
   { question: 'Это больно?', answer: 'Забор крови из вены производится тонкой иглой, процедура быстрая и практически безболезненная.' },
@@ -116,7 +116,7 @@ const toggleFaq = (index) => {
 
 <style scoped>
 .figma-exact-info-slide {
-  --ux: calc(100cqw / 1243);
+  --ux: min(calc(100cqw / 1243), calc(100cqh / 1080));
   --uy: calc(100cqh / 1080);
   --ui: min(var(--ux), var(--uy));
   position: absolute;
@@ -175,7 +175,10 @@ button {
 .exact-faq-list {
   position: absolute;
   left: calc(64 * var(--ux));
-  top: calc(703 * var(--uy));
+  /* Leave a full row of breathing room above the "All questions" divider.
+     The list grows upward when an answer opens, so its last item never
+     crosses that divider. */
+  bottom: calc(64 * var(--uy) + 49 * var(--ui) + 52px);
   width: calc(1117 * var(--ux));
   display: flex;
   flex-direction: column;
@@ -184,6 +187,7 @@ button {
 
 .exact-faq-item {
   width: 100%;
+  flex-shrink: 0;
 }
 
 .exact-faq-question {
@@ -338,22 +342,12 @@ button {
   gap: calc(21 * var(--ui));
 }
 
-.exact-howto-step-2 .exact-howto-image {
-  top: calc(437 * var(--uy));
-}
-
 .exact-howto-step-2 .exact-howto-copy {
   left: calc(64.5 * var(--ux));
-  top: calc(818.5 * var(--uy));
   width: calc(412 * var(--ui));
 }
 
-.exact-howto-step-3 .exact-howto-image {
-  top: calc(413 * var(--uy));
-}
-
 .exact-howto-step-3 .exact-howto-copy {
-  top: calc(794 * var(--uy));
   width: calc(415 * var(--ui));
 }
 
@@ -441,4 +435,5 @@ button {
     max-width: 90%;
   }
 }
+
 </style>

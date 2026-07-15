@@ -1008,6 +1008,63 @@ body {
   }
 }
 
+/* The story clips already contain a light paper surface. This smaller,
+   scene-specific haze only keeps the copy readable and stays anchored to the
+   lower-left instead of washing out the centre of every frame. */
+.figma-smoke-cloud-fixed.story-cloud {
+  --story-cloud-left: -9%;
+  --story-cloud-bottom: -11%;
+  --story-cloud-width: 58%;
+  --story-cloud-height: 63%;
+  --story-cloud-opacity: 0.5;
+  --story-cloud-blur: 30px;
+  left: var(--story-cloud-left) !important;
+  top: auto !important;
+  bottom: var(--story-cloud-bottom) !important;
+  width: var(--story-cloud-width) !important;
+  height: var(--story-cloud-height) !important;
+  border-radius: 52% 62% 18% 0 / 68% 68% 22% 0;
+  background: radial-gradient(
+    ellipse at 20% 82%,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.78) 42%,
+    rgba(255, 255, 255, 0.28) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  filter: blur(var(--story-cloud-blur)) !important;
+  -webkit-filter: blur(var(--story-cloud-blur)) !important;
+}
+
+.figma-smoke-cloud-fixed.story-cloud.visible {
+  opacity: var(--story-cloud-opacity);
+}
+
+.figma-smoke-cloud-fixed.story-cloud-misha {
+  --story-cloud-left: -7%;
+  --story-cloud-bottom: -9%;
+  --story-cloud-width: 56%;
+  --story-cloud-height: 60%;
+  --story-cloud-opacity: 0.48;
+}
+
+.figma-smoke-cloud-fixed.story-cloud-alexandra {
+  --story-cloud-left: -12%;
+  --story-cloud-bottom: -14%;
+  --story-cloud-width: 60%;
+  --story-cloud-height: 66%;
+  --story-cloud-opacity: 0.44;
+  --story-cloud-blur: 30px;
+}
+
+.figma-smoke-cloud-fixed.story-cloud-pasha {
+  --story-cloud-left: -5%;
+  --story-cloud-bottom: -12%;
+  --story-cloud-width: 55%;
+  --story-cloud-height: 61%;
+  --story-cloud-opacity: 0.46;
+  --story-cloud-blur: 30px;
+}
+
 .video-bg-container {
   position: absolute;
   top: 0;
@@ -1019,6 +1076,8 @@ body {
   pointer-events: none;
   transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   opacity: 1;
+  isolation: isolate;
+  background: linear-gradient(110deg, #c1c8cd 0%, #d8d0b8 100%);
   transform: translateZ(0);
   contain: paint;
 }
@@ -1034,15 +1093,20 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.12s linear;
-  will-change: opacity, transform;
-  transform: translateZ(0) scale(1.001);
+  opacity: 1;
+  z-index: 1;
+  transition: none;
+  will-change: transform;
+  transform: translateZ(0);
   backface-visibility: hidden;
 }
 
 .bg-video.active {
-  opacity: 1;
+  z-index: 2;
+}
+
+.video-bg-container.story-video .bg-video {
+  object-position: left bottom;
 }
 
 .video-overlay {
@@ -1630,23 +1694,23 @@ body {
 
 .scroll-chevron {
   position: absolute;
-  left: 49px;
-  width: 30px;
-  height: 11px;
+  left: 46px;
+  width: 36px;
+  height: 17px;
 }
 
 .scroll-chevron-1 {
-  top: 82px;
+  top: 79px;
   animation: chevron-pulse-1 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .scroll-chevron-2 {
-  top: 100px;
+  top: 97px;
   animation: chevron-pulse-2 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .scroll-chevron-3 {
-  top: 118px;
+  top: 115px;
   animation: chevron-pulse-3 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
@@ -1756,7 +1820,7 @@ body {
 /* Step category tag (e.g. Преимущества) */
 .figma-category-label {
   position: absolute;
-  left: 5.15%;
+  left: min(5.15%, 64px);
   top: 39.0%;
   font-size: 14px;
   font-weight: 600;
@@ -1769,7 +1833,7 @@ body {
 /* Step Counter (e.g. 1/5) */
 .figma-step-counter {
   position: absolute;
-  left: 5.15%;
+  left: min(5.15%, 64px);
   top: 42.0%;
   display: flex;
   align-items: baseline;
@@ -1794,7 +1858,7 @@ body {
 /* Step indicator pagination (Horizontal row of circles matching Figma layout) */
 .figma-step-block {
   position: absolute;
-  left: 5.15%;
+  left: min(5.15%, 64px);
   display: flex;
   flex-direction: column;
 }
@@ -1844,7 +1908,7 @@ body {
 
 .persistent-step-indicator {
   position: absolute;
-  left: 5.15%;
+  left: min(5.15%, 64px);
   z-index: 8;
   display: flex;
   flex-direction: row;
@@ -1880,7 +1944,7 @@ body {
   border: 2px solid rgba(0, 0, 0, 0.32);
   border-radius: 50%;
   font-size: 24px;
-  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.32);
   box-sizing: border-box;
@@ -1902,7 +1966,7 @@ body {
   font-size: 32px;
   font-weight: 400;
   color: #000000;
-  line-height: 1.3;
+  line-height: 1.1875;
   margin: 0;
 }
 
@@ -1911,7 +1975,7 @@ body {
   font-weight: 400;
   color: #000000;
   opacity: 0; /* Hidden by default */
-  line-height: 1.5;
+  line-height: normal;
   margin: 0;
   transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
   transition-delay: 0s;
@@ -1966,7 +2030,7 @@ body {
   font-family: 'Roboto', Arial, sans-serif;
   font-size: 21px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: normal;
 }
 
 .slide-layer.active .figma-slide-desc-inline {
@@ -1975,7 +2039,7 @@ body {
 }
 .figma-section-title {
   position: absolute;
-  left: 5.15%;
+  left: min(5.15%, 64px);
   top: 30.2%; /* y: 326 / 1080 = 30.2% */
   font-size: 42px;
   font-weight: 400;
@@ -1987,7 +2051,7 @@ body {
 /* Persistent overlay menu on the right column */
 .figma-right-menu {
   position: absolute;
-  left: 5.15%;
+  left: min(5.15%, 64px);
   top: 5.9%; /* y: 64 / 1080 = 5.9% */
   display: flex;
   flex-direction: column;
@@ -2065,13 +2129,13 @@ body {
 
 .figma-story-body {
   position: absolute;
-  left: 5.15%;
+  left: min(5.15%, 64px);
   bottom: 98px;
   z-index: 2;
   display: flex;
   flex-direction: column;
   gap: clamp(21px, 3.5185vh, 38px);
-  width: 89.7%;
+  width: min(89.7%, 1117px);
 }
 
 .figma-story-body .figma-story-tabs,
@@ -2164,7 +2228,7 @@ body {
   color: rgba(0, 0, 0, 0.8);
   position: relative;
   padding-left: 10px;
-  line-height: clamp(12px, 1.3889vh, 15px);
+  line-height: normal;
 }
 .story-bullets li::before {
   content: "";
@@ -2181,7 +2245,7 @@ body {
 }
 .story-bullets.gray li {
   font-size: clamp(13px, 1.6667vh, 18px);
-  line-height: clamp(10px, 1.2037vh, 13px);
+  line-height: normal;
   color: rgba(0, 0, 0, 0.6);
 }
 .story-bullets.gray {
@@ -2190,9 +2254,9 @@ body {
 
 .figma-story-footer {
   position: absolute;
-  left: 5.15%;
+  left: min(5.15%, 64px);
   top: min(92.4074%, max(518px, calc(100% - 82px)));
-  width: 89.85%;
+  width: min(89.85%, 1117px);
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -2275,7 +2339,7 @@ body {
 
   .story-bullets li {
     font-size: 15px;
-    line-height: 12px;
+    line-height: normal;
   }
 
   .story-bullets li::before {
@@ -2288,7 +2352,7 @@ body {
 
   .story-bullets.gray li {
     font-size: 13px;
-    line-height: 10px;
+    line-height: normal;
   }
 
   .story-bullets.gray li::before {

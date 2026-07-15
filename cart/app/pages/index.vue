@@ -642,10 +642,10 @@ const isConsultationAdded = ref(false)
 const isExpressAdded = ref(false)
 
 // Данные корзины
-const fullName = ref('Иванов Иван Иванович')
-const birthDate = ref('11.06.2006')
-const phone = ref('+7 938 910 92 22')
-const email = ref('hi@mail.com')
+const fullName = ref('')
+const birthDate = ref('')
+const phone = ref('')
+const email = ref('')
 const promo = ref('')
 const consent = ref(false)
 
@@ -990,7 +990,7 @@ const handleContinue = () => {
   width: 610px;
   flex-shrink: 0;
   border-left: 1px solid #dfdfdf;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   position: sticky;
@@ -1406,7 +1406,8 @@ const handleContinue = () => {
 
 .summary-badge {
   display: inline-block;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 400;
   color: #0f5e1a;
   background: #f1fff3;
   padding: 2px 8px;
@@ -1452,8 +1453,8 @@ const handleContinue = () => {
 /* ─── PROMO ─── */
 .promo-row {
   display: flex;
-  border-top: 1px solid #dfdfdf;
-  border-bottom: 1px solid #dfdfdf;
+  border-top: 0.5px solid #dfdfdf;
+  border-bottom: 0.5px solid #dfdfdf;
   flex-shrink: 0;
 }
 
@@ -1463,7 +1464,7 @@ const handleContinue = () => {
 
 .promo-input {
   width: 100%;
-  height: 61px;
+  height: 48px;
   border: none;
   background: #f8f8f8;
   padding: 0 24px;
@@ -1481,10 +1482,10 @@ const handleContinue = () => {
 
 .promo-btn {
   width: 62px;
-  height: 61px;
+  height: 48px;
   background: #f8f8f8;
   border: none;
-  border-left: 1px solid #dfdfdf;
+  border-left: 0.5px solid #dfdfdf;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1762,8 +1763,8 @@ const handleContinue = () => {
 
 .lab-card-badge {
   display: inline-block;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
   color: #0f5e1a;
   background: #f1fff3;
   padding: 2px 8px;
@@ -1980,7 +1981,7 @@ const handleContinue = () => {
 }
 
 /* ───────────────────── RESPONSIVE (MOBILE АДАПТАЦИЯ) ───────────────────── */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   
   .desktop-only {
     display: none !important;
@@ -2046,7 +2047,7 @@ const handleContinue = () => {
     height: auto;
     border-left: none;
     border-top: 1px solid #dfdfdf;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     overflow: visible;
   }
 
@@ -2390,6 +2391,12 @@ const handleContinue = () => {
 @media (min-width: 901px) and (max-width: 1599px) {
   .right-col {
     width: clamp(340px, 40vw, 520px);
+  }
+
+  /* Keep the familiar promo-field proportions on laptops. */
+  .promo-input,
+  .promo-btn {
+    height: 61px;
   }
 
   .left-col {

@@ -71,8 +71,7 @@
                     <span class="btn-icon-circle-small">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="10" stroke="#000000" stroke-width="2"/>
-                        <path d="M12 8V12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="12" cy="16" r="1" fill="#000000"/>
+                        <path d="M10 8L14 12L10 16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                     </span>
                   </button>
@@ -218,6 +217,8 @@ const downloadPdf = () => {
   display: flex;
   flex-direction: column;
   gap: 21px;
+  width: 450px;
+  max-width: 100%;
 }
 
 .patient-welcome-title {
@@ -311,7 +312,7 @@ const downloadPdf = () => {
 }
 
 .status-details {
-  margin-top: 116px;
+  margin-top: auto;
   display: flex;
   flex-direction: column;
 }
@@ -376,7 +377,7 @@ const downloadPdf = () => {
   color: #2baac9;
   padding: 12px 24px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1;
   display: inline-flex;
   align-items: center;
@@ -386,7 +387,7 @@ const downloadPdf = () => {
 }
 
 .status-main-title {
-  font-size: 42px;
+  font-size: 24px;
   font-weight: 400;
   line-height: 1.2;
   color: #000000;
@@ -429,6 +430,8 @@ const downloadPdf = () => {
 .dashboard-actions {
   display: flex;
   width: 100%;
+  height: 72px;
+  flex-shrink: 0;
 }
 
 .dashboard-btn-left {
@@ -474,7 +477,7 @@ const downloadPdf = () => {
   }
 
   .status-details {
-    margin-top: 85px;
+    margin-top: auto;
   }
 
   .status-badge-blue {
@@ -486,11 +489,11 @@ const downloadPdf = () => {
   }
 
   .status-main-title {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .status-sub-desc {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .dashboard-actions {

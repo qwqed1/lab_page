@@ -396,7 +396,7 @@ const redirectToCart = () => {
 
 .question-card {
   min-height: 127px;
-  border-bottom: none;
+  border-bottom: 1px solid var(--border-color-grey);
   display: flex;
   align-items: flex-start;
 }
@@ -573,11 +573,11 @@ const redirectToCart = () => {
   }
 
   .card-title {
-    font-size: 28px;
+    font-size: 32px;
   }
 
   .card-subtitle {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .action-btn {
@@ -592,11 +592,11 @@ const redirectToCart = () => {
   }
 
   .question-text {
-    font-size: 24px;
+    font-size: 32px;
   }
 
   .option-label {
-    font-size: 18px;
+    font-size: 21px;
   }
 
   .option-row {
@@ -611,11 +611,11 @@ const redirectToCart = () => {
   }
 
   .result-title {
-    font-size: 26px;
+    font-size: 32px;
   }
 
   .result-subtitle {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .submit-btn {

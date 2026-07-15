@@ -2,7 +2,7 @@
   <div class="patient-page-layout">
     <!-- Шапка страницы -->
     <header class="header-nav">
-      <NuxtLink to="/personal-account/patient/recover" class="back-link">
+      <NuxtLink :to="recoverPath" class="back-link">
         <span class="back-arrow">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -23,7 +23,7 @@
 
         <!-- Кнопка Войти еще раз -->
         <div class="form-actions">
-          <NuxtLink to="/personal-account/patient/login" class="btn-outline btn-relogin">
+          <NuxtLink :to="loginPath" class="btn-outline btn-relogin">
             <span>Войти ещё раз</span>
             <span class="btn-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +39,18 @@
 </template>
 
 <script setup>
-// Никакого сложного JS не требуется, только навигация
+import { computed } from 'vue'
+
+const props = defineProps({
+  role: {
+    type: String,
+    default: 'patient'
+  }
+})
+
+const accountBasePath = computed(() => `/personal-account/${props.role === 'doctor' ? 'doctor' : 'patient'}`)
+const recoverPath = computed(() => `${accountBasePath.value}/recover`)
+const loginPath = computed(() => `${accountBasePath.value}/login`)
 </script>
 
 <style scoped>

@@ -86,9 +86,7 @@ const activeVideoElement = ref('A') // 'A' or 'B'
 let videoRequestId = 0
 // The updated reverse clips are already rendered at their intended speed.
 const REVERSE_PLAYBACK_RATE = 1
-const VIDEO_LAYER_FADE_DURATION = 140
 const contentReadySlideIndex = ref(0)
-const videoLayerTimers = new Set()
 
 const navigateToExternal = (url) => {
   window.location.href = url
@@ -209,6 +207,16 @@ const resultsCloudVariant = computed(() => {
   return ''
 })
 
+const isStoriesSection = computed(() => {
+  const idx = currentSlideIndex.value
+  return idx >= 12 && idx <= 14
+})
+
+const storyCloudVariant = computed(() => {
+  const variants = ['story-cloud-misha', 'story-cloud-alexandra', 'story-cloud-pasha']
+  return variants[currentSlideIndex.value - 12] || ''
+})
+
 const persistentStepGroup = computed(() => {
   const idx = currentSlideIndex.value
 
@@ -228,14 +236,13 @@ const isVideoBackgroundVisible = computed(() => {
   return Boolean(slide?.video || slide?.holdVideo)
 })
 
-let isScrolling = false
-const SCROLL_LOCK_DURATION = 950
-const CONTENT_REVEAL_DURATION = 1200
 const CONTENT_EXIT_DURATION = 650
-const SLIDE_THREE_CONTENT_DELAY = 3000
+const CONTENT_REVEAL_PROGRESS = 0.25
+const WHEEL_GESTURE_RESET_DURATION = 90
 const RESULTS_INTRO_DURATION = 2000
 const STORIES_INTRO_DURATION = 2000
-let scrollUnlockTimer = 0
+let wheelGestureActive = false
+let wheelGestureResetTimer = 0
 let contentExitTimer = 0
 let earlyContentRevealTimer = 0
 let resultsIntroTimer = 0
@@ -243,18 +250,10 @@ let storiesIntroTimer = 0
 let shouldAutoAdvanceStoriesIntro = false
 const exitingContentSlideIndex = ref(-1)
 
-const unlockScrollAfter = (delay) => {
-  window.clearTimeout(scrollUnlockTimer)
-  scrollUnlockTimer = window.setTimeout(() => {
-    isScrolling = false
-  }, delay)
-}
-
 const revealSlideContent = (index) => {
   if (currentSlideIndex.value !== index) return
 
   contentReadySlideIndex.value = index
-  unlockScrollAfter(CONTENT_REVEAL_DURATION)
 
   if (index === 11 && shouldAutoAdvanceStoriesIntro) {
     window.clearTimeout(storiesIntroTimer)
@@ -265,7 +264,6 @@ const revealSlideContent = (index) => {
 
       storiesIntroTimer = window.setTimeout(() => {
         if (currentSlideIndex.value !== 11) return
-        isScrolling = true
         currentSlideIndex.value = 12
       }, CONTENT_EXIT_DURATION)
     }, STORIES_INTRO_DURATION)
@@ -282,35 +280,35 @@ const animateOutgoingContent = (index) => {
 
 const goNext = () => {
   if (currentSlideIndex.value < slides.value.length - 1) {
-    isScrolling = true
     currentSlideIndex.value++
   }
 }
 
 const goPrev = () => {
   if (currentSlideIndex.value > 0) {
-    isScrolling = true
     currentSlideIndex.value--
   }
 }
 
 const handleWheel = (e) => {
-  if (isScrolling) {
-    e.preventDefault()
-    return
-  }
+  e.preventDefault()
+  window.clearTimeout(wheelGestureResetTimer)
+  wheelGestureResetTimer = window.setTimeout(() => {
+    wheelGestureActive = false
+  }, WHEEL_GESTURE_RESET_DURATION)
+
+  if (wheelGestureActive || Math.abs(e.deltaY) <= 30) return
+  wheelGestureActive = true
 
   if (e.deltaY > 30) {
-    e.preventDefault()
     goNext()
   } else if (e.deltaY < -30) {
-    e.preventDefault()
     goPrev()
   }
 }
 
 const handleKeydown = (e) => {
-  if (isScrolling) return
+  if (e.repeat) return
 
   switch (e.key) {
     case 'ArrowDown':
@@ -341,8 +339,6 @@ const handleTouchStart = (e) => {
 }
 
 const handleTouchEnd = (e) => {
-  if (isScrolling) return
-
   const touchEndY = e.changedTouches[0].clientY
   const diff = touchStartY - touchEndY
 
@@ -407,22 +403,54 @@ const getAbsoluteVideoUrl = (src) => {
   }
 }
 
-const waitForVideoFrame = (video) => new Promise((resolve) => {
+const waitForAnimationFrames = (count = 1) => new Promise((resolve) => {
+  const waitForNextFrame = () => {
+    if (count <= 0) {
+      resolve()
+      return
+    }
+
+    count--
+    requestAnimationFrame(waitForNextFrame)
+  }
+
+  waitForNextFrame()
+})
+
+const waitForVideoFrame = (video) => new Promise((resolve, reject) => {
   let settled = false
-  const finish = () => {
+  let frameCallbackId = 0
+
+  const cleanup = () => {
+    window.clearTimeout(timeoutId)
+
+    if (frameCallbackId && typeof video.cancelVideoFrameCallback === 'function') {
+      video.cancelVideoFrameCallback(frameCallbackId)
+    }
+  }
+  const finish = async () => {
     if (settled) return
     settled = true
-    window.clearTimeout(timeoutId)
+    cleanup()
+    // requestVideoFrameCallback fires when a decoded frame is submitted to the
+    // compositor. Keep the current layer visible for two more paints so the new
+    // texture is actually on screen before changing the layer order.
+    await waitForAnimationFrames(2)
     resolve()
   }
-  const timeoutId = window.setTimeout(finish, 450)
+  const timeoutId = window.setTimeout(() => {
+    if (settled) return
+    settled = true
+    cleanup()
+    reject(new Error('Timed out waiting for a decoded video frame'))
+  }, 2000)
 
   if (typeof video.requestVideoFrameCallback === 'function') {
-    video.requestVideoFrameCallback(finish)
+    frameCallbackId = video.requestVideoFrameCallback(finish)
     return
   }
 
-  requestAnimationFrame(() => requestAnimationFrame(finish))
+  finish()
 })
 
 const waitUntilVideoCanPlay = (video) => new Promise((resolve, reject) => {
@@ -454,7 +482,7 @@ const waitUntilVideoCanPlay = (video) => new Promise((resolve, reject) => {
   video.addEventListener('error', onError, { once: true })
 })
 
-const seekVideo = (video, time) => new Promise((resolve) => {
+const seekVideo = (video, time) => new Promise((resolve, reject) => {
   const targetTime = Math.max(0, Math.min(time, Number.isFinite(video.duration) ? video.duration : time))
   if (Math.abs(video.currentTime - targetTime) < 0.02) {
     resolve()
@@ -469,9 +497,42 @@ const seekVideo = (video, time) => new Promise((resolve) => {
     video.removeEventListener('seeked', finish)
     resolve()
   }
-  const timeoutId = window.setTimeout(finish, 1200)
+  const timeoutId = window.setTimeout(() => {
+    if (settled) return
+    settled = true
+    video.removeEventListener('seeked', finish)
+    reject(new Error('Video seek timed out'))
+  }, 2500)
   video.addEventListener('seeked', finish, { once: true })
   video.currentTime = targetTime
+})
+
+const waitUntilVideoEnds = (video) => new Promise((resolve, reject) => {
+  if (video.ended) {
+    resolve()
+    return
+  }
+
+  const cleanup = () => {
+    window.clearTimeout(timeoutId)
+    video.removeEventListener('ended', onEnded)
+    video.removeEventListener('error', onError)
+  }
+  const onEnded = () => {
+    cleanup()
+    resolve()
+  }
+  const onError = () => {
+    cleanup()
+    reject(video.error || new Error('Video playback failed'))
+  }
+  const timeoutId = window.setTimeout(() => {
+    cleanup()
+    reject(new Error('Timed out waiting for the final video frame'))
+  }, 1500)
+
+  video.addEventListener('ended', onEnded, { once: true })
+  video.addEventListener('error', onError, { once: true })
 })
 
 const configureVideoElement = (video) => {
@@ -479,6 +540,25 @@ const configureVideoElement = (video) => {
   video.defaultMuted = true
   video.playsInline = true
   video.disablePictureInPicture = true
+}
+
+const revealContentAtVideoProgress = (video, slideIndex, requestId, reveal) => {
+  window.clearTimeout(earlyContentRevealTimer)
+
+  const duration = Number.isFinite(video.duration) ? video.duration : 0
+  if (duration <= 0) {
+    reveal()
+    return
+  }
+
+  const playbackRate = Math.max(0.1, Math.abs(video.playbackRate || 1))
+  const targetTime = duration * CONTENT_REVEAL_PROGRESS
+  const delay = Math.max(0, ((targetTime - video.currentTime) / playbackRate) * 1000)
+
+  earlyContentRevealTimer = window.setTimeout(() => {
+    if (requestId !== videoRequestId || currentSlideIndex.value !== slideIndex) return
+    reveal()
+  }, delay)
 }
 
 const preloadUpcomingVideo = () => {
@@ -503,17 +583,18 @@ const preloadUpcomingVideo = () => {
   inactiveEl.load()
 }
 
-const finishVideoLayerSwap = (outgoingEl, requestId, { preload = false } = {}) => new Promise((resolve) => {
-  const timerId = window.setTimeout(() => {
-    videoLayerTimers.delete(timerId)
-    outgoingEl.pause()
+const finishVideoLayerSwap = async (outgoingEl, requestId, { preload = false } = {}) => {
+  // The incoming video is already decoded. Vue now only changes z-index, while
+  // the outgoing frame stays fully opaque underneath it. Reuse the old element
+  // after the compositor has painted the new stacking order.
+  await nextTick()
+  await waitForAnimationFrames(2)
 
-    if (requestId === videoRequestId && preload) preloadUpcomingVideo()
-    resolve()
-  }, VIDEO_LAYER_FADE_DURATION)
+  if (requestId !== videoRequestId) return
 
-  videoLayerTimers.add(timerId)
-})
+  outgoingEl.pause()
+  if (preload) preloadUpcomingVideo()
+}
 
 const settleOnSlideFrame = async (src, requestId) => {
   if (!src || requestId !== videoRequestId) return
@@ -535,7 +616,16 @@ const settleOnSlideFrame = async (src, requestId) => {
     if (requestId !== videoRequestId) return
 
     await seekVideo(stillEl, Math.max(0, stillEl.duration - (1 / 30)))
-    await waitForVideoFrame(stillEl)
+    if (requestId !== videoRequestId) return
+
+    // A paused, fully covered video may be compositor-culled and never receive
+    // requestVideoFrameCallback. Play its last frame underneath the current
+    // opaque layer, then switch only after that frame has actually completed.
+    const finalFrameReady = waitForVideoFrame(stillEl)
+    const videoEnded = waitUntilVideoEnds(stillEl)
+    await stillEl.play()
+    await Promise.all([finalFrameReady, videoEnded])
+    stillEl.pause()
     if (requestId !== videoRequestId) return
 
     activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
@@ -547,7 +637,7 @@ const settleOnSlideFrame = async (src, requestId) => {
   }
 }
 
-const playVideoShot = async (src, { playbackRate = 1, settleSrc = '', onComplete } = {}) => {
+const playVideoShot = async (src, { playbackRate = 1, settleSrc = '', onPlaybackStarted, onComplete } = {}) => {
   if (!src) {
     onComplete?.()
     return
@@ -580,14 +670,19 @@ const playVideoShot = async (src, { playbackRate = 1, settleSrc = '', onComplete
     await waitUntilVideoCanPlay(incomingEl)
     if (requestId !== videoRequestId) return
 
-    incomingEl.currentTime = 0
+    await seekVideo(incomingEl, 0)
+    if (requestId !== videoRequestId) return
+
     incomingEl.playbackRate = playbackRate
     await incomingEl.play()
     await waitForVideoFrame(incomingEl)
     if (requestId !== videoRequestId) return
 
     activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
-    finishVideoLayerSwap(activeEl, requestId, { preload: !settleSrc })
+    await finishVideoLayerSwap(activeEl, requestId, { preload: !settleSrc })
+    if (requestId !== videoRequestId) return
+
+    onPlaybackStarted?.(incomingEl, requestId)
 
     const finishTransition = async () => {
       if (requestId !== videoRequestId) return
@@ -618,20 +713,20 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   const revealCurrentSlide = () => {
     if (contentReadySlideIndex.value !== newIndex) revealSlideContent(newIndex)
   }
+  const revealAtQuarter = (video, requestId) => {
+    revealContentAtVideoProgress(video, newIndex, requestId, revealCurrentSlide)
+  }
 
   window.clearTimeout(earlyContentRevealTimer)
   window.clearTimeout(resultsIntroTimer)
   window.clearTimeout(storiesIntroTimer)
   shouldAutoAdvanceStoriesIntro = newIndex === 11 && oldIndex === 10
   animateOutgoingContent(oldIndex)
-  isScrolling = true
   contentReadySlideIndex.value = -1
-  window.clearTimeout(scrollUnlockTimer)
 
   if (newIndex === 7 && oldIndex === 6) {
     resultsIntroTimer = window.setTimeout(() => {
       if (currentSlideIndex.value !== 7) return
-      isScrolling = true
       currentSlideIndex.value = 8
     }, RESULTS_INTRO_DURATION)
   }
@@ -641,6 +736,7 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
       playVideoShot(oldSlide.reverseVideo, {
         playbackRate: REVERSE_PLAYBACK_RATE,
         settleSrc: slide.video,
+        onPlaybackStarted: revealAtQuarter,
         onComplete: revealCurrentSlide
       })
     } else {
@@ -651,16 +747,12 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   }
 
   if (slide.video) {
-    if (newIndex === 2) {
-      earlyContentRevealTimer = window.setTimeout(
-        revealCurrentSlide,
-        SLIDE_THREE_CONTENT_DELAY
-      )
-    }
-    playVideoShot(slide.video, { onComplete: revealCurrentSlide })
+    playVideoShot(slide.video, {
+      onPlaybackStarted: revealAtQuarter,
+      onComplete: revealCurrentSlide
+    })
   } else {
     revealCurrentSlide()
-    unlockScrollAfter(SCROLL_LOCK_DURATION)
   }
 })
 
@@ -700,13 +792,11 @@ onUnmounted(() => {
 
   if (videoA.value) videoA.value.pause()
   if (videoB.value) videoB.value.pause()
-  window.clearTimeout(scrollUnlockTimer)
+  window.clearTimeout(wheelGestureResetTimer)
   window.clearTimeout(contentExitTimer)
   window.clearTimeout(earlyContentRevealTimer)
   window.clearTimeout(resultsIntroTimer)
   window.clearTimeout(storiesIntroTimer)
-  videoLayerTimers.forEach(timerId => window.clearTimeout(timerId))
-  videoLayerTimers.clear()
   videoRequestId++
 })
 </script>
@@ -741,7 +831,11 @@ onUnmounted(() => {
       </div>
 
       <!-- Fixed Video Background Layer -->
-      <div class="video-bg-container" :class="{ 'no-video': !isVideoBackgroundVisible }" aria-hidden="true">
+      <div
+        class="video-bg-container"
+        :class="{ 'no-video': !isVideoBackgroundVisible, 'story-video': isStoriesSection }"
+        aria-hidden="true"
+      >
         <video 
           ref="videoA" 
           class="bg-video" 
@@ -765,8 +859,13 @@ onUnmounted(() => {
       <div
         class="figma-smoke-cloud-fixed"
         :class="[
-          { visible: showSmokeCloud, 'results-cloud': isResultsSection },
-          resultsCloudVariant
+          {
+            visible: showSmokeCloud,
+            'results-cloud': isResultsSection,
+            'story-cloud': isStoriesSection
+          },
+          resultsCloudVariant,
+          storyCloudVariant
         ]"
       ></div>
 

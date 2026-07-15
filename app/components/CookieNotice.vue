@@ -26,7 +26,7 @@ const acceptCookies = () => {
 <style scoped>
 .cookie-notice {
   position: fixed;
-  right: 0;
+  right: 27px;
   bottom: 27px;
   z-index: 1000;
   width: min(684px, calc(100vw - 32px));
