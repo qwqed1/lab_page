@@ -84,10 +84,9 @@ const videoA = ref(null)
 const videoB = ref(null)
 const activeVideoElement = ref('A') // 'A' or 'B'
 let videoRequestId = 0
-// Keep reverse transitions at their natural speed. Only slide 3 → slide 2
-// (back to “Почему ALEX?”) needs a small boost to stay in sync.
-const THIRD_TO_SECOND_REVERSE_PLAYBACK_RATE = 1.6
-const isReverseTransitioning = ref(false)
+const isSlideTransitioning = ref(false)
+const navigationMode = ref('scroll')
+const videoBackgroundReady = ref(true)
 const contentReadySlideIndex = ref(0)
 
 const navigateToExternal = (url) => {
@@ -101,7 +100,7 @@ const slides = ref([
   { id: 'slide-2',  label: '', title: 'Почему ALEX2?', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr2.mp4',  reverseVideo: '/videos/scroll/reverse/scrr2.mp4' },
   
   // Advantages
-  { id: 'slide-3',  step: '1', totalSteps: '5', label: 'Преимущества', title: 'Всё за один сеанс', subtitle: 'За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое.', direction: 'down', video: '/videos/scroll/forward/scr3.mp4',  reverseVideo: '/videos/scroll/reverse/scrr3.mp4' },
+  { id: 'slide-3',  step: '1', totalSteps: '5', label: 'Преимущества', title: 'Всё за один сеанс', subtitle: 'За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое.', direction: 'down', video: '/videos/scroll/forward/scr3.mp4',  reverseVideo: '/videos/scroll/reverse/scrr3-fixed.mp4' },
   { id: 'slide-4',  step: '2', totalSteps: '5', label: 'Преимущества', title: 'Точечный результат', subtitle: 'В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.', direction: 'right', video: '/videos/scroll/forward/scr4.mp4', reverseVideo: '/videos/scroll/reverse/scrr4.mp4' },
   { id: 'slide-5',  step: '3', totalSteps: '5', label: 'Преимущества', title: 'Отчёт и консультация', subtitle: 'Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.', direction: 'right', video: '/videos/scroll/forward/scr4-5.mp4', reverseVideo: '/videos/scroll/reverse/scrr4-5.mp4' },
   { id: 'slide-6',  step: '4', totalSteps: '5', label: 'Преимущества', title: 'Без диет и отмены лекарств', subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.', direction: 'right', video: '/videos/scroll/forward/scr5.mp4', reverseVideo: '/videos/scroll/reverse/scrr5.mp4' },
@@ -153,13 +152,25 @@ const getSlideClass = (index) => {
   return ''
 }
 
-const goToSlideById = (id) => {
-  if (isReverseTransitioning.value) return
+const navigateToSlideIndex = (index, mode = 'direct') => {
+  const targetIndex = Math.max(0, Math.min(index, slides.value.length - 1))
+  if (targetIndex === currentSlideIndex.value) return
 
+  navigationMode.value = mode
+  currentSlideIndex.value = targetIndex
+}
+
+const goToSlideById = (id) => {
   const idx = slides.value.findIndex(s => s.id === id)
-  if (idx !== -1) {
-    currentSlideIndex.value = idx
-  }
+  if (idx !== -1) navigateToSlideIndex(idx, 'direct')
+}
+
+const goToPersistentStep = (step) => {
+  const group = persistentStepGroup.value
+  if (!group) return
+
+  const firstSlideIndex = group.type === 'advantages' ? 2 : 8
+  navigateToSlideIndex(firstSlideIndex + step - 1, 'direct')
 }
 
 const menuItems = [
@@ -190,13 +201,10 @@ const showMenu = computed(() => {
 const showSmokeCloud = computed(() => {
   const idx = currentSlideIndex.value
 
-  // Result clouds must not start during the video transition: they enter with
-  // the text once the result slide has become readable.
-  if (idx >= 7 && idx <= 10) {
-    return contentReadySlideIndex.value === idx
-  }
-
-  return (idx >= 2 && idx <= 10) || (idx >= 12 && idx <= 14)
+  // Decorative layers enter together with the content. This prevents a cloud
+  // from the destination section appearing over the previous video frame.
+  return contentReadySlideIndex.value === idx
+    && ((idx >= 2 && idx <= 10) || (idx >= 12 && idx <= 14))
 })
 
 const isResultsSection = computed(() => {
@@ -237,21 +245,24 @@ const persistentStepGroup = computed(() => {
 
 const isVideoBackgroundVisible = computed(() => {
   const slide = slides.value[currentSlideIndex.value]
-  return Boolean(slide?.video || slide?.holdVideo)
+  return videoBackgroundReady.value && Boolean(slide?.video || slide?.holdVideo)
 })
 
 const CONTENT_EXIT_DURATION = 650
 const CONTENT_REVEAL_PROGRESS = 0.25
+const VIDEO_LAYER_CROSSFADE_DURATION = 160
+const VIDEO_CONTAINER_FADE_DURATION = 450
 const WHEEL_GESTURE_RESET_DURATION = 90
 const RESULTS_INTRO_DURATION = 2000
 const STORIES_INTRO_DURATION = 2000
 let wheelGestureActive = false
 let wheelGestureResetTimer = 0
 let contentExitTimer = 0
-let earlyContentRevealTimer = 0
 let resultsIntroTimer = 0
 let storiesIntroTimer = 0
 let shouldAutoAdvanceStoriesIntro = false
+let slideTransitionId = 0
+let cancelEarlyContentReveal = () => {}
 const exitingContentSlideIndex = ref(-1)
 
 const revealSlideContent = (index) => {
@@ -268,7 +279,7 @@ const revealSlideContent = (index) => {
 
       storiesIntroTimer = window.setTimeout(() => {
         if (currentSlideIndex.value !== 11) return
-        currentSlideIndex.value = 12
+        navigateToSlideIndex(12, 'auto')
       }, CONTENT_EXIT_DURATION)
     }, STORIES_INTRO_DURATION)
   }
@@ -283,18 +294,18 @@ const animateOutgoingContent = (index) => {
 }
 
 const goNext = () => {
-  if (isReverseTransitioning.value) return
+  if (isSlideTransitioning.value) return
 
   if (currentSlideIndex.value < slides.value.length - 1) {
-    currentSlideIndex.value++
+    navigateToSlideIndex(currentSlideIndex.value + 1, 'scroll')
   }
 }
 
 const goPrev = () => {
-  if (isReverseTransitioning.value) return
+  if (isSlideTransitioning.value) return
 
   if (currentSlideIndex.value > 0) {
-    currentSlideIndex.value--
+    navigateToSlideIndex(currentSlideIndex.value - 1, 'scroll')
   }
 }
 
@@ -332,11 +343,11 @@ const handleKeydown = (e) => {
       break
     case 'Home':
       e.preventDefault()
-      currentSlideIndex.value = 0
+      navigateToSlideIndex(0, 'direct')
       break
     case 'End':
       e.preventDefault()
-      currentSlideIndex.value = slides.value.length - 1
+      navigateToSlideIndex(slides.value.length - 1, 'direct')
       break
   }
 }
@@ -451,7 +462,7 @@ const waitForVideoFrame = (video) => new Promise((resolve, reject) => {
     settled = true
     cleanup()
     reject(new Error('Timed out waiting for a decoded video frame'))
-  }, 2000)
+  }, 5000)
 
   if (typeof video.requestVideoFrameCallback === 'function') {
     frameCallbackId = video.requestVideoFrameCallback(finish)
@@ -551,7 +562,7 @@ const configureVideoElement = (video) => {
 }
 
 const revealContentAtVideoProgress = (video, slideIndex, requestId, reveal) => {
-  window.clearTimeout(earlyContentRevealTimer)
+  cancelEarlyContentReveal()
 
   const duration = Number.isFinite(video.duration) ? video.duration : 0
   if (duration <= 0) {
@@ -559,14 +570,42 @@ const revealContentAtVideoProgress = (video, slideIndex, requestId, reveal) => {
     return
   }
 
-  const playbackRate = Math.max(0.1, Math.abs(video.playbackRate || 1))
   const targetTime = duration * CONTENT_REVEAL_PROGRESS
-  const delay = Math.max(0, ((targetTime - video.currentTime) / playbackRate) * 1000)
+  let frameCallbackId = 0
+  let fallbackTimer = 0
+  let cancelled = false
 
-  earlyContentRevealTimer = window.setTimeout(() => {
-    if (requestId !== videoRequestId || currentSlideIndex.value !== slideIndex) return
-    reveal()
-  }, delay)
+  const cleanup = () => {
+    window.clearTimeout(fallbackTimer)
+    if (frameCallbackId && typeof video.cancelVideoFrameCallback === 'function') {
+      video.cancelVideoFrameCallback(frameCallbackId)
+    }
+  }
+  const checkProgress = (_now, metadata) => {
+    if (cancelled || requestId !== videoRequestId || currentSlideIndex.value !== slideIndex) {
+      cleanup()
+      return
+    }
+
+    const mediaTime = metadata?.mediaTime ?? video.currentTime
+    if (mediaTime >= targetTime || video.ended) {
+      cleanup()
+      reveal()
+      return
+    }
+
+    if (typeof video.requestVideoFrameCallback === 'function') {
+      frameCallbackId = video.requestVideoFrameCallback(checkProgress)
+    } else {
+      fallbackTimer = window.setTimeout(checkProgress, 50)
+    }
+  }
+
+  cancelEarlyContentReveal = () => {
+    cancelled = true
+    cleanup()
+  }
+  checkProgress()
 }
 
 const preloadUpcomingVideo = () => {
@@ -574,13 +613,21 @@ const preloadUpcomingVideo = () => {
   if (!inactiveEl) return
 
   let nextSrc = ''
-  for (let index = currentSlideIndex.value + 1; index < slides.value.length; index++) {
-    const nextSlide = slides.value[index]
-    if (nextSlide.video) {
-      nextSrc = nextSlide.video
-      break
+
+  // Keep the reverse clip for the current slide hot in the inactive layer.
+  // This removes the decoding pause when a user scrolls back immediately.
+  const currentSlide = slides.value[currentSlideIndex.value]
+  if (currentSlideIndex.value > 0 && currentSlide?.reverseVideo) {
+    nextSrc = currentSlide.reverseVideo
+  } else {
+    for (let index = currentSlideIndex.value + 1; index < slides.value.length; index++) {
+      const nextSlide = slides.value[index]
+      if (nextSlide.video) {
+        nextSrc = nextSlide.video
+        break
+      }
+      if (!nextSlide.holdVideo) break
     }
-    if (!nextSlide.holdVideo) break
   }
 
   if (!nextSrc || inactiveEl.src === getAbsoluteVideoUrl(nextSrc)) return
@@ -592,16 +639,38 @@ const preloadUpcomingVideo = () => {
 }
 
 const finishVideoLayerSwap = async (outgoingEl, requestId, { preload = false } = {}) => {
-  // The incoming video is already decoded. Vue now only changes z-index, while
-  // the outgoing frame stays fully opaque underneath it. Reuse the old element
-  // after the compositor has painted the new stacking order.
+  // Keep the old frame untouched until the opacity crossfade is complete.
+  // Reusing it earlier can flash the next preloaded clip on screen.
   await nextTick()
   await waitForAnimationFrames(2)
+  await new Promise(resolve => window.setTimeout(resolve, VIDEO_LAYER_CROSSFADE_DURATION))
 
   if (requestId !== videoRequestId) return
 
   outgoingEl.pause()
   if (preload) preloadUpcomingVideo()
+}
+
+const getSlideBackgroundSource = (slideIndex) => {
+  const slide = slides.value[slideIndex]
+  if (!slide) return ''
+  if (slide.video) return slide.video
+  if (!slide.holdVideo) return ''
+
+  for (let index = slideIndex - 1; index >= 0; index--) {
+    if (slides.value[index]?.video) return slides.value[index].video
+    if (!slides.value[index]?.holdVideo) break
+  }
+
+  return ''
+}
+
+const settleWithoutVideo = async (requestId) => {
+  videoBackgroundReady.value = false
+  videoA.value?.pause()
+  videoB.value?.pause()
+  await new Promise(resolve => window.setTimeout(resolve, VIDEO_CONTAINER_FADE_DURATION))
+  if (requestId !== videoRequestId) return
 }
 
 const settleOnSlideFrame = async (src, requestId) => {
@@ -636,11 +705,13 @@ const settleOnSlideFrame = async (src, requestId) => {
     stillEl.pause()
     if (requestId !== videoRequestId) return
 
+    videoBackgroundReady.value = true
     activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
     await finishVideoLayerSwap(activeEl, requestId, { preload: true })
   } catch (error) {
     if (requestId === videoRequestId) {
       console.warn('Failed to settle destination video frame:', error)
+      await settleWithoutVideo(requestId)
     }
   }
 }
@@ -661,10 +732,6 @@ const playVideoShot = async (src, { playbackRate = 1, onPlaybackStarted, onCompl
   }
 
   const absoluteSrc = getAbsoluteVideoUrl(src)
-  if (activeEl.src === absoluteSrc) {
-    onComplete?.()
-    return
-  }
 
   try {
     incomingEl.pause()
@@ -686,13 +753,16 @@ const playVideoShot = async (src, { playbackRate = 1, onPlaybackStarted, onCompl
     await waitForVideoFrame(incomingEl)
     if (requestId !== videoRequestId) return
 
+    videoBackgroundReady.value = true
     activeVideoElement.value = activeVideoElement.value === 'A' ? 'B' : 'A'
     await finishVideoLayerSwap(activeEl, requestId, { preload: true })
     if (requestId !== videoRequestId) return
 
     onPlaybackStarted?.(incomingEl, requestId)
 
-    const finishTransition = () => {
+    const finishTransition = async () => {
+      if (requestId !== videoRequestId) return
+      await waitForAnimationFrames(2)
       if (requestId !== videoRequestId) return
       onComplete?.()
     }
@@ -702,7 +772,9 @@ const playVideoShot = async (src, { playbackRate = 1, onPlaybackStarted, onCompl
   } catch (error) {
     if (requestId === videoRequestId) {
       console.warn('Failed to play next video shot:', error)
-      onComplete?.()
+      const fallbackRequestId = ++videoRequestId
+      await settleOnSlideFrame(src, fallbackRequestId)
+      if (fallbackRequestId === videoRequestId) onComplete?.()
     }
   }
 }
@@ -710,23 +782,47 @@ const playVideoShot = async (src, { playbackRate = 1, onPlaybackStarted, onCompl
 // Every numbered file is a transition into its slide. When moving back, play
 // the matching reverse transition of the slide being left.
 watch(currentSlideIndex, (newIndex, oldIndex) => {
+  const transitionId = ++slideTransitionId
+  const transitionStartedAt = performance.now()
+  let transitionFinishing = false
   const slide = slides.value[newIndex]
   const oldSlide = slides.value[oldIndex]
   const goingBack = newIndex < oldIndex
-  isReverseTransitioning.value = goingBack
-  const revealCurrentSlide = () => {
-    if (contentReadySlideIndex.value !== newIndex) revealSlideContent(newIndex)
+  const isDirectJump = navigationMode.value === 'direct' && Math.abs(newIndex - oldIndex) > 1
+  const destinationHasVideo = Boolean(slide?.video || slide?.holdVideo)
+  const originHasVideo = Boolean(oldSlide?.video || oldSlide?.holdVideo)
+  if (!destinationHasVideo || !originHasVideo) videoBackgroundReady.value = false
+  isSlideTransitioning.value = true
+
+  const isCurrentTransition = () => (
+    transitionId === slideTransitionId
+    && currentSlideIndex.value === newIndex
+  )
+  const waitForOutgoingContent = async () => {
+    const remaining = CONTENT_EXIT_DURATION - (performance.now() - transitionStartedAt)
+    if (remaining > 0) {
+      await new Promise(resolve => window.setTimeout(resolve, remaining))
+    }
   }
-  const finishCurrentTransition = () => {
-    if (currentSlideIndex.value !== newIndex) return
-    isReverseTransitioning.value = false
-    revealCurrentSlide()
+  const revealCurrentSlide = async () => {
+    await waitForOutgoingContent()
+    if (!isCurrentTransition()) return
+    if (contentReadySlideIndex.value !== newIndex) revealSlideContent(newIndex)
+    isSlideTransitioning.value = false
+  }
+  const finishCurrentTransition = async () => {
+    if (transitionFinishing) return
+    transitionFinishing = true
+    await waitForOutgoingContent()
+    if (!isCurrentTransition()) return
+    await revealCurrentSlide()
   }
   const revealAtQuarter = (video, requestId) => {
+    if (!isCurrentTransition()) return
     revealContentAtVideoProgress(video, newIndex, requestId, revealCurrentSlide)
   }
 
-  window.clearTimeout(earlyContentRevealTimer)
+  cancelEarlyContentReveal()
   window.clearTimeout(resultsIntroTimer)
   window.clearTimeout(storiesIntroTimer)
   shouldAutoAdvanceStoriesIntro = newIndex === 11 && oldIndex === 10
@@ -735,23 +831,43 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
 
   if (newIndex === 7 && oldIndex === 6) {
     resultsIntroTimer = window.setTimeout(() => {
-      if (currentSlideIndex.value !== 7) return
-      currentSlideIndex.value = 8
+      if (!isCurrentTransition()) return
+      navigateToSlideIndex(8, 'auto')
     }, RESULTS_INTRO_DURATION)
   }
 
-  if (goingBack) {
-    if (oldSlide?.reverseVideo) {
-      const playbackRate = oldIndex === 2 && newIndex === 1
-        ? THIRD_TO_SECOND_REVERSE_PLAYBACK_RATE
-        : 1
-      playVideoShot(oldSlide.reverseVideo, {
-        playbackRate,
+  // A direct jump across several slides cannot use one adjacent reverse clip:
+  // its final frame belongs to the wrong page. Play the destination animation
+  // instead, or settle the exact held frame before revealing any content.
+  if (isDirectJump) {
+    if (slide.video) {
+      playVideoShot(slide.video, {
+        onPlaybackStarted: revealAtQuarter,
         onComplete: finishCurrentTransition
       })
     } else {
       const requestId = ++videoRequestId
-      settleOnSlideFrame(slide.video, requestId).finally(finishCurrentTransition)
+      const backgroundSrc = getSlideBackgroundSource(newIndex)
+      const settle = backgroundSrc
+        ? settleOnSlideFrame(backgroundSrc, requestId)
+        : settleWithoutVideo(requestId)
+      settle.finally(finishCurrentTransition)
+    }
+    return
+  }
+
+  if (goingBack) {
+    if (oldSlide?.reverseVideo) {
+      playVideoShot(oldSlide.reverseVideo, {
+        onComplete: finishCurrentTransition
+      })
+    } else {
+      const requestId = ++videoRequestId
+      const backgroundSrc = getSlideBackgroundSource(newIndex)
+      const settle = backgroundSrc
+        ? settleOnSlideFrame(backgroundSrc, requestId)
+        : settleWithoutVideo(requestId)
+      settle.finally(finishCurrentTransition)
     }
     return
   }
@@ -761,6 +877,9 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
       onPlaybackStarted: revealAtQuarter,
       onComplete: finishCurrentTransition
     })
+  } else if (!slide.holdVideo) {
+    const requestId = ++videoRequestId
+    settleWithoutVideo(requestId).finally(finishCurrentTransition)
   } else {
     finishCurrentTransition()
   }
@@ -804,9 +923,10 @@ onUnmounted(() => {
   if (videoB.value) videoB.value.pause()
   window.clearTimeout(wheelGestureResetTimer)
   window.clearTimeout(contentExitTimer)
-  window.clearTimeout(earlyContentRevealTimer)
+  cancelEarlyContentReveal()
   window.clearTimeout(resultsIntroTimer)
   window.clearTimeout(storiesIntroTimer)
+  slideTransitionId++
   videoRequestId++
 })
 </script>
@@ -821,7 +941,12 @@ onUnmounted(() => {
     <!-- Right Column: Content Container with Slide Deck -->
     <main class="content-container home-content" ref="scrollContainer">
       <Transition name="fade">
-        <button v-if="currentSlideIndex === 0" class="figma-doctors-button" type="button" disabled>
+        <button
+          v-if="currentSlideIndex === 0 && contentReadySlideIndex === 0"
+          class="figma-doctors-button"
+          type="button"
+          disabled
+        >
           <span>Для врачей</span>
           <img src="/assets/figma-doctors-icon.svg" alt="" />
         </button>
@@ -882,18 +1007,21 @@ onUnmounted(() => {
       <!-- Persistent pagination stays mounted while text slides change -->
       <Transition name="persistent-steps">
         <div
-          v-if="persistentStepGroup"
+          v-if="persistentStepGroup && contentReadySlideIndex === currentSlideIndex"
           class="persistent-step-indicator"
           :class="`persistent-step-indicator--${persistentStepGroup.type}`"
         >
-          <div
+          <button
             v-for="i in persistentStepGroup.total"
             :key="i"
+            type="button"
             class="figma-step-circle"
             :class="{ active: i === persistentStepGroup.current }"
+            :aria-label="`Перейти к шагу ${i}`"
+            @click="goToPersistentStep(i)"
           >
             {{ i }}
-          </div>
+          </button>
         </div>
       </Transition>
 
@@ -1015,7 +1143,11 @@ onUnmounted(() => {
 
           <!-- Figma-exact FAQ, Blog and How-to frames (nodes 39:2029–39:2726) -->
           <template v-else-if="['slide-16', 'slide-17', 'slide-18', 'slide-19', 'slide-20'].includes(slide.id)">
-            <FigmaInfoSlide :slide="slide" @action="showDemoModal = true" />
+            <FigmaInfoSlide
+              :slide="slide"
+              @action="showDemoModal = true"
+              @navigate="goToSlideById"
+            />
           </template>
 
           <!-- FAQ (Slide 16) -->

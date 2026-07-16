@@ -6,7 +6,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['action'])
+const emit = defineEmits(['action', 'navigate'])
 
 const openFaqIndex = ref(-1)
 
@@ -98,9 +98,16 @@ const toggleFaq = (index) => {
 
     <div class="exact-howto-copy">
       <div class="exact-step-indicator" aria-label="Шаги">
-        <span v-for="number in 3" :key="number" :class="{ active: Number(slide.step) === number }">
+        <button
+          v-for="number in 3"
+          :key="number"
+          type="button"
+          :class="{ active: Number(slide.step) === number }"
+          :aria-label="`Перейти к шагу ${number}`"
+          @click="emit('navigate', `slide-${17 + number}`)"
+        >
           <i>{{ number }}</i>
-        </span>
+        </button>
       </div>
 
       <div class="exact-howto-text">
@@ -357,15 +364,19 @@ button {
   display: flex;
 }
 
-.exact-step-indicator > span {
+.exact-step-indicator > button {
   width: calc(48 * var(--ui));
   height: calc(48 * var(--ui));
   display: grid;
   place-items: center;
   opacity: 0.3;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
-.exact-step-indicator > span.active {
+.exact-step-indicator > button.active {
   opacity: 1;
 }
 

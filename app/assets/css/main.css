@@ -1112,15 +1112,16 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 1;
+  opacity: 0;
   z-index: 1;
-  transition: none;
-  will-change: transform;
+  transition: opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
   transform: translateZ(0);
   backface-visibility: hidden;
 }
 
 .bg-video.active {
+  opacity: 1;
   z-index: 2;
 }
 
@@ -1699,7 +1700,7 @@ body {
   }
 }
 
-.slide-layer.active .figma-scroll-icon {
+.slide-layer.active[data-content-ready="true"] .figma-scroll-icon {
   opacity: 1;
 }
 
@@ -1780,6 +1781,8 @@ body {
   line-height: 1.2;
   margin: 0;
   text-align: left;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .figma-doctors-button {
@@ -1933,7 +1936,7 @@ body {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .persistent-step-indicator--advantages {
@@ -1968,6 +1971,9 @@ body {
   font-weight: 400;
   color: rgba(0, 0, 0, 0.32);
   box-sizing: border-box;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
   transition: border-color 0.3s ease, color 0.3s ease;
 }
 
@@ -2028,7 +2034,7 @@ body {
   animation-delay: 0s;
 }
 
-.slide-layer.active[data-has-video="false"] .figma-result-title-row {
+.slide-layer.active[data-has-video="false"][data-content-ready="true"] .figma-result-title-row {
   animation: cinematic-fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.2s;
 }
@@ -2781,6 +2787,17 @@ body {
   will-change: transform, opacity, filter;
 }
 
+.slide-layer > .figma-exact-info-slide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-layer.active[data-content-ready="true"] > .figma-exact-info-slide {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* Disable sliding transform for slides 16 to 21 (FAQ, Blog, How to, Contacts) to make them crossfade only */
 .slide-layer:nth-child(n+16) {
   transform: none !important;
@@ -2815,6 +2832,7 @@ body {
    -------------------------------------------------------------------------- */
 
 /* Title & Indicators */
+.slide-layer.active[data-content-ready="true"] .figma-hero-title,
 .slide-layer.active[data-has-video="true"][data-content-ready="true"] .figma-slide-title-inline,
 .slide-layer.active[data-has-video="true"][data-content-ready="true"] .figma-intro-title,
 .slide-layer.active[data-has-video="true"][data-content-ready="true"] .figma-section-title,
@@ -2851,32 +2869,32 @@ body {
    -------------------------------------------------------------------------- */
 
 /* Title & Indicators */
-.slide-layer.active[data-has-video="false"] .figma-slide-title-inline,
-.slide-layer.active[data-has-video="false"] .figma-intro-title,
-.slide-layer.active[data-has-video="false"] .figma-section-title,
-.slide-layer.active[data-has-video="false"] .figma-step-indicator,
-.slide-layer.active[data-has-video="false"] .figma-category-label {
+.slide-layer.active[data-has-video="false"][data-content-ready="true"] .figma-slide-title-inline,
+.slide-layer.active[data-has-video="false"][data-content-ready="true"] .figma-intro-title,
+.slide-layer.active[data-has-video="false"][data-content-ready="true"] .figma-section-title,
+.slide-layer.active[data-has-video="false"][data-content-ready="true"] .figma-step-indicator,
+.slide-layer.active[data-has-video="false"][data-content-ready="true"] .figma-category-label {
   animation: cinematic-fade-in-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.2s;
 }
 
 /* Description */
-.slide-layer.active[data-has-video="false"] .figma-slide-desc-inline {
+.slide-layer.active[data-has-video="false"][data-content-ready="true"] .figma-slide-desc-inline {
   animation: cinematic-fade-in-up-desc 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.5s;
 }
 
 /* FAQ, Blog Cards, Contacts layout */
-.slide-layer.active[data-has-video="false"] .faq-wrapper,
-.slide-layer.active[data-has-video="false"] .figma-blog-card,
-.slide-layer.active[data-has-video="false"] .figma-contacts-header-group {
+.slide-layer.active[data-has-video="false"][data-content-ready="true"] .faq-wrapper,
+.slide-layer.active[data-has-video="false"][data-content-ready="true"] .figma-blog-card,
+.slide-layer.active[data-has-video="false"][data-content-ready="true"] .figma-contacts-header-group {
   animation: cinematic-fade-in-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.2s;
 }
 
-.slide-layer.active[data-has-video="false"] .figma-blog-all-btn,
-.slide-layer.active[data-has-video="false"] .figma-contacts-grid,
-.slide-layer.active[data-has-video="false"] .figma-map-element {
+.slide-layer.active[data-has-video="false"][data-content-ready="true"] .figma-blog-all-btn,
+.slide-layer.active[data-has-video="false"][data-content-ready="true"] .figma-contacts-grid,
+.slide-layer.active[data-has-video="false"][data-content-ready="true"] .figma-map-element {
   animation: cinematic-fade-in-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.5s;
 }
@@ -2908,6 +2926,8 @@ body {
 }
 
 .slide-layer.content-exiting .figma-slide-title-inline,
+.slide-layer.content-exiting .figma-hero-title,
+.slide-layer.content-exiting .figma-scroll-icon,
 .slide-layer.content-exiting .figma-intro-title,
 .slide-layer.content-exiting .figma-section-title,
 .slide-layer.content-exiting .figma-category-label,
@@ -2922,6 +2942,11 @@ body {
 .slide-layer.content-exiting .figma-map-element {
   animation: cinematic-fade-out-away 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
   animation-delay: 0s !important;
+}
+
+.slide-layer.content-exiting > .figma-exact-info-slide {
+  opacity: 0 !important;
+  pointer-events: none;
 }
 
 .slide-layer.content-exiting .figma-slide-desc-inline {
