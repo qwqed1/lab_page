@@ -109,8 +109,16 @@ const filteredGroups = computed(() => {
 })
 
 const downloadPDF = () => {
-  window.print()
+  const link = document.createElement('a')
+  link.href = '/documents/elagin-demo-result.pdf'
+  link.download = 'elagin-demo-result.pdf'
+  link.click()
 }
+
+const reportPages = Array.from(
+  { length: 10 },
+  (_, index) => `/assets/demo-report/page-${String(index + 1).padStart(2, '0')}.png`
+)
 </script>
 
 <template>
@@ -142,6 +150,18 @@ const downloadPDF = () => {
           </button>
         </div>
 
+        <section class="pdf-report" aria-label="Демо-результат">
+          <img
+            v-for="(page, index) in reportPages"
+            :key="page"
+            :src="page"
+            :alt="`Страница ${index + 1} демо-результата`"
+            class="pdf-report-page"
+            loading="lazy"
+          />
+        </section>
+
+        <div class="legacy-report-content" aria-hidden="true">
         <!-- Patient Header Info Card -->
         <div class="patient-card">
           <div class="patient-card-header">
@@ -321,6 +341,7 @@ const downloadPDF = () => {
             ОТКАЗ ОТ ОТВЕТСТВЕННОСТИ: ИНТЕРПРЕТАЦИЯ РАВЕН — ЭТО ИНСТРУМЕНТ, ПОМОГАЮЩИЙ ВРАЧУ В ДИАГНОСТИКЕ АЛЛЕРГИИ И В ПОНИМАНИИ РЕЗУЛЬТАТОВ МОЛЕКУЛЯРНЫХ ТЕСТОВ. ТЕСТЫ IN VITRO ПОКАЗЫВАЮТ ЧУВСТВИТЕЛЬНОСТЬ ТОЛЬКО К ОСОБЫМ АЛЛЕРГЕНАМ. ДИАГНОЗ ДОЛЖЕН ПОДТВЕРЖДАТЬСЯ СПЕЦИАЛИСТОМ.
           </div>
         </footer>
+        </div>
       </div>
     </main>
   </div>
@@ -365,6 +386,25 @@ const downloadPDF = () => {
   gap: 24px;
   width: 100%;
   max-width: 800px;
+}
+
+.pdf-report {
+  display: grid;
+  gap: 20px;
+  width: min(100%, 920px);
+  margin: 0 auto;
+}
+
+.pdf-report-page {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;
+  box-shadow: 0 6px 24px rgba(30, 46, 52, 0.12);
+}
+
+.legacy-report-content {
+  display: none;
 }
 
 .download-bar {

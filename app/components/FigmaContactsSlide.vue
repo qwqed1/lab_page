@@ -80,30 +80,31 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
 .exact-contacts-body {
   position: absolute;
   left: calc(64 * var(--ux));
-  top: calc(366 * var(--uy));
+  top: calc(534 * var(--uy));
   width: calc(1115 * var(--ux));
-  height: calc(644 * var(--ui));
+  height: calc(482 * var(--ui));
 }
 
 .exact-contacts-header {
   position: absolute;
   inset: 0 auto auto 0;
   width: 100%;
-  height: calc(210 * var(--ui));
+  height: calc(129 * var(--ui));
 }
 
 .exact-contacts-header h2 {
-  width: calc(954 * var(--ui));
+  width: 100%;
   margin: 0;
-  font-size: clamp(26px, calc(42 * var(--ui)), 42px);
+  font-size: min(24px, calc(24 * var(--ui)));
   font-weight: 400;
-  line-height: calc(49 * var(--ui));
+  line-height: min(28px, calc(28 * var(--ui)));
+  white-space: nowrap;
 }
 
 .exact-contacts-cta {
   position: absolute;
   left: 0;
-  top: calc(130 * var(--ui));
+  top: calc(49 * var(--ui));
   width: 100%;
   height: calc(80 * var(--ui));
   min-height: 48px;
@@ -133,7 +134,7 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
 .exact-contacts-columns {
   position: absolute;
   left: 0;
-  top: calc(274 * var(--ui));
+  top: calc(177 * var(--ui));
   width: 100%;
   height: max(140px, calc(215 * var(--ui)));
 }
@@ -226,15 +227,15 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
 .exact-contacts-footer {
   position: absolute;
   left: 0;
-  top: calc(553 * var(--ui));
+  top: calc(440 * var(--ui));
   width: 100%;
-  height: max(68px, calc(91 * var(--ui)));
+  height: calc(42 * var(--ui));
 }
 
 .exact-policy-links {
   position: absolute;
   left: 0;
-  top: calc(49 * var(--ui));
+  top: 0;
   display: flex;
   flex-direction: column;
   gap: calc(4 * var(--ui));
@@ -247,37 +248,73 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
 .exact-studio-credit {
   position: absolute;
   left: calc(919 * var(--ux));
-  top: 0;
+  top: auto;
+  bottom: 0;
   width: calc(196 * var(--ux));
-  height: max(68px, calc(91 * var(--ui)));
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: calc(18 * var(--ui));
+  height: calc(28 * var(--ui));
   color: rgba(0, 0, 0, 0.32);
 }
 
 .exact-studio-credit img {
-  width: calc(79 * var(--ui));
-  height: calc(35 * var(--ui));
+  position: absolute;
+  left: calc(-20 * var(--ui));
+  top: calc(2.5 * var(--ui));
+  width: calc(52 * var(--ui));
+  height: calc(23 * var(--ui));
   display: block;
 }
 
 .exact-studio-credit span {
-  width: calc(193 * var(--ui));
-  font-size: clamp(11px, calc(16 * var(--ui)), 16px);
+  position: absolute;
+  left: calc(50 * var(--ui));
+  top: 0;
+  width: calc(146 * var(--ui));
+  height: calc(28 * var(--ui));
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: calc(12 * var(--ui));
   font-weight: 400;
-  line-height: max(1em, calc(19 * var(--ui)));
+  line-height: normal;
+  text-transform: uppercase;
 }
 
 @media (max-width: 700px) {
   .exact-contacts-header h2 {
     width: 100%;
-    font-size: clamp(23px, calc(42 * var(--ui)), 42px);
   }
 
   .exact-contacts-cta {
     padding-inline: 16px;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1440px) {
+  .exact-contacts-footer {
+    top: calc(440 * var(--uy));
+    height: calc(42 * var(--uy));
+  }
+
+  .exact-studio-credit {
+    left: auto;
+    right: 0;
+    bottom: 0;
+    width: 196px;
+    height: 28px;
+    transform: scale(1.5);
+    transform-origin: right bottom;
+  }
+
+  .exact-studio-credit img {
+    left: -20px;
+    top: 2.5px;
+    width: 52px;
+    height: 23px;
+  }
+
+  .exact-studio-credit span {
+    left: 50px;
+    width: 146px;
+    height: 28px;
+    font-size: 12px;
   }
 }
 </style>
