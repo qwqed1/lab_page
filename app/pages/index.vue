@@ -76,7 +76,7 @@ const resetQuiz = () => {
   quizAnswers.value = []
 }
 
-// 21 Slides Definition (Extracted directly from Figma bridged mockup)
+// 17 Slides Definition (Extracted directly from Figma bridged mockup)
 const currentSlideIndex = ref(0)
 const scrollContainer = ref(null)
 
@@ -114,16 +114,8 @@ const slides = ref([
   { id: 'slide-10', step: '2', totalSteps: '3', label: 'О результатах', title: 'Рекомендации по аллергенам', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/scroll/forward/scr9.mp4', reverseVideo: '/videos/scroll/reverse/scrr9.mp4' },
   { id: 'slide-11', step: '3', totalSteps: '3', label: 'О результатах', badge: 'Опционально', title: 'Консультация', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/scroll/forward/scr10.mp4', reverseVideo: '/videos/scroll/reverse/scrr10.mp4' },
   
-  // Stories Intro
-  { id: 'slide-12', label: 'Истории людей', title: 'Истории людей', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr11.mp4', reverseVideo: '/videos/scroll/reverse/scrr11.mp4' },
-  
-  // Stories Tabs
-  { id: 'slide-13', label: 'Истории людей', type: 'story', activeTab: 'Misha',      direction: 'down',  video: '', reverseVideo: '', holdVideo: true },
-  { id: 'slide-14', label: 'Истории людей', type: 'story', activeTab: 'Alexandra', direction: 'right', video: '/videos/scroll/forward/scr12.mp4', reverseVideo: '/videos/scroll/reverse/scrr12.mp4' },
-  { id: 'slide-15', label: 'Истории людей', type: 'story', activeTab: 'Pasha',      direction: 'right', video: '/videos/scroll/forward/scr13.mp4', reverseVideo: '/videos/scroll/reverse/scrr13.mp4' },
-  
-  // FAQ
-  { id: 'slide-16', label: 'FAQ', type: 'faq', title: 'FAQ', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr14.mp4', reverseVideo: '/videos/scroll/reverse/scrr14.mp4' },
+  // The final-frame transition takes the results directly into FAQ.
+  { id: 'slide-16', label: 'FAQ', type: 'faq', title: 'FAQ', subtitle: '', direction: 'down', video: '/videos/scroll/forward/final-frame-pc.mp4', reverseVideo: '/videos/scroll/reverse/final-frame-pc.mp4' },
   
   // Blog
   { id: 'slide-17', label: 'Блог про аллергию', type: 'blog', title: 'Блог про аллергию', subtitle: '', direction: 'down', video: '', reverseVideo: '' },
@@ -176,7 +168,6 @@ const goToPersistentStep = (step) => {
 const menuItems = [
   { label: 'Преимущества', slideId: 'slide-3' },
   { label: 'О результатах', slideId: 'slide-9' },
-  { label: 'Истории людей', slideId: 'slide-13' },
   { label: 'FAQ', slideId: 'slide-16' },
   { label: 'Блог про аллергию', slideId: 'slide-17' },
   { label: 'Как сдать тест', slideId: 'slide-18' }
@@ -186,11 +177,10 @@ const activeMenuIndex = computed(() => {
   const idx = currentSlideIndex.value
   if (idx >= 2 && idx <= 6) return 0 // Преимущества
   if (idx >= 7 && idx <= 10) return 1 // О результатах
-  if (idx >= 11 && idx <= 14) return 2 // Истории людей
-  if (idx === 15) return 3 // FAQ
-  if (idx === 16) return 4 // Блог про аллергию
-  if (idx >= 17 && idx <= 19) return 5 // Как сдать тест
-  if (idx === 20) return 0 // Final Figma frame keeps the full list with the first item selected
+  if (idx === 11) return 2 // FAQ
+  if (idx === 12) return 3 // Блог про аллергию
+  if (idx >= 13 && idx <= 15) return 4 // Как сдать тест
+  if (idx === 16) return 0 // Final Figma frame keeps the full list with the first item selected
   return -1
 })
 
@@ -204,7 +194,7 @@ const showSmokeCloud = computed(() => {
   // Decorative layers enter together with the content. This prevents a cloud
   // from the destination section appearing over the previous video frame.
   return contentReadySlideIndex.value === idx
-    && ((idx >= 2 && idx <= 10) || (idx >= 12 && idx <= 14))
+    && idx >= 2 && idx <= 10
 })
 
 const isResultsSection = computed(() => {
@@ -217,16 +207,6 @@ const resultsCloudVariant = computed(() => {
 
   if (idx >= 8 && idx <= 10) return 'results-cloud-primary'
   return ''
-})
-
-const isStoriesSection = computed(() => {
-  const idx = currentSlideIndex.value
-  return idx >= 12 && idx <= 14
-})
-
-const storyCloudVariant = computed(() => {
-  const variants = ['story-cloud-misha', 'story-cloud-alexandra', 'story-cloud-pasha']
-  return variants[currentSlideIndex.value - 12] || ''
 })
 
 const persistentStepGroup = computed(() => {
@@ -256,13 +236,10 @@ const VIDEO_LAYER_CROSSFADE_DURATION = 160
 const VIDEO_CONTAINER_FADE_DURATION = 450
 const WHEEL_GESTURE_RESET_DURATION = 90
 const RESULTS_INTRO_DURATION = 2000
-const STORIES_INTRO_DURATION = 2000
 let wheelGestureActive = false
 let wheelGestureResetTimer = 0
 let contentExitTimer = 0
 let resultsIntroTimer = 0
-let storiesIntroTimer = 0
-let shouldAutoAdvanceStoriesIntro = false
 let slideTransitionId = 0
 let cancelEarlyContentReveal = () => {}
 const exitingContentSlideIndex = ref(-1)
@@ -271,20 +248,6 @@ const revealSlideContent = (index) => {
   if (currentSlideIndex.value !== index) return
 
   contentReadySlideIndex.value = index
-
-  if (index === 11 && shouldAutoAdvanceStoriesIntro) {
-    window.clearTimeout(storiesIntroTimer)
-    storiesIntroTimer = window.setTimeout(() => {
-      if (currentSlideIndex.value !== 11 || contentReadySlideIndex.value !== 11) return
-      shouldAutoAdvanceStoriesIntro = false
-      animateOutgoingContent(11)
-
-      storiesIntroTimer = window.setTimeout(() => {
-        if (currentSlideIndex.value !== 11) return
-        navigateToSlideIndex(12, 'auto')
-      }, CONTENT_EXIT_DURATION)
-    }, STORIES_INTRO_DURATION)
-  }
 }
 
 const animateOutgoingContent = (index) => {
@@ -368,51 +331,6 @@ const handleTouchEnd = (e) => {
     else goPrev()
   }
 }
-
-const getStoryBefore = (tab) => {
-  if (tab === 'Misha') {
-    return [
-      'Неуверенность в аллергии, вроде есть, а вроде и нет',
-      'Боится выходить из дома',
-      'При аллергии просто замирает в страхе'
-    ]
-  } else if (tab === 'Alexandra') {
-    return [
-      'Постоянный насморк без простуды весной и летом',
-      'Не понимала, на какое именно растение реакция',
-      'Горсти антигистаминных наугад'
-    ]
-  } else {
-    return [
-      'Пищевая аллергия',
-      'Исключал почти все продукты, боясь приступов',
-      'Постоянные ограничения и стресс при походах в рестораны'
-    ]
-  }
-}
-
-const getStoryAfter = (tab) => {
-  if (tab === 'Misha') {
-    return [
-      'Точно знает, на что аллергия',
-      'Знает, в какие конкретно недели пик цветения',
-      'Пьёт конкретные таблетки'
-    ]
-  } else if (tab === 'Alexandra') {
-    return [
-      'Исключила из рациона яблоки и орехи (перекрестная реакция на березу)',
-      'Подготовилась к сезону пыления заранее'
-    ]
-  } else {
-    return [
-      'Выявил точные белковые аллергены',
-      'Понял, какие продукты безопасны при термообработке',
-      'Вернул разнообразие в диету'
-    ]
-  }
-}
-
-
 
 const getAbsoluteVideoUrl = (src) => {
   if (!src || typeof window === 'undefined') return ''
@@ -838,8 +756,6 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
 
   cancelEarlyContentReveal()
   window.clearTimeout(resultsIntroTimer)
-  window.clearTimeout(storiesIntroTimer)
-  shouldAutoAdvanceStoriesIntro = newIndex === 11 && oldIndex === 10
   animateOutgoingContent(oldIndex)
   contentReadySlideIndex.value = -1
 
@@ -942,7 +858,6 @@ onUnmounted(() => {
   window.clearTimeout(contentExitTimer)
   cancelEarlyContentReveal()
   window.clearTimeout(resultsIntroTimer)
-  window.clearTimeout(storiesIntroTimer)
   slideTransitionId++
   videoRequestId++
 })
@@ -985,7 +900,7 @@ onUnmounted(() => {
       <!-- Fixed Video Background Layer -->
       <div
         class="video-bg-container"
-        :class="{ 'no-video': !isVideoBackgroundVisible, 'story-video': isStoriesSection }"
+        :class="{ 'no-video': !isVideoBackgroundVisible }"
         aria-hidden="true"
       >
         <video 
@@ -1013,11 +928,9 @@ onUnmounted(() => {
         :class="[
           {
             visible: showSmokeCloud,
-            'results-cloud': isResultsSection,
-            'story-cloud': isStoriesSection
+            'results-cloud': isResultsSection
           },
-          resultsCloudVariant,
-          storyCloudVariant
+          resultsCloudVariant
         ]"
       ></div>
 
@@ -1104,55 +1017,6 @@ onUnmounted(() => {
                     <span v-if="slide.badge" class="figma-badge">{{ slide.badge }}</span>
                   </div>
                   <p class="figma-slide-desc-inline">{{ slide.subtitle }}</p>
-                </div>
-              </div>
-            </div>
-          </template>
-
-          <!-- Stories Intro (Slide 12) -->
-          <template v-else-if="slide.id === 'slide-12'">
-            <h2 class="figma-intro-title">
-              {{ slide.title }}
-            </h2>
-          </template>
-
-          <!-- Stories Detail (Slide 13 to 15) -->
-          <template v-else-if="slide.type === 'story'">
-            <div class="figma-content-wrapper story-wrapper">
-              <div class="figma-story-body">
-                <!-- Tab Bar -->
-                <div class="figma-story-tabs">
-                  <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Misha' }" @click="goToSlideById('slide-13')">Миша</button>
-                  <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Alexandra' }" @click="goToSlideById('slide-14')">Александра</button>
-                  <button class="figma-tab-btn" :class="{ active: slide.activeTab === 'Pasha' }" @click="goToSlideById('slide-15')">Паша</button>
-                </div>
-
-                <!-- Stories Details content list -->
-                <div class="figma-story-content">
-                  <!-- After ALEX2 (Header & List) -->
-                  <div class="story-block-after">
-                    <h3 class="story-block-title green">После теста ALEX2</h3>
-                    <ul class="story-bullets">
-                      <li v-for="item in getStoryAfter(slide.activeTab)" :key="item">{{ item }}</li>
-                    </ul>
-                  </div>
-
-                  <!-- Before (Header & List) -->
-                  <div class="story-block-before">
-                    <h3 class="story-block-title">До</h3>
-                    <ul class="story-bullets gray">
-                      <li v-for="item in getStoryBefore(slide.activeTab)" :key="item">{{ item }}</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Horizontal divider and Read More -->
-              <div class="figma-story-footer">
-                <div class="story-footer-divider"></div>
-                <div class="story-read-more" @click="showDemoModal = true">
-                  <span>Читать подробнее</span>
-                  <img class="read-more-arrow" src="/assets/figma-story-read-more.svg" alt="" />
                 </div>
               </div>
             </div>

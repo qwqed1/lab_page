@@ -1772,7 +1772,9 @@ body {
 
 .figma-hero-title {
   position: absolute;
-  left: 4.99%;
+  /* Keep the headline on the same guide as the visible mouse icon at every
+     desktop width. A percentage-only offset drifted right on 2K/4K screens. */
+  left: calc(2.09% + 27px);
   top: calc(69.35% + 137px); /* 27px below the raised 128×142 scroll icon */
   width: 76.75%;
   font-size: 42px;
@@ -2798,8 +2800,9 @@ body {
   pointer-events: auto;
 }
 
-/* Disable sliding transform for slides 16 to 21 (FAQ, Blog, How to, Contacts) to make them crossfade only */
-.slide-layer:nth-child(n+16) {
+/* FAQ now follows the results directly and is the 12th slide. Keep all of the
+   Figma information frames on the original crossfade-only behavior. */
+.slide-layer:nth-child(n+12) {
   transform: none !important;
   transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }

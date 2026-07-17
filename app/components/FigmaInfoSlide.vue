@@ -22,7 +22,7 @@ const blogCards = [
   'Cursor представила модель Composer 2.5 — в тестах она сопоставима c Opus 4.7 и GPT-5.5, но стоит примерно в 10 раз дешевле'
 ]
 
-const howToAsset = computed(() => `/assets/figma-howto-step-${props.slide.step}.png`)
+const howToAsset = computed(() => `/assets/${props.slide.step}.png`)
 
 const toggleFaq = (index) => {
   openFaqIndex.value = openFaqIndex.value === index ? -1 : index
