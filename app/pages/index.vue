@@ -250,6 +250,8 @@ const isVideoBackgroundVisible = computed(() => {
 
 const CONTENT_EXIT_DURATION = 650
 const CONTENT_REVEAL_PROGRESS = 0.25
+const THIRD_SLIDE_CONTENT_REVEAL_TIME = 1.2
+const EARLY_REVERSE_PLAYBACK_RATE = 1.5
 const VIDEO_LAYER_CROSSFADE_DURATION = 160
 const VIDEO_CONTAINER_FADE_DURATION = 450
 const WHEEL_GESTURE_RESET_DURATION = 90
@@ -561,7 +563,13 @@ const configureVideoElement = (video) => {
   video.disablePictureInPicture = true
 }
 
-const revealContentAtVideoProgress = (video, slideIndex, requestId, reveal) => {
+const revealContentAtVideoProgress = (
+  video,
+  slideIndex,
+  requestId,
+  reveal,
+  { targetTime: requestedTargetTime } = {}
+) => {
   cancelEarlyContentReveal()
 
   const duration = Number.isFinite(video.duration) ? video.duration : 0
@@ -570,7 +578,9 @@ const revealContentAtVideoProgress = (video, slideIndex, requestId, reveal) => {
     return
   }
 
-  const targetTime = duration * CONTENT_REVEAL_PROGRESS
+  const targetTime = Number.isFinite(requestedTargetTime)
+    ? Math.max(0, Math.min(requestedTargetTime, duration))
+    : duration * CONTENT_REVEAL_PROGRESS
   let frameCallbackId = 0
   let fallbackTimer = 0
   let cancelled = false
@@ -817,9 +827,13 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
     if (!isCurrentTransition()) return
     await revealCurrentSlide()
   }
-  const revealAtQuarter = (video, requestId) => {
+  const revealDuringPlayback = (video, requestId) => {
     if (!isCurrentTransition()) return
-    revealContentAtVideoProgress(video, newIndex, requestId, revealCurrentSlide)
+    revealContentAtVideoProgress(video, newIndex, requestId, revealCurrentSlide, {
+      targetTime: newIndex === 2 && oldIndex === 1
+        ? THIRD_SLIDE_CONTENT_REVEAL_TIME
+        : undefined
+    })
   }
 
   cancelEarlyContentReveal()
@@ -842,7 +856,7 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   if (isDirectJump) {
     if (slide.video) {
       playVideoShot(slide.video, {
-        onPlaybackStarted: revealAtQuarter,
+        onPlaybackStarted: revealDuringPlayback,
         onComplete: finishCurrentTransition
       })
     } else {
@@ -859,6 +873,9 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   if (goingBack) {
     if (oldSlide?.reverseVideo) {
       playVideoShot(oldSlide.reverseVideo, {
+        playbackRate: oldIndex === 2 || oldIndex === 1
+          ? EARLY_REVERSE_PLAYBACK_RATE
+          : 1,
         onComplete: finishCurrentTransition
       })
     } else {
@@ -874,7 +891,7 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
 
   if (slide.video) {
     playVideoShot(slide.video, {
-      onPlaybackStarted: revealAtQuarter,
+      onPlaybackStarted: revealDuringPlayback,
       onComplete: finishCurrentTransition
     })
   } else if (!slide.holdVideo) {

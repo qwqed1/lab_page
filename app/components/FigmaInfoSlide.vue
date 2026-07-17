@@ -182,11 +182,12 @@ button {
 .exact-faq-list {
   position: absolute;
   left: calc(64 * var(--ux));
+  right: calc(64 * var(--ux));
   /* Leave a full row of breathing room above the "All questions" divider.
      The list grows upward when an answer opens, so its last item never
      crosses that divider. */
   bottom: calc(64 * var(--uy) + 49 * var(--ui) + 52px);
-  width: calc(1117 * var(--ux));
+  width: auto;
   display: flex;
   flex-direction: column;
   gap: calc(32 * var(--uy));
@@ -374,6 +375,11 @@ button {
   border: 0;
   background: transparent;
   cursor: pointer;
+}
+
+.exact-faq-slide .exact-bottom-link {
+  right: calc(64 * var(--ux));
+  width: auto;
 }
 
 .exact-step-indicator > button.active {
