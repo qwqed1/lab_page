@@ -2,7 +2,7 @@
   <div class="page-layout">
     <!-- Header 72px — точно по макету, кнопка "Назад" -->
     <header class="header-nav">
-      <NuxtLink to="/login" class="back-link">
+      <NuxtLink :to="loginPath" class="back-link">
         <span class="back-arrow">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -61,7 +61,7 @@
           <!-- Subtitle: 18px Roboto Regular opacity 0.5 center -->
           <p class="page-subtitle check-subtitle">На вашу почту пришли новые данные для входа</p>
           <!-- Кнопка Войти -->
-          <NuxtLink to="/login" class="btn-primary check-btn">
+          <NuxtLink :to="loginPath" class="btn-primary check-btn">
             <span>Войти</span>
             <span class="btn-icon-wrap">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,6 +79,10 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRoute } from '#app'
+
+const route = useRoute()
+const loginPath = route.path.startsWith('/cart') ? '/cart/login' : '/login'
 
 const email = ref('')
 const loading = ref(false)

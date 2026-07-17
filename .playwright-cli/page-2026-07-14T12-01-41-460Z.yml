@@ -1,0 +1,28 @@
+- generic [ref=f6e3]:
+  - banner [ref=f6e4]:
+    - link [ref=f6e5] [cursor=pointer]:
+      - /url: /personal-account/doctor/login
+  - main [ref=f6e9]:
+    - generic [ref=f6e10]:
+      - generic [ref=f6e11]:
+        - heading "Создание аккаунта" [level=2] [ref=f6e12]
+        - paragraph [ref=f6e13]: Внутри личного кабинета вы сможете создать QR-код, который даст вашим пациентам небольшую скидку — а вы, статистику по его использованию и небольшой бонус за каждого приведённого пациента.
+      - generic [ref=f6e14]:
+        - generic [ref=f6e15]:
+          - generic [ref=f6e16]:
+            - generic [ref=f6e17]: ФИО
+            - textbox "ФИО" [ref=f6e18]:
+              - /placeholder: Бурмистров Павел Сергеевич
+          - generic [ref=f6e19]:
+            - generic [ref=f6e20]: Место работы
+            - textbox "Место работы" [ref=f6e21]:
+              - /placeholder: Москва, Городская больница №91
+          - generic [ref=f6e22]:
+            - generic [ref=f6e23]: E-mail
+            - textbox "E-mail" [ref=f6e24]:
+              - /placeholder: max@inmuntex.com
+          - generic [ref=f6e25]:
+            - generic [ref=f6e26]: Пароль
+            - textbox "Пароль" [ref=f6e27]:
+              - /placeholder: "*************"
+        - button "Создать аккаунт" [ref=f6e29] [cursor=pointer]

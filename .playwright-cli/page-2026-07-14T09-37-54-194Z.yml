@@ -1,0 +1,13 @@
+- main [ref=e3]:
+  - region [ref=e5]:
+    - generic [ref=e6]:
+      - heading "Ошибка 404" [level=1] [ref=e7]
+      - paragraph [ref=e8]: Вы попали на сайт ALEX2, но мы не смогли найти именно то, что вы искали
+    - navigation "Навигация со страницы 404" [ref=e9]:
+      - button "Вернуться на главную" [ref=e10] [cursor=pointer]
+      - link "Блог" [ref=e15] [cursor=pointer]:
+        - /url: /
+      - link "Личный кабинет" [ref=e20] [cursor=pointer]:
+        - /url: /personal-account
+      - link "Корзина" [ref=e25] [cursor=pointer]:
+        - /url: https://cart-tan.vercel.app

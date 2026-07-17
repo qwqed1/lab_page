@@ -24,3 +24,6 @@ logs
 !.env.example
 
 .vercel
+
+# Local source exports used to prepare web-optimized videos
+/Смешная нарезка инмунтех/

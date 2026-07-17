@@ -1,0 +1,25 @@
+- generic [ref=f4e3]:
+  - banner [ref=f4e4]:
+    - link [ref=f4e5] [cursor=pointer]:
+      - /url: /personal-account/patient/dashboard
+  - main [ref=f4e9]:
+    - generic [ref=f4e10]:
+      - heading "Личные данные" [level=2] [ref=f4e11]
+      - generic [ref=f4e12]:
+        - generic [ref=f4e13]:
+          - generic [ref=f4e14]:
+            - generic [ref=f4e15]: ФИО
+            - textbox "ФИО" [ref=f4e16]:
+              - /placeholder: Бурмистров Павел Сергеевич
+              - text: Бурмистров Павел Сергеевич
+          - generic [ref=f4e17]:
+            - generic [ref=f4e18]: Номер телефона
+            - textbox "Номер телефона" [ref=f4e19]:
+              - /placeholder: +7 999 999 99 99
+              - text: +7 999 999 99 99
+          - generic [ref=f4e20]:
+            - generic [ref=f4e21]: E-mail
+            - textbox "E-mail" [ref=f4e22]:
+              - /placeholder: max@inmuntex.com
+              - text: max@inmuntex.com
+        - button "Сохранить" [ref=f4e24] [cursor=pointer]

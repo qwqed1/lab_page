@@ -1,0 +1,23 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e3]:
+    - status [ref=f3e4]: Корзина — ALEX LAB
+    - generic [ref=f3e502]:
+      - banner [ref=f3e503]:
+        - button [ref=f3e504] [cursor=pointer]
+      - complementary [ref=f3e509]:
+        - generic [ref=f3e510]:
+          - heading "Выберите город" [level=2] [ref=f3e511]
+          - generic [ref=f3e512]:
+            - generic [ref=f3e513] [cursor=pointer]: Выберите из списка
+            - generic [ref=f3e518]:
+              - generic [ref=f3e519] [cursor=pointer]: Москва
+              - generic [ref=f3e520] [cursor=pointer]: Санкт-Петербург
+              - generic [ref=f3e521] [cursor=pointer]: Казань
+              - generic [ref=f3e522] [cursor=pointer]: Екатеринбург
+              - generic [ref=f3e523] [cursor=pointer]: Краснодар
+  - generic [ref=f3e137]:
+    - button "Toggle Nuxt DevTools" [ref=f3e138] [cursor=pointer]
+    - generic "Page load time" [ref=f3e142]:
+      - generic [ref=f3e143]: "19"
+      - generic [ref=f3e144]: ms
+    - button "Toggle Component Inspector" [ref=f3e146] [cursor=pointer]

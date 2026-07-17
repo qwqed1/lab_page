@@ -2,7 +2,7 @@
   <div class="patient-page-layout">
     <!-- Шапка страницы -->
     <header class="header-nav">
-      <NuxtLink to="/personal-account/patient/recover" class="back-link">
+      <NuxtLink :to="recoverPath" class="back-link">
         <span class="back-arrow">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -23,12 +23,12 @@
 
         <!-- Кнопка Войти еще раз -->
         <div class="form-actions">
-          <NuxtLink to="/personal-account/patient/login" class="btn-black btn-relogin">
+          <NuxtLink :to="loginPath" class="btn-outline btn-relogin">
             <span>Войти ещё раз</span>
             <span class="btn-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="10" stroke="#FFFFFF" stroke-width="2"/>
-                <path d="M11 8L15 12L11 16" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="10" stroke="#000000" stroke-width="2"/>
+                <path d="M11 8L15 12L11 16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
           </NuxtLink>
@@ -39,7 +39,18 @@
 </template>
 
 <script setup>
-// Никакого сложного JS не требуется, только навигация
+import { computed } from 'vue'
+
+const props = defineProps({
+  role: {
+    type: String,
+    default: 'patient'
+  }
+})
+
+const accountBasePath = computed(() => `/personal-account/${props.role === 'doctor' ? 'doctor' : 'patient'}`)
+const recoverPath = computed(() => `${accountBasePath.value}/recover`)
+const loginPath = computed(() => `${accountBasePath.value}/login`)
 </script>
 
 <style scoped>
@@ -55,7 +66,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  min-height: calc(100vh - 72px);
+  padding: 0 20px;
+  transform: translateY(-107px);
 }
 
 .check-card-container {
@@ -63,12 +76,6 @@
   display: flex;
   flex-direction: column;
   gap: 48px; /* gap 48px из макета */
-}
-
-@media (max-width: 480px) {
-  .check-card-container {
-    width: 100%;
-  }
 }
 
 .title-block {
@@ -97,5 +104,28 @@
 .form-actions {
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 600px) {
+  .patient-main-content {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 246px 16px 40px;
+    transform: none;
+  }
+
+  .check-card-container {
+    width: 100%;
+    gap: 64px;
+  }
+
+  .check-title {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .check-subtitle {
+    line-height: 1.2;
+  }
 }
 </style>

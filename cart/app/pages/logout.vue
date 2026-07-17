@@ -2,7 +2,7 @@
   <div class="page-layout">
     <!-- Header 72px — точно по макету -->
     <header class="header-nav">
-      <NuxtLink to="/" class="back-link">
+      <NuxtLink :to="cartHome" class="back-link">
         <span class="back-arrow">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -38,7 +38,7 @@
           </button>
 
           <!-- Остаться: белая кнопка -->
-          <NuxtLink to="/" class="btn-secondary">
+          <NuxtLink :to="cartHome" class="btn-secondary">
             <span>Остаться</span>
             <span class="btn-icon-wrap">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,13 +55,17 @@
 </template>
 
 <script setup>
-import { useRouter } from '#app'
+import { useRoute, useRouter } from '#app'
 
+const route = useRoute()
 const router = useRouter()
+const isEmbedded = route.path.startsWith('/cart')
+const cartHome = isEmbedded ? '/cart' : '/'
+const loginPath = isEmbedded ? '/cart/login' : '/login'
 
 const handleLogout = () => {
   // Имитация выхода из аккаунта
-  router.push('/login')
+  router.push(loginPath)
 }
 </script>
 
@@ -93,8 +97,9 @@ const handleLogout = () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Helvetica', Arial, sans-serif;
-  font-size: 17px;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
   font-weight: 400;
   color: #000000;
   text-decoration: none;
@@ -111,6 +116,13 @@ const handleLogout = () => {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .back-link {
+    gap: 0;
+    font-size: 0;
+  }
 }
 
 /* ─── Main ───────────────────────────────────────────── */

@@ -1,0 +1,272 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - complementary "Навигация по сайту" [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - img "ALEX Allergy Xplorer" [ref=e7]
+          - paragraph [ref=e8]: Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
+        - button "Записаться на тест на аллергию" [ref=e9] [cursor=pointer]
+      - generic [ref=e12]:
+        - button "Поиск аллергенов Убедитесь, что тест покажет, что вам нужно" [ref=e13] [cursor=pointer]:
+          - generic [ref=e15]:
+            - heading "Поиск аллергенов" [level=3] [ref=e16]
+            - paragraph [ref=e17]: Убедитесь, что тест покажет, что вам нужно
+        - button "Посмотреть демо-результат Объясняем результаты на человеческом языке" [ref=e18] [cursor=pointer]:
+          - generic [ref=e20]:
+            - heading "Посмотреть демо-результат" [level=3] [ref=e21]: Посмотретьдемо-результат
+            - paragraph [ref=e22]: Объясняем результатына человеческом языке
+      - 'button "~5 минут КВИЗ: Нужен ли вам тест на аллергены?" [ref=e23] [cursor=pointer]':
+        - generic [ref=e24]:
+          - generic [ref=e25]: ~5 минут
+          - generic [ref=e26]: "КВИЗ: Нужен ли вам тест на аллергены?"
+      - button "Личный кабинет" [ref=e27] [cursor=pointer]
+      - button "Лаборатория ALEX LAB" [ref=e31] [cursor=pointer]
+    - main [ref=e35]:
+      - button "Для врачей" [disabled] [ref=e36]
+      - generic [ref=e57]:
+        - generic [ref=e58] [cursor=pointer]: Преимущества
+        - generic [ref=e59] [cursor=pointer]: О результатах
+        - generic [ref=e60] [cursor=pointer]: Истории людей
+        - generic [ref=e61] [cursor=pointer]: FAQ
+        - generic [ref=e62] [cursor=pointer]: Блог про аллергию
+        - generic [ref=e63] [cursor=pointer]: Как сдать тест
+      - generic [ref=e38]:
+        - generic:
+          - heading "Тест на аллергию ALEX² — один анализ, который даёт ответы" [level=1]
+        - generic:
+          - heading "Почему ALEX2?" [level=2]
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - heading "Всё за один сеанс" [level=2]
+                - paragraph: "За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое."
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - heading "Точечный результат" [level=2]
+                - paragraph: В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - heading "Отчёт и консультация" [level=2]
+                - paragraph: Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - heading "Без диет и отмены лекарств" [level=2]
+                - paragraph: Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - heading "Подходит детям" [level=2]
+                - paragraph: Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.
+        - generic:
+          - heading "Что вы получите по итогам теста на аллергию" [level=2]
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading "Аллерго-паспорт" [level=2]
+                - paragraph: Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading "Рекомендации по аллергенам" [level=2]
+                - paragraph: Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading "Консультация" [level=2]
+                  - generic: Опционально
+                - paragraph: Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.
+        - generic:
+          - heading "Истории людей" [level=2]
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - button "Миша"
+                - button "Александра"
+                - button "Паша"
+              - generic:
+                - generic:
+                  - heading "После теста ALEX2" [level=3]
+                  - list:
+                    - listitem: Точно знает, на что аллергия
+                    - listitem: Знает, в какие конкретно недели пик цветения
+                    - listitem: Пьёт конкретные таблетки
+                - generic:
+                  - heading "До" [level=3]
+                  - list:
+                    - listitem: Неуверенность в аллергии, вроде есть, а вроде и нет
+                    - listitem: Боится выходить из дома
+                    - listitem: При аллергии просто замирает в страхе
+            - generic: Читать подробнее
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - button "Миша"
+                - button "Александра"
+                - button "Паша"
+              - generic:
+                - generic:
+                  - heading "После теста ALEX2" [level=3]
+                  - list:
+                    - listitem: Исключила из рациона яблоки и орехи (перекрестная реакция на березу)
+                    - listitem: Подготовилась к сезону пыления заранее
+                - generic:
+                  - heading "До" [level=3]
+                  - list:
+                    - listitem: Постоянный насморк без простуды весной и летом
+                    - listitem: Не понимала, на какое именно растение реакция
+                    - listitem: Горсти антигистаминных наугад
+            - generic: Читать подробнее
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - button "Миша"
+                - button "Александра"
+                - button "Паша"
+              - generic:
+                - generic:
+                  - heading "После теста ALEX2" [level=3]
+                  - list:
+                    - listitem: Выявил точные белковые аллергены
+                    - listitem: Понял, какие продукты безопасны при термообработке
+                    - listitem: Вернул разнообразие в диету
+                - generic:
+                  - heading "До" [level=3]
+                  - list:
+                    - listitem: Пищевая аллергия
+                    - listitem: Исключал почти все продукты, боясь приступов
+                    - listitem: Постоянные ограничения и стресс при походах в рестораны
+            - generic: Читать подробнее
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - button "Это больно?"
+              - generic:
+                - button "Сколько аллергенов в тесте?"
+              - generic:
+                - button "Через сколько будет результат?"
+                - paragraph: Готовность — через 4–7 рабочих дней.
+              - generic:
+                - button "У вас есть сертификаты?"
+            - button "Все вопросы"
+        - generic:
+          - generic:
+            - heading "Блог про аллергию" [level=2]
+            - generic:
+              - article:
+                - generic:
+                  - generic:
+                    - generic: ~16 минут
+                    - generic: Наука
+                - generic:
+                  - img "Александра Ковальчук"
+                  - generic:
+                    - paragraph: Александра Ковальчук
+                    - paragraph: Профессор МГУ
+                - paragraph: "Cursor представила модель Composer 2.5 — в тестах она сопоставима c Opus 4.7 и GPT-5.5, но стоит примерно в 10 раз дешевле Как сдать тест: подготовка и процесс"
+              - article:
+                - generic:
+                  - generic:
+                    - generic: ~16 минут
+                    - generic: Наука
+                - generic:
+                  - img "Александра Ковальчук"
+                  - generic:
+                    - paragraph: Александра Ковальчук
+                    - paragraph: Профессор МГУ
+                - paragraph: Cursor представила модель Composer 2.5 — в тестах она сопоставима c Opus 4.7 и GPT-5.5, но стоит примерно в 10 раз дешевле
+            - button "Все материалы"
+        - generic [ref=e71]:
+          - 'heading "Как сдать тест: подготовка и процесс" [level=2] [ref=e72]'
+          - generic [ref=e73]:
+            - generic "Шаги" [ref=e74]:
+              - generic [ref=e75]: "1"
+              - generic [ref=e77]: "2"
+              - generic [ref=e79]: "3"
+            - generic [ref=e81]:
+              - heading "Запишитесь на тест через наш сайт" [level=3] [ref=e82]
+              - paragraph [ref=e83]: А если хотите получить дополнительно консультацию бесплатно — выберите сдачу теста в лабораториях ALEX
+        - generic:
+          - generic:
+            - 'heading "Как сдать тест: подготовка и процесс" [level=2]'
+            - generic:
+              - generic "Шаги":
+                - generic: "1"
+                - generic: "2"
+                - generic: "3"
+              - generic:
+                - heading "Сдайте кровь в выбранной лаборатории" [level=3]
+                - paragraph: "Важно: За 4 часа до сдачи крови нужно не кушать. Кровь берут из вены."
+        - generic:
+          - generic:
+            - 'heading "Как сдать тест: подготовка и процесс" [level=2]'
+            - generic:
+              - generic "Шаги":
+                - generic: "1"
+                - generic: "2"
+                - generic: "3"
+              - generic:
+                - heading "Отслеживайте результат в личном кабинете и на электронной почте" [level=3]: Отслеживайте результатв личном кабинете и на электронной почте
+                - paragraph: В личном кабинете показываем статусы — туда же придёт результат. Дополнительно всё дублируем на почту.
+        - generic:
+          - region "Тест на аллергию ALEX² — один анализ, который даёт ответы":
+            - generic:
+              - generic:
+                - heading "Тест на аллергию ALEX² — один анализ, который даёт ответы" [level=2]
+                - button "Записаться на тест на аллергию"
+              - generic:
+                - generic:
+                  - heading "Контакты" [level=3]
+                  - generic:
+                    - link "Москва, Пречистенка 30/2":
+                      - /url: https://yandex.ru/maps/?text=Москва%2C%20Пречистенка%2030%2F2
+                    - link "+7 495 507-64-85":
+                      - /url: tel:+74955076485
+                    - link "info@kupitkartinu.ru":
+                      - /url: mailto:info@kupitkartinu.ru
+                  - generic:
+                    - generic: "ИНН: 9703021385"
+                    - generic: "ОГРН: 1207700425602"
+                    - generic: "КПП: 770301001"
+                - navigation "Навигация по сайту":
+                  - heading "Навигация по сайту" [level=3]
+                  - generic:
+                    - link "Поиск аллергентов":
+                      - /url: /search
+                    - link "Демо-результат":
+                      - /url: /demo-result
+                    - 'button "КВИЗ: Нужен ли вам тест"'
+                    - link "Личный кабинет":
+                      - /url: /personal-account
+                    - button "О лаборатории ALEXLAB"
+                    - button "Блог"
+              - generic:
+                - generic:
+                  - link "Политика конфиденциальности":
+                    - /url: /policy
+                  - link "Условия использования материалов сайта":
+                    - /url: /terms
+                - generic: сайт сделан в студии «созерцание»
+  - generic [ref=e41]:
+    - button "Toggle Nuxt DevTools" [ref=e42] [cursor=pointer]
+    - generic "Page load time" [ref=e46]:
+      - generic [ref=e47]: "62"
+      - generic [ref=e48]: ms
+    - button "Toggle Component Inspector" [ref=e50] [cursor=pointer]

@@ -11,7 +11,7 @@
               <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
-          Назад
+          <span class="back-label">На главную</span>
         </NuxtLink>
       </header>
 
@@ -44,7 +44,7 @@
                         <span class="tag tag--blue">+IgE</span>
                       </div>
                       <h2 class="product-name">Сдача анализа ALEX2</h2>
-                      <p class="product-desc">Мультикомплексный анализ на 300 аллергенов<br>за один забор крови. Включает в себя общий IgE</p>
+                      <p class="product-desc">Мультикомплексный анализ на 300 аллергенов за один забор крови. Включает в себя общий IgE</p>
                       <!-- Теги десктопные -->
                       <div class="product-tags desktop-only">
                         <span class="tag tag--blue">+ Забор крови</span>
@@ -287,7 +287,7 @@
             <div class="summary-block">
               <h3 class="summary-label">Место</h3>
               <div v-if="!selectedLab">
-                <p class="summary-value summary-value--muted">Не выбрано</p>
+                <p class="summary-value">Не выбрано</p>
               </div>
               <div v-else>
                 <span v-if="selectedLab.discount" class="summary-badge">-100% на консультацию</span>
@@ -392,7 +392,7 @@
               <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
-          Назад
+          <span class="back-label">Назад</span>
         </button>
       </header>
 
@@ -406,7 +406,7 @@
             <h2 class="map-sidebar-title">Выберите город</h2>
             <div class="field-group">
               <div class="city-select-dropdown" @click="showCityList = !showCityList">
-                <span class="selected-city-name">{{ selectedCity || 'Выберите из списка' }}</span>
+                <span class="selected-city-name" :class="{ 'selected-city-name--placeholder': !selectedCity }">{{ selectedCity || 'Выберите из списка' }}</span>
                 <span class="select-arrow" :class="{ 'select-arrow--open': showCityList }">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M6 9L12 15L18 9" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -424,7 +424,7 @@
           </div>
 
           <!-- ШАГ 2: Список лабораторий города -->
-          <div v-else class="map-step-2">
+          <div v-else class="map-step-2" :class="{ 'map-step-2--detailed': detailedLabId }">
             <div class="city-header-row">
               <span class="city-badge">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5">
@@ -432,8 +432,9 @@
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
                 {{ selectedCity }}
+                <span v-if="detailedLabId" class="lab-count">584 точек</span>
               </span>
-              <button class="change-city-btn" @click="changeCity">Изменить город</button>
+              <button v-if="!detailedLabId" class="change-city-btn" @click="changeCity">Изменить город</button>
             </div>
             
             <h2 class="map-sidebar-title">Выберите лабораторию</h2>
@@ -548,16 +549,37 @@
                 @click="clickMapMarker(lab)"
               >
                 <template v-if="detailedLabId === lab.id">
-                  <rect :x="lab.x - 22" :y="lab.y - 48" width="44" height="44" rx="10" fill="#000000"/>
-                  <path d="M0 -4 L-6 -10 L6 -10 Z" fill="#000000" :transform="`translate(${lab.x}, ${lab.y - 34})`"/>
-                  <text v-if="lab.discount" :x="lab.x" :y="lab.y - 22" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">%</text>
-                  <circle v-else :cx="lab.x" :cy="lab.y - 26" r="4" fill="#ffffff"/>
+                  <rect
+                    :x="isDesktop ? markerX(lab) - 21.25 : markerX(lab) - 27"
+                    :y="isDesktop ? markerY(lab) - 15.25 : markerY(lab) - 129"
+                    :width="isDesktop ? 18.5 : 54"
+                    :height="isDesktop ? 18.5 : 54"
+                    :rx="isDesktop ? 4 : 12"
+                    fill="#000000"
+                  />
                 </template>
                 <template v-else>
-                  <circle :cx="lab.x" :cy="lab.y" r="14" :fill="lab.discount ? '#1a8a4a' : '#000000'"/>
-                  <text v-if="lab.discount" :x="lab.x" :y="lab.y + 4" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">%</text>
-                  <circle v-else :cx="lab.x" :cy="lab.y" r="4" fill="#ffffff"/>
+                  <rect :x="markerX(lab) - 8" :y="markerY(lab) - 8" width="16" height="16" rx="4" fill="#000000"/>
+                  <circle v-if="lab.discount" :cx="markerX(lab) + 8" :cy="markerY(lab) - 8" r="8" fill="#1a8a4a"/>
+                  <text v-if="lab.discount" :x="markerX(lab) + 8" :y="markerY(lab) - 5" text-anchor="middle" fill="#ffffff" font-size="7" font-weight="700">%</text>
                 </template>
+              </g>
+
+              <g class="map-marker-decor mobile-map-marker-decor" aria-hidden="true">
+                <rect x="149" y="116" width="16" height="16" rx="4" fill="#000000"/>
+              </g>
+              <g class="map-marker-decor mobile-map-marker-decor" aria-hidden="true">
+                <rect x="875" y="30" width="16" height="16" rx="4" fill="#000000"/>
+              </g>
+
+              <g class="desktop-map-marker-decor" aria-hidden="true">
+                <rect x="40" y="140" width="16" height="16" rx="4" fill="#000000"/>
+                <rect x="176" y="133" width="16" height="16" rx="4" fill="#000000"/>
+                <rect x="627" y="192" width="16" height="16" rx="4" fill="#000000"/>
+                <rect x="457" y="248" width="16" height="16" rx="4" fill="#000000"/>
+                <rect x="263" y="313" width="16" height="16" rx="4" fill="#000000"/>
+                <rect x="257" y="545" width="16" height="16" rx="4" fill="#000000"/>
+                <rect x="490" y="545" width="16" height="16" rx="4" fill="#000000"/>
               </g>
             </svg>
           </div>
@@ -610,17 +632,20 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useRouter } from '#app'
+import { useRoute, useRouter } from '#app'
+
+const route = useRoute()
+const router = useRouter()
 
 // Состояние добавленных опций
 const isConsultationAdded = ref(false)
 const isExpressAdded = ref(false)
 
 // Данные корзины
-const fullName = ref('Иванов Иван Иванович')
-const birthDate = ref('11.06.2006')
-const phone = ref('+7 938 910 92 22')
-const email = ref('hi@mail.com')
+const fullName = ref('')
+const birthDate = ref('')
+const phone = ref('')
+const email = ref('')
 const promo = ref('')
 const consent = ref(false)
 
@@ -638,12 +663,14 @@ const labs = [
   {
     id: 1,
     city: 'Москва',
-    name: 'ALEX, Москва, Маршала Бирюзова 9',
+    name: 'ALEX, Маршала Бирюзова 9',
     hoursWeekdays: '9:00 – 19:00',
     hoursWeekend: 'Выходные',
     discount: true,
-    x: 350,
-    y: 250
+    x: 453,
+    y: 49,
+    desktopX: 383,
+    desktopY: 126
   },
   {
     id: 2,
@@ -652,21 +679,37 @@ const labs = [
     hoursWeekdays: '9:00 – 19:00',
     hoursWeekend: '11:00 – 16:00',
     discount: true,
-    x: 650,
-    y: 350
+    x: 865,
+    y: -391,
+    desktopX: 700,
+    desktopY: 349
   },
   {
     id: 3,
+    city: 'Москва',
+    name: 'ALEX, Ленинградская 4',
+    hoursWeekdays: '9:00 – 19:00',
+    hoursWeekend: '11:00 – 16:00',
+    discount: true,
+    x: 865,
+    y: -391,
+    desktopX: 700,
+    desktopY: 349
+  },
+  {
+    id: 4,
     city: 'Москва',
     name: 'Invitro, Большая морская 55',
     hoursWeekdays: '9:00 – 19:00',
     hoursWeekend: '11:00 – 16:00',
     discount: false,
-    x: 500,
-    y: 150
+    x: 548,
+    y: 519,
+    desktopX: 415,
+    desktopY: 275
   },
   {
-    id: 4,
+    id: 5,
     city: 'Санкт-Петербург',
     name: 'ALEX, Невский проспект 12',
     hoursWeekdays: '9:00 – 20:00',
@@ -676,7 +719,7 @@ const labs = [
     y: 200
   },
   {
-    id: 5,
+    id: 6,
     city: 'Казань',
     name: 'Invitro, Островского 9',
     hoursWeekdays: '8:00 – 19:00',
@@ -690,11 +733,11 @@ const labs = [
 // Состояние выбора лаборатории
 const showMapSelector = ref(false)
 const mapStep = ref(1) // 1: Выбор города, 2: Выбор лабы
-const selectedCity = ref('Москва')
+const selectedCity = ref('')
 const showCityList = ref(false)
 const activeLabId = ref(null)
 const detailedLabId = ref(null)
-const selectedLab = ref(labs[0]) // По умолчанию выбрана первая
+const selectedLab = ref(null)
 
 // Для мобильной версии карты
 const showMapOnMobile = ref(false)
@@ -723,13 +766,16 @@ const selectedMobileLab = computed(() => {
   return labs.find(l => l.id === detailedLabId.value) || null
 })
 
+const markerX = (lab) => isDesktop.value && lab.desktopX != null ? lab.desktopX : lab.x
+const markerY = (lab) => isDesktop.value && lab.desktopY != null ? lab.desktopY : lab.y
+
 // Управление отображением карты (viewport viewBox)
 const mapViewport = computed(() => {
   const targetId = detailedLabId.value || activeLabId.value
   if (targetId) {
     const lab = labs.find(l => l.id === targetId)
     if (lab) {
-      return `${lab.x - 150} ${lab.y - 120} 300 240`
+      return `${markerX(lab) - 150} ${markerY(lab) - 120} 300 240`
     }
   }
   return '0 0 1000 600'
@@ -827,7 +873,7 @@ const applyPromo = () => {
 }
 
 const handleContinue = () => {
-  useRouter().push('/login')
+  router.push(route.path.startsWith('/cart') ? '/cart/login' : '/login')
 }
 </script>
 
@@ -872,7 +918,7 @@ const handleContinue = () => {
   border-bottom: 1px solid #dfdfdf;
   display: flex;
   align-items: center;
-  padding: 0 32px;
+  padding: 24px 32px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -883,8 +929,9 @@ const handleContinue = () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Helvetica', Arial, sans-serif;
-  font-size: 17px;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
   font-weight: 400;
   color: #000000;
   text-decoration: none;
@@ -923,8 +970,11 @@ const handleContinue = () => {
   display: flex;
   width: 100%;
   max-width: 1920px;
+  height: auto;
   min-height: 100%;
   position: relative;
+  overflow: visible;
+  padding: 0 !important;
 }
 
 .left-col {
@@ -940,7 +990,7 @@ const handleContinue = () => {
   width: 610px;
   flex-shrink: 0;
   border-left: 1px solid #dfdfdf;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   position: sticky;
@@ -1138,6 +1188,7 @@ const handleContinue = () => {
   color: #000000;
   margin: 0;
   line-height: 1.166;
+  text-shadow: none;
 }
 
 /* ─── LOCATION ─── */
@@ -1355,7 +1406,8 @@ const handleContinue = () => {
 
 .summary-badge {
   display: inline-block;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 400;
   color: #0f5e1a;
   background: #f1fff3;
   padding: 2px 8px;
@@ -1401,8 +1453,8 @@ const handleContinue = () => {
 /* ─── PROMO ─── */
 .promo-row {
   display: flex;
-  border-top: 1px solid #dfdfdf;
-  border-bottom: 1px solid #dfdfdf;
+  border-top: 0.5px solid #dfdfdf;
+  border-bottom: 0.5px solid #dfdfdf;
   flex-shrink: 0;
 }
 
@@ -1412,7 +1464,7 @@ const handleContinue = () => {
 
 .promo-input {
   width: 100%;
-  height: 61px;
+  height: 48px;
   border: none;
   background: #f8f8f8;
   padding: 0 24px;
@@ -1430,10 +1482,10 @@ const handleContinue = () => {
 
 .promo-btn {
   width: 62px;
-  height: 61px;
+  height: 48px;
   background: #f8f8f8;
   border: none;
-  border-left: 1px solid #dfdfdf;
+  border-left: 0.5px solid #dfdfdf;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1711,8 +1763,8 @@ const handleContinue = () => {
 
 .lab-card-badge {
   display: inline-block;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
   color: #0f5e1a;
   background: #f1fff3;
   padding: 2px 8px;
@@ -1995,7 +2047,7 @@ const handleContinue = () => {
     height: auto;
     border-left: none;
     border-top: 1px solid #dfdfdf;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     overflow: visible;
   }
 
@@ -2080,6 +2132,1003 @@ const handleContinue = () => {
 
   .field-label--md {
     font-size: 18px;
+  }
+}
+
+/* ───────────────────── FIGMA 12:65 — FINAL GEOMETRY ───────────────────── */
+:global(html),
+:global(body) {
+  scrollbar-width: none;
+}
+
+:global(body::-webkit-scrollbar) {
+  display: none;
+}
+
+@media (min-width: 901px) {
+  .map-sidebar {
+    width: 626px;
+    padding: 64px;
+  }
+
+  .map-step-1 {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+    margin-top: -12px;
+  }
+
+  .map-step-1 .map-sidebar-title {
+    font-size: 20px;
+    line-height: 24px;
+    transform: translateY(4px);
+  }
+
+  .map-step-1 .city-select-dropdown {
+    height: 51px;
+    border-width: 0 0 1px;
+  }
+
+  .map-step-1 .selected-city-name--placeholder,
+  .map-step-1 .selected-city-name--placeholder + .select-arrow {
+    opacity: 0.3;
+  }
+
+  .map-step-2 .city-header-row {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .map-step-2 .city-badge {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .map-step-2 .city-badge svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .map-step-2 .change-city-btn {
+    font-size: 20px;
+  }
+
+  .map-step-2 > .map-sidebar-title {
+    margin-top: 9px;
+  }
+
+  .map-step-2 .promo-alert-card {
+    margin-top: 31px;
+    margin-bottom: 32px;
+  }
+
+  .map-step-2 .promo-alert-title {
+    width: 300px;
+  }
+
+  .map-step-2 .labs-list {
+    gap: 2px;
+  }
+
+  .map-step-2 .lab-card-name {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .map-step-2 .lab-card-content {
+    padding-bottom: 28px;
+  }
+
+  .map-step-2 .lab-card-badge {
+    padding: 5px 8px;
+    border-radius: 0;
+    line-height: 16px;
+  }
+
+  .map-step-2 .lab-card-schedule {
+    color: #000000;
+    opacity: 1;
+  }
+
+  .map-step-2 .lab-card-schedule .schedule-days {
+    width: 92px;
+    opacity: 0.45;
+  }
+
+  .map-step-2--detailed .city-header-row {
+    justify-content: flex-start;
+  }
+
+  .map-step-2--detailed .lab-count {
+    color: #000000;
+    opacity: 0.4;
+  }
+
+  .map-step-2--detailed .promo-alert-card {
+    display: none;
+  }
+
+  .map-step-2--detailed .labs-list {
+    margin-top: 31px;
+  }
+
+  .map-step-2--detailed .lab-card--detailed {
+    height: 365px;
+  }
+
+  .map-step-2--detailed .lab-card-action {
+    margin-top: auto;
+    padding: 24px;
+  }
+
+  .map-step-2--detailed .select-lab-btn {
+    height: 73px;
+    padding: 0 32px;
+    font-size: 18px;
+  }
+
+  .map-view-container .russia-map-layer {
+    background-size: 168.24% auto;
+    background-position: 84.02% 43.84%;
+  }
+
+  .moscow-map-layer:not(.moscow-map-layer--zoomed) {
+    background-size: 156.5% auto;
+    background-position: 91.08% 43.84%;
+  }
+
+  .map-view-container .moscow-map-layer--zoomed {
+    background-size: 404% auto;
+    background-position: 72.11% 51.7%;
+  }
+
+  .russia-map-layer .map-city-marker {
+    opacity: 0;
+  }
+
+  .mobile-map-marker-decor {
+    display: none;
+  }
+
+  .map-sidebar {
+    scrollbar-width: none;
+  }
+
+  .map-sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .left-col {
+    padding-top: 64px;
+  }
+
+  .product-row:nth-child(1) {
+    height: 245px;
+  }
+
+  .product-row:nth-child(2) {
+    height: 212px;
+  }
+
+  .product-row:nth-child(3) {
+    height: 162px;
+  }
+
+  .product-thumb svg {
+    width: 46px;
+    height: 46px;
+  }
+
+  .product-thumb-label {
+    font-size: 18px;
+  }
+
+  .product-row:first-child .product-name,
+  .product-row:first-child .product-price {
+    font-size: 42px;
+    line-height: 49px;
+  }
+
+  .product-row:first-child .product-name {
+    margin-bottom: 12px;
+  }
+
+  .product-row:first-child .product-desc {
+    width: 484px;
+    margin-bottom: 0;
+    font-size: 21px;
+    line-height: 1.15;
+  }
+
+  .product-row:first-child .product-tags {
+    margin-top: 40px;
+  }
+
+  .product-row:nth-child(2) .product-header {
+    transform: translateY(-3px);
+  }
+
+  .product-row:nth-child(2) .product-desc {
+    width: 310px;
+    margin-bottom: 28px;
+  }
+
+  .product-row:nth-child(3) .product-header {
+    transform: translateY(-17px);
+  }
+
+  .tag {
+    min-height: 40px;
+    padding: 10px 24px;
+    border-radius: 0;
+    font-size: 14px;
+  }
+
+  .section-block {
+    gap: 48px;
+  }
+
+  .location-empty {
+    width: 439px;
+  }
+
+  .select-field {
+    border-width: 0 0 1px;
+    background: transparent;
+  }
+
+  .location-card {
+    min-height: 173px;
+  }
+
+  .summary-item {
+    font-size: 24px;
+  }
+}
+
+/* Laptop widths need their own scale: the 1920px Figma geometry cannot fit
+   beside the order summary unchanged at 1024–1599px. */
+@media (min-width: 901px) and (max-width: 1599px) {
+  .right-col {
+    width: clamp(340px, 40vw, 520px);
+  }
+
+  /* Keep the familiar promo-field proportions on laptops. */
+  .promo-input,
+  .promo-btn {
+    height: 61px;
+  }
+
+  .left-col {
+    gap: 64px;
+    padding: clamp(32px, 3.3vw, 52px) clamp(24px, 3vw, 48px) 64px;
+  }
+
+  .products-section,
+  .product-row,
+  .product-info,
+  .product-header,
+  .product-header > div:first-child {
+    min-width: 0;
+  }
+
+  .product-row:nth-child(1),
+  .product-row:nth-child(2),
+  .product-row:nth-child(3) {
+    height: auto;
+  }
+
+  .product-row:nth-child(1) {
+    min-height: 245px;
+  }
+
+  .product-row:nth-child(2) {
+    min-height: 212px;
+  }
+
+  .product-row:nth-child(3) {
+    min-height: 162px;
+  }
+
+  .product-thumb {
+    width: clamp(136px, 13vw, 180px);
+    padding: 20px 16px;
+  }
+
+  .product-info {
+    padding: clamp(18px, 2vw, 28px);
+  }
+
+  .product-header {
+    gap: clamp(8px, 1.2vw, 16px);
+  }
+
+  .product-name {
+    font-size: clamp(20px, 1.8vw, 24px);
+  }
+
+  .product-desc {
+    font-size: clamp(14px, 1.25vw, 16px);
+  }
+
+  .product-price {
+    font-size: clamp(20px, 1.75vw, 24px);
+  }
+
+  .product-row:first-child .product-name,
+  .product-row:first-child .product-price {
+    font-size: clamp(24px, 2.55vw, 36px);
+    line-height: 1.12;
+  }
+
+  .product-row:first-child .product-name {
+    overflow-wrap: break-word;
+  }
+
+  .product-row:first-child .product-desc {
+    width: auto;
+    font-size: clamp(15px, 1.35vw, 19px);
+    line-height: 1.2;
+  }
+
+  .product-row:first-child .product-tags {
+    margin-top: clamp(20px, 2.3vw, 32px);
+  }
+
+  .tag {
+    min-height: 36px;
+    padding: 8px clamp(10px, 1.2vw, 18px);
+  }
+}
+
+.summary-block {
+  padding: 32px 32px 24px;
+}
+
+.promo-row {
+  margin-top: auto;
+}
+
+.total-block {
+  margin-top: 0;
+}
+
+.continue-btn:disabled {
+  opacity: 1;
+}
+
+.russia-map-layer,
+.moscow-map-layer {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.russia-map-layer {
+  background-image: url('/assets/cart-map-country.png');
+}
+
+.moscow-map-layer {
+  background-image: url('/assets/cart-map-moscow.png');
+}
+
+.moscow-map-layer--zoomed {
+  background-image: url('/assets/cart-map-moscow-detail.png');
+}
+
+.russia-map-layer .map-svg > path,
+.moscow-map-layer .map-svg > path,
+.moscow-map-layer .map-svg > circle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .desktop-map-marker-decor {
+    display: none;
+  }
+
+  .header-nav {
+    height: 72px;
+    padding: 24px 32px;
+  }
+
+  .back-label {
+    display: none;
+  }
+
+  .page-body {
+    padding-bottom: 72px;
+  }
+
+  .left-col {
+    gap: 64px;
+    padding: 20px 16px 64px;
+  }
+
+  .products-section {
+    gap: 12px;
+  }
+
+  .product-row {
+    height: auto;
+    padding: 24px;
+    gap: 0;
+  }
+
+  .product-row:nth-child(1) {
+    height: 342px;
+  }
+
+  .product-row:nth-child(2) {
+    height: 295px;
+  }
+
+  .product-row:nth-child(3) {
+    height: 218px;
+  }
+
+  .product-info {
+    height: 100%;
+    justify-content: flex-start;
+  }
+
+  .product-tags-top {
+    margin-bottom: 24px;
+    gap: 4px;
+  }
+
+  .tag {
+    min-height: 32px;
+    padding: 8px 12px;
+    border-radius: 0;
+    font-size: 14px;
+  }
+
+  .product-row:first-child .product-name {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .product-name {
+    margin-bottom: 12px;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .product-desc {
+    margin: 0;
+    color: #929292;
+    opacity: 1;
+    font-size: 18px;
+    line-height: 1.1;
+  }
+
+  .product-row:first-child .product-desc {
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .product-mobile-action {
+    margin-top: auto;
+  }
+
+  .product-mobile-btn {
+    height: 64px;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 0 24px;
+  }
+
+  .product-mobile-btn-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .product-mobile-btn-price {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .section-block {
+    gap: 32px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    line-height: 17px;
+  }
+
+  .select-field {
+    background: transparent;
+  }
+
+  .personal-form,
+  .form-row-two {
+    gap: 24px;
+  }
+
+  .field-label,
+  .field-label--md {
+    margin-bottom: 6px;
+    font-size: 16px;
+  }
+
+  .field-input {
+    height: 61px;
+    padding: 0 24px;
+  }
+
+  .field-info {
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .field-info svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .field-info-text {
+    color: #000;
+    opacity: 1;
+    font-size: 18px;
+    line-height: 1.05;
+  }
+
+  .mobile-summary-title {
+    padding: 0 16px 32px;
+  }
+
+  .map-selector-body {
+    height: calc(100dvh - 72px);
+  }
+
+  .map-selector-screen > .header-nav {
+    height: 72px;
+    padding: 0 32px;
+  }
+
+  .map-sidebar {
+    padding: 24px;
+    scrollbar-width: none;
+  }
+
+  .map-sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .map-step-1,
+  .map-step-2 {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+  }
+
+  .map-step-2 {
+    gap: 24px;
+  }
+
+  .city-header-row {
+    min-height: 72px;
+    margin: -24px -24px 0;
+    padding: 0 24px;
+  }
+
+  .map-sidebar-title {
+    font-size: 32px;
+  }
+
+  .map-step-1 .field-group {
+    margin-top: -12px;
+  }
+
+  .city-select-dropdown {
+    border-width: 0 0 1px;
+  }
+
+  .mobile-map-trigger-btn {
+    position: sticky;
+    bottom: -24px;
+    width: calc(100% + 48px);
+    margin: auto -24px -24px;
+    padding: 0 32px;
+    flex-shrink: 0;
+  }
+
+  .labs-list {
+    gap: 2px;
+    margin-top: -6px;
+  }
+
+  .promo-alert-desc {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .lab-card-name {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .lab-card-badge {
+    padding: 5px 8px;
+    border-radius: 0;
+    line-height: 16px;
+  }
+
+  .lab-card-schedule {
+    color: #000000;
+    opacity: 1;
+  }
+
+  .lab-card-schedule .schedule-days {
+    opacity: 0.45;
+  }
+
+  .lab-card-schedule .schedule-days {
+    width: 92px;
+  }
+
+  .map-view-container {
+    height: calc(100dvh - 72px);
+  }
+
+  .russia-map-layer,
+  .moscow-map-layer {
+    background-size: auto 100%;
+  }
+
+  .moscow-map-layer:not(.moscow-map-layer--zoomed) {
+    background-size: 481.9% auto;
+    background-position: -187.2vw -47.27vw;
+  }
+
+  .moscow-map-layer--zoomed {
+    background-size: 482.3% auto;
+    background-position: -187.4vw -47.4vw;
+  }
+
+  .moscow-map-layer:not(.moscow-map-layer--zoomed) .map-lab-marker,
+  .moscow-map-layer:not(.moscow-map-layer--zoomed) .map-marker-decor {
+    transform: scale(3);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .mobile-sheet-content {
+    min-height: 275px;
+    padding: 24px;
+    gap: 16px;
+  }
+
+  .mobile-sheet-title {
+    margin-top: -6px;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28px;
+  }
+
+  .mobile-sheet-schedule {
+    margin-top: 6px;
+    opacity: 1;
+  }
+
+  .mobile-sheet-schedule .schedule-days {
+    width: 92px;
+    opacity: 0.45;
+  }
+
+  .mobile-select-confirm-btn {
+    height: 72px;
+    margin-top: auto;
+    padding: 0 32px;
+    font-weight: 400;
+  }
+
+  .close-sheet-btn {
+    right: 20px;
+  }
+}
+
+/* Compact desktop layout for laptop-height screens.
+   It reproduces the useful density of a 75% browser zoom without asking the
+   visitor to change zoom: the whole summary stays visible and the next section
+   peeks into the first viewport on the left. */
+@media (min-width: 901px) and (max-height: 900px) {
+  .right-col {
+    overflow-y: hidden;
+  }
+
+  .left-col {
+    gap: clamp(40px, 5vh, 48px);
+    padding-top: clamp(28px, 4.5vh, 40px);
+  }
+
+  .product-row:nth-child(1) {
+    min-height: 0;
+    height: clamp(174px, 24vh, 202px);
+  }
+
+  .product-row:nth-child(2) {
+    min-height: 0;
+    height: clamp(140px, 19vh, 162px);
+  }
+
+  .product-row:nth-child(3) {
+    min-height: 0;
+    height: clamp(104px, 14vh, 120px);
+  }
+
+  .product-thumb svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .product-info {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .product-row:first-child .product-name,
+  .product-row:first-child .product-price {
+    font-size: clamp(20px, 1.7vw, 24px);
+    line-height: 1.1;
+  }
+
+  .product-row:first-child .product-name {
+    margin-bottom: 8px;
+  }
+
+  .product-row:first-child .product-desc {
+    font-size: 13px;
+    line-height: 1.15;
+  }
+
+  .product-row:first-child .product-tags {
+    margin-top: 12px;
+  }
+
+  .product-row:nth-child(2) .product-desc {
+    margin-bottom: 12px;
+  }
+
+  .product-name,
+  .product-price {
+    font-size: 18px;
+  }
+
+  .product-desc {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  .product-row:nth-child(2) .product-header,
+  .product-row:nth-child(3) .product-header {
+    transform: none;
+  }
+
+  .tag {
+    min-height: 28px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .section-block {
+    gap: clamp(24px, 4vh, 36px);
+  }
+
+  .section-title {
+    font-size: clamp(32px, 3vw, 38px);
+  }
+
+  .summary-block {
+    padding: 18px 24px;
+    gap: 8px;
+  }
+
+  .summary-items {
+    gap: 8px;
+  }
+
+  .summary-item {
+    font-size: 14px;
+  }
+
+  .summary-label,
+  .total-label {
+    font-size: 12px;
+  }
+
+  .summary-value,
+  .summary-value--big {
+    font-size: 18px;
+  }
+
+  .summary-value--location {
+    font-size: 14px;
+  }
+
+  .summary-schedule {
+    font-size: 13px;
+  }
+
+  .summary-badge {
+    font-size: 12px;
+  }
+
+  .promo-input,
+  .promo-btn {
+    height: 52px;
+  }
+
+  .promo-input {
+    font-size: 14px;
+  }
+
+  .total-inner {
+    padding: 18px 24px;
+    gap: 14px;
+  }
+
+  .total-price-group {
+    gap: 6px;
+  }
+
+  .total-price {
+    font-size: 26px;
+  }
+
+  .consent-text {
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  .continue-btn {
+    height: 60px;
+    padding: 0 24px;
+    font-size: 16px;
+  }
+}
+
+/* Extra-short notebook windows (for example 1024x555) still keep every
+   checkout control in the fixed summary column. */
+@media (min-width: 901px) and (max-height: 650px) {
+  .left-col {
+    gap: 24px;
+    padding-top: 16px;
+  }
+
+  .product-row:nth-child(1) {
+    height: 184px;
+  }
+
+  .product-row:nth-child(2) {
+    height: 116px;
+  }
+
+  .product-row:nth-child(3) {
+    height: 88px;
+  }
+
+  .product-thumb {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .product-thumb svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .product-thumb-label,
+  .product-desc,
+  .product-row:first-child .product-desc {
+    font-size: 13px;
+  }
+
+  .product-name,
+  .product-price,
+  .product-row:first-child .product-name,
+  .product-row:first-child .product-price {
+    font-size: 22px;
+  }
+
+  .product-row:first-child .product-tags {
+    margin-top: 8px;
+  }
+
+  .tag {
+    min-height: 24px;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .section-title {
+    font-size: 30px;
+  }
+
+  .summary-block {
+    padding: 10px 20px;
+    gap: 4px;
+  }
+
+  .summary-label,
+  .total-label {
+    font-size: 13px;
+  }
+
+  .summary-value,
+  .summary-value--big,
+  .summary-item {
+    font-size: 16px;
+  }
+
+  .summary-items {
+    gap: 4px;
+  }
+
+  .summary-value--location {
+    font-size: 14px;
+    line-height: 1.1;
+  }
+
+  .summary-badge {
+    margin-bottom: 0;
+    padding: 1px 6px;
+    font-size: 11px;
+  }
+
+  .summary-schedule {
+    gap: 0;
+    font-size: 12px;
+    line-height: 1.1;
+  }
+
+  .summary-schedule-row {
+    gap: 8px;
+  }
+
+  .promo-input,
+  .promo-btn {
+    height: 40px;
+  }
+
+  .promo-input {
+    font-size: 15px;
+  }
+
+  .total-inner {
+    padding: 10px 20px;
+    gap: 8px;
+  }
+
+  .total-price-group {
+    gap: 2px;
+  }
+
+  .total-price {
+    font-size: 26px;
+  }
+
+  .consent-row {
+    gap: 8px;
+  }
+
+  .consent-checkbox {
+    width: 20px;
+    height: 20px;
+  }
+
+  .consent-text {
+    font-size: 11px;
+    line-height: 1.1;
+  }
+
+  .continue-btn {
+    height: 48px;
+    font-size: 16px;
   }
 }
 </style>

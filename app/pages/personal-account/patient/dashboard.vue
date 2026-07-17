@@ -1,49 +1,14 @@
 <template>
   <div class="patient-page-layout">
-    <!-- Шапка дашборда -->
-    <header class="header-nav dashboard-header">
-      <div class="header-logo">ALEX LAB</div>
-    </header>
-
     <main class="patient-main-content">
       <div class="dashboard-container">
-        
-        <!-- Приветственный блок сверху (только для статуса 1 по макету) -->
-        <div v-if="currentStatus === 1" class="status-card-header">
-          <h2 class="patient-welcome-title">Иван, вас ждут по адресу Казань, Островского 9. Здание Invitro.</h2>
-          <p class="patient-welcome-desc">Сдайте кровь до 31 июля — потом запись автоматически отменится</p>
-        </div>
+        <div class="dashboard-panel">
 
         <!-- Единая карточка статуса пациента (Frame 336211) -->
         <div class="status-card">
           <!-- Карта на статус 1 (заглушка) -->
           <div v-if="currentStatus === 1" class="map-placeholder-box">
-            <!-- Сетка координат на базе SVG -->
-            <svg class="map-grid-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0, 0, 0, 0.05)" stroke-width="1"/>
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-              
-              <!-- Имитация дорог/линий карты -->
-              <path d="M-10 100 Q 200 80 400 150 T 900 120" stroke="rgba(0,0,0,0.06)" stroke-width="12" fill="none" stroke-linecap="round"/>
-              <path d="M150 -10 Q 180 150 120 350" stroke="rgba(0,0,0,0.06)" stroke-width="16" fill="none" stroke-linecap="round"/>
-              <path d="M500 -10 L 530 350" stroke="rgba(0,0,0,0.06)" stroke-width="10" fill="none" stroke-linecap="round"/>
-              
-              <!-- Маркер геопозиции -->
-              <g transform="translate(160, 130)">
-                <circle cx="0" cy="0" r="10" fill="rgba(0,0,0,0.15)"/>
-                <path d="M0 -20 C-6 -20 -10 -16 -10 -10 C-10 -3 0 10 0 10 C0 10 10 -3 10 -10 C10 -16 6 -20 0 -20 Z" fill="#000000"/>
-                <circle cx="0" cy="-10" r="4" fill="#FFFFFF"/>
-              </g>
-            </svg>
-            
-            <div class="map-placeholder-info">
-              <span class="map-label">КАРТА</span>
-              <p class="map-subtext">Здесь будет интегрирована Яндекс.Карта</p>
-            </div>
+            <span class="map-label">Карта</span>
           </div>
 
           <!-- Контентная часть карточки -->
@@ -96,14 +61,17 @@
               
               <!-- Шаг 1: Карта и Отмена записи -->
               <div v-if="currentStatus === 1" class="step-content">
+                <div class="status-card-header">
+                  <h2 class="patient-welcome-title">Иван, вас ждут по адресу Казань, Островского 9. Здание Invitro.</h2>
+                  <p class="patient-welcome-desc">Сдайте кровь до 31 июля — потом запись автоматически отменится</p>
+                </div>
                 <div class="status-action-row">
                   <button @click="cancelAppointment" class="btn-cancel-appointment">
                     <span>Отменить запись</span>
                     <span class="btn-icon-circle-small">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="10" stroke="#000000" stroke-width="2"/>
-                        <path d="M12 8V12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="12" cy="16" r="1" fill="#000000"/>
+                        <path d="M10 8L14 12L10 16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                     </span>
                   </button>
@@ -162,20 +130,17 @@
           <NuxtLink to="/personal-account/patient/profile" class="btn-outline dashboard-btn-left">
             <span>Данные аккаунта</span>
             <span class="btn-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <img src="/assets/account-profile.svg" alt="" width="24" height="24">
             </span>
           </NuxtLink>
 
           <NuxtLink to="/personal-account/patient/login" class="btn-outline dashboard-btn-right">
             <span>Выйти из аккаунта</span>
             <span class="btn-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <img src="/assets/account-logout.svg" alt="" width="24" height="24">
             </span>
           </NuxtLink>
+        </div>
         </div>
       </div>
     </main>
@@ -221,24 +186,29 @@ const downloadPdf = () => {
 }
 
 .patient-main-content {
-  flex: 1;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 0 20px;
 }
 
 .dashboard-container {
-  width: 805px; /* Ширина по макету */
+  width: 805px;
   display: flex;
   flex-direction: column;
-  gap: 64px; /* gap 64px по макету */
+}
+
+.dashboard-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 840px) {
   .dashboard-container {
     width: 100%;
-    gap: 40px;
+    gap: 0;
   }
 }
 
@@ -246,13 +216,15 @@ const downloadPdf = () => {
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 21px;
+  width: 450px;
+  max-width: 100%;
 }
 
 .patient-welcome-title {
   font-size: 24px;
   font-weight: 400;
-  line-height: 1.3;
+  line-height: 1.15;
   color: #000000;
 }
 
@@ -260,6 +232,7 @@ const downloadPdf = () => {
   font-size: 21px;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.5);
+  line-height: 1.15;
 }
 
 /* Карточка статуса */
@@ -275,46 +248,19 @@ const downloadPdf = () => {
 .map-placeholder-box {
   width: 100%;
   height: 291px;
-  background-color: #ffffff;
+  background-color: #eceff4;
   border-bottom: 1px solid #dfdfdf;
   position: relative;
   overflow: hidden;
-}
-
-.map-grid-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.map-placeholder-info {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 24px 40px;
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  pointer-events: none;
+  align-items: center;
+  justify-content: center;
 }
 
 .map-label {
   font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: #000000;
-}
-
-.map-subtext {
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.45);
 }
 
 /* Тело карточки */
@@ -366,7 +312,7 @@ const downloadPdf = () => {
 }
 
 .status-details {
-  margin-top: auto; /* Прижимает текст к низу карточки по макету */
+  margin-top: auto;
   display: flex;
   flex-direction: column;
 }
@@ -413,6 +359,10 @@ const downloadPdf = () => {
   gap: 24px;
 }
 
+.step-content:first-child {
+  gap: 32px;
+}
+
 .text-left {
   text-align: left;
 }
@@ -427,7 +377,7 @@ const downloadPdf = () => {
   color: #2baac9;
   padding: 12px 24px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1;
   display: inline-flex;
   align-items: center;
@@ -437,7 +387,7 @@ const downloadPdf = () => {
 }
 
 .status-main-title {
-  font-size: 42px;
+  font-size: 24px;
   font-weight: 400;
   line-height: 1.2;
   color: #000000;
@@ -480,6 +430,8 @@ const downloadPdf = () => {
 .dashboard-actions {
   display: flex;
   width: 100%;
+  height: 72px;
+  flex-shrink: 0;
 }
 
 .dashboard-btn-left {
@@ -494,22 +446,38 @@ const downloadPdf = () => {
 
 /* Мобильная адаптация */
 @media (max-width: 768px) {
+  .patient-main-content {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 69px 16px 80px;
+  }
+
   .dashboard-container {
     width: 100%;
-    gap: 32px;
-    padding: 0 16px;
+    gap: 0;
+    padding: 0;
   }
 
   .patient-welcome-title {
-    font-size: 20px;
+    font-size: 24px;
+    line-height: 1.15;
   }
 
   .patient-welcome-desc {
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 1.15;
   }
 
   .map-placeholder-box {
-    height: 161px; /* 161px по мобильному макету */
+    height: 161px;
+  }
+
+  .status-card-body {
+    height: 393px;
+  }
+
+  .status-details {
+    margin-top: auto;
   }
 
   .status-badge-blue {
@@ -517,15 +485,15 @@ const downloadPdf = () => {
   }
 
   .btn-cancel-appointment {
-    width: 100%;
+    width: 251px;
   }
 
   .status-main-title {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .status-sub-desc {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .dashboard-actions {

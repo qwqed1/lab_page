@@ -11,17 +11,18 @@ const searchQuery = ref('')
 // Mock Patient Data from the screenshot
 const patient = {
   name: 'Елагин М.С.',
-  age: '19 лет',
   dob: '11.06.2006',
   orderId: 'елагин',
   method: 'ALEX2',
-  barcode: '030SU126',
+  barcode: '02CSU126',
   testDate: '16.12.2025',
   totalIge: 1440
 }
 
 // Table range helper for highlighting
-const getClassByVal = (val) => {
+const getClassByVal = (item) => {
+  if (item.level) return `range-${item.level}`
+  const val = item.val
   if (val < 0.3) return 'range-negative'
   if (val >= 0.3 && val <= 1.0) return 'range-low'
   if (val > 1.0 && val <= 5.0) return 'range-medium'
@@ -37,6 +38,7 @@ const formatValue = (val) => {
 // Mock Allergen Results grouped exactly as in the design screenshot
 const allergenGroups = ref([
   {
+    id: 'grass-1',
     name: 'Пыльца трав',
     items: [
       { name: 'Свинорой пальчатый', val: 0.0, code: 'Cyn d', protein: '', type: 'E' },
@@ -44,7 +46,7 @@ const allergenGroups = ref([
       { name: 'Плевел многолетний', val: 0.0, code: 'Lol p 1', protein: 'Beta-Expansin', type: 'E' },
       { name: 'Паслен/Стрихнос лесной', val: 0.0, code: 'Pas s', protein: '', type: 'E' },
       { name: 'Тимофеевка луговая', val: 0.0, code: 'Phl p 1', protein: 'Beta-Expansin', type: 'M' },
-      { name: 'Тимофеевка луговая', val: 0.8, code: 'Phl p 5.0101', protein: 'Grass Group 5/6', type: 'M' },
+      { name: 'Тимофеевка луговая', val: 0.6, code: 'Phl p 5.0101', protein: 'Grass Group 5/6', type: 'M', level: 'low' },
       { name: 'Тимофеевка луговая', val: 0.0, code: 'Phl p 6', protein: 'Grass Group 5/6', type: 'M' },
       { name: 'Тимофеевка луговая', val: 0.0, code: 'Phl p 7', protein: 'Polcalcin', type: 'M' },
       { name: 'Тимофеевка луговая', val: 0.0, code: 'Phl p 12', protein: 'Profilin', type: 'M' },
@@ -53,14 +55,15 @@ const allergenGroups = ref([
     ]
   },
   {
-    name: 'Пыльца деревьев',
+    id: 'grass-2',
+    name: 'Пыльца трав',
     items: [
       { name: 'Свинорой пальчатый', val: 0.0, code: 'Cyn d', protein: '', type: 'E' },
       { name: 'Свинорой пальчатый', val: 0.0, code: 'Cyn d 1', protein: 'Beta-Expansin', type: 'M' },
       { name: 'Плевел многолетний', val: 0.0, code: 'Lol p 1', protein: 'Beta-Expansin', type: 'E' },
-      { name: 'Паслен/Стрихнос лесной', val: 7.0, code: 'Pas s', protein: '', type: 'E' },
-      { name: 'Тимофеевка луговая', val: 6.0, code: 'Phl p 1', protein: 'Beta-Expansin', type: 'M' },
-      { name: 'Тимофеевка луговая', val: 0.6, code: 'Phl p 5.0101', protein: 'Grass Group 5/6', type: 'M' },
+      { name: 'Паслен/Стрихнос лесной', val: 7.0, code: 'Pas s', protein: '', type: 'E', level: 'high' },
+      { name: 'Тимофеевка луговая', val: 6.0, code: 'Phl p 1', protein: 'Beta-Expansin', type: 'M', level: 'medium' },
+      { name: 'Тимофеевка луговая', val: 0.6, code: 'Phl p 5.0101', protein: 'Grass Group 5/6', type: 'M', level: 'low' },
       { name: 'Тимофеевка луговая', val: 0.0, code: 'Phl p 6', protein: 'Grass Group 5/6', type: 'M' },
       { name: 'Тимофеевка луговая', val: 0.0, code: 'Phl p 7', protein: 'Polcalcin', type: 'M' },
       { name: 'Тимофеевка луговая', val: 0.0, code: 'Phl p 12', protein: 'Profilin', type: 'M' },
@@ -69,14 +72,15 @@ const allergenGroups = ref([
     ]
   },
   {
-    name: 'Пыльца сорных трав',
+    id: 'grass-3',
+    name: 'Пыльца трав',
     items: [
-      { name: 'Свинорой пальчатый', val: 22.0, code: 'Cyn d', protein: '', type: 'E' },
+      { name: 'Свинорой пальчатый', val: 32.0, code: 'Cyn d', protein: '', type: 'E', level: 'very-high' },
       { name: 'Свинорой пальчатый', val: 0.0, code: 'Cyn d 1', protein: 'Beta-Expansin', type: 'M' },
       { name: 'Плевел многолетний', val: 0.0, code: 'Lol p 1', protein: 'Beta-Expansin', type: 'E' },
       { name: 'Паслен/Стрихнос лесной', val: 0.0, code: 'Pas s', protein: '', type: 'E' },
       { name: 'Тимофеевка луговая', val: 0.0, code: 'Phl p 1', protein: 'Beta-Expansin', type: 'M' },
-      { name: 'Тимофеевка луговая', val: 0.6, code: 'Phl p 5.0101', protein: 'Grass Group 5/6', type: 'M' },
+      { name: 'Тимофеевка луговая', val: 0.6, code: 'Phl p 5.0101', protein: 'Grass Group 5/6', type: 'M', level: 'low' },
       { name: 'Тимофеевка луговая', val: 0.0, code: 'Phl p 6', protein: 'Grass Group 5/6', type: 'M' },
       { name: 'Тимофеевка луговая', val: 0.0, code: 'Phl p 7', protein: 'Polcalcin', type: 'M' },
       { name: 'Тимофеевка луговая', val: 0.0, code: 'Phl p 12', protein: 'Profilin', type: 'M' },
@@ -105,108 +109,35 @@ const filteredGroups = computed(() => {
 })
 
 const downloadPDF = () => {
-  alert('Скачивание PDF-версии отчета...')
+  const link = document.createElement('a')
+  link.href = '/documents/elagin-demo-result.pdf'
+  link.download = 'elagin-demo-result.pdf'
+  link.click()
 }
+
+const reportPages = Array.from(
+  { length: 10 },
+  (_, index) => `/assets/demo-report/page-${String(index + 1).padStart(2, '0')}.png`
+)
 </script>
 
 <template>
-  <div class="page-container">
-    <!-- Left Column: Navigation controls & cards (Sidebar) -->
-    <aside class="sidebar-container">
-      <!-- Promo Banner Card -->
-      <div class="promo-card" id="card-promo">
-        <div class="promo-content">
-          <img src="/assets/banner.svg" alt="Анализ крови" class="promo-banner-img" />
-          <p class="promo-text">
-            Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
-          </p>
-        </div>
-
-        <button class="promo-button" id="btn-register" @click="$router.push('/')">
-          <span class="promo-button-text">Записаться на тест на аллергию</span>
-          <div class="promo-button-icon">
-            <img src="/assets/arrow-right-btn.svg" alt="arrow" />
-          </div>
-        </button>
-      </div>
-
-      <!-- Side-by-side cards -->
-      <div class="cards-row">
-        <!-- Search Card -->
-        <div class="sub-card" id="card-search" @click="$router.push('/')">
-          <div class="card-icon-wrapper">
-            <img src="/assets/search-icon.svg" alt="search" />
-          </div>
-          <div class="card-text-group">
-            <h3 class="card-title">Поиск аллергенов</h3>
-            <p class="card-subtitle">Убедитесь, что тест покажет, что вам нужно</p>
-          </div>
-        </div>
-
-        <!-- Demo Card (Active state added inline) -->
-        <div class="sub-card active-card" id="card-demo">
-          <div class="card-icon-wrapper">
-            <img src="/assets/doc-icon.svg" alt="doc" />
-          </div>
-          <div class="card-text-group">
-            <h3 class="card-title">Посмотреть демо-результат</h3>
-            <p class="card-subtitle">Объясняем результаты на человеческом языке</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Quiz Card -->
-      <div class="sidebar-row-card" id="row-quiz" @click="$router.push('/quiz')">
-        <div class="row-left-content">
-          <span class="tag-badge">~5 минут</span>
-          <span class="row-text">КВИЗ: Нужен ли вам тест на аллергены?</span>
-        </div>
-      </div>
-
-      <!-- Profile Card -->
-      <div class="sidebar-row-card" id="row-profile" @click="$router.push('/personal-account')">
-        <div class="row-left-content">
-          <div class="row-icon-icon" style="margin-right: 4px;">
-            <img src="/assets/profile-icon.svg" alt="profile" />
-          </div>
-          <span class="row-text">Личный кабинет</span>
-        </div>
-      </div>
-
-      <!-- About/Bottom Card -->
-      <div class="sidebar-row-card" id="row-about" @click="$router.push('/')">
-        <div class="row-left-content">
-          <span class="row-text">Лаборатория ALEX LAB</span>
-        </div>
-        <div class="row-icon-icon">
-          <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15.9974 29.3307C23.3612 29.3307 29.3307 23.3612 29.3307 15.9974C29.3307 8.6336 23.3612 2.66406 15.9974 2.66406C8.6336 2.66406 2.66406 8.6336 2.66406 15.9974C2.66406 23.3612 8.6336 29.3307 15.9974 29.3307Z" />
-            <path d="M13.3359 10.6641L18.6693 15.9974L13.3359 21.3307" />
-          </svg>
-        </div>
-      </div>
-    </aside>
+  <div class="page-container site-sidebar-layout">
+    <SiteSidebar
+      @register="$router.push('/cart')"
+      @about="$router.push('/')"
+    />
 
     <!-- Right Column: Patient report display -->
     <main class="content-container results-page-content">
       <!-- Mobile Top Navigation Bar (Frame 290) -->
-      <div class="mobile-top-bar">
-        <NuxtLink to="/" class="mobile-back-button" aria-label="Назад">
-          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </NuxtLink>
-        <span class="mobile-top-title">Результаты</span>
+      <div class="mobile-top-bar home-back-area">
+        <HomeBackLink stretched />
       </div>
 
       <!-- Back Link (Desktop only) -->
-      <div class="back-link-wrapper desktop-only">
-        <NuxtLink to="/" class="back-link">
-          <svg width="10" height="10" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7 13L1 7L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span>На главную</span>
-        </NuxtLink>
+      <div class="back-link-wrapper desktop-only home-back-area">
+        <HomeBackLink stretched />
       </div>
 
       <!-- Main report structure -->
@@ -215,14 +146,22 @@ const downloadPDF = () => {
         <div class="download-bar">
           <button class="download-pdf-btn" @click="downloadPDF">
             <span>Скачать pdf</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 3V15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M3 16V21H21V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <img src="/assets/figma-demo-download.svg" alt="" />
           </button>
         </div>
 
+        <section class="pdf-report" aria-label="Демо-результат">
+          <img
+            v-for="(page, index) in reportPages"
+            :key="page"
+            :src="page"
+            :alt="`Страница ${index + 1} демо-результата`"
+            class="pdf-report-page"
+            loading="lazy"
+          />
+        </section>
+
+        <div class="legacy-report-content" aria-hidden="true">
         <!-- Patient Header Info Card -->
         <div class="patient-card">
           <div class="patient-card-header">
@@ -234,7 +173,6 @@ const downloadPDF = () => {
               <span class="card-small-label">Общий IgE</span>
               <div class="patient-ige-value">
                 <span class="value">{{ patient.totalIge }}</span>
-                <span class="unit">kU/l</span>
               </div>
             </div>
           </div>
@@ -245,7 +183,7 @@ const downloadPDF = () => {
               <span class="meta-value">{{ patient.dob }}</span>
             </div>
             <div class="meta-column">
-              <span class="meta-label">Номер заказа</span>
+              <span class="meta-label">Номер образца</span>
               <span class="meta-value font-mono">{{ patient.orderId }}</span>
             </div>
             <div class="meta-column">
@@ -253,7 +191,7 @@ const downloadPDF = () => {
               <span class="meta-value">{{ patient.method }}</span>
             </div>
             <div class="meta-column">
-              <span class="meta-label">Штрих-код</span>
+              <span class="meta-label">QR-код</span>
               <span class="meta-value font-mono">{{ patient.barcode }}</span>
             </div>
             <div class="meta-column">
@@ -267,10 +205,10 @@ const downloadPDF = () => {
         <div class="explain-card">
           <h3 class="explain-title">Как понять результаты</h3>
           <p class="explain-text">
-            Мы добавили аллергены к вашей крови и измерили реакцию на каждый из них. Чем больше уровень чувствительности (kU_l/l), тем сильнее выражена реакция. Если на аллерген нет реакции — отрицательная или неопределенная.
+            Мы добавили аллергены к вашей крови и измерили реакцию на каждый из них. Чем больше уровень чувствительности (kU A/L), тем сильнее выражена реакция. Если на аллерген нет — реакция отрицательная или неопределённая.
           </p>
           <p class="explain-subtext">
-            Е - экстракт аллергена, М - молекулярный аллерген
+            E = экстракт аллергена, M = молекулярный аллерген
           </p>
 
           <div class="legend-table-wrapper">
@@ -278,7 +216,7 @@ const downloadPDF = () => {
               <thead>
                 <tr>
                   <th>Реакция организма</th>
-                  <th class="text-right">Уровень чувствительности (kU_l/l)</th>
+                  <th class="text-right">Уровень чувствительности <span>(kU A/L)</span></th>
                 </tr>
               </thead>
               <tbody>
@@ -299,21 +237,21 @@ const downloadPDF = () => {
                 <tr class="range-medium">
                   <td>
                     <span class="color-dot medium-dot"></span>
-                    Умеренный
+                    Умеренная
                   </td>
-                  <td class="text-right">1 – 5</td>
+                  <td class="text-right">5 – 15</td>
                 </tr>
                 <tr class="range-high">
                   <td>
                     <span class="color-dot high-dot"></span>
-                    Высокий
+                    Высокая
                   </td>
                   <td class="text-right">5 – 15</td>
                 </tr>
                 <tr class="range-very-high">
                   <td>
                     <span class="color-dot very-high-dot"></span>
-                    Очень высокий
+                    Очень высокая
                   </td>
                   <td class="text-right">&gt; 15</td>
                 </tr>
@@ -329,10 +267,7 @@ const downloadPDF = () => {
             
             <!-- Table Search Input -->
             <div class="table-search-input-wrapper">
-              <svg class="search-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
+              <img class="search-icon-svg" src="/assets/figma-search-icon.svg" alt="" />
               <input 
                 type="text" 
                 v-model="searchQuery" 
@@ -343,10 +278,18 @@ const downloadPDF = () => {
             </div>
           </div>
 
+          <div class="results-column-head" aria-hidden="true">
+            <span>Название аллергена</span>
+            <span>kU A/L</span>
+            <span>Аллерген</span>
+            <span>Белки</span>
+            <span>E/M</span>
+          </div>
+
           <div class="allergen-groups-list">
             <div 
               v-for="group in filteredGroups" 
-              :key="group.name" 
+              :key="group.id"
               class="allergen-group-block"
             >
               <h4 class="group-title-label">{{ group.name }}</h4>
@@ -356,7 +299,7 @@ const downloadPDF = () => {
                   <thead>
                     <tr>
                       <th class="col-name-th">Название аллергена</th>
-                      <th class="col-val-th text-right">kU_l/l</th>
+                      <th class="col-val-th text-right">kU A/L</th>
                       <th class="col-code-th">Аллерген</th>
                       <th class="col-protein-th">Белок</th>
                       <th class="col-type-th text-center">E/M</th>
@@ -366,12 +309,12 @@ const downloadPDF = () => {
                     <tr 
                       v-for="item in group.items" 
                       :key="item.code"
-                      :class="['allergen-row', getClassByVal(item.val)]"
+                      :class="['allergen-row', getClassByVal(item)]"
                     >
                       <td class="col-name-td">• {{ item.name }}</td>
                       <td class="col-val-td text-right font-weight-bold">{{ formatValue(item.val) }}</td>
                       <td class="col-code-td font-mono">{{ item.code }}</td>
-                      <td class="col-protein-td">{{ item.protein || '—' }}</td>
+                      <td class="col-protein-td">{{ item.protein || '-' }}</td>
                       <td class="col-type-td text-center">{{ item.type }}</td>
                     </tr>
                   </tbody>
@@ -387,18 +330,18 @@ const downloadPDF = () => {
 
         <!-- Footer Signature block -->
         <footer class="report-footer-note">
-          <p class="thank-you-title">Спасибо, что выбрали нас!</p>
+          <p class="thank-you-title">Спасибо, что выбрали нас!<br />В случае вопросов:</p>
           <div class="footer-contacts">
-            <span class="contacts-title">В случае вопросов:</span>
-            <span class="contact-item font-weight-bold">+7 996 22 92 10</span>
-            <span class="contact-item font-weight-bold">alex@lab.ru</span>
+            <span class="contact-item">+7 999 43 94 94</span>
+            <span class="contact-item">alexlab@lab.ru</span>
           </div>
           
           <!-- Legal / Disclaimer note -->
           <div class="report-legal-disclaimer">
-            * Анализ выполнен с использованием технологии молекулярной аллергодиагностики ALEX2. Данный отчет носит ознакомительный характер и не является основанием для постановки окончательного медицинского диагноза. Диагноз ставит исключительно лечащий врач на основе комплексной клинической картины и анамнеза пациента.
+            ОТКАЗ ОТ ОТВЕТСТВЕННОСТИ: ИНТЕРПРЕТАЦИЯ РАВЕН — ЭТО ИНСТРУМЕНТ, ПОМОГАЮЩИЙ ВРАЧУ В ДИАГНОСТИКЕ АЛЛЕРГИИ И В ПОНИМАНИИ РЕЗУЛЬТАТОВ МОЛЕКУЛЯРНЫХ ТЕСТОВ. ТЕСТЫ IN VITRO ПОКАЗЫВАЮТ ЧУВСТВИТЕЛЬНОСТЬ ТОЛЬКО К ОСОБЫМ АЛЛЕРГЕНАМ. ДИАГНОЗ ДОЛЖЕН ПОДТВЕРЖДАТЬСЯ СПЕЦИАЛИСТОМ.
           </div>
         </footer>
+        </div>
       </div>
     </main>
   </div>
@@ -445,6 +388,25 @@ const downloadPDF = () => {
   max-width: 800px;
 }
 
+.pdf-report {
+  display: grid;
+  gap: 20px;
+  width: min(100%, 920px);
+  margin: 0 auto;
+}
+
+.pdf-report-page {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;
+  box-shadow: 0 6px 24px rgba(30, 46, 52, 0.12);
+}
+
+.legacy-report-content {
+  display: none;
+}
+
 .download-bar {
   display: flex;
   justify-content: flex-start;
@@ -481,7 +443,7 @@ const downloadPDF = () => {
   padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .patient-card-header {
@@ -838,6 +800,600 @@ const downloadPDF = () => {
   }
   .table-search-input-wrapper {
     width: 100%;
+  }
+}
+
+/* Figma 23:73 — report geometry and typography */
+.results-page-content {
+  box-sizing: border-box;
+  height: 100dvh !important;
+  padding: 0 !important;
+  gap: 0;
+  align-items: stretch;
+  background: #f5f5f5;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.back-link-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  height: 72px;
+  margin: 0;
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.back-link {
+  gap: 8px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.back-link img,
+.mobile-back-button img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.report-wrapper {
+  width: min(1000px, calc(100% - 64px));
+  max-width: none;
+  margin: 64px auto 109px;
+  gap: 0;
+}
+
+.download-bar {
+  margin: 0 0 12px;
+}
+
+.download-pdf-btn {
+  box-sizing: border-box;
+  width: 197px;
+  height: 56px;
+  padding: 16px 24px;
+  justify-content: space-between;
+  gap: 24px;
+  border-color: #dfdfdf;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.download-pdf-btn span {
+  flex: 0 0 auto;
+}
+
+.download-pdf-btn img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.patient-card,
+.explain-card,
+.results-container {
+  box-sizing: border-box;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+}
+
+.patient-card {
+  height: 220px;
+  padding: 38px 32px 58px;
+  gap: 24px;
+}
+
+.patient-card-header {
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 0;
+  border: 0;
+}
+
+.patient-name-block,
+.patient-ige-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-small-label {
+  margin: 0;
+  color: #000;
+  opacity: 0.3;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.patient-title-name,
+.patient-ige-value .value {
+  font-size: 32px;
+  line-height: 38px;
+  font-weight: 400;
+}
+
+.patient-meta-grid {
+  display: grid;
+  grid-template-columns: 106px 102px 62px 99px 106px;
+  gap: 48px;
+  justify-content: start;
+}
+
+.meta-column {
+  gap: 10px;
+}
+
+.meta-label {
+  color: #000;
+  opacity: 0.3;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.meta-value {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 21px;
+  line-height: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.font-mono {
+  font-family: Roboto, Arial, sans-serif;
+}
+
+.explain-card {
+  height: 690px;
+  padding: 64px 32px;
+  gap: 0;
+  background: rgba(0, 0, 0, 0.03);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.explain-title {
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 400;
+}
+
+.explain-text {
+  width: 481px;
+  max-width: 100%;
+  margin: 21px 0 0;
+  color: #000;
+  opacity: 0.5;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.explain-subtext {
+  margin: 8px 0 0;
+  color: #000;
+  opacity: 0.1;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.legend-table-wrapper {
+  margin-top: 32px;
+  padding-top: 32px;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.legend-table {
+  font-size: 18px;
+  line-height: 13px;
+}
+
+.legend-table th {
+  height: 29px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: #000;
+  font-weight: 400;
+  vertical-align: top;
+}
+
+.legend-table th span {
+  opacity: 0.2;
+}
+
+.legend-table td {
+  box-sizing: border-box;
+  height: 61px;
+  padding: 24px;
+  border: 0;
+}
+
+.color-dot {
+  display: none;
+}
+
+.range-negative { background: #fff; }
+.range-low { background: #fffacd; }
+.range-medium { background: #ffc99a; }
+.range-high { background: #ffa888; }
+.range-very-high { background: #ff7a7a; }
+
+.results-container {
+  padding: 64px 32px;
+  gap: 0;
+  background: #fff;
+}
+
+.results-header-row {
+  margin: 0 0 24px;
+  align-items: center;
+  gap: 32px;
+}
+
+.results-header-row .explain-title {
+  flex: 0 0 auto;
+  font-size: 32px;
+  line-height: 38px;
+}
+
+.table-search-input-wrapper {
+  width: min(420px, 48%);
+  margin-left: auto;
+}
+
+.search-icon-svg {
+  width: 20px;
+  height: 20px;
+  left: 16px;
+  opacity: 0.45;
+}
+
+.search-allergens-input {
+  box-sizing: border-box;
+  height: 48px;
+  padding: 0 44px 0 48px;
+  border: 1px solid #dfdfdf;
+  border-radius: 0;
+  font-size: 16px;
+}
+
+.results-column-head {
+  display: grid;
+  grid-template-columns: 35% 12% 19% 30% 4%;
+  margin-bottom: 24px;
+  color: #000;
+  opacity: 0.2;
+  font-size: 18px;
+  line-height: 16px;
+}
+
+.results-column-head span:nth-child(2),
+.results-column-head span:nth-child(5) {
+  text-align: center;
+}
+
+.allergen-groups-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.allergen-group-block,
+.allergen-group-block:last-child {
+  margin: 0;
+}
+
+.group-title-label {
+  margin: 0 0 10px;
+  padding: 0;
+  border: 0;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+.allergen-results-table {
+  table-layout: fixed;
+  font-size: 18px;
+  line-height: 13px;
+}
+
+.allergen-results-table thead {
+  display: none;
+}
+
+.allergen-results-table td {
+  box-sizing: border-box;
+  height: 29px;
+  padding: 8px 0;
+  border: 0;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+}
+
+.allergen-results-table .col-name-td { width: 35%; padding-left: 2px; }
+.allergen-results-table .col-val-td { width: 12%; text-align: center; }
+.allergen-results-table .col-code-td { width: 19%; }
+.allergen-results-table .col-protein-td { width: 30%; }
+.allergen-results-table .col-type-td { width: 4%; text-align: center; }
+
+.report-footer-note {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 36px 32px 38px;
+  gap: 0;
+  border: 0;
+  background: #fff;
+}
+
+.thank-you-title {
+  margin: 0;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.footer-contacts {
+  margin-top: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  color: #000;
+  opacity: 0.5;
+  font-size: 18px;
+  line-height: 13px;
+}
+
+.report-legal-disclaimer {
+  width: 726px;
+  max-width: 100%;
+  margin-top: 64px;
+  padding: 0;
+  border: 0;
+  color: #000;
+  opacity: 0.2;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+@media (max-width: 1024px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .results-page-content {
+    height: auto !important;
+    min-height: 100dvh;
+    padding: 0 16px 64px !important;
+    overflow: visible !important;
+  }
+
+  .mobile-top-bar {
+    box-sizing: border-box;
+    width: calc(100% + 32px);
+    height: 72px;
+    margin: 0 -16px 45px;
+    padding: 24px 32px;
+    position: static;
+  }
+
+  .mobile-back-button {
+    padding: 0;
+  }
+
+  .report-wrapper {
+    width: 100%;
+    margin: 0;
+  }
+
+  .download-pdf-btn {
+    width: 100%;
+    height: 66px;
+    padding: 21px 24px;
+  }
+
+  .patient-meta-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .patient-card {
+    height: 85px;
+    padding: 15px 12px 22px;
+    gap: 9px;
+  }
+
+  .patient-card-header {
+    gap: 9px;
+  }
+
+  .patient-name-block,
+  .patient-ige-block {
+    gap: 1px;
+  }
+
+  .card-small-label {
+    font-size: 6.2px;
+    line-height: 7.4px;
+  }
+
+  .patient-title-name,
+  .patient-ige-value .value {
+    font-size: 12.4px;
+    line-height: 14.7px;
+  }
+
+  .patient-meta-grid {
+    gap: 18px;
+  }
+
+  .meta-column {
+    gap: 4px;
+  }
+
+  .meta-label {
+    font-size: 5.4px;
+    line-height: 6.2px;
+  }
+
+  .meta-value {
+    font-size: 8.1px;
+    line-height: 6px;
+  }
+
+  .explain-card {
+    height: 268px;
+    padding: 25px 12px;
+  }
+
+  .explain-title {
+    font-size: 9.3px;
+    line-height: 11.2px;
+  }
+
+  .explain-text {
+    width: 187px;
+    margin-top: 8px;
+    font-size: 7px;
+    line-height: 7px;
+  }
+
+  .explain-subtext {
+    margin-top: 3px;
+    font-size: 7px;
+    line-height: 7px;
+  }
+
+  .legend-table-wrapper {
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
+  .legend-table {
+    font-size: 7px;
+    line-height: 5px;
+  }
+
+  .legend-table th {
+    height: 11px;
+  }
+
+  .legend-table td {
+    height: 24px;
+    padding: 9px;
+  }
+
+  .results-container {
+    padding: 25px 12px;
+  }
+
+  .results-header-row {
+    margin-bottom: 12px;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .results-header-row .explain-title {
+    font-size: 12.4px;
+    line-height: 15px;
+  }
+
+  .table-search-input-wrapper {
+    width: 100%;
+  }
+
+  .search-allergens-input {
+    height: 36px;
+    padding-left: 38px;
+    font-size: 11px;
+  }
+
+  .search-icon-svg {
+    left: 12px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .results-column-head {
+    margin-bottom: 9px;
+    font-size: 7px;
+    line-height: 6px;
+  }
+
+  .allergen-groups-list {
+    gap: 9px;
+  }
+
+  .group-title-label {
+    margin-bottom: 4px;
+    font-size: 7px;
+    line-height: 7px;
+  }
+
+  .allergen-results-table {
+    font-size: 7px;
+    line-height: 5px;
+  }
+
+  .allergen-results-table td {
+    height: 11px;
+    padding: 3px 0;
+  }
+
+  .report-footer-note {
+    padding: 14px 12px 15px;
+  }
+
+  .thank-you-title {
+    font-size: 9.3px;
+    line-height: 9.3px;
+  }
+
+  .footer-contacts {
+    margin-top: 9px;
+    gap: 5px;
+    font-size: 7px;
+    line-height: 5px;
+  }
+
+  .report-legal-disclaimer {
+    width: 282px;
+    margin-top: 25px;
+    font-size: 5.4px;
+    line-height: 6.2px;
+  }
+}
+
+@media print {
+  .site-sidebar,
+  .mobile-top-bar,
+  .back-link-wrapper,
+  .download-bar,
+  .table-search-input-wrapper {
+    display: none !important;
+  }
+
+  .results-page-content,
+  .report-wrapper {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    overflow: visible !important;
   }
 }
 </style>

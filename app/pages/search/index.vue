@@ -69,11 +69,26 @@ const getAllergenDetail = (name) => {
   }
 }
 
-const popularAllergens = [
-  'Кошачья шерсть', 'Банан', 'Пыль', 'Клубника', 'Тараканы', 'Пыльца берёзы',
-  'Кошачья шерсть', 'Банан', 'Пыль', 'Клубника', 'Тараканы', 'Пыльца берёзы',
+const popularAllergenPattern = [
   'Кошачья шерсть', 'Банан', 'Пыль', 'Клубника', 'Тараканы', 'Пыльца берёзы'
 ]
+
+const allergenButtonWidths = {
+  'Кошачья шерсть': 190,
+  'Банан': 100,
+  'Пыль': 96,
+  'Клубника': 129,
+  'Тараканы': 132,
+  'Пыльца берёзы': 183,
+  'Апельсин': 132
+}
+
+// The Figma frame contains twelve repetitions of the popular-allergen pattern.
+// Keeping the data generated makes the visual rhythm easy to maintain.
+const popularAllergens = Array.from(
+  { length: 12 },
+  () => popularAllergenPattern
+).flat()
 
 const filteredAllergens = computed(() => {
   if (!searchQuery.value.trim()) {
@@ -88,6 +103,11 @@ const filteredAllergens = computed(() => {
 const selectAllergen = (name) => {
   selectedAllergen.value = getAllergenDetail(name)
   searchQuery.value = name
+}
+
+const getAllergenButtonStyle = (name) => {
+  const width = allergenButtonWidths[name]
+  return width ? { width: `${width}px` } : undefined
 }
 
 const selectAllergenByName = (name) => {
@@ -105,99 +125,34 @@ watch(searchQuery, (newVal) => {
     selectedAllergen.value = null
   }
 })
+
+const redirectToCart = () => {
+  navigateTo('/cart')
+}
 </script>
 
 <template>
-  <div class="search-page-container">
-    <!-- Левый сайдбар (идентичен главной) -->
-    <aside class="sidebar-container">
-      <!-- Promo Banner Card -->
-      <div class="promo-card" id="card-promo">
-        <div class="promo-content">
-          <img src="/assets/banner.svg" alt="ALEX2" class="promo-banner-img" />
-          <p class="promo-text">
-            Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
-          </p>
-        </div>
-        <button class="promo-button" id="btn-register">
-          <span class="promo-button-text">Записаться на тест</span>
-          <div class="promo-button-icon">
-            <img src="/assets/arrow-right-btn.svg" alt="arrow" />
-          </div>
-        </button>
-      </div>
-
-      <!-- Side-by-side cards -->
-      <div class="cards-row">
-        <!-- Search Card -->
-        <div class="sub-card" id="card-search">
-          <div class="card-icon-wrapper">
-            <img src="/assets/search-icon.svg" alt="search" />
-          </div>
-          <div class="card-text-group">
-            <h3 class="card-title">Поиск аллергенов</h3>
-            <p class="card-subtitle">Убедитесь, что тест покажет, что вам нужно</p>
-          </div>
-        </div>
-
-        <!-- Demo Card -->
-        <div class="sub-card" id="card-demo" @click="$router.push('/demo-result')">
-          <div class="card-icon-wrapper">
-            <img src="/assets/doc-icon.svg" alt="doc" />
-          </div>
-          <div class="card-text-group">
-            <h3 class="card-title">Посмотреть демо-результат</h3>
-            <p class="card-subtitle">Объясняем результаты на человеческом языке</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Quiz -->
-      <div class="sidebar-row-card" id="row-quiz" @click="$router.push('/quiz')">
-        <div class="row-left-content">
-          <span class="tag-badge">~5 минут</span>
-          <span class="row-text">КВИЗ: Нужен ли вам тест на аллергены?</span>
-        </div>
-      </div>
-
-      <!-- Profile -->
-      <div class="sidebar-row-card" id="row-profile" @click="$router.push('/personal-account')">
-        <div class="row-left-content">
-          <div class="row-icon-icon" style="margin-right: 4px;">
-            <img src="/assets/profile-icon.svg" alt="profile" />
-          </div>
-          <span class="row-text">Личный кабинет</span>
-        </div>
-      </div>
-
-      <!-- Lab -->
-      <div class="sidebar-row-card" id="row-about" @click="$router.push('/')">
-        <div class="row-left-content">
-          <span class="row-text">Лаборатория ALEX LAB</span>
-        </div>
-        <div class="row-icon-icon">
-          <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15.9974 29.3307C23.3612 29.3307 29.3307 23.3612 29.3307 15.9974C29.3307 8.6336 23.3612 2.66406 15.9974 2.66406C8.6336 2.66406 2.66406 8.6336 2.66406 15.9974C2.66406 23.3612 8.6336 29.3307 15.9974 29.3307Z" />
-            <path d="M13.3359 10.6641L18.6693 15.9974L13.3359 21.3307" />
-          </svg>
-        </div>
-      </div>
-    </aside>
+  <div class="search-page-container site-sidebar-layout">
+    <SiteSidebar
+      @register="redirectToCart"
+      @about="$router.push('/')"
+    />
 
     <!-- Правая панель — контент поиска -->
     <main class="search-main">
       <!-- "На главную" ссылка -->
-      <div class="search-back-row">
-        <button class="search-back-btn" @click="$router.push('/')">
-          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7 13L1 7L7 1" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span class="back-text">На главную</span>
-        </button>
+      <div class="search-back-row home-back-area">
+        <HomeBackLink stretched />
       </div>
 
       <!-- Центрированный контент -->
-      <div class="search-center">
+      <div
+        class="search-center"
+        :class="{
+          'search-center--filtered': searchQuery.trim() && !selectedAllergen,
+          'search-center--detail': selectedAllergen
+        }"
+      >
         <h1 class="search-heading">Поиск аллергенов,<br>которые покажет ALEX2</h1>
         <p class="search-subheading">Более 300 аллергенов в одном тесте —<br>убедитесь сами</p>
 
@@ -229,37 +184,25 @@ watch(searchQuery, (newVal) => {
             <!-- Левая колонка (Информация об аллергене) -->
             <div class="details-left-col">
               <div class="details-left-main">
-                <!-- Иконка головы медведя (Panda/Bear) -->
+                <!-- Иконка аллергена -->
                 <div class="allergen-icon-box">
-                  <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Ушки -->
-                    <circle cx="10" cy="10" r="6" stroke="black" stroke-width="2" fill="white" />
-                    <circle cx="10" cy="10" r="3" fill="black" />
-                    <circle cx="32" cy="10" r="6" stroke="black" stroke-width="2" fill="white" />
-                    <circle cx="32" cy="10" r="3" fill="black" />
-                    <!-- Контур головы -->
-                    <rect x="4" y="11" width="34" height="27" rx="12" stroke="black" stroke-width="2" fill="white" />
-                    <!-- Глаза -->
-                    <circle cx="14" cy="20" r="2.5" fill="black" />
-                    <circle cx="28" cy="20" r="2.5" fill="black" />
-                    <!-- Мордочка -->
-                    <ellipse cx="21" cy="26" rx="5" ry="3.5" stroke="black" stroke-width="1.5" fill="#f5f5f5" />
-                    <polygon points="19,25 23,25 21,27.5" fill="black" />
-                    <!-- Линия рта -->
-                    <path d="M21 28.5V31C21 31.5 20.5 32 20 32M21 31C21 31.5 21.5 32 22 32" stroke="black" stroke-width="1.5" stroke-linecap="round" />
-                  </svg>
+                  <img src="/assets/Alergen.svg" alt="" aria-hidden="true" />
                 </div>
 
-                <!-- Зеленый бейдж -->
-                <div v-if="selectedAllergen.included" class="test-badge">
-                  Входит в тест ALEX2
+                <div class="detail-copy">
+                  <!-- Зеленый бейдж -->
+                  <div v-if="selectedAllergen.included" class="test-badge">
+                    Входит в тест ALEX2
+                  </div>
+
+                  <div class="detail-text-group">
+                    <!-- Название аллергена -->
+                    <h2 class="detail-name">{{ selectedAllergen.name }}</h2>
+
+                    <!-- Описание -->
+                    <p class="detail-desc">{{ selectedAllergen.description }}</p>
+                  </div>
                 </div>
-
-                <!-- Название аллергена -->
-                <h2 class="detail-name">{{ selectedAllergen.name }}</h2>
-
-                <!-- Описание -->
-                <p class="detail-desc">{{ selectedAllergen.description }}</p>
               </div>
 
               <!-- Футер левой колонки (Назад ко всем аллергенам) -->
@@ -282,6 +225,7 @@ watch(searchQuery, (newVal) => {
                   v-for="(rel, index) in selectedAllergen.related"
                   :key="index"
                   class="related-tag-btn"
+                  :data-allergen="rel"
                   @click="selectAllergenByName(rel)"
                 >
                   {{ rel }}
@@ -293,9 +237,10 @@ watch(searchQuery, (newVal) => {
           <!-- Режим обычного поиска (список тегов результатов) -->
           <div v-else class="search-results">
             <button
-              v-for="allergen in filteredAllergens"
-              :key="allergen"
+              v-for="(allergen, index) in filteredAllergens"
+              :key="`${allergen}-${index}`"
               class="allergen-tag"
+              :style="getAllergenButtonStyle(allergen)"
               @click="selectAllergen(allergen)"
             >
               {{ allergen }}
@@ -308,9 +253,13 @@ watch(searchQuery, (newVal) => {
 </template>
 
 <style scoped>
+.active-card {
+  background-color: #fafafa !important;
+}
+
 /* ========================================
    ОБЩАЯ СЕТКА СТРАНИЦЫ ПОИСКА (БЕЗ GAP)
-   ======================================== */
+   ======================================= */
 
 .search-page-container {
   display: grid;
@@ -319,7 +268,10 @@ watch(searchQuery, (newVal) => {
   max-width: 1920px;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  width: 100%;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
   background: #f5f5f5;
 }
 
@@ -332,9 +284,15 @@ watch(searchQuery, (newVal) => {
   background: #f5f5f5;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100dvh;
+  min-height: 0;
   position: relative;
   overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.search-main::-webkit-scrollbar {
+  display: none;
 }
 
 /* "На главную" (Соответствует Frame 290 в Figma) */
@@ -345,6 +303,7 @@ watch(searchQuery, (newVal) => {
   padding: 24px 32px;
   display: flex;
   align-items: center;
+  flex: 0 0 72px;
 }
 
 .search-back-btn {
@@ -354,11 +313,21 @@ watch(searchQuery, (newVal) => {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 17px;
-  font-family: 'Helvetica', sans-serif;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
   color: #000;
   padding: 0;
-  line-height: 1;
+  line-height: 24px;
+}
+
+.search-back-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 24px;
 }
 
 .search-back-btn:hover {
@@ -372,27 +341,32 @@ watch(searchQuery, (newVal) => {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 60px 64px 48px;
+  padding: 218px 64px 48px;
+}
+
+.search-center--filtered,
+.search-center--detail {
+  padding-top: 128px;
 }
 
 .search-heading {
   font-size: 42px;
   font-weight: 400;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #000;
   text-align: center;
-  line-height: 1.2;
+  line-height: 49px;
   margin: 0 0 16px;
 }
 
 .search-subheading {
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 400;
-  font-family: 'Helvetica', sans-serif;
-  color: #888;
+  font-family: 'Roboto', sans-serif;
+  color: rgba(0, 0, 0, 0.5);
   text-align: center;
-  line-height: 1.5;
-  margin: 0 0 40px;
+  line-height: 20px;
+  margin: 0 0 32px;
 }
 
 /* Строка поиска */
@@ -401,6 +375,7 @@ watch(searchQuery, (newVal) => {
   align-items: center;
   width: 100%;
   max-width: 534px;
+  height: 61px;
   background: #f8f8f8;
   border: 1px solid #dfdfdf;
   border-radius: 0;
@@ -411,7 +386,9 @@ watch(searchQuery, (newVal) => {
   flex: 1;
   border: none;
   outline: none;
-  padding: 18px 24px;
+  min-width: 0;
+  height: 100%;
+  padding: 0 24px;
   font-size: 18px;
   font-family: inherit;
   color: #000;
@@ -419,7 +396,8 @@ watch(searchQuery, (newVal) => {
 }
 
 .search-input::placeholder {
-  color: #aaa;
+  color: rgba(0, 0, 0, 0.16);
+  opacity: 1;
 }
 
 .search-icon-btn {
@@ -427,7 +405,7 @@ watch(searchQuery, (newVal) => {
   align-items: center;
   justify-content: center;
   width: 62px;
-  height: 61px;
+  height: 100%;
   background: none;
   border-left: 1px solid #dfdfdf;
   border-top: none;
@@ -445,9 +423,9 @@ watch(searchQuery, (newVal) => {
 .search-divider {
   width: 100%;
   max-width: 1115px;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.2);
-  margin: 32px 0 32px;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 64px 0 63px;
 }
 
 .search-bottom-content {
@@ -461,18 +439,24 @@ watch(searchQuery, (newVal) => {
 .search-results {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 4px;
   justify-content: center;
   width: 100%;
 }
 
 .allergen-tag {
-  padding: 12px 24px;
-  background: #fff;
+  min-height: 61px;
+  /* Figma strokes are drawn inside; 23px + the CSS border preserves its 24px inset. */
+  padding: 0 23px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
   border: 1px solid #dfdfdf;
   border-radius: 0;
-  font-size: 16px;
-  font-family: inherit;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1;
   color: #000;
   cursor: pointer;
   transition: background 0.15s;
@@ -504,14 +488,16 @@ watch(searchQuery, (newVal) => {
   border: 1px solid #dfdfdf;
   border-right: none;
   padding: 32px;
-  height: 312px;
+  flex: 1 1 auto;
+  min-height: 312px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
 }
 
 .allergen-icon-box {
-  margin-bottom: 24px;
+  margin-bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -519,28 +505,52 @@ watch(searchQuery, (newVal) => {
   height: 42px;
 }
 
+.allergen-icon-box img {
+  display: block;
+  width: 42px;
+  height: 42px;
+}
+
+.detail-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.detail-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .test-badge {
   background: #f1fff3;
   color: #0f5e1a;
   font-size: 14px;
   font-family: inherit;
-  padding: 10px 24px;
-  margin-bottom: 12px;
+  height: 40px;
+  padding: 0 24px;
+  margin: 0;
   border-radius: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .detail-name {
   font-size: 32px;
   font-weight: 400;
   color: #000;
-  margin: 0 0 12px;
+  line-height: 38px;
+  margin: 0;
 }
 
 .detail-desc {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.5);
   margin: 0;
-  line-height: 1.4;
+  line-height: 13px;
 }
 
 /* Футер левой колонки */
@@ -551,6 +561,7 @@ watch(searchQuery, (newVal) => {
   border-top: none;
   padding: 0 24px;
   height: 72px;
+  flex: 0 0 72px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -582,6 +593,8 @@ watch(searchQuery, (newVal) => {
   border: 1px solid #dfdfdf;
   padding: 32px;
   min-height: 384px;
+  display: flex;
+  flex-direction: column;
 }
 
 .related-title {
@@ -592,16 +605,23 @@ watch(searchQuery, (newVal) => {
 }
 
 .related-tags-container {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  justify-content: center;
+  align-content: flex-start;
 }
 
 .related-tag-btn {
   background: #f8f8f8;
   border: 1px solid #dfdfdf;
   color: #000;
-  padding: 16px 24px;
+  min-height: 61px;
+  padding: 0 23px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 18px;
   font-family: inherit;
   cursor: pointer;
@@ -613,11 +633,16 @@ watch(searchQuery, (newVal) => {
   border-color: #ccc;
 }
 
+.related-tag-btn[data-allergen='Кошачья шерсть'] { width: 190px; }
+.related-tag-btn[data-allergen='Пыльца берёзы'] { width: 183px; }
+.related-tag-btn[data-allergen='Банан'] { width: 100px; }
+.related-tag-btn[data-allergen='Пыль'] { width: 96px; }
+
 /* ========================================
    АДАПТИВНОСТЬ
    ======================================== */
 
-@media (max-width: 1024px) {
+  @media (max-width: 1024px) {
   .search-page-container {
     grid-template-columns: 1fr;
     gap: 0;
@@ -632,18 +657,32 @@ watch(searchQuery, (newVal) => {
   }
 
   .search-back-row {
-    padding: 24px 16px;
+    padding: 24px 32px;
     height: 72px;
     border-bottom: 1px solid #dfdfdf;
     background: #ffffff;
   }
 
   .search-center {
-    padding: 40px 16px 32px;
+    padding: 102px 16px 32px;
+  }
+
+  .search-center--filtered,
+  .search-center--detail {
+    padding-top: 102px;
   }
 
   .search-heading {
-    font-size: 28px;
+    width: 100%;
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .search-subheading {
+    width: 100%;
+    font-size: 18px;
+    line-height: 17px;
+    margin-bottom: 32px;
   }
 
   .search-input-wrapper {
@@ -652,6 +691,7 @@ watch(searchQuery, (newVal) => {
 
   .search-divider {
     max-width: 100%;
+    margin: 32px 0 31px;
   }
 
   .search-bottom-content {
@@ -665,7 +705,7 @@ watch(searchQuery, (newVal) => {
   /* Сетка деталей на мобильных устройствах */
   .search-details-grid {
     flex-direction: column;
-    gap: 20px;
+    gap: 0;
   }
 
   .details-left-col,
@@ -675,21 +715,53 @@ watch(searchQuery, (newVal) => {
 
   .details-left-main {
     border: 1px solid #dfdfdf;
-    height: auto;
-    min-height: 250px;
+    height: 266px;
+    min-height: 266px;
+    flex: 0 0 266px;
+  }
+
+  .test-badge {
+    height: 32px;
+    padding: 0 12px;
   }
 
   .details-left-footer {
     order: -1; /* Кнопка Назад перемещается наверх над карточкой детального просмотра */
     border: 1px solid #dfdfdf;
-    margin-bottom: 16px;
+    height: 66px;
+    flex: 0 0 66px;
+    margin-bottom: 0;
   }
 
   .details-right-col {
     border: 1px solid #dfdfdf;
-    padding: 24px 16px;
-    min-height: auto;
-    background: #ffffff;
+    padding: 32px;
+    height: auto;
+    min-height: 394px;
+    background: transparent;
   }
+
+  .related-title {
+    line-height: 15px;
+  }
+
+  .related-tags-container {
+    width: 100%;
+    height: auto;
+    gap: 4px;
+    justify-content: flex-start;
+    align-content: flex-start;
+  }
+
+  .related-tag-btn {
+    min-height: 55px;
+    /* Keep the 14px Figma inset after accounting for the inside stroke. */
+    padding: 0 13px;
+  }
+
+  .related-tag-btn[data-allergen='Кошачья шерсть'] { width: 170px; }
+  .related-tag-btn[data-allergen='Пыльца берёзы'] { width: 163px; }
+  .related-tag-btn[data-allergen='Банан'] { width: 80px; }
+  .related-tag-btn[data-allergen='Пыль'] { width: 76px; }
 }
 </style>

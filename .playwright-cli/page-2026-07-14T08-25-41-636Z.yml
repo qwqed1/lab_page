@@ -1,0 +1,53 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e145]:
+    - complementary "Навигация по сайту" [ref=f1e146]:
+      - generic [ref=f1e147]:
+        - generic [ref=f1e148]:
+          - img "ALEX Allergy Xplorer" [ref=f1e149]
+          - paragraph [ref=f1e150]: Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
+        - button "Записаться на тест на аллергию" [ref=f1e151] [cursor=pointer]
+      - generic [ref=f1e154]:
+        - button "Поиск аллергенов Убедитесь, что тест покажет, что вам нужно" [ref=f1e155] [cursor=pointer]:
+          - generic [ref=f1e157]:
+            - heading "Поиск аллергенов" [level=3] [ref=f1e158]
+            - paragraph [ref=f1e159]: Убедитесь, что тест покажет, что вам нужно
+        - button "Посмотреть демо-результат Объясняем результаты на человеческом языке" [ref=f1e160] [cursor=pointer]:
+          - generic [ref=f1e162]:
+            - heading "Посмотреть демо-результат" [level=3] [ref=f1e163]: Посмотретьдемо-результат
+            - paragraph [ref=f1e164]: Объясняем результатына человеческом языке
+      - 'button "~5 минут КВИЗ: Нужен ли вам тест на аллергены?" [ref=f1e165] [cursor=pointer]':
+        - generic [ref=f1e166]:
+          - generic [ref=f1e167]: ~5 минут
+          - generic [ref=f1e168]: "КВИЗ: Нужен ли вам тест на аллергены?"
+      - button "Личный кабинет" [ref=f1e169] [cursor=pointer]
+      - button "Лаборатория ALEX LAB" [ref=f1e173] [cursor=pointer]
+    - main [ref=f1e177]:
+      - button "На главную" [ref=f1e179] [cursor=pointer]
+      - generic [ref=f1e184]:
+        - heading "Поиск аллергенов, которые покажет ALEX2" [level=1] [ref=f1e185]: Поиск аллергенов,которые покажет ALEX2
+        - paragraph [ref=f1e186]: Более 300 аллергенов в одном тесте —убедитесь сами
+        - generic [ref=f1e187]:
+          - textbox "Введите продукт" [ref=f1e188]: Апельсин
+          - button "Поиск" [ref=f1e189] [cursor=pointer]
+        - generic [ref=f1e269]:
+          - generic [ref=f1e270]:
+            - generic [ref=f1e271]:
+              - generic [ref=f1e284]: Входит в тест ALEX2
+              - heading "Апельсин" [level=2] [ref=f1e285]
+              - paragraph [ref=f1e286]: Один из самых частных аллергенов
+            - generic [ref=f1e287] [cursor=pointer]: Назад ко всем аллергенам
+          - generic [ref=f1e293]:
+            - heading "Связанные аллергены:" [level=3] [ref=f1e294]
+            - generic [ref=f1e295]:
+              - button "Кошачья шерсть" [ref=f1e296] [cursor=pointer]
+              - button "Кошачья шерсть" [ref=f1e297] [cursor=pointer]
+              - button "Пыльца берёзы" [ref=f1e298] [cursor=pointer]
+              - button "Кошачья шерсть" [ref=f1e299] [cursor=pointer]
+              - button "Банан" [ref=f1e300] [cursor=pointer]
+              - button "Пыль" [ref=f1e301] [cursor=pointer]
+  - generic [ref=f1e98]:
+    - button "Toggle Nuxt DevTools" [ref=f1e99] [cursor=pointer]
+    - generic "Page load time" [ref=f1e103]:
+      - generic [ref=f1e104]: "15"
+      - generic [ref=f1e105]: ms
+    - button "Toggle Component Inspector" [ref=f1e107] [cursor=pointer]

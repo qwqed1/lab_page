@@ -1,0 +1,29 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e188]:
+    - banner [ref=e189]:
+      - link [ref=e190] [cursor=pointer]:
+        - /url: /cart
+    - main [ref=e194]:
+      - generic [ref=e195]:
+        - heading "Добро пожаловать!" [level=1] [ref=e196]
+        - generic [ref=e197]:
+          - generic [ref=e198]:
+            - generic [ref=e199]:
+              - generic [ref=e200]: E-mail
+              - textbox "E-mail" [ref=e201]:
+                - /placeholder: max@inmuntex.com
+            - generic [ref=e202]:
+              - generic [ref=e203]: Пароль
+              - textbox "Пароль" [ref=e204]:
+                - /placeholder: "*************"
+          - generic [ref=e205]:
+            - button "Войти" [ref=e206] [cursor=pointer]
+            - link "Забыли пароль?" [ref=e212] [cursor=pointer]:
+              - /url: /cart/recover
+          - paragraph [ref=e223]: Первичные данные должны прийти на электронную почту, которую вы указали при оформлении заказа. Если что-то пошло не так — напишите нам.
+  - generic [ref=e45]:
+    - button "Toggle Nuxt DevTools" [ref=e46] [cursor=pointer]
+    - generic "Page load time" [ref=e50]:
+      - generic [ref=e51]: "129"
+      - generic [ref=e52]: ms
+    - button "Toggle Component Inspector" [ref=e54] [cursor=pointer]

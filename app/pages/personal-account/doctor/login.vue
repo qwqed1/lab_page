@@ -1,16 +1,8 @@
 <template>
   <div class="doctor-page-layout">
     <!-- Шапка страницы -->
-    <header class="header-nav">
-      <NuxtLink to="/" class="back-link">
-        <span class="back-arrow">
-          <!-- Стрелка влево -->
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        На главную
-      </NuxtLink>
+    <header class="header-nav home-back-area">
+      <HomeBackLink stretched />
     </header>
 
     <!-- Основной контент (Центрированный блок) -->
@@ -23,33 +15,48 @@
         </div>
 
         <!-- Форма входа -->
-        <form @submit.prevent="handleLogin" class="login-form">
+        <form @submit.prevent="handleLogin" class="login-form" novalidate>
           <div class="form-inputs-group">
             <!-- Поле E-mail -->
             <div class="form-group">
-              <label for="email" class="form-label">E-mail</label>
+              <label for="email" class="form-label" :class="{ 'error-label': emailError }">E-mail</label>
               <input 
                 id="email" 
                 type="email" 
                 v-model="email" 
                 class="form-input" 
+                :class="{ 'input-error': emailError }"
+                :aria-invalid="emailError"
                 placeholder="max@inmuntex.com" 
+                @input="clearLoginError"
                 required
               />
             </div>
 
             <!-- Поле Пароль -->
             <div class="form-group">
-              <label for="password" class="form-label">Пароль</label>
+              <label for="password" class="form-label" :class="{ 'error-label': passwordError }">Пароль</label>
               <input 
                 id="password" 
                 type="password" 
                 v-model="password" 
                 class="form-input" 
+                :class="{ 'input-error': passwordError }"
+                :aria-invalid="passwordError"
                 placeholder="*************" 
+                @input="clearLoginError"
                 required
               />
             </div>
+          </div>
+
+          <div v-if="loginError" class="login-error-message" role="alert">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 8V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="12" cy="16" r="1" fill="currentColor"/>
+            </svg>
+            <span>Неверные данные</span>
           </div>
 
           <!-- Кнопки управления -->
@@ -78,7 +85,7 @@
                 </span>
               </NuxtLink>
 
-              <button type="button" @click="handleForgotPassword" class="btn-outline btn-half">
+              <NuxtLink to="/personal-account/doctor/recover" class="btn-outline btn-half">
                 <span>Забыли пароль?</span>
                 <span class="btn-icon">
                   <!-- Стрелка в круге -->
@@ -87,7 +94,7 @@
                     <path d="M11 8L15 12L11 16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </span>
-              </button>
+              </NuxtLink>
             </div>
           </div>
         </form>
@@ -103,14 +110,27 @@ import { useRouter } from '#app'
 const router = useRouter()
 const email = ref('')
 const password = ref('')
+const emailError = ref(false)
+const passwordError = ref(false)
+const loginError = ref(false)
 
-const handleLogin = () => {
-  // Имитация успешного входа
-  router.push('/personal-account/doctor/dashboard')
+const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
+const isValidPassword = (value) => value.length >= 8 && /[A-Za-zА-Яа-яЁё]/.test(value)
+
+const clearLoginError = () => {
+  emailError.value = false
+  passwordError.value = false
+  loginError.value = false
 }
 
-const handleForgotPassword = () => {
-  alert('Ссылка для восстановления пароля отправлена на указанный E-mail (демо)')
+const handleLogin = () => {
+  emailError.value = !isValidEmail(email.value)
+  passwordError.value = !isValidPassword(password.value)
+  loginError.value = emailError.value || passwordError.value
+
+  if (loginError.value) return
+
+  router.push('/personal-account/doctor/dashboard')
 }
 </script>
 
@@ -127,7 +147,8 @@ const handleForgotPassword = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  min-height: calc(100vh - 72px);
+  padding: 0 20px;
 }
 
 .login-card-container {
@@ -135,13 +156,6 @@ const handleForgotPassword = () => {
   display: flex;
   flex-direction: column;
   gap: 64px; /* gap 64px из макета */
-}
-
-@media (max-width: 600px) {
-  .login-card-container {
-    width: 100%;
-    gap: 40px;
-  }
 }
 
 .title-block {
@@ -169,13 +183,38 @@ const handleForgotPassword = () => {
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 48px; /* gap 48px из макета */
+  gap: 24px;
 }
 
 .form-inputs-group {
   display: flex;
   flex-direction: column;
   gap: 24px; /* gap 24px из макета */
+}
+
+.input-error {
+  border-bottom-color: #ff0505 !important;
+  color: #ff0505;
+}
+
+.input-error::placeholder,
+.error-label {
+  color: #ff0505;
+}
+
+.login-error-message {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 24px;
+  margin-top: -4px;
+  color: #ff0505;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.login-error-message svg {
+  flex: 0 0 24px;
 }
 
 .form-actions {
@@ -197,6 +236,27 @@ const handleForgotPassword = () => {
 }
 
 @media (max-width: 480px) {
+  .doctor-main-content {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 77px 16px 40px;
+  }
+
+  .login-card-container {
+    width: 100%;
+    gap: 64px;
+  }
+
+  .login-title {
+    font-size: 32px;
+    line-height: 38px;
+    white-space: nowrap;
+  }
+
+  .login-subtitle {
+    line-height: 1.2;
+  }
+
   .secondary-actions {
     flex-direction: column;
   }

@@ -127,7 +127,9 @@ const handleRegister = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  min-height: calc(100vh - 72px);
+  padding: 0 20px;
+  transform: translateY(20px);
 }
 
 .register-card-container {
@@ -135,13 +137,6 @@ const handleRegister = () => {
   display: flex;
   flex-direction: column;
   gap: 64px; /* gap 64px из макета */
-}
-
-@media (max-width: 600px) {
-  .register-card-container {
-    width: 100%;
-    gap: 40px;
-  }
 }
 
 .title-block {
@@ -169,7 +164,7 @@ const handleRegister = () => {
 .register-form {
   display: flex;
   flex-direction: column;
-  gap: 48px; /* gap 48px из макета */
+  gap: 24px;
 }
 
 .form-inputs-group {
@@ -181,5 +176,29 @@ const handleRegister = () => {
 .form-actions {
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 600px) {
+  .doctor-main-content {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 77px 16px 48px;
+    transform: none;
+  }
+
+  .register-card-container {
+    width: 100%;
+    gap: 64px;
+  }
+
+  .register-title {
+    font-size: 32px;
+    line-height: 38px;
+    white-space: nowrap;
+  }
+
+  .register-subtitle {
+    line-height: 1.2;
+  }
 }
 </style>
