@@ -2831,4 +2831,304 @@ const handleContinue = () => {
     right: 20px;
   }
 }
+
+/* Compact desktop layout for laptop-height screens.
+   It reproduces the useful density of a 75% browser zoom without asking the
+   visitor to change zoom: the whole summary stays visible and the next section
+   peeks into the first viewport on the left. */
+@media (min-width: 901px) and (max-height: 900px) {
+  .right-col {
+    overflow-y: hidden;
+  }
+
+  .left-col {
+    gap: clamp(40px, 5vh, 48px);
+    padding-top: clamp(28px, 4.5vh, 40px);
+  }
+
+  .product-row:nth-child(1) {
+    min-height: 0;
+    height: clamp(174px, 24vh, 202px);
+  }
+
+  .product-row:nth-child(2) {
+    min-height: 0;
+    height: clamp(140px, 19vh, 162px);
+  }
+
+  .product-row:nth-child(3) {
+    min-height: 0;
+    height: clamp(104px, 14vh, 120px);
+  }
+
+  .product-thumb svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .product-info {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .product-row:first-child .product-name,
+  .product-row:first-child .product-price {
+    font-size: clamp(20px, 1.7vw, 24px);
+    line-height: 1.1;
+  }
+
+  .product-row:first-child .product-name {
+    margin-bottom: 8px;
+  }
+
+  .product-row:first-child .product-desc {
+    font-size: 13px;
+    line-height: 1.15;
+  }
+
+  .product-row:first-child .product-tags {
+    margin-top: 12px;
+  }
+
+  .product-row:nth-child(2) .product-desc {
+    margin-bottom: 12px;
+  }
+
+  .product-name,
+  .product-price {
+    font-size: 18px;
+  }
+
+  .product-desc {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  .product-row:nth-child(2) .product-header,
+  .product-row:nth-child(3) .product-header {
+    transform: none;
+  }
+
+  .tag {
+    min-height: 28px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .section-block {
+    gap: clamp(24px, 4vh, 36px);
+  }
+
+  .section-title {
+    font-size: clamp(32px, 3vw, 38px);
+  }
+
+  .summary-block {
+    padding: 18px 24px;
+    gap: 8px;
+  }
+
+  .summary-items {
+    gap: 8px;
+  }
+
+  .summary-item {
+    font-size: 14px;
+  }
+
+  .summary-label,
+  .total-label {
+    font-size: 12px;
+  }
+
+  .summary-value,
+  .summary-value--big {
+    font-size: 18px;
+  }
+
+  .summary-value--location {
+    font-size: 14px;
+  }
+
+  .summary-schedule {
+    font-size: 13px;
+  }
+
+  .summary-badge {
+    font-size: 12px;
+  }
+
+  .promo-input,
+  .promo-btn {
+    height: 52px;
+  }
+
+  .promo-input {
+    font-size: 14px;
+  }
+
+  .total-inner {
+    padding: 18px 24px;
+    gap: 14px;
+  }
+
+  .total-price-group {
+    gap: 6px;
+  }
+
+  .total-price {
+    font-size: 26px;
+  }
+
+  .consent-text {
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  .continue-btn {
+    height: 60px;
+    padding: 0 24px;
+    font-size: 16px;
+  }
+}
+
+/* Extra-short notebook windows (for example 1024x555) still keep every
+   checkout control in the fixed summary column. */
+@media (min-width: 901px) and (max-height: 650px) {
+  .left-col {
+    gap: 24px;
+    padding-top: 16px;
+  }
+
+  .product-row:nth-child(1) {
+    height: 184px;
+  }
+
+  .product-row:nth-child(2) {
+    height: 116px;
+  }
+
+  .product-row:nth-child(3) {
+    height: 88px;
+  }
+
+  .product-thumb {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .product-thumb svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .product-thumb-label,
+  .product-desc,
+  .product-row:first-child .product-desc {
+    font-size: 13px;
+  }
+
+  .product-name,
+  .product-price,
+  .product-row:first-child .product-name,
+  .product-row:first-child .product-price {
+    font-size: 22px;
+  }
+
+  .product-row:first-child .product-tags {
+    margin-top: 8px;
+  }
+
+  .tag {
+    min-height: 24px;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .section-title {
+    font-size: 30px;
+  }
+
+  .summary-block {
+    padding: 10px 20px;
+    gap: 4px;
+  }
+
+  .summary-label,
+  .total-label {
+    font-size: 13px;
+  }
+
+  .summary-value,
+  .summary-value--big,
+  .summary-item {
+    font-size: 16px;
+  }
+
+  .summary-items {
+    gap: 4px;
+  }
+
+  .summary-value--location {
+    font-size: 14px;
+    line-height: 1.1;
+  }
+
+  .summary-badge {
+    margin-bottom: 0;
+    padding: 1px 6px;
+    font-size: 11px;
+  }
+
+  .summary-schedule {
+    gap: 0;
+    font-size: 12px;
+    line-height: 1.1;
+  }
+
+  .summary-schedule-row {
+    gap: 8px;
+  }
+
+  .promo-input,
+  .promo-btn {
+    height: 40px;
+  }
+
+  .promo-input {
+    font-size: 15px;
+  }
+
+  .total-inner {
+    padding: 10px 20px;
+    gap: 8px;
+  }
+
+  .total-price-group {
+    gap: 2px;
+  }
+
+  .total-price {
+    font-size: 26px;
+  }
+
+  .consent-row {
+    gap: 8px;
+  }
+
+  .consent-checkbox {
+    width: 20px;
+    height: 20px;
+  }
+
+  .consent-text {
+    font-size: 11px;
+    line-height: 1.1;
+  }
+
+  .continue-btn {
+    height: 48px;
+    font-size: 16px;
+  }
+}
 </style>

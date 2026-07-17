@@ -184,25 +184,9 @@ const redirectToCart = () => {
             <!-- Левая колонка (Информация об аллергене) -->
             <div class="details-left-col">
               <div class="details-left-main">
-                <!-- Иконка головы медведя (Panda/Bear) -->
+                <!-- Иконка аллергена -->
                 <div class="allergen-icon-box">
-                  <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Ушки -->
-                    <circle cx="10" cy="10" r="6" stroke="black" stroke-width="2" fill="white" />
-                    <circle cx="10" cy="10" r="3" fill="black" />
-                    <circle cx="32" cy="10" r="6" stroke="black" stroke-width="2" fill="white" />
-                    <circle cx="32" cy="10" r="3" fill="black" />
-                    <!-- Контур головы -->
-                    <rect x="4" y="11" width="34" height="27" rx="12" stroke="black" stroke-width="2" fill="white" />
-                    <!-- Глаза -->
-                    <circle cx="14" cy="20" r="2.5" fill="black" />
-                    <circle cx="28" cy="20" r="2.5" fill="black" />
-                    <!-- Мордочка -->
-                    <ellipse cx="21" cy="26" rx="5" ry="3.5" stroke="black" stroke-width="1.5" fill="#f5f5f5" />
-                    <polygon points="19,25 23,25 21,27.5" fill="black" />
-                    <!-- Линия рта -->
-                    <path d="M21 28.5V31C21 31.5 20.5 32 20 32M21 31C21 31.5 21.5 32 22 32" stroke="black" stroke-width="1.5" stroke-linecap="round" />
-                  </svg>
+                  <img src="/assets/Alergen.svg" alt="" aria-hidden="true" />
                 </div>
 
                 <div class="detail-copy">
@@ -504,7 +488,8 @@ const redirectToCart = () => {
   border: 1px solid #dfdfdf;
   border-right: none;
   padding: 32px;
-  height: 312px;
+  flex: 1 1 auto;
+  min-height: 312px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -516,6 +501,12 @@ const redirectToCart = () => {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 42px;
+  height: 42px;
+}
+
+.allergen-icon-box img {
+  display: block;
   width: 42px;
   height: 42px;
 }
@@ -570,6 +561,7 @@ const redirectToCart = () => {
   border-top: none;
   padding: 0 24px;
   height: 72px;
+  flex: 0 0 72px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -601,7 +593,8 @@ const redirectToCart = () => {
   border: 1px solid #dfdfdf;
   padding: 32px;
   min-height: 384px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .related-title {
@@ -612,17 +605,12 @@ const redirectToCart = () => {
 }
 
 .related-tags-container {
-  position: absolute;
-  top: 37px;
-  left: 50%;
-  width: min(470px, calc(100% - 64px));
-  height: 311px;
-  transform: translateX(-50%);
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
-  align-content: center;
+  align-content: flex-start;
 }
 
 .related-tag-btn {
@@ -729,6 +717,7 @@ const redirectToCart = () => {
     border: 1px solid #dfdfdf;
     height: 266px;
     min-height: 266px;
+    flex: 0 0 266px;
   }
 
   .test-badge {
@@ -747,7 +736,7 @@ const redirectToCart = () => {
   .details-right-col {
     border: 1px solid #dfdfdf;
     padding: 32px;
-    height: 394px;
+    height: auto;
     min-height: 394px;
     background: transparent;
   }
@@ -757,11 +746,8 @@ const redirectToCart = () => {
   }
 
   .related-tags-container {
-    top: 71px;
-    left: 32px;
-    width: calc(100% - 64px);
-    height: 291px;
-    transform: none;
+    width: 100%;
+    height: auto;
     gap: 4px;
     justify-content: flex-start;
     align-content: flex-start;
