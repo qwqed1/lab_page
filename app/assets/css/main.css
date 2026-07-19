@@ -1027,6 +1027,30 @@ body {
   opacity: 0.5;
 }
 
+.figma-smoke-cloud-fixed.results-intro-cloud {
+  left: -8% !important;
+  top: 20% !important;
+  bottom: auto !important;
+  width: min(100%, 820px) !important;
+  height: min(65%, 550px) !important;
+  border-radius: 50% !important;
+  background: radial-gradient(
+    ellipse at 20% 20%,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.82) 42%,
+    rgba(255, 255, 255, 0.32) 72%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  filter: blur(35px) !important;
+  -webkit-filter: blur(35px) !important;
+}
+
+.figma-smoke-cloud-fixed.results-intro-cloud.visible {
+  opacity: 0.7;
+}
+
 /* The story clips already contain a light paper surface. This smaller,
    scene-specific haze only keeps the copy readable and stays anchored to the
    lower-left instead of washing out the centre of every frame. */
@@ -1915,7 +1939,7 @@ body {
 
 .figma-step-block.results-pos.text-only {
   top: auto;
-  bottom: clamp(40px, 5.9vh, 64px);
+  bottom: clamp(80px, 9.9vh, 108px);
   gap: 0;
 }
 
@@ -1946,7 +1970,8 @@ body {
 }
 
 .persistent-step-indicator--results {
-  top: min(77.315%, calc(100% - 213px));
+  top: auto;
+  bottom: calc(clamp(80px, 9.9vh, 108px) + 114px);
 }
 
 .persistent-steps-enter-active,

@@ -265,10 +265,12 @@ const redirectToCart = () => {
   display: grid;
   grid-template-columns: 677px 1fr;
   gap: 0;
-  max-width: 1920px;
+  /* The search area must use the full viewport on 2K/4K displays.
+     A 1920px cap anchors the entire layout to the left edge. */
+  max-width: none;
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 100vw;
   height: 100dvh;
   min-height: 0;
   overflow: hidden;

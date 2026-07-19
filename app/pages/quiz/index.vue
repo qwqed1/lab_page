@@ -232,6 +232,12 @@ const redirectToCart = () => {
 </script>
 
 <style scoped>
+.page-container {
+  /* Do not preserve the 1920px Figma canvas on ultrawide desktops. */
+  width: 100vw;
+  max-width: none;
+}
+
 .quiz-page-content {
   display: flex;
   flex-direction: column;
@@ -286,19 +292,21 @@ const redirectToCart = () => {
   overflow-y: auto;
 }
 
-@media (min-width: 1600px) {
-  .card-container {
-    justify-content: flex-start;
-    padding-left: 298px; /* Match Figma exact gap */
-    padding-right: 268px; /* Match Figma exact gap */
-  }
-}
+/* Keep the quiz centred within the content column at every desktop width.
+   Fixed offsets here made the card drift towards the left on 2K/4K screens. */
 
 .quiz-card-wrapper {
   width: 677px;
   display: flex;
   flex-direction: column;
   gap: 0; /* Match exact figma layout combining card + button */
+}
+
+/* A slightly roomier quiz on desktop, while retaining the compact mobile view. */
+@media (min-width: 1025px) {
+  .quiz-card-wrapper {
+    width: min(760px, 100%);
+  }
 }
 
 /* Glass Card styling */

@@ -199,12 +199,13 @@ const showSmokeCloud = computed(() => {
 
 const isResultsSection = computed(() => {
   const idx = currentSlideIndex.value
-  return idx >= 7 && idx <= 10
+  return idx >= 8 && idx <= 10
 })
 
 const resultsCloudVariant = computed(() => {
   const idx = currentSlideIndex.value
 
+  if (idx === 7) return 'results-intro-cloud'
   if (idx >= 8 && idx <= 10) return 'results-cloud-primary'
   return ''
 })
@@ -937,7 +938,7 @@ onUnmounted(() => {
       <!-- Persistent pagination stays mounted while text slides change -->
       <Transition name="persistent-steps">
         <div
-          v-if="persistentStepGroup && contentReadySlideIndex === currentSlideIndex"
+          v-if="persistentStepGroup"
           class="persistent-step-indicator"
           :class="`persistent-step-indicator--${persistentStepGroup.type}`"
         >
