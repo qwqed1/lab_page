@@ -45,6 +45,13 @@ body {
   display: none;
 }
 
+.mobile-sidebar-label,
+.mobile-doctors-row,
+.mobile-close-row,
+.mobile-row-arrow {
+  display: none;
+}
+
 /* ==========================================================================
    LEFT COLUMN (SIDEBAR) STYLES
    ========================================================================== */
@@ -1403,6 +1410,376 @@ body {
     grid-template-columns: repeat(2, 365px);
     gap: 16px;
     justify-content: center;
+  }
+}
+
+/* ===========================================================================
+   FIGMA MOBILE HOME (node 121:122, 420 × 750)
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .home-page-container {
+    display: block;
+    width: 100%;
+    height: 100dvh;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #f5f5f5;
+  }
+
+  .home-page-container .site-sidebar {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr);
+    /* Extra viewport height belongs to the visual hero, never to navigation. */
+    grid-template-rows: minmax(288px, 1fr) 66px 66px 132px 66px 66px 66px;
+    width: 100%;
+    height: 100dvh;
+    min-height: 750px;
+    overflow: hidden;
+    border: 0;
+    background: #f5f5f5;
+  }
+
+  .home-page-container .home-content {
+    display: none !important;
+  }
+
+  .mobile-home-menu-closed .home-page-container .site-sidebar {
+    display: none !important;
+  }
+
+  .mobile-home-menu-closed .home-page-container .home-content {
+    display: flex !important;
+  }
+
+  .site-sidebar .desktop-sidebar-label {
+    display: none;
+  }
+
+  .site-sidebar .mobile-sidebar-label {
+    display: inline;
+  }
+
+  .site-sidebar .promo-card {
+    order: 1;
+    grid-column: 1 / -1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 264px;
+    padding: 24px;
+    overflow: hidden;
+    background: #9eaf9d;
+  }
+
+  .site-sidebar .promo-card::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    left: calc(50% - 15px);
+    top: -9px;
+    width: auto;
+    height: max(373px, calc(100% - 57px));
+    aspect-ratio: 662 / 373;
+    transform: translateX(-50%);
+    background: url('/assets/figma-mobile-hero-bg.png') center / 100% 100% no-repeat;
+    pointer-events: none;
+  }
+
+  .site-sidebar .promo-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    min-height: 0;
+  }
+
+  .site-sidebar .promo-banner-img {
+    width: 160px;
+    height: 58px;
+    max-width: none;
+    object-fit: fill;
+  }
+
+  .site-sidebar .promo-text {
+    width: 100%;
+    max-width: 372px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+  }
+
+  .site-sidebar .promo-button {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 66px;
+    min-height: 66px;
+    padding: 21px 24px;
+    border: 0;
+    background: rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(44.5px);
+    backdrop-filter: blur(44.5px);
+  }
+
+  .site-sidebar .promo-button-text {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    white-space: nowrap;
+  }
+
+  .site-sidebar .promo-button-icon,
+  .site-sidebar .promo-button-icon img {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+  }
+
+  .site-sidebar #row-about {
+    order: 2;
+    grid-column: 1 / -1;
+    padding: 21px 24px;
+  }
+
+  .site-sidebar #row-quiz {
+    order: 3;
+    grid-column: 1 / -1;
+    height: 66px;
+    min-height: 66px;
+    padding: 21px;
+    align-items: center;
+  }
+
+  .site-sidebar #row-quiz .row-left-content {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    width: auto;
+  }
+
+  .site-sidebar #row-quiz .tag-badge {
+    display: none;
+  }
+
+  .site-sidebar #row-quiz .row-text {
+    width: auto;
+    font-size: 18px;
+    line-height: 24px;
+    white-space: nowrap;
+  }
+
+  .site-sidebar .cards-row {
+    order: 4;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 66px 66px;
+    width: 100%;
+    height: 132px;
+    overflow: visible;
+  }
+
+  .site-sidebar .sub-card,
+  .site-sidebar .sidebar-row-card,
+  .site-sidebar .mobile-doctors-row,
+  .site-sidebar .mobile-close-row {
+    border: 0;
+    border-bottom: 1px solid #dfdfdf;
+    border-radius: 0;
+    background: #fff;
+    box-shadow: none;
+  }
+
+  .site-sidebar .sub-card {
+    width: 100%;
+    height: 66px;
+    min-height: 66px;
+    padding: 21px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .site-sidebar .mobile-row-arrow {
+    display: flex;
+    width: 24px;
+    height: 24px;
+    margin-left: auto;
+    flex: 0 0 24px;
+    align-items: center;
+    justify-content: center;
+    transition: transform 160ms ease;
+  }
+
+  .site-sidebar .mobile-row-arrow img {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  .site-sidebar .sub-card:hover .mobile-row-arrow,
+  .site-sidebar .sidebar-row-card:hover .mobile-row-arrow,
+  .site-sidebar .mobile-doctors-row:hover .mobile-row-arrow {
+    transform: translateX(2px);
+  }
+
+  .site-sidebar .sub-card:first-child {
+    border-right: 0;
+  }
+
+  .site-sidebar .card-icon-wrapper,
+  .site-sidebar .card-icon-wrapper img {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+  }
+
+  .site-sidebar .card-text-group {
+    display: block;
+    min-width: 0;
+  }
+
+  .site-sidebar .card-title,
+  .site-sidebar #card-search .card-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    white-space: nowrap;
+  }
+
+  .site-sidebar .card-subtitle {
+    display: none;
+  }
+
+  .site-sidebar .sidebar-row-card {
+    width: 100%;
+    height: 66px;
+    min-height: 66px;
+    padding: 21px;
+  }
+
+  .site-sidebar .row-left-content {
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .site-sidebar .row-text {
+    font-size: 18px;
+    line-height: 24px;
+    white-space: nowrap;
+  }
+
+  .site-sidebar .row-icon-icon,
+  .site-sidebar .row-icon-icon img {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+  }
+
+  .site-sidebar #row-profile {
+    order: 5;
+    grid-column: 1 / -1;
+  }
+
+  .site-sidebar .mobile-doctors-row {
+    order: 6;
+    grid-column: 1 / -1;
+    display: flex;
+    width: 100%;
+    height: 66px;
+    padding: 21px;
+    align-items: center;
+    gap: 12px;
+    color: #000;
+    font: 400 18px/24px var(--font-family);
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .site-sidebar .mobile-doctors-row > img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+  }
+
+  .site-sidebar .mobile-close-row {
+    order: 7;
+    grid-column: 1 / -1;
+    display: flex;
+    width: 100%;
+    height: 66px;
+    padding: 21px;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 0;
+    background: #000;
+    color: #fff;
+    font: 400 18px/24px var(--font-family);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .mobile-close-icon {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+  }
+
+  .mobile-close-icon::before,
+  .mobile-close-icon::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 11px;
+    width: 14px;
+    height: 2px;
+    border-radius: 1px;
+    background: #fff;
+  }
+
+  .mobile-close-icon::before { transform: rotate(45deg); }
+  .mobile-close-icon::after { transform: rotate(-45deg); }
+}
+
+@media (max-width: 360px) {
+  .site-sidebar .promo-button-text,
+  .site-sidebar .row-text,
+  .site-sidebar .card-title,
+  .site-sidebar #card-search .card-title,
+  .site-sidebar .mobile-doctors-row,
+  .site-sidebar .mobile-close-row {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 419px) {
+  .site-sidebar #row-profile,
+  .site-sidebar .mobile-doctors-row {
+    padding-right: clamp(12px, 5vw, 21px);
+    padding-left: clamp(12px, 5vw, 21px);
+  }
+
+  .site-sidebar #row-profile .row-left-content,
+  .site-sidebar .mobile-doctors-row {
+    gap: clamp(8px, 2.857vw, 12px);
+  }
+
+  .site-sidebar #row-profile .row-text,
+  .site-sidebar .mobile-doctors-row {
+    font-size: clamp(16px, 4.286vw, 18px);
   }
 }
 
