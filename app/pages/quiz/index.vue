@@ -17,7 +17,7 @@
         <HomeBackLink stretched />
       </header>
 
-      <div class="card-container">
+      <div class="card-container" :class="{ 'question-layout': step === 'quiz' }">
         <Transition name="fade" mode="out-in">
           
           <!-- STATE: INTRO -->
@@ -26,7 +26,7 @@
               <div class="main-card-inner">
                 <h1 class="card-title">Нужно ли мне сдать<br>тест на аллергию?</h1>
                 <p class="card-subtitle">
-                  Не уверены в том, что тест подойдёт вам?<br>Пройдите тест на ~5 минут и сделайте выбор
+                  Не уверены в том, что тест подойдёт вам? Пройдите тест на ~5 минут и сделайте выбор
                 </p>
               </div>
             </div>
@@ -35,8 +35,8 @@
               <span class="btn-text">Начать тест</span>
               <!-- Arrow SVG -->
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="10 8 14 12 10 16"></polyline>
               </svg>
             </button>
           </div>
@@ -46,8 +46,8 @@
             <div class="options-header">
               <button class="back-prev-btn" @click="prevQuestion">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
-                  <line x1="19" y1="12" x2="5" y2="12"></line>
-                  <polyline points="12 19 5 12 12 5"></polyline>
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="14 8 10 12 14 16"></polyline>
                 </svg>
                 <span>Вернуться назад</span>
               </button>
@@ -556,6 +556,20 @@ const redirectToCart = () => {
 
 /* RESPONSIVE DESIGN (MOBILE ADAPTATION) */
 @media (max-width: 1024px) {
+  .quiz-page-content {
+    padding: 0 !important;
+    background: #f5f5f5 url('/assets/figma-mobile-info-background-frame.png') center / cover no-repeat;
+  }
+
+  .quiz-page-content .mobile-top-bar {
+    margin: 0;
+    flex: 0 0 72px;
+  }
+
+  .mobile-top-title {
+    display: none;
+  }
+
   .header-bar {
     display: none;
   }
@@ -569,15 +583,25 @@ const redirectToCart = () => {
     align-items: flex-start;
   }
 
+  .card-container.question-layout {
+    padding-top: 55.5px;
+    overflow: hidden;
+  }
+
   .quiz-card-wrapper {
     width: 100%;
   }
 
   .main-card {
-    height: auto;
-    min-height: 400px;
-    padding: 32px;
-    align-items: center;
+    height: clamp(360px, calc(100dvh - 297px), 538px);
+    min-height: 0;
+    padding: 0 40px 22.4px 24px;
+    align-items: flex-end;
+  }
+
+  .intro-state .main-card-inner {
+    width: 324px;
+    max-width: 100%;
   }
 
   .card-title {
@@ -586,6 +610,9 @@ const redirectToCart = () => {
 
   .card-subtitle {
     font-size: 18px;
+    color: #000;
+    opacity: 0.5;
+    line-height: calc(55px / 3);
   }
 
   .action-btn {
@@ -595,21 +622,53 @@ const redirectToCart = () => {
 
   .question-card {
     height: auto;
-    min-height: 120px;
-    padding: 24px;
+    min-height: 149px;
+    padding: 23.2px;
+  }
+
+  .quiz-state .options-header {
+    height: 72px;
+    padding: 23.2px;
+  }
+
+  .quiz-state .back-prev-btn {
+    gap: 12px;
+    font-size: 18px;
+    line-height: 13px;
+  }
+
+  .quiz-state .back-prev-btn svg {
+    flex: 0 0 24px;
+    margin-right: 0 !important;
+  }
+
+  .quiz-state .question-info {
+    gap: 12px;
+  }
+
+  .quiz-state .question-counter {
+    color: #000;
+    opacity: 0.5;
+    line-height: 13px;
   }
 
   .question-text {
     font-size: 32px;
+    line-height: 38px;
   }
 
   .option-label {
     font-size: 21px;
+    line-height: 15px;
   }
 
   .option-row {
     height: 72px;
-    padding: 24px;
+    padding: 0 23.2px;
+  }
+
+  .quiz-state .option-checkbox {
+    border-color: #000;
   }
 
   .result-card {
@@ -629,6 +688,135 @@ const redirectToCart = () => {
   .submit-btn {
     height: 72px;
     padding: 24px;
+  }
+}
+
+@media (max-width: 1024px) and (max-height: 740px) {
+  .quiz-page-content .mobile-top-bar {
+    flex-basis: 72px;
+  }
+
+  .card-container.question-layout {
+    padding-top: 16px;
+  }
+
+  .quiz-state .options-header {
+    height: 64px;
+    padding: 0 23.2px;
+  }
+
+  .quiz-state .question-card {
+    min-height: 0;
+    padding: 16px 23.2px;
+  }
+
+  .quiz-state .question-info {
+    gap: 8px;
+  }
+
+  .quiz-state .option-row {
+    height: 54px;
+  }
+}
+
+@media (max-width: 1024px) and (max-height: 700px) {
+  .quiz-page-content .mobile-top-bar {
+    flex-basis: 56px;
+    height: 56px;
+    padding: 16px 32px;
+  }
+
+  .card-container.question-layout {
+    padding-top: 8px;
+  }
+
+  .quiz-state .options-header {
+    height: 56px;
+    padding: 0 12px;
+  }
+
+  .quiz-state .question-card {
+    padding: 12px;
+  }
+
+  .quiz-state .question-info {
+    gap: 6px;
+  }
+
+  .quiz-state .question-counter {
+    font-size: 16px;
+    line-height: 12px;
+  }
+
+  .quiz-state .question-text {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .quiz-state .option-row {
+    height: 50px;
+    padding: 0 12px;
+  }
+
+  .quiz-state .option-label {
+    font-size: 19px;
+    line-height: 15px;
+  }
+}
+
+@media (max-width: 480px) and (max-height: 600px) {
+  .quiz-page-content .mobile-top-bar {
+    flex-basis: 48px;
+    height: 48px;
+    padding: 12px 24px;
+  }
+
+  .card-container.question-layout {
+    padding: 4px 12px 8px;
+  }
+
+  .quiz-state .options-header {
+    height: 48px;
+    padding: 0 8px;
+  }
+
+  .quiz-state .back-prev-btn {
+    gap: 8px;
+    font-size: 16px;
+  }
+
+  .quiz-state .question-card {
+    padding: 8px;
+  }
+
+  .quiz-state .question-info {
+    gap: 4px;
+  }
+
+  .quiz-state .question-counter {
+    font-size: 14px;
+    line-height: 10px;
+  }
+
+  .quiz-state .question-text {
+    font-size: 24px;
+    line-height: 27px;
+  }
+
+  .quiz-state .option-row {
+    height: 44px;
+    padding: 0 8px;
+    gap: 8px;
+  }
+
+  .quiz-state .option-checkbox {
+    width: 22px;
+    height: 22px;
+  }
+
+  .quiz-state .option-label {
+    font-size: 17px;
+    line-height: 14px;
   }
 }
 </style>
