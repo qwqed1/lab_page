@@ -2865,6 +2865,12 @@ body {
 
 .figma-menu-item {
   position: relative;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
   font-size: clamp(13px, 1.6667vh, 18px);
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
