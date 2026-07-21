@@ -3731,6 +3731,27 @@ body {
   transform: none !important;
 }
 
+/* A destination slide becomes active before its transition video reaches the
+   reveal point. Keep every copy layer fully hidden until that shared moment. */
+.slide-layer.active[data-content-ready="false"] .figma-slide-title-inline,
+.slide-layer.active[data-content-ready="false"] .figma-slide-desc-inline,
+.slide-layer.active[data-content-ready="false"] .figma-intro-title,
+.slide-layer.active[data-content-ready="false"] .figma-section-title,
+.slide-layer.active[data-content-ready="false"] .figma-step-indicator,
+.slide-layer.active[data-content-ready="false"] .figma-category-label,
+.slide-layer.active[data-content-ready="false"] .figma-result-title-row {
+  opacity: 0 !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Do not let the previous slide's cloud fade through the beginning of the
+   next video. The normal transition resumes when `visible` is applied. */
+.figma-smoke-cloud-fixed.content-pending {
+  opacity: 0 !important;
+  transition: none !important;
+}
+
 /* ==========================================================================
    SHARED FIGMA SIDEBAR — FLUID DESKTOP / LAPTOP LAYOUT
    The Figma source is 1920×1080 with a 677px sidebar. These rules preserve
@@ -3970,6 +3991,11 @@ body {
     bottom: calc(38 * var(--mobile-unit)) !important;
     width: calc(480 * var(--mobile-unit)) !important;
     height: calc(235 * var(--mobile-unit)) !important;
+  }
+
+  .home-page-container .figma-smoke-cloud-fixed.mobile-cloud-second-scene {
+    left: calc(-76 * var(--mobile-unit)) !important;
+    width: calc(540 * var(--mobile-unit)) !important;
   }
 
   .home-page-container .figma-smoke-cloud-fixed.visible,

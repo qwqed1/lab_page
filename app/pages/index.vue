@@ -294,8 +294,7 @@ const isVideoBackgroundVisible = computed(() => {
 })
 
 const CONTENT_EXIT_DURATION = 650
-const CONTENT_REVEAL_PROGRESS = 0.25
-const THIRD_SLIDE_CONTENT_REVEAL_TIME = 1.2
+const VIDEO_CONTENT_REVEAL_TIME = 1.3
 const EARLY_REVERSE_PLAYBACK_RATE = 1.5
 const VIDEO_LAYER_CROSSFADE_DURATION = 160
 const VIDEO_CONTAINER_FADE_DURATION = 450
@@ -563,7 +562,7 @@ const revealContentAtVideoProgress = (
 
   const targetTime = Number.isFinite(requestedTargetTime)
     ? Math.max(0, Math.min(requestedTargetTime, duration))
-    : duration * CONTENT_REVEAL_PROGRESS
+    : Math.min(VIDEO_CONTENT_REVEAL_TIME, duration)
   let frameCallbackId = 0
   let fallbackTimer = 0
   let cancelled = false
@@ -824,9 +823,7 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   const revealDuringPlayback = (video, requestId) => {
     if (!isCurrentTransition()) return
     revealContentAtVideoProgress(video, newIndex, requestId, revealCurrentSlide, {
-      targetTime: newIndex === 2 && oldIndex === 1
-        ? THIRD_SLIDE_CONTENT_REVEAL_TIME
-        : undefined
+      targetTime: VIDEO_CONTENT_REVEAL_TIME
     })
   }
 
@@ -868,6 +865,7 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
         playbackRate: oldIndex === 2 || oldIndex === 1
           ? EARLY_REVERSE_PLAYBACK_RATE
           : 1,
+        onPlaybackStarted: revealDuringPlayback,
         onComplete: finishCurrentTransition
       })
     } else {
@@ -1040,7 +1038,9 @@ onUnmounted(() => {
         :class="[
           {
             visible: showSmokeCloud,
-            'results-cloud': isResultsSection
+            'results-cloud': isResultsSection,
+            'content-pending': contentReadySlideIndex !== currentSlideIndex,
+            'mobile-cloud-second-scene': isMobileViewport && currentSlideIndex === 1
           },
           resultsCloudVariant,
           mobileSmokeCloudVariant
@@ -1050,7 +1050,7 @@ onUnmounted(() => {
       <!-- Persistent pagination stays mounted while text slides change -->
       <Transition name="persistent-steps">
         <div
-          v-if="persistentStepGroup"
+          v-if="persistentStepGroup && currentSlideIndex === contentReadySlideIndex"
           class="persistent-step-indicator"
           :class="`persistent-step-indicator--${persistentStepGroup.type}`"
         >
