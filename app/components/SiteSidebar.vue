@@ -12,6 +12,12 @@ const sidebarAssets = Object.freeze({
 })
 
 const goTo = (path) => router.push(path)
+
+const closeMobileMenu = () => {
+  // The Figma mobile home is the navigation surface itself. "Close" reveals
+  // the existing slide deck without changing the desktop sidebar behaviour.
+  document.documentElement.classList.add('mobile-home-menu-closed')
+}
 </script>
 
 <template>
@@ -54,7 +60,10 @@ const goTo = (path) => router.push(path)
           <img :src="sidebarAssets.search" alt="" width="42" height="42" decoding="sync" />
         </div>
         <div class="card-text-group">
-          <h3 class="card-title">Поиск аллергенов</h3>
+          <h3 class="card-title">
+            <span class="desktop-sidebar-label">Поиск аллергенов</span>
+            <span class="mobile-sidebar-label">Список аллергенов</span>
+          </h3>
           <p class="card-subtitle">Убедитесь, что тест покажет, что вам нужно</p>
         </div>
       </div>
@@ -72,7 +81,10 @@ const goTo = (path) => router.push(path)
           <img :src="sidebarAssets.demo" alt="" width="42" height="42" decoding="sync" />
         </div>
         <div class="card-text-group">
-          <h3 class="card-title">Посмотреть<br />демо-результат</h3>
+          <h3 class="card-title">
+            <span class="desktop-sidebar-label">Посмотреть<br />демо-результат</span>
+            <span class="mobile-sidebar-label">Посмотреть демо-результат</span>
+          </h3>
           <p class="card-subtitle">Объясняем результаты<br />на человеческом языке</p>
         </div>
       </div>
@@ -120,11 +132,24 @@ const goTo = (path) => router.push(path)
       @keydown.space.prevent="emit('about')"
     >
       <div class="row-left-content">
-        <span class="row-text">Лаборатория ALEX LAB</span>
+        <span class="row-text">
+          <span class="desktop-sidebar-label">Лаборатория ALEX LAB</span>
+          <span class="mobile-sidebar-label">О поставщике ALEX LAB</span>
+        </span>
       </div>
       <span class="row-icon-icon" aria-hidden="true">
         <img :src="sidebarAssets.about" alt="" width="24" height="24" decoding="sync" />
       </span>
     </div>
+
+    <button class="mobile-doctors-row" type="button" disabled>
+      <img src="/assets/figma-doctors-icon.svg" alt="" width="24" height="24" />
+      <span>Для врачей</span>
+    </button>
+
+    <button class="mobile-close-row" type="button" @click="closeMobileMenu">
+      <span class="mobile-close-icon" aria-hidden="true"></span>
+      <span>Закрыть</span>
+    </button>
   </aside>
 </template>

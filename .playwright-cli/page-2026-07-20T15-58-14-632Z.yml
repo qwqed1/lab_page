@@ -1,0 +1,19 @@
+- complementary "Навигация по сайту" [ref=f7e4]:
+  - generic [ref=f7e5]:
+    - generic [ref=f7e6]:
+      - img "ALEX Allergy Xplorer" [ref=f7e7]
+      - paragraph [ref=f7e8]: Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
+    - button "Записаться на тест на аллергию" [ref=f7e9] [cursor=pointer]
+  - generic [ref=f7e12]:
+    - button "Список аллергенов" [ref=f7e13] [cursor=pointer]:
+      - heading "Список аллергенов" [level=3] [ref=f7e16]
+    - button "Посмотреть демо-результат" [ref=f7e17] [cursor=pointer]:
+      - heading "Посмотреть демо-результат" [level=3] [ref=f7e20]
+  - 'button "~5 минут КВИЗ: Нужен ли вам тест на аллергены?" [ref=f7e21] [cursor=pointer]':
+    - generic [ref=f7e22]:
+      - generic [ref=f7e23]: ~5 минут
+      - generic [ref=f7e24]: "КВИЗ: Нужен ли вам тест на аллергены?"
+  - button "Личный кабинет" [ref=f7e25] [cursor=pointer]
+  - button "О поставщике ALEX LAB" [ref=f7e29] [cursor=pointer]
+  - button "Для врачей" [disabled] [ref=f7e33]
+  - button "Закрыть" [ref=f7e35] [cursor=pointer]
