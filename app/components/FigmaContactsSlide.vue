@@ -278,12 +278,127 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
 }
 
 @media (max-width: 700px) {
+  .figma-exact-contacts {
+    --mu: calc(100cqw / 420);
+  }
+
+  .exact-contacts-body {
+    left: calc(16 * var(--mu));
+    top: calc(100cqh - 682 * var(--mu));
+    width: calc(388 * var(--mu));
+    height: calc(584 * var(--mu));
+  }
+
+  .exact-contacts-header {
+    width: calc(388 * var(--mu));
+    height: calc(45 * var(--mu));
+  }
+
   .exact-contacts-header h2 {
-    width: 100%;
+    width: calc(388 * var(--mu));
+    font-size: calc(24 * var(--mu));
+    line-height: calc(28 * var(--mu));
+    white-space: normal;
   }
 
   .exact-contacts-cta {
-    padding-inline: 16px;
+    display: none;
+  }
+
+  .exact-contacts-columns {
+    top: calc(93 * var(--mu));
+    width: calc(388 * var(--mu));
+    height: calc(276 * var(--mu));
+  }
+
+  .exact-contacts-info {
+    left: 0;
+    width: calc(102 * var(--mu));
+  }
+
+  .exact-site-navigation {
+    left: calc(118 * var(--mu));
+    width: calc(270 * var(--mu));
+  }
+
+  .exact-contacts-column h3 {
+    height: calc(25 * var(--mu));
+    font-size: calc(21 * var(--mu));
+    line-height: calc(25 * var(--mu));
+    white-space: nowrap;
+  }
+
+  .exact-column-rule {
+    top: calc(36 * var(--mu));
+  }
+
+  .exact-contacts-links,
+  .exact-site-links {
+    top: calc(57 * var(--mu));
+    gap: calc(8 * var(--mu));
+  }
+
+  .exact-site-links {
+    display: none;
+  }
+
+  .exact-contacts-links a {
+    font-size: calc(16 * var(--mu));
+    line-height: calc(19 * var(--mu));
+    white-space: nowrap;
+  }
+
+  .exact-contacts-legal {
+    top: calc(151 * var(--mu));
+    gap: calc(8 * var(--mu));
+  }
+
+  .exact-contacts-legal span {
+    font-size: calc(14 * var(--mu));
+    line-height: calc(16 * var(--mu));
+    white-space: nowrap;
+  }
+
+  .exact-contacts-footer {
+    top: calc(329 * var(--mu));
+    width: calc(388 * var(--mu));
+    height: calc(255 * var(--mu));
+  }
+
+  .exact-policy-links {
+    gap: calc(8 * var(--mu));
+  }
+
+  .exact-policy-links a {
+    font-size: calc(14 * var(--mu));
+    line-height: calc(16 * var(--mu));
+    white-space: nowrap;
+  }
+
+  .exact-studio-credit {
+    left: 0;
+    right: auto;
+    top: auto;
+    bottom: 0;
+    width: calc(196 * var(--mu));
+    height: calc(71 * var(--mu));
+    transform: none;
+  }
+
+  .exact-studio-credit img {
+    left: 0;
+    top: 0;
+    width: calc(70 * var(--mu));
+    height: calc(31 * var(--mu));
+  }
+
+  .exact-studio-credit span {
+    left: 0;
+    top: calc(39 * var(--mu));
+    width: calc(193 * var(--mu));
+    height: calc(32 * var(--mu));
+    font-size: calc(14 * var(--mu));
+    line-height: calc(16 * var(--mu));
   }
 }
 

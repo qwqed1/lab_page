@@ -8,7 +8,7 @@ const props = defineProps({
 
 const emit = defineEmits(['action', 'navigate'])
 
-const openFaqIndex = ref(-1)
+const openFaqIndex = ref(2)
 
 const faqItems = [
   { question: 'Это больно?', answer: 'Забор крови из вены производится тонкой иглой, процедура быстрая и практически безболезненная.' },
@@ -18,11 +18,19 @@ const faqItems = [
 ]
 
 const blogCards = [
-  'Cursor представила модель Composer 2.5 — в тестах она сопоставима c Opus 4.7 и GPT-5.5, но стоит примерно в 10 раз дешевле Как сдать тест: подготовка и процесс',
-  'Cursor представила модель Composer 2.5 — в тестах она сопоставима c Opus 4.7 и GPT-5.5, но стоит примерно в 10 раз дешевле'
+  {
+    title: 'Я уволил джуна, нанял AI-агента, через месяц нанял джуна обратно',
+    description: 'Про оптимизацию, которая выстрелила — но не так, как я думал'
+  },
+  {
+    title: 'Я уволил джуна, нанял AI-агента, через месяц нанял джуна обратно',
+    description: 'Про оптимизацию, которая выстрелила — но не так, как я думал'
+  }
 ]
 
-const howToAsset = computed(() => `/assets/${props.slide.step}.png`)
+const howToAsset = computed(() => props.slide.step === '1'
+  ? '/assets/figma-howto-step-1.png'
+  : `/assets/${props.slide.step}.png`)
 
 const toggleFaq = (index) => {
   openFaqIndex.value = openFaqIndex.value === index ? -1 : index
@@ -60,7 +68,7 @@ const toggleFaq = (index) => {
     <h2 class="exact-section-title">Блог про аллергию</h2>
 
     <div class="exact-blog-grid">
-      <article v-for="(description, index) in blogCards" :key="index" class="exact-blog-card">
+      <article v-for="(card, index) in blogCards" :key="index" class="exact-blog-card">
         <div class="exact-blog-cover">
           <img src="/assets/figma-blog-cover.png" alt="">
           <div class="exact-blog-tags">
@@ -77,7 +85,10 @@ const toggleFaq = (index) => {
           </div>
         </div>
 
-        <p class="exact-blog-description">{{ description }}</p>
+        <div class="exact-blog-copy">
+          <h3 class="exact-blog-card-title">{{ card.title }}</h3>
+          <p class="exact-blog-description">{{ card.description }}</p>
+        </div>
       </article>
     </div>
 
@@ -322,11 +333,27 @@ button {
   line-height: 1.1875;
 }
 
+.exact-blog-copy {
+  margin-top: calc(24 * var(--ui));
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--ui));
+}
+
+.exact-blog-card-title,
 .exact-blog-description {
-  margin: calc(24 * var(--ui)) 0 0;
-  font-size: clamp(15px, calc(21 * var(--ui)), 21px);
+  margin: 0;
   font-weight: 400;
+}
+
+.exact-blog-card-title {
+  font-size: clamp(15px, calc(21 * var(--ui)), 21px);
   line-height: 1.03;
+}
+
+.exact-blog-description {
+  font-size: clamp(13px, calc(16 * var(--ui)), 16px);
+  line-height: 1.1875;
 }
 
 /* How to — nodes 39:2396, 39:2561 and 39:2726 */
@@ -436,20 +463,214 @@ button {
 }
 
 @media (max-width: 700px) {
+  .figma-exact-info-slide {
+    --mu: calc(100cqw / 420);
+  }
+
   .exact-section-title {
-    font-size: clamp(24px, calc(42 * var(--ui)), 42px);
+    left: calc(16 * var(--mu));
+    top: calc(100cqh - 611 * var(--mu));
+    width: calc(388 * var(--mu));
+    font-size: calc(32 * var(--mu));
+    line-height: calc(38 * var(--mu));
   }
 
   .exact-blog-grid {
+    left: calc(16 * var(--mu));
+    top: calc(100cqh - 552 * var(--mu));
+    width: calc(388 * var(--mu));
     grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .exact-blog-card:nth-child(2) {
     display: none;
   }
 
+  .exact-blog-cover {
+    width: calc(388 * var(--mu));
+    height: calc(223 * var(--mu));
+    aspect-ratio: auto;
+  }
+
+  .exact-blog-tags {
+    left: calc(6 * var(--mu));
+    top: calc(6 * var(--mu));
+    gap: calc(4 * var(--mu));
+  }
+
+  .exact-blog-tags span {
+    min-height: calc(32 * var(--mu));
+    padding: calc(8 * var(--mu)) calc(12 * var(--mu));
+    border-radius: calc(8 * var(--mu));
+    font-size: calc(14 * var(--mu));
+    line-height: calc(16 * var(--mu));
+  }
+
+  .exact-blog-author {
+    height: calc(48 * var(--mu));
+    margin-top: calc(16 * var(--mu));
+    gap: calc(12 * var(--mu));
+  }
+
+  .exact-blog-author > img {
+    width: calc(48 * var(--mu));
+    height: calc(48 * var(--mu));
+    border-radius: calc(8 * var(--mu));
+  }
+
+  .exact-blog-author > div {
+    gap: calc(2 * var(--mu));
+  }
+
+  .exact-blog-author-name {
+    font-size: calc(16 * var(--mu));
+    line-height: calc(19 * var(--mu));
+  }
+
+  .exact-blog-author-role {
+    font-size: calc(14 * var(--mu));
+    line-height: calc(16 * var(--mu));
+  }
+
+  .exact-blog-copy {
+    margin-top: calc(16 * var(--mu));
+    gap: calc(12 * var(--mu));
+  }
+
+  .exact-blog-card-title {
+    width: calc(345 * var(--mu));
+    font-size: calc(21 * var(--mu));
+    line-height: calc(20 * var(--mu));
+  }
+
   .exact-blog-description {
-    max-width: 90%;
+    width: calc(388 * var(--mu));
+    max-width: none;
+    font-size: calc(16 * var(--mu));
+    line-height: calc(19 * var(--mu));
+  }
+
+  .exact-faq-list {
+    left: calc(16 * var(--mu));
+    right: calc(16 * var(--mu));
+    top: auto;
+    bottom: calc(170 * var(--mu));
+    gap: calc(24 * var(--mu));
+  }
+
+  .exact-faq-question {
+    height: calc(24 * var(--mu));
+    min-height: calc(24 * var(--mu));
+    font-size: calc(20 * var(--mu));
+    line-height: calc(24 * var(--mu));
+  }
+
+  .exact-faq-chevron {
+    width: calc(24 * var(--mu));
+    height: calc(24 * var(--mu));
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .exact-faq-answer {
+    width: calc(388 * var(--mu));
+    margin-top: calc(12 * var(--mu));
+    font-size: calc(18 * var(--mu));
+    line-height: calc(21 * var(--mu));
+  }
+
+  .exact-faq-item.open {
+    margin-bottom: calc(-8 * var(--mu));
+  }
+
+  .exact-bottom-link,
+  .exact-faq-slide .exact-bottom-link {
+    left: calc(16 * var(--mu));
+    right: calc(16 * var(--mu));
+    bottom: calc(98 * var(--mu));
+    width: auto;
+    height: calc(40 * var(--mu));
+    min-height: 0;
+    padding-top: calc(24 * var(--mu));
+    font-size: calc(18 * var(--mu));
+    line-height: calc(16 * var(--mu));
+  }
+
+  .exact-bottom-link img {
+    width: calc(16 * var(--mu));
+    height: calc(16 * var(--mu));
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .exact-howto-image {
+    left: calc(16 * var(--mu));
+    top: calc(100cqh - 516 * var(--mu));
+    width: calc(388 * var(--mu));
+    height: calc(224 * var(--mu));
+  }
+
+  .exact-howto-copy,
+  .exact-howto-step-2 .exact-howto-copy,
+  .exact-howto-step-3 .exact-howto-copy {
+    left: calc(16 * var(--mu));
+    top: calc(100cqh - 271 * var(--mu));
+    width: calc(388 * var(--mu));
+    gap: calc(21 * var(--mu));
+  }
+
+  .exact-howto-step-3 .exact-howto-copy {
+    top: calc(100cqh - 279 * var(--mu));
+    gap: calc(16 * var(--mu));
+  }
+
+  .exact-step-indicator {
+    width: calc(120 * var(--mu));
+    height: calc(40 * var(--mu));
+  }
+
+  .exact-step-indicator > button {
+    width: calc(40 * var(--mu));
+    height: calc(40 * var(--mu));
+  }
+
+  .exact-step-indicator i {
+    width: calc(32 * var(--mu));
+    height: calc(32 * var(--mu));
+    border-width: 1px;
+    font-size: calc(20 * var(--mu));
+  }
+
+  .exact-howto-text {
+    gap: calc(12 * var(--mu));
+  }
+
+  .exact-howto-step-3 .exact-howto-text {
+    gap: calc(8 * var(--mu));
+  }
+
+  .exact-howto-text h3,
+  .exact-howto-step-1 .exact-howto-text h3,
+  .exact-howto-step-2 .exact-howto-text h3,
+  .exact-howto-step-3 .exact-howto-text h3 {
+    width: calc(388 * var(--mu));
+    font-size: calc(24 * var(--mu));
+    line-height: calc(28 * var(--mu));
+  }
+
+  .exact-howto-step-3 .exact-howto-text h3 {
+    line-height: calc(27 * var(--mu));
+  }
+
+  .exact-howto-text p {
+    width: calc(388 * var(--mu));
+    font-size: calc(18 * var(--mu));
+    line-height: calc(21 * var(--mu));
+  }
+
+  .exact-howto-step-3 .exact-howto-text p {
+    line-height: calc(20 * var(--mu));
   }
 }
 

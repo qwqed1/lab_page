@@ -1,5 +1,5 @@
 <script setup>
-const emit = defineEmits(['register', 'about'])
+const emit = defineEmits(['register', 'about', 'close'])
 const router = useRouter()
 
 const sidebarAssets = Object.freeze({
@@ -14,9 +14,12 @@ const sidebarAssets = Object.freeze({
 const goTo = (path) => router.push(path)
 
 const closeMobileMenu = () => {
-  // The Figma mobile home is the navigation surface itself. "Close" reveals
-  // the existing slide deck without changing the desktop sidebar behaviour.
-  document.documentElement.classList.add('mobile-home-menu-closed')
+  emit('close')
+}
+
+const openMobileAbout = () => {
+  emit('about')
+  closeMobileMenu()
 }
 </script>
 
@@ -36,6 +39,9 @@ const closeMobileMenu = () => {
         <p class="promo-text">
           Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
         </p>
+        <button class="mobile-supplier-link" type="button" @click="openMobileAbout">
+          О поставщике ALEX LAB
+        </button>
       </div>
 
       <button id="btn-register" class="promo-button" type="button" @click="emit('register')">
@@ -141,11 +147,6 @@ const closeMobileMenu = () => {
         <img :src="sidebarAssets.about" alt="" width="24" height="24" decoding="sync" />
       </span>
     </div>
-
-    <button class="mobile-doctors-row" type="button" disabled>
-      <img src="/assets/figma-doctors-icon.svg" alt="" width="24" height="24" />
-      <span>Для врачей</span>
-    </button>
 
     <button class="mobile-close-row" type="button" @click="closeMobileMenu">
       <span class="mobile-close-icon" aria-hidden="true"></span>

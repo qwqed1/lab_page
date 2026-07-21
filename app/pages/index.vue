@@ -95,39 +95,68 @@ const navigateToExternal = (url) => {
 
 const openCart = () => navigateTo('/cart')
 
+const PHONE_VIDEO_ROOT = '/videos/PHONE%20NAREZKA'
+const phoneVideo = (index) => `${PHONE_VIDEO_ROOT}/video/s${index}.mp4`
+const phoneReverseVideo = (index) => `${PHONE_VIDEO_ROOT}/rev/s${index}r.mp4`
+const isMobileViewport = ref(false)
+const mobileMenuOpen = ref(false)
+const mobileSectionMenuExpanded = ref(false)
+let mobileViewportQuery = null
+let mobileViewportChangeHandler = null
+
+const getSlideVideo = (slide) => {
+  if (!slide) return ''
+  if (isMobileViewport.value && Object.hasOwn(slide, 'mobileVideo')) return slide.mobileVideo
+  return slide.video || ''
+}
+
+const getSlideReverseVideo = (slide) => {
+  if (!slide) return ''
+  if (isMobileViewport.value && Object.hasOwn(slide, 'mobileReverseVideo')) return slide.mobileReverseVideo
+  return slide.reverseVideo || ''
+}
+
+const hasSlideVideo = (slide) => Boolean(getSlideVideo(slide) || slide?.holdVideo)
+const openMobileMenu = () => { mobileMenuOpen.value = true }
+const closeMobileMenu = () => { mobileMenuOpen.value = false }
+
 const slides = ref([
-  { id: 'slide-1',  label: '', title: 'Тест на аллергию ALEX² — один анализ, который даёт ответы', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr1.mp4',  reverseVideo: '/videos/scroll/reverse/scrr1.mp4' },
-  { id: 'slide-2',  label: '', title: 'Почему ALEX2?', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr2.mp4',  reverseVideo: '/videos/scroll/reverse/scrr2.mp4' },
+  { id: 'slide-1',  label: '', title: 'Тест на аллергию ALEX² — один анализ, который даёт ответы', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr1.mp4',  reverseVideo: '/videos/scroll/reverse/scrr1.mp4', mobileVideo: phoneVideo(1), mobileReverseVideo: phoneReverseVideo(1) },
+  { id: 'slide-2',  label: '', title: 'Почему ALEX2?', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr2.mp4',  reverseVideo: '/videos/scroll/reverse/scrr2.mp4', mobileVideo: phoneVideo(2), mobileReverseVideo: phoneReverseVideo(2) },
   
   // Advantages
-  { id: 'slide-3',  step: '1', totalSteps: '5', label: 'Преимущества', title: 'Всё за один сеанс', subtitle: 'За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое.', direction: 'down', video: '/videos/scroll/forward/scr3.mp4',  reverseVideo: '/videos/scroll/reverse/scrr3-fixed.mp4' },
-  { id: 'slide-4',  step: '2', totalSteps: '5', label: 'Преимущества', title: 'Точечный результат', subtitle: 'В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.', direction: 'right', video: '/videos/scroll/forward/scr4.mp4', reverseVideo: '/videos/scroll/reverse/scrr4.mp4' },
-  { id: 'slide-5',  step: '3', totalSteps: '5', label: 'Преимущества', title: 'Отчёт и консультация', subtitle: 'Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.', direction: 'right', video: '/videos/scroll/forward/scr4-5.mp4', reverseVideo: '/videos/scroll/reverse/scrr4-5.mp4' },
-  { id: 'slide-6',  step: '4', totalSteps: '5', label: 'Преимущества', title: 'Без диет и отмены лекарств', subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.', direction: 'right', video: '/videos/scroll/forward/scr5.mp4', reverseVideo: '/videos/scroll/reverse/scrr5.mp4' },
-  { id: 'slide-7',  step: '5', totalSteps: '5', label: 'Преимущества', title: 'Подходит детям', subtitle: 'Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.', direction: 'right', video: '/videos/scroll/forward/scr6.mp4', reverseVideo: '/videos/scroll/reverse/scrr6.mp4' },
+  { id: 'slide-3',  step: '1', totalSteps: '5', label: 'Преимущества', title: 'Всё за один сеанс', subtitle: 'За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое.', direction: 'down', video: '/videos/scroll/forward/scr3.mp4',  reverseVideo: '/videos/scroll/reverse/scrr3-fixed.mp4', mobileVideo: phoneVideo(3), mobileReverseVideo: phoneReverseVideo(3) },
+  { id: 'slide-4',  step: '2', totalSteps: '5', label: 'Преимущества', title: 'Точечный результат', subtitle: 'В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.', direction: 'right', video: '/videos/scroll/forward/scr4.mp4', reverseVideo: '/videos/scroll/reverse/scrr4.mp4', mobileVideo: phoneVideo(4), mobileReverseVideo: phoneReverseVideo(4) },
+  { id: 'slide-5',  step: '3', totalSteps: '5', label: 'Преимущества', title: 'Отчёт и консультация', subtitle: 'Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.', direction: 'right', video: '/videos/scroll/forward/scr4-5.mp4', reverseVideo: '/videos/scroll/reverse/scrr4-5.mp4', mobileVideo: phoneVideo(5), mobileReverseVideo: phoneReverseVideo(5) },
+  { id: 'slide-6',  step: '4', totalSteps: '5', label: 'Преимущества', title: 'Без диет и отмены лекарств', subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.', direction: 'right', video: '/videos/scroll/forward/scr5.mp4', reverseVideo: '/videos/scroll/reverse/scrr5.mp4', mobileVideo: phoneVideo(6), mobileReverseVideo: phoneReverseVideo(6) },
+  { id: 'slide-7',  step: '5', totalSteps: '5', label: 'Преимущества', title: 'Подходит детям', subtitle: 'Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.', direction: 'right', video: '/videos/scroll/forward/scr6.mp4', reverseVideo: '/videos/scroll/reverse/scrr6.mp4', mobileVideo: phoneVideo(7), mobileReverseVideo: phoneReverseVideo(7) },
   
   // The short scr7 transition moves from the last advantage into the results intro.
-  { id: 'slide-8',  label: 'О результатах', title: 'Что вы получите по итогам теста на аллергию', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr7.mp4', reverseVideo: '/videos/scroll/reverse/scrr7.mp4', holdVideo: true },
+  { id: 'slide-8',  label: 'О результатах', title: 'Что вы получите по итогам теста на аллергию', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr7.mp4', reverseVideo: '/videos/scroll/reverse/scrr7.mp4', mobileVideo: phoneVideo(8), mobileReverseVideo: phoneReverseVideo(8), holdVideo: true },
   
   // Results Steps
-  { id: 'slide-9',  step: '1', totalSteps: '3', label: 'О результатах', title: 'Аллерго-паспорт', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'down', video: '/videos/scroll/forward/scr8.mp4',  reverseVideo: '/videos/scroll/reverse/scrr8.mp4' },
-  { id: 'slide-10', step: '2', totalSteps: '3', label: 'О результатах', title: 'Рекомендации по аллергенам', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/scroll/forward/scr9.mp4', reverseVideo: '/videos/scroll/reverse/scrr9.mp4' },
-  { id: 'slide-11', step: '3', totalSteps: '3', label: 'О результатах', badge: 'Опционально', title: 'Консультация', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/scroll/forward/scr10.mp4', reverseVideo: '/videos/scroll/reverse/scrr10.mp4' },
+  { id: 'slide-9',  step: '1', totalSteps: '3', label: 'О результатах', title: 'Аллерго-паспорт', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'down', video: '/videos/scroll/forward/scr8.mp4',  reverseVideo: '/videos/scroll/reverse/scrr8.mp4', mobileVideo: phoneVideo(9), mobileReverseVideo: phoneReverseVideo(9) },
+  { id: 'slide-10', step: '2', totalSteps: '3', label: 'О результатах', title: 'Рекомендации по аллергенам', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/scroll/forward/scr9.mp4', reverseVideo: '/videos/scroll/reverse/scrr9.mp4', mobileVideo: phoneVideo(10), mobileReverseVideo: phoneReverseVideo(10) },
+  { id: 'slide-11', step: '3', totalSteps: '3', label: 'О результатах', badge: 'Опционально', title: 'Консультация', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/scroll/forward/scr10.mp4', reverseVideo: '/videos/scroll/reverse/scrr10.mp4', mobileVideo: phoneVideo(11), mobileReverseVideo: phoneReverseVideo(11) },
   
   // The final-frame transition takes the results directly into FAQ.
-  { id: 'slide-16', label: 'FAQ', type: 'faq', title: 'FAQ', subtitle: '', direction: 'down', video: '/videos/scroll/forward/final-frame-pc.mp4', reverseVideo: '/videos/scroll/reverse/final-frame-pc.mp4' },
+  { id: 'slide-16', label: 'FAQ', type: 'faq', title: 'FAQ', subtitle: '', direction: 'down', video: '/videos/scroll/forward/final-frame-pc.mp4', reverseVideo: '/videos/scroll/reverse/final-frame-pc.mp4', mobileVideo: '', mobileReverseVideo: phoneReverseVideo(12), mobileBackgroundVideo: phoneVideo(1), holdVideo: true },
   
   // Blog
-  { id: 'slide-17', label: 'Блог про аллергию', type: 'blog', title: 'Блог про аллергию', subtitle: '', direction: 'down', video: '', reverseVideo: '' },
+  { id: 'slide-17', label: 'Блог про аллергию', type: 'blog', title: 'Блог про аллергию', subtitle: '', direction: 'down', video: '', reverseVideo: '', mobileBackgroundVideo: phoneVideo(1), holdVideo: true },
   
   // How to сдавать Steps
-  { id: 'slide-18', step: '1', totalSteps: '3', label: 'Как сдать тест', title: 'Запишитесь на тест через наш сайт', subtitle: 'А если хотите получить дополнительно консультацию бесплатно — выберите сдачу теста в лабораториях ALEX', direction: 'down', video: '', reverseVideo: '' },
-  { id: 'slide-19', step: '2', totalSteps: '3', label: 'Как сдать тест', title: 'Сдайте кровь в выбранной лаборатории', subtitle: 'Важно: За 4 часа до сдачи крови нужно не кушать. Кровь берут из вены.', direction: 'right', video: '', reverseVideo: '' },
-  { id: 'slide-20', step: '3', totalSteps: '3', label: 'Как сдать тест', title: 'Отслеживайте результат в личном кабинете и на электронной почте', subtitle: 'В личном кабинете показываем статусы — туда же придёт результат. Дополнительно всё дублируем на почту.', direction: 'right', video: '', reverseVideo: '' },
+  { id: 'slide-18', step: '1', totalSteps: '3', label: 'Как сдать тест', title: 'Запишитесь на тест через наш сайт', subtitle: 'А если хотите получить дополнительно консультацию бесплатно — выберите сдачу теста в лабораториях ALEX', direction: 'down', video: '', reverseVideo: '', mobileBackgroundVideo: phoneVideo(1), holdVideo: true },
+  { id: 'slide-19', step: '2', totalSteps: '3', label: 'Как сдать тест', title: 'Сдайте кровь в выбранной лаборатории', subtitle: 'Важно: За 4 часа до сдачи крови нужно не кушать. Кровь берут из вены.', direction: 'right', video: '', reverseVideo: '', mobileBackgroundVideo: phoneVideo(1), holdVideo: true },
+  { id: 'slide-20', step: '3', totalSteps: '3', label: 'Как сдать тест', title: 'Отслеживайте результат в личном кабинете и на электронной почте', subtitle: 'В личном кабинете показываем статусы — туда же придёт результат. Дополнительно всё дублируем на почту.', direction: 'right', video: '', reverseVideo: '', mobileBackgroundVideo: phoneVideo(1), holdVideo: true },
   
   // Contacts
-  { id: 'slide-21', label: 'Контакты', type: 'contacts', title: 'Контакты', subtitle: '', direction: 'down', video: '', reverseVideo: '' }
+  { id: 'slide-21', label: 'Контакты', type: 'contacts', title: 'Контакты', subtitle: '', direction: 'down', video: '', reverseVideo: '', mobileBackgroundVideo: phoneVideo(1), holdVideo: true }
 ])
+
+const showMobileInfoBackground = computed(() => (
+  isMobileViewport.value && currentSlideIndex.value >= 11
+))
 
 const getSlideClass = (index) => {
   if (index === currentSlideIndex.value) {
@@ -188,13 +217,48 @@ const showMenu = computed(() => {
   return activeMenuIndex.value !== -1
 })
 
+const mobileSmokeCloudVariant = computed(() => {
+  const idx = currentSlideIndex.value
+  const hasNumberedNavigation = (idx >= 2 && idx <= 6) || (idx >= 8 && idx <= 10)
+
+  return idx === 0 || hasNumberedNavigation
+    ? 'mobile-cloud-large'
+    : 'mobile-cloud-compact'
+})
+
+const handleSectionMenuItemClick = (item, idx) => {
+  if (!isMobileViewport.value) {
+    goToSlideById(item.slideId)
+    return
+  }
+
+  if (!mobileSectionMenuExpanded.value) {
+    mobileSectionMenuExpanded.value = true
+    return
+  }
+
+  // Clicking the active section (or the intro header) folds the list back.
+  if (idx === activeMenuIndex.value || (activeMenuIndex.value === -1 && idx === 0)) {
+    mobileSectionMenuExpanded.value = false
+    return
+  }
+
+  mobileSectionMenuExpanded.value = false
+  goToSlideById(item.slideId)
+}
+
 const showSmokeCloud = computed(() => {
   const idx = currentSlideIndex.value
 
   // Decorative layers enter together with the content. This prevents a cloud
   // from the destination section appearing over the previous video frame.
-  return contentReadySlideIndex.value === idx
-    && idx >= 2 && idx <= 10
+  if (contentReadySlideIndex.value !== idx) return false
+
+  if (isMobileViewport.value) {
+    return idx >= 0 && idx <= 10
+  }
+
+  return idx >= 2 && idx <= 10
 })
 
 const isResultsSection = computed(() => {
@@ -226,7 +290,7 @@ const persistentStepGroup = computed(() => {
 
 const isVideoBackgroundVisible = computed(() => {
   const slide = slides.value[currentSlideIndex.value]
-  return videoBackgroundReady.value && Boolean(slide?.video || slide?.holdVideo)
+  return videoBackgroundReady.value && hasSlideVideo(slide)
 })
 
 const CONTENT_EXIT_DURATION = 650
@@ -546,13 +610,15 @@ const preloadUpcomingVideo = () => {
   // Keep the reverse clip for the current slide hot in the inactive layer.
   // This removes the decoding pause when a user scrolls back immediately.
   const currentSlide = slides.value[currentSlideIndex.value]
-  if (currentSlideIndex.value > 0 && currentSlide?.reverseVideo) {
-    nextSrc = currentSlide.reverseVideo
+  const currentReverseSrc = getSlideReverseVideo(currentSlide)
+  if (currentSlideIndex.value > 0 && currentReverseSrc) {
+    nextSrc = currentReverseSrc
   } else {
     for (let index = currentSlideIndex.value + 1; index < slides.value.length; index++) {
       const nextSlide = slides.value[index]
-      if (nextSlide.video) {
-        nextSrc = nextSlide.video
+      const nextVideoSrc = getSlideVideo(nextSlide)
+      if (nextVideoSrc) {
+        nextSrc = nextVideoSrc
         break
       }
       if (!nextSlide.holdVideo) break
@@ -583,12 +649,18 @@ const finishVideoLayerSwap = async (outgoingEl, requestId, { preload = false } =
 const getSlideBackgroundSource = (slideIndex) => {
   const slide = slides.value[slideIndex]
   if (!slide) return ''
-  if (slide.video) return slide.video
+  if (isMobileViewport.value && slide.mobileBackgroundVideo) {
+    return slide.mobileBackgroundVideo
+  }
+  const slideVideoSrc = getSlideVideo(slide)
+  if (slideVideoSrc) return slideVideoSrc
   if (!slide.holdVideo) return ''
 
   for (let index = slideIndex - 1; index >= 0; index--) {
-    if (slides.value[index]?.video) return slides.value[index].video
-    if (!slides.value[index]?.holdVideo) break
+    const previousSlide = slides.value[index]
+    const previousVideoSrc = getSlideVideo(previousSlide)
+    if (previousVideoSrc) return previousVideoSrc
+    if (!previousSlide?.holdVideo) break
   }
 
   return ''
@@ -711,15 +783,18 @@ const playVideoShot = async (src, { playbackRate = 1, onPlaybackStarted, onCompl
 // Every numbered file is a transition into its slide. When moving back, play
 // the matching reverse transition of the slide being left.
 watch(currentSlideIndex, (newIndex, oldIndex) => {
+  mobileSectionMenuExpanded.value = false
   const transitionId = ++slideTransitionId
   const transitionStartedAt = performance.now()
   let transitionFinishing = false
   const slide = slides.value[newIndex]
   const oldSlide = slides.value[oldIndex]
+  const slideVideoSrc = getSlideVideo(slide)
+  const oldSlideReverseSrc = getSlideReverseVideo(oldSlide)
   const goingBack = newIndex < oldIndex
   const isDirectJump = navigationMode.value === 'direct' && Math.abs(newIndex - oldIndex) > 1
-  const destinationHasVideo = Boolean(slide?.video || slide?.holdVideo)
-  const originHasVideo = Boolean(oldSlide?.video || oldSlide?.holdVideo)
+  const destinationHasVideo = hasSlideVideo(slide)
+  const originHasVideo = hasSlideVideo(oldSlide)
   if (!destinationHasVideo || !originHasVideo) videoBackgroundReady.value = false
   isSlideTransitioning.value = true
 
@@ -771,8 +846,8 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   // its final frame belongs to the wrong page. Play the destination animation
   // instead, or settle the exact held frame before revealing any content.
   if (isDirectJump) {
-    if (slide.video) {
-      playVideoShot(slide.video, {
+    if (slideVideoSrc) {
+      playVideoShot(slideVideoSrc, {
         onPlaybackStarted: revealDuringPlayback,
         onComplete: finishCurrentTransition
       })
@@ -788,8 +863,8 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   }
 
   if (goingBack) {
-    if (oldSlide?.reverseVideo) {
-      playVideoShot(oldSlide.reverseVideo, {
+    if (oldSlideReverseSrc) {
+      playVideoShot(oldSlideReverseSrc, {
         playbackRate: oldIndex === 2 || oldIndex === 1
           ? EARLY_REVERSE_PLAYBACK_RATE
           : 1,
@@ -806,8 +881,8 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
     return
   }
 
-  if (slide.video) {
-    playVideoShot(slide.video, {
+  if (slideVideoSrc) {
+    playVideoShot(slideVideoSrc, {
       onPlaybackStarted: revealDuringPlayback,
       onComplete: finishCurrentTransition
     })
@@ -815,12 +890,26 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
     const requestId = ++videoRequestId
     settleWithoutVideo(requestId).finally(finishCurrentTransition)
   } else {
-    finishCurrentTransition()
+    const mobileBackgroundSrc = isMobileViewport.value
+      ? slide.mobileBackgroundVideo
+      : ''
+
+    if (mobileBackgroundSrc) {
+      const requestId = ++videoRequestId
+      settleOnSlideFrame(mobileBackgroundSrc, requestId).finally(finishCurrentTransition)
+    } else {
+      finishCurrentTransition()
+    }
   }
 })
 
 onMounted(() => {
-
+  mobileViewportQuery = window.matchMedia('(max-width: 767px)')
+  isMobileViewport.value = mobileViewportQuery.matches
+  mobileViewportChangeHandler = (event) => {
+    isMobileViewport.value = event.matches
+  }
+  mobileViewportQuery.addEventListener('change', mobileViewportChangeHandler)
 
   nextTick(() => {
     const container = scrollContainer.value
@@ -833,7 +922,7 @@ onMounted(() => {
 
     // Load initial video
     const slide = slides.value[currentSlideIndex.value]
-    const initialSrc = slide ? slide.video : null
+    const initialSrc = getSlideVideo(slide)
     if (initialSrc && videoA.value) {
       configureVideoElement(videoA.value)
       videoA.value.src = initialSrc
@@ -852,6 +941,9 @@ onUnmounted(() => {
     container.removeEventListener('touchend', handleTouchEnd)
   }
   window.removeEventListener('keydown', handleKeydown)
+  if (mobileViewportQuery && mobileViewportChangeHandler) {
+    mobileViewportQuery.removeEventListener('change', mobileViewportChangeHandler)
+  }
 
   if (videoA.value) videoA.value.pause()
   if (videoB.value) videoB.value.pause()
@@ -865,10 +957,14 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="page-container home-page-container site-sidebar-layout">
+  <div
+    class="page-container home-page-container site-sidebar-layout"
+    :class="{ 'mobile-menu-open': mobileMenuOpen }"
+  >
     <SiteSidebar
       @register="openCart"
       @about="goToSlideById('slide-1')"
+      @close="closeMobileMenu"
     />
 
     <!-- Right Column: Content Container with Slide Deck -->
@@ -886,16 +982,25 @@ onUnmounted(() => {
       </Transition>
 
       <!-- Persistent Right Menu overlay -->
-      <div class="figma-right-menu" :class="{ visible: showMenu }">
-        <div 
+      <div
+        class="figma-right-menu"
+        :class="{
+          visible: showMenu,
+          'mobile-intro-menu': currentSlideIndex === 1,
+          'mobile-menu-expanded': mobileSectionMenuExpanded
+        }"
+      >
+        <button
           v-for="(item, idx) in menuItems" 
           :key="item.label" 
           class="figma-menu-item"
           :class="{ active: idx === activeMenuIndex }"
-          @click="goToSlideById(item.slideId)"
+          type="button"
+          :aria-expanded="idx === 0 && isMobileViewport ? mobileSectionMenuExpanded : undefined"
+          @click="handleSectionMenuItemClick(item, idx)"
         >
           {{ item.label }}
-        </div>
+        </button>
       </div>
 
       <!-- Fixed Video Background Layer -->
@@ -923,6 +1028,12 @@ onUnmounted(() => {
         <div class="video-overlay"></div>
       </div>
 
+      <div
+        class="mobile-info-background"
+        :class="{ visible: showMobileInfoBackground }"
+        aria-hidden="true"
+      ></div>
+
       <!-- Static Smoke Cloud (Fixed, transitions opacity, does not slide) -->
       <div
         class="figma-smoke-cloud-fixed"
@@ -931,7 +1042,8 @@ onUnmounted(() => {
             visible: showSmokeCloud,
             'results-cloud': isResultsSection
           },
-          resultsCloudVariant
+          resultsCloudVariant,
+          mobileSmokeCloudVariant
         ]"
       ></div>
 
@@ -964,7 +1076,8 @@ onUnmounted(() => {
           class="slide-layer"
           :class="[getSlideClass(index), { 'content-exiting': index === exitingContentSlideIndex }]"
           :data-direction="slide.direction"
-          :data-has-video="!!(slide.video || slide.holdVideo)"
+          :data-slide-id="slide.id"
+          :data-has-video="hasSlideVideo(slide)"
           :data-content-ready="index === contentReadySlideIndex"
         >
           <!-- Slide 1: Hero -->
@@ -1128,6 +1241,26 @@ onUnmounted(() => {
           </template>
         </div>
       </div>
+
+      <nav
+        v-if="currentSlideIndex < slides.length - 1"
+        class="mobile-home-dock"
+        aria-label="Быстрые действия"
+      >
+        <button class="mobile-home-register" type="button" @click="openCart">
+          <span>Записаться на тест на аллергию</span>
+          <img src="/assets/figma-about-icon.svg" alt="" width="24" height="24" />
+        </button>
+        <button
+          class="mobile-home-menu-button"
+          type="button"
+          aria-label="Открыть меню"
+          :aria-expanded="mobileMenuOpen"
+          @click="openMobileMenu"
+        >
+          <span aria-hidden="true"></span>
+        </button>
+      </nav>
     </main>
   </div>
 
