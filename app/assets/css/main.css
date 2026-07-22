@@ -221,24 +221,27 @@ body {
     line-height: calc(16 * var(--mobile-unit));
   }
 
-  .figma-right-menu.mobile-intro-menu .figma-menu-item,
-  .figma-right-menu.visible .figma-menu-item:first-child {
+  .figma-right-menu.mobile-intro-menu .figma-menu-item:first-child,
+  .figma-right-menu.visible .figma-menu-item.active,
+  .figma-right-menu.mobile-menu-expanded .figma-menu-item {
     display: block;
   }
 
-  .figma-right-menu .figma-menu-item:first-child {
+  .figma-right-menu .figma-menu-item.active,
+  .figma-right-menu.mobile-intro-menu .figma-menu-item:first-child {
     padding-right: calc(22 * var(--mobile-unit));
     opacity: 1;
   }
 
-  .figma-right-menu .figma-menu-item:first-child::before {
+  .figma-right-menu .figma-menu-item.active::before {
     left: calc(-8 * var(--mobile-unit));
     top: calc(7 * var(--mobile-unit));
     width: calc(3 * var(--mobile-unit));
     height: calc(3 * var(--mobile-unit));
   }
 
-  .figma-right-menu .figma-menu-item:first-child::after {
+  .figma-right-menu .figma-menu-item.active::after,
+  .figma-right-menu.mobile-intro-menu .figma-menu-item:first-child::after {
     content: '';
     position: absolute;
     right: calc(2 * var(--mobile-unit));
@@ -2647,6 +2650,10 @@ body {
   pointer-events: auto;
 }
 
+.figma-persistent-step-indicator {
+  display: none;
+}
+
 .figma-step-circle {
   width: 38px;
   height: 38px;
@@ -3860,7 +3867,7 @@ body {
   }
 
   .home-page-container .figma-right-menu.mobile-intro-menu .figma-menu-item:first-child,
-  .home-page-container .figma-right-menu.visible .figma-menu-item:first-child,
+  .home-page-container .figma-right-menu.visible .figma-menu-item.active,
   .home-page-container .figma-right-menu.mobile-menu-expanded .figma-menu-item {
     display: block;
   }
@@ -3881,95 +3888,260 @@ body {
     isolation: isolate;
   }
 
-  .home-page-container .figma-right-menu.visible::before {
+  .home-page-container .figma-right-menu.visible.mobile-backdrop-visible::before {
     content: '';
     position: absolute;
     z-index: -1;
-    left: calc(-13 * var(--mobile-unit));
-    top: calc(-11 * var(--mobile-unit));
-    width: calc(178 * var(--mobile-unit));
-    height: calc(52 * var(--mobile-unit));
+    left: calc(-181 * var(--mobile-unit));
+    top: calc(-92 * var(--mobile-unit));
+    width: calc(310 * var(--mobile-unit));
+    height: calc(188 * var(--mobile-unit));
     border-radius: 50%;
     background: radial-gradient(
-      ellipse at 38% 48%,
-      rgba(255, 255, 255, 0.82) 0%,
-      rgba(255, 255, 255, 0.52) 48%,
+      ellipse at 72% 66%,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.6) 48%,
       rgba(255, 255, 255, 0) 100%
     );
-    filter: blur(calc(8 * var(--mobile-unit)));
+    filter: blur(calc(12 * var(--mobile-unit)));
     pointer-events: none;
+    transition: none;
   }
 
-  .home-page-container .figma-right-menu.mobile-menu-expanded::before {
+  .home-page-container .figma-right-menu.mobile-menu-expanded.mobile-backdrop-visible::before {
     content: '';
     position: absolute;
     z-index: -1;
-    left: calc(-14 * var(--mobile-unit));
-    top: calc(-10 * var(--mobile-unit));
-    width: calc(238 * var(--mobile-unit));
-    height: calc(142 * var(--mobile-unit));
+    left: calc(-165 * var(--mobile-unit));
+    top: calc(-86 * var(--mobile-unit));
+    width: calc(382 * var(--mobile-unit));
+    height: calc(286 * var(--mobile-unit));
     border-radius: 50%;
     background: radial-gradient(
-      ellipse at 42% 42%,
-      rgba(255, 255, 255, 0.88) 0%,
-      rgba(255, 255, 255, 0.68) 42%,
-      rgba(255, 255, 255, 0.22) 72%,
+      ellipse at 62% 52%,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(255, 255, 255, 0.7) 46%,
+      rgba(255, 255, 255, 0.24) 74%,
       rgba(255, 255, 255, 0) 100%
     );
-    filter: blur(calc(10 * var(--mobile-unit)));
+    filter: blur(calc(14 * var(--mobile-unit)));
     pointer-events: none;
   }
 
-  .home-page-container .figma-right-menu.mobile-menu-expanded .figma-menu-item:first-child::after {
+  .home-page-container .figma-right-menu.mobile-menu-expanded .figma-menu-item.active::after,
+  .home-page-container .figma-right-menu.mobile-menu-expanded.mobile-intro-menu .figma-menu-item:first-child::after {
     transform: rotate(135deg);
     top: calc(3 * var(--mobile-unit));
+  }
+
+  .home-page-container .slide-step-indicator {
+    display: none !important;
+  }
+
+  /* Each mobile video frame keeps the same rectangular haze geometry. Only
+     its strength and the copy's vertical balance vary by scene, so changing
+     slides cannot produce a moving white shape. */
+  .home-page-container .home-content {
+    --mobile-copy-shift: 0px;
+    --mobile-pager-shift: 0px;
+    --mobile-glass-top-alpha: 0;
+    --mobile-glass-shoulder-alpha: 0;
+    --mobile-glass-shoulder-stop: 12%;
+    --mobile-glass-mid-alpha: 0.62;
+    --mobile-glass-mid-stop: 42%;
+    --mobile-glass-bottom-alpha: 0.9;
+  }
+
+  .home-page-container .home-content[data-active-slide="slide-3"] {
+    --mobile-glass-mid-alpha: 0.55;
+    --mobile-glass-bottom-alpha: 0.86;
+  }
+
+  .home-page-container .home-content[data-active-slide="slide-4"] {
+    --mobile-glass-shoulder-alpha: 0.06;
+    --mobile-glass-shoulder-stop: 9%;
+    --mobile-glass-mid-alpha: 0.7;
+    --mobile-glass-mid-stop: 36%;
+    --mobile-glass-bottom-alpha: 0.92;
+  }
+
+  .home-page-container .home-content[data-active-slide="slide-5"] {
+    --mobile-copy-shift: calc(42 * var(--mobile-unit));
+    --mobile-pager-shift: calc(24 * var(--mobile-unit));
+    --mobile-glass-shoulder-alpha: 0.04;
+    --mobile-glass-shoulder-stop: 10%;
+    --mobile-glass-mid-alpha: 0.68;
+    --mobile-glass-mid-stop: 37%;
+    --mobile-glass-bottom-alpha: 0.92;
+  }
+
+  .home-page-container .home-content[data-active-slide="slide-6"] {
+    --mobile-copy-shift: calc(28 * var(--mobile-unit));
+    --mobile-pager-shift: calc(16 * var(--mobile-unit));
+    --mobile-glass-shoulder-alpha: 0.14;
+    --mobile-glass-shoulder-stop: 8%;
+    --mobile-glass-mid-alpha: 0.82;
+    --mobile-glass-mid-stop: 31%;
+    --mobile-glass-bottom-alpha: 0.94;
+  }
+
+  .home-page-container .home-content[data-active-slide="slide-7"] {
+    --mobile-copy-shift: calc(58 * var(--mobile-unit));
+    --mobile-pager-shift: calc(32 * var(--mobile-unit));
+    --mobile-glass-shoulder-alpha: 0.16;
+    --mobile-glass-shoulder-stop: 8%;
+    --mobile-glass-mid-alpha: 0.84;
+    --mobile-glass-mid-stop: 30%;
+    --mobile-glass-bottom-alpha: 0.94;
+  }
+
+  .home-page-container .home-content:is(
+    [data-active-slide="slide-9"],
+    [data-active-slide="slide-10"],
+    [data-active-slide="slide-11"]
+  ) {
+    --mobile-glass-mid-alpha: 0.5;
+    --mobile-glass-mid-stop: 44%;
+    --mobile-glass-bottom-alpha: 0.84;
+  }
+
+  .home-page-container .figma-persistent-step-indicator {
+    position: absolute;
+    z-index: 9;
+    left: calc(16 * var(--mobile-unit));
+    display: flex;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .home-page-container .figma-persistent-step-indicator.persistent-advantages {
+    top: calc(100dvh - 338 * var(--mobile-unit) + var(--mobile-pager-shift));
+  }
+
+  .home-page-container .figma-persistent-step-indicator.persistent-results {
+    top: calc(100dvh - 249 * var(--mobile-unit));
+  }
+
+  .home-page-container .figma-step-block.advantages-pos {
+    top: calc(100dvh - 274 * var(--mobile-unit) + var(--mobile-copy-shift));
+    bottom: auto;
+    gap: 0;
+  }
+
+  .home-page-container .figma-step-block.results-pos {
+    top: calc(100dvh - 185 * var(--mobile-unit));
+    bottom: auto;
+    gap: 0;
   }
 
   .home-page-container .figma-smoke-cloud-fixed,
   .home-page-container .figma-smoke-cloud-fixed.results-cloud,
   .home-page-container .figma-smoke-cloud-fixed.results-cloud-primary {
-    left: calc(-42 * var(--mobile-unit)) !important;
+    left: 0 !important;
     top: auto !important;
-    right: auto !important;
-    bottom: calc(28 * var(--mobile-unit)) !important;
-    width: calc(500 * var(--mobile-unit)) !important;
-    height: calc(270 * var(--mobile-unit)) !important;
-    border-radius: 50% !important;
-    background: radial-gradient(
-      ellipse at 44% 68%,
-      rgba(255, 255, 255, 0.98) 0%,
-      rgba(255, 255, 255, 0.86) 40%,
-      rgba(255, 255, 255, 0.38) 68%,
-      rgba(255, 255, 255, 0) 100%
-    ) !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: calc(371 * var(--mobile-unit)) !important;
+    border-radius: 0 !important;
+    overflow: visible;
+    isolation: isolate;
+    background: transparent !important;
     -webkit-mask-image: none !important;
     mask-image: none !important;
-    filter: blur(calc(18 * var(--mobile-unit))) !important;
-    -webkit-filter: blur(calc(18 * var(--mobile-unit))) !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: auto;
+    transition: none !important;
   }
 
-  .home-page-container .figma-smoke-cloud-fixed.mobile-cloud-large {
-    left: calc(-52 * var(--mobile-unit)) !important;
-    bottom: calc(10 * var(--mobile-unit)) !important;
-    width: calc(524 * var(--mobile-unit)) !important;
-    height: calc(340 * var(--mobile-unit)) !important;
-  }
-
-  .home-page-container .figma-smoke-cloud-fixed.mobile-cloud-compact {
-    left: calc(-30 * var(--mobile-unit)) !important;
-    bottom: calc(38 * var(--mobile-unit)) !important;
-    width: calc(480 * var(--mobile-unit)) !important;
-    height: calc(235 * var(--mobile-unit)) !important;
-  }
-
-  .home-page-container .figma-smoke-cloud-fixed.mobile-cloud-second-scene {
-    left: calc(-76 * var(--mobile-unit)) !important;
-    width: calc(540 * var(--mobile-unit)) !important;
+  .home-page-container .figma-smoke-cloud-fixed::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    inset: calc(-12 * var(--mobile-unit)) calc(-18 * var(--mobile-unit)) calc(-14 * var(--mobile-unit));
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, var(--mobile-glass-top-alpha)) 0%,
+      rgba(255, 255, 255, var(--mobile-glass-shoulder-alpha)) var(--mobile-glass-shoulder-stop),
+      rgba(255, 255, 255, var(--mobile-glass-mid-alpha)) var(--mobile-glass-mid-stop),
+      rgba(255, 255, 255, var(--mobile-glass-bottom-alpha)) 100%
+    );
+    filter: blur(calc(9 * var(--mobile-unit)));
+    -webkit-filter: blur(calc(9 * var(--mobile-unit)));
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    pointer-events: none;
   }
 
   .home-page-container .figma-smoke-cloud-fixed.visible,
   .home-page-container .figma-smoke-cloud-fixed.results-cloud.visible,
   .home-page-container .figma-smoke-cloud-fixed.results-cloud-primary.visible {
-    opacity: 0.5;
+    opacity: 1;
+  }
+
+  /* The incoming clip is decoded before its class is switched in Vue. An
+     additional opacity crossfade makes both video layers translucent at the
+     same time and briefly exposes the pale fallback background. Swap the two
+     ready frames atomically on mobile instead. */
+  .home-page-container .bg-video,
+  .home-page-container .bg-video.active {
+    transition: none !important;
+  }
+
+  /* Mobile copy changes by opacity only. Directional slide transforms made
+     the glass layer appear to flash as text crossed it. */
+  .home-page-container .slide-layer,
+  .home-page-container .slide-layer.future-right,
+  .home-page-container .slide-layer.future-down,
+  .home-page-container .slide-layer.past-left,
+  .home-page-container .slide-layer.past-up {
+    transform: none !important;
+    transition: none !important;
+    will-change: auto;
+  }
+
+  .home-page-container .slide-layer .figma-hero-title,
+  .home-page-container .slide-layer .figma-slide-title-inline,
+  .home-page-container .slide-layer .figma-slide-desc-inline,
+  .home-page-container .slide-layer .figma-intro-title,
+  .home-page-container .slide-layer .figma-section-title,
+  .home-page-container .slide-layer .figma-result-title-row {
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+    transition: opacity 0.38s ease !important;
+  }
+
+  .home-page-container .slide-layer.active[data-content-ready="true"] .figma-hero-title,
+  .home-page-container .slide-layer.active[data-content-ready="true"] .figma-slide-title-inline,
+  .home-page-container .slide-layer.active[data-content-ready="true"] .figma-intro-title,
+  .home-page-container .slide-layer.active[data-content-ready="true"] .figma-section-title,
+  .home-page-container .slide-layer.active[data-content-ready="true"] .figma-result-title-row {
+    opacity: 1 !important;
+  }
+
+  .home-page-container .slide-layer.active[data-content-ready="true"] .figma-slide-desc-inline {
+    opacity: 0.8 !important;
+  }
+
+  .home-page-container .slide-layer.content-exiting .figma-hero-title,
+  .home-page-container .slide-layer.content-exiting .figma-slide-title-inline,
+  .home-page-container .slide-layer.content-exiting .figma-slide-desc-inline,
+  .home-page-container .slide-layer.content-exiting .figma-intro-title,
+  .home-page-container .slide-layer.content-exiting .figma-section-title,
+  .home-page-container .slide-layer.content-exiting .figma-result-title-row,
+  .home-page-container .slide-layer.active[data-content-ready="false"] .figma-hero-title,
+  .home-page-container .slide-layer.active[data-content-ready="false"] .figma-slide-title-inline,
+  .home-page-container .slide-layer.active[data-content-ready="false"] .figma-slide-desc-inline,
+  .home-page-container .slide-layer.active[data-content-ready="false"] .figma-intro-title,
+  .home-page-container .slide-layer.active[data-content-ready="false"] .figma-section-title,
+  .home-page-container .slide-layer.active[data-content-ready="false"] .figma-result-title-row {
+    opacity: 0 !important;
   }
 }

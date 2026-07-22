@@ -324,6 +324,7 @@ const redirectToCart = () => {
   height: 538px;
   display: flex;
   align-items: flex-end;
+  padding-bottom: 24px;
 }
 
 .main-card-inner {
@@ -603,7 +604,7 @@ const redirectToCart = () => {
   .main-card {
     height: clamp(360px, calc(100dvh - 297px), 538px);
     min-height: 0;
-    padding: 0 40px 22.4px 24px;
+    padding: 0 40px 24px 24px;
     align-items: flex-end;
   }
 
@@ -630,7 +631,7 @@ const redirectToCart = () => {
 
   .question-card {
     height: auto;
-    min-height: 149px;
+    min-height: 0;
     padding: 23.2px;
   }
 

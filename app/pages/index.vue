@@ -196,7 +196,7 @@ const goToPersistentStep = (step) => {
 
 const menuItems = [
   { label: 'Преимущества', slideId: 'slide-3' },
-  { label: 'О результатах', slideId: 'slide-9' },
+  { label: 'Результаты', slideId: 'slide-9' },
   { label: 'FAQ', slideId: 'slide-16' },
   { label: 'Блог про аллергию', slideId: 'slide-17' },
   { label: 'Как сдать тест', slideId: 'slide-18' }
@@ -250,13 +250,16 @@ const handleSectionMenuItemClick = (item, idx) => {
 const showSmokeCloud = computed(() => {
   const idx = currentSlideIndex.value
 
-  // Decorative layers enter together with the content. This prevents a cloud
-  // from the destination section appearing over the previous video frame.
-  if (contentReadySlideIndex.value !== idx) return false
-
+  // On mobile this is one fixed glass layer shared by the video slides. Keep
+  // it mounted while swiping between them so it cannot blink off and on at
+  // each content reveal point.
   if (isMobileViewport.value) {
     return idx >= 0 && idx <= 10
   }
+
+  // Decorative layers enter together with the content. This prevents a cloud
+  // from the destination section appearing over the previous video frame.
+  if (contentReadySlideIndex.value !== idx) return false
 
   return idx >= 2 && idx <= 10
 })
@@ -966,7 +969,11 @@ onUnmounted(() => {
     />
 
     <!-- Right Column: Content Container with Slide Deck -->
-    <main class="content-container home-content" ref="scrollContainer">
+    <main
+      class="content-container home-content"
+      ref="scrollContainer"
+      :data-active-slide="slides[currentSlideIndex]?.id"
+    >
       <Transition name="fade">
         <button
           v-if="currentSlideIndex === 0 && contentReadySlideIndex === 0"
@@ -985,7 +992,8 @@ onUnmounted(() => {
         :class="{
           visible: showMenu,
           'mobile-intro-menu': currentSlideIndex === 1,
-          'mobile-menu-expanded': mobileSectionMenuExpanded
+          'mobile-menu-expanded': mobileSectionMenuExpanded,
+          'mobile-backdrop-visible': currentSlideIndex < 11
         }"
       >
         <button
@@ -994,10 +1002,30 @@ onUnmounted(() => {
           class="figma-menu-item"
           :class="{ active: idx === activeMenuIndex }"
           type="button"
-          :aria-expanded="idx === 0 && isMobileViewport ? mobileSectionMenuExpanded : undefined"
+          :aria-expanded="isMobileViewport && (idx === activeMenuIndex || (activeMenuIndex === -1 && idx === 0)) ? mobileSectionMenuExpanded : undefined"
           @click="handleSectionMenuItemClick(item, idx)"
         >
           {{ item.label }}
+        </button>
+      </div>
+
+      <!-- One shared mobile paginator stays mounted while only the copy changes. -->
+      <div
+        v-if="persistentStepGroup"
+        class="figma-step-indicator figma-persistent-step-indicator"
+        :class="`persistent-${persistentStepGroup.type}`"
+        :aria-label="persistentStepGroup.type === 'advantages' ? 'Шаги преимуществ' : 'Шаги результатов'"
+      >
+        <button
+          v-for="i in persistentStepGroup.total"
+          :key="i"
+          type="button"
+          class="figma-step-circle"
+          :class="{ active: i === persistentStepGroup.current }"
+          :aria-label="`Перейти к шагу ${i}`"
+          @click="goToPersistentStep(i)"
+        >
+          {{ i }}
         </button>
       </div>
 
@@ -1039,7 +1067,7 @@ onUnmounted(() => {
           {
             visible: showSmokeCloud,
             'results-cloud': isResultsSection,
-            'content-pending': contentReadySlideIndex !== currentSlideIndex,
+            'content-pending': !isMobileViewport && contentReadySlideIndex !== currentSlideIndex,
             'mobile-cloud-second-scene': isMobileViewport && currentSlideIndex === 1
           },
           resultsCloudVariant,
@@ -1083,7 +1111,7 @@ onUnmounted(() => {
           <template v-else-if="slide.label === 'Преимущества'">
             <div class="figma-content-wrapper">
               <div class="figma-step-block advantages-pos">
-                <div class="figma-step-indicator" aria-label="Шаги преимуществ">
+                <div class="figma-step-indicator slide-step-indicator" aria-label="Шаги преимуществ">
                   <button
                     v-for="i in Number(slide.totalSteps)"
                     :key="i"
@@ -1116,7 +1144,7 @@ onUnmounted(() => {
           <template v-else-if="slide.label === 'О результатах' && slide.step">
             <div class="figma-content-wrapper results-wrapper">
               <div class="figma-step-block results-pos">
-                <div class="figma-step-indicator" aria-label="Шаги результатов">
+                <div class="figma-step-indicator slide-step-indicator" aria-label="Шаги результатов">
                   <button
                     v-for="i in Number(slide.totalSteps)"
                     :key="i"
