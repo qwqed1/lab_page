@@ -1047,27 +1047,6 @@ onUnmounted(() => {
         ]"
       ></div>
 
-      <!-- Persistent pagination stays mounted while text slides change -->
-      <Transition name="persistent-steps">
-        <div
-          v-if="persistentStepGroup && currentSlideIndex === contentReadySlideIndex"
-          class="persistent-step-indicator"
-          :class="`persistent-step-indicator--${persistentStepGroup.type}`"
-        >
-          <button
-            v-for="i in persistentStepGroup.total"
-            :key="i"
-            type="button"
-            class="figma-step-circle"
-            :class="{ active: i === persistentStepGroup.current }"
-            :aria-label="`Перейти к шагу ${i}`"
-            @click="goToPersistentStep(i)"
-          >
-            {{ i }}
-          </button>
-        </div>
-      </Transition>
-
       <!-- Slides Deck -->
       <div class="slides-deck-container">
         <div
@@ -1103,8 +1082,21 @@ onUnmounted(() => {
           <!-- Advantages detail slides (Slide 3 to 7) -->
           <template v-else-if="slide.label === 'Преимущества'">
             <div class="figma-content-wrapper">
-              <div class="figma-step-block advantages-pos text-only">
-                <!-- Text stack -->
+              <div class="figma-step-block advantages-pos">
+                <div class="figma-step-indicator" aria-label="Шаги преимуществ">
+                  <button
+                    v-for="i in Number(slide.totalSteps)"
+                    :key="i"
+                    type="button"
+                    class="figma-step-circle"
+                    :class="{ active: i === Number(slide.step) }"
+                    :aria-label="`Перейти к шагу ${i}`"
+                    @click="goToPersistentStep(i)"
+                  >
+                    {{ i }}
+                  </button>
+                </div>
+
                 <div class="figma-step-text-stack">
                   <h2 class="figma-slide-title-inline">{{ slide.title }}</h2>
                   <p class="figma-slide-desc-inline">{{ slide.subtitle }}</p>
@@ -1123,8 +1115,21 @@ onUnmounted(() => {
           <!-- Results Steps (Slide 9 to 11) -->
           <template v-else-if="slide.label === 'О результатах' && slide.step">
             <div class="figma-content-wrapper results-wrapper">
-              <div class="figma-step-block results-pos text-only">
-                <!-- Text stack -->
+              <div class="figma-step-block results-pos">
+                <div class="figma-step-indicator" aria-label="Шаги результатов">
+                  <button
+                    v-for="i in Number(slide.totalSteps)"
+                    :key="i"
+                    type="button"
+                    class="figma-step-circle"
+                    :class="{ active: i === Number(slide.step) }"
+                    :aria-label="`Перейти к шагу ${i}`"
+                    @click="goToPersistentStep(i)"
+                  >
+                    {{ i }}
+                  </button>
+                </div>
+
                 <div class="figma-step-text-stack">
                   <div class="figma-result-title-row">
                     <h2 class="figma-slide-title-inline">{{ slide.title }}</h2>
@@ -1243,7 +1248,6 @@ onUnmounted(() => {
       </div>
 
       <nav
-        v-if="currentSlideIndex < slides.length - 1"
         class="mobile-home-dock"
         aria-label="Быстрые действия"
       >

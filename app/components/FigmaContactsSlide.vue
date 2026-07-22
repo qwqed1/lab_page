@@ -139,6 +139,16 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
   height: max(140px, calc(215 * var(--ui)));
 }
 
+.exact-contacts-columns::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: calc(36 * var(--ui));
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
 .exact-contacts-column {
   position: absolute;
   top: 0;
@@ -164,12 +174,7 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
 }
 
 .exact-column-rule {
-  position: absolute;
-  left: 0;
-  top: calc(36 * var(--ui));
-  width: 100%;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.2);
+  display: none;
 }
 
 .exact-contacts-links,
@@ -238,11 +243,18 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
   top: 0;
   display: flex;
   flex-direction: column;
-  gap: calc(4 * var(--ui));
+  gap: calc(8 * var(--ui));
 }
 
 .exact-policy-links a {
-  text-decoration: underline;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: clamp(11px, calc(14 * var(--ui)), 14px);
+  line-height: max(1em, calc(16 * var(--ui)));
+  text-decoration: none;
+}
+
+.exact-policy-links a:hover {
+  text-decoration: none;
 }
 
 .exact-studio-credit {
@@ -311,6 +323,10 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
     height: calc(276 * var(--mu));
   }
 
+  .exact-contacts-columns::after {
+    top: calc(36 * var(--mu));
+  }
+
   .exact-contacts-info {
     left: 0;
     width: calc(102 * var(--mu));
@@ -326,6 +342,10 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
     font-size: calc(21 * var(--mu));
     line-height: calc(25 * var(--mu));
     white-space: nowrap;
+  }
+
+  .exact-site-navigation h3 {
+    color: rgba(0, 0, 0, 0.32);
   }
 
   .exact-column-rule {

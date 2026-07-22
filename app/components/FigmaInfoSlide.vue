@@ -8,7 +8,7 @@ const props = defineProps({
 
 const emit = defineEmits(['action', 'navigate'])
 
-const openFaqIndex = ref(2)
+const openFaqIndex = ref(-1)
 
 const faqItems = [
   { question: 'Это больно?', answer: 'Забор крови из вены производится тонкой иглой, процедура быстрая и практически безболезненная.' },
@@ -70,7 +70,7 @@ const toggleFaq = (index) => {
     <div class="exact-blog-grid">
       <article v-for="(card, index) in blogCards" :key="index" class="exact-blog-card">
         <div class="exact-blog-cover">
-          <img src="/assets/figma-blog-cover.png" alt="">
+          <img src="/assets/figma-allergy-block.png" alt="">
           <div class="exact-blog-tags">
             <span>~16 минут</span>
             <span>Наука</span>
@@ -266,7 +266,7 @@ button {
 .exact-blog-cover {
   position: relative;
   width: 100%;
-  aspect-ratio: 552 / 335;
+  aspect-ratio: 987 / 494;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.09);
 }
@@ -489,8 +489,8 @@ button {
 
   .exact-blog-cover {
     width: calc(388 * var(--mu));
-    height: calc(223 * var(--mu));
-    aspect-ratio: auto;
+    height: auto;
+    aspect-ratio: 987 / 494;
   }
 
   .exact-blog-tags {
