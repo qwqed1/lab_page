@@ -214,6 +214,7 @@ const activeMenuIndex = computed(() => {
 })
 
 const showMenu = computed(() => {
+  if (currentSlideIndex.value === slides.value.length - 1) return false
   return activeMenuIndex.value !== -1
 })
 

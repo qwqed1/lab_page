@@ -1,5 +1,8 @@
 <script setup>
+import { ref } from 'vue'
+
 const emit = defineEmits(['register', 'quiz', 'navigate'])
+const activeTab = ref('contacts') // 'contacts' | 'navigation'
 </script>
 
 <template>
@@ -15,9 +18,32 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
       </header>
 
       <div class="exact-contacts-columns">
-        <section class="exact-contacts-column exact-contacts-info">
-          <h3>Контакты</h3>
-          <div class="exact-column-rule" />
+        <div class="mobile-tabs-header">
+          <button
+            type="button"
+            class="tab-title"
+            :class="{ active: activeTab === 'contacts' }"
+            @click="activeTab = 'contacts'"
+          >
+            Контакты
+          </button>
+          <button
+            type="button"
+            class="tab-title"
+            :class="{ active: activeTab === 'navigation' }"
+            @click="activeTab = 'navigation'"
+          >
+            Навигация по сайту
+          </button>
+        </div>
+        <div class="exact-column-rule" />
+
+        <!-- Contacts Column (Desktop always, Mobile when activeTab === 'contacts') -->
+        <section
+          class="exact-contacts-column exact-contacts-info"
+          :class="{ 'mobile-hidden': activeTab !== 'contacts' }"
+        >
+          <h3 class="desktop-only-heading">Контакты</h3>
 
           <div class="exact-contacts-links">
             <a href="https://yandex.ru/maps/?text=Москва%2C%20Пречистенка%2030%2F2" target="_blank" rel="noopener noreferrer">
@@ -34,23 +60,28 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
           </div>
         </section>
 
-        <nav class="exact-contacts-column exact-site-navigation" aria-label="Навигация по сайту">
-          <h3>Навигация по сайту</h3>
-          <div class="exact-column-rule" />
+        <!-- Site Navigation Column (Desktop always, Mobile when activeTab === 'navigation') -->
+        <nav
+          class="exact-contacts-column exact-site-navigation"
+          :class="{ 'mobile-hidden': activeTab !== 'navigation' }"
+          aria-label="Навигация по сайту"
+        >
+          <h3 class="desktop-only-heading">Навигация по сайту</h3>
 
           <div class="exact-site-links">
-            <NuxtLink to="/search">Поиск аллергентов</NuxtLink>
-            <NuxtLink to="/demo-result">Демо-результат</NuxtLink>
-            <button type="button" @click="emit('quiz')">КВИЗ: Нужен ли вам тест</button>
-            <NuxtLink to="/personal-account">Личный кабинет</NuxtLink>
-            <button type="button" @click="emit('navigate', 'slide-2')">О лаборатории ALEXLAB</button>
-            <button type="button" @click="emit('navigate', 'slide-17')">Блог</button>
+            <button type="button" class="exact-nav-link" @click="emit('navigate', 'slide-17')">Блог</button>
+            <NuxtLink to="/personal-account" class="exact-nav-link">Личный кабинет</NuxtLink>
+            <button type="button" class="exact-nav-link" @click="emit('register')">Сдать тест</button>
+            <button type="button" class="exact-nav-link" @click="emit('quiz')">Квиз</button>
+            <NuxtLink to="/search" class="exact-nav-link">Поиск аллергенов</NuxtLink>
+            <NuxtLink to="/demo-result" class="exact-nav-link">Демо-результат</NuxtLink>
+            <button type="button" class="exact-nav-link" @click="emit('navigate', 'slide-2')">Лаборатория ALEX2</button>
           </div>
         </nav>
       </div>
 
-      <footer class="exact-contacts-footer">
-        <div class="exact-policy-links">
+      <footer class="exact-contacts-footer" :class="{ 'nav-tab-active': activeTab === 'navigation' }">
+        <div v-if="activeTab === 'contacts'" class="exact-policy-links">
           <a href="/policy">Политика конфиденциальности</a>
           <a href="/terms">Условия использования материалов сайта</a>
         </div>
@@ -131,6 +162,14 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
   flex: 0 0 auto;
 }
 
+.mobile-tabs-header {
+  display: none;
+}
+
+.desktop-only-heading {
+  display: block;
+}
+
 .exact-contacts-columns {
   position: absolute;
   left: 0;
@@ -195,6 +234,7 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
 .exact-contacts-links a,
 .exact-site-links a,
 .exact-site-links button,
+.exact-nav-link,
 .exact-policy-links a {
   width: fit-content;
   margin: 0;
@@ -214,6 +254,7 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
 .exact-contacts-links a:hover,
 .exact-site-links a:hover,
 .exact-site-links button:hover,
+.exact-nav-link:hover,
 .exact-policy-links a:hover {
   text-decoration: underline;
 }
@@ -317,10 +358,41 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
     display: none;
   }
 
+  .mobile-tabs-header {
+    display: flex;
+    gap: calc(21 * var(--mu));
+    align-items: center;
+    width: 100%;
+    height: calc(25 * var(--mu));
+  }
+
+  .tab-title {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: calc(21 * var(--mu));
+    font-weight: 400;
+    line-height: calc(25 * var(--mu));
+    color: #000;
+    opacity: 0.3;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .tab-title.active {
+    opacity: 1;
+  }
+
+  .desktop-only-heading {
+    display: none !important;
+  }
+
   .exact-contacts-columns {
     top: calc(93 * var(--mu));
     width: calc(388 * var(--mu));
-    height: calc(276 * var(--mu));
+    height: calc(328 * var(--mu));
   }
 
   .exact-contacts-columns::after {
@@ -329,12 +401,19 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
 
   .exact-contacts-info {
     left: 0;
-    width: calc(102 * var(--mu));
+    width: calc(170 * var(--mu));
+  }
+
+  .exact-contacts-info.mobile-hidden,
+  .exact-site-navigation.mobile-hidden {
+    display: none !important;
   }
 
   .exact-site-navigation {
-    left: calc(118 * var(--mu));
-    width: calc(270 * var(--mu));
+    left: 0 !important;
+    width: 100% !important;
+    top: calc(57 * var(--mu));
+    height: auto !important;
   }
 
   .exact-contacts-column h3 {
@@ -344,22 +423,40 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
     white-space: nowrap;
   }
 
-  .exact-site-navigation h3 {
-    color: rgba(0, 0, 0, 0.32);
-  }
-
   .exact-column-rule {
     top: calc(36 * var(--mu));
   }
 
-  .exact-contacts-links,
-  .exact-site-links {
+  .exact-contacts-links {
     top: calc(57 * var(--mu));
     gap: calc(8 * var(--mu));
   }
 
   .exact-site-links {
-    display: none;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: calc(2 * var(--mu)) !important;
+    position: static !important;
+    top: auto !important;
+    width: 100% !important;
+  }
+
+  .exact-nav-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: calc(37 * var(--mu));
+    padding: calc(12 * var(--mu)) 0;
+    border: 0;
+    background: transparent;
+    color: #000;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: calc(18 * var(--mu));
+    font-weight: 400;
+    line-height: 1;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
   }
 
   .exact-contacts-links a {
@@ -380,9 +477,13 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
   }
 
   .exact-contacts-footer {
-    top: calc(329 * var(--mu));
+    top: calc(513 * var(--mu));
     width: calc(388 * var(--mu));
-    height: calc(255 * var(--mu));
+    height: calc(71 * var(--mu));
+  }
+
+  .exact-contacts-footer.nav-tab-active {
+    top: calc(513 * var(--mu));
   }
 
   .exact-policy-links {
@@ -410,6 +511,7 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
     top: 0;
     width: calc(70 * var(--mu));
     height: calc(31 * var(--mu));
+    opacity: 0.3;
   }
 
   .exact-studio-credit span {
@@ -419,6 +521,8 @@ const emit = defineEmits(['register', 'quiz', 'navigate'])
     height: calc(32 * var(--mu));
     font-size: calc(14 * var(--mu));
     line-height: calc(16 * var(--mu));
+    opacity: 0.3;
+    text-transform: lowercase;
   }
 }
 
