@@ -8,27 +8,37 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
 <template>
   <section class="figma-exact-contacts" aria-labelledby="contacts-title">
     <div class="exact-contacts-body">
+      <!-- Top Title -->
       <header class="exact-contacts-header">
         <h2 id="contacts-title">Тест на аллергию ALEX² — один анализ, который даёт ответы</h2>
-
-        <button class="exact-contacts-cta" type="button" @click="emit('register')">
-          <span>Записаться на тест на аллергию</span>
-          <img src="/assets/figma-contact-arrow.svg" alt="">
-        </button>
       </header>
 
-      <div class="exact-contacts-columns" :class="`active-tab-${activeTab}`">
-        <section class="exact-contacts-column exact-contacts-info">
+      <!-- Main Layout Container -->
+      <div class="exact-contacts-columns">
+        <!-- Tab Headers Row (always visible on both desktop & mobile) -->
+        <div class="tabs-header-row">
           <h3
-            class="contacts-heading"
-            :class="{ 'is-active': activeTab === 'contacts', 'is-dimmed': activeTab === 'navigation' }"
+            class="tab-heading contacts-tab"
+            :class="{ active: activeTab === 'contacts' }"
             @click="activeTab = 'contacts'"
           >
             Контакты
           </h3>
-          <div class="exact-column-rule" />
+          <h3
+            class="tab-heading nav-tab"
+            :class="{ active: activeTab === 'navigation' }"
+            @click="activeTab = 'navigation'"
+          >
+            Навигация по сайту
+          </h3>
+        </div>
 
-          <div v-if="activeTab === 'contacts'" class="exact-contacts-links">
+        <!-- Horizontal Line under headers -->
+        <div class="exact-column-rule" />
+
+        <!-- Tab 1: Contacts Content -->
+        <div class="tab-content contacts-content" :class="{ 'is-hidden-mobile': activeTab !== 'contacts' }">
+          <div class="exact-contacts-links">
             <a href="https://yandex.ru/maps/?text=Москва%2C%20Пречистенка%2030%2F2" target="_blank" rel="noopener noreferrer">
               Москва, Пречистенка 30/2
             </a>
@@ -36,24 +46,20 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
             <a href="mailto:info@kupitkartinu.ru">info@kupitkartinu.ru</a>
           </div>
 
-          <div v-if="activeTab === 'contacts'" class="exact-contacts-legal">
+          <div class="exact-contacts-legal">
             <span>ИНН: 9703021385</span>
             <span>ОГРН: 1207700425602</span>
             <span>КПП: 770301001</span>
           </div>
-        </section>
 
-        <nav class="exact-contacts-column exact-site-navigation" aria-label="Навигация по сайту">
-          <h3
-            class="nav-heading"
-            :class="{ 'is-active': activeTab === 'navigation', 'is-dimmed': activeTab === 'contacts' }"
-            @click="activeTab = 'navigation'"
-          >
-            Навигация по сайту
-          </h3>
-          <div class="exact-column-rule" />
+          <div class="exact-policy-links">
+            <a href="/policy">Политика конфиденциальности</a>
+            <a href="/terms">Условия использования материалов сайта</a>
+          </div>
+        </div>
 
-          <!-- Navigation Links List (Desktop always visible, Mobile visible when activeTab === 'navigation') -->
+        <!-- Tab 2: Site Navigation Content -->
+        <div class="tab-content navigation-content" :class="{ 'is-hidden-mobile': activeTab !== 'navigation' }">
           <div class="exact-site-links">
             <button type="button" class="exact-nav-link" @click="emit('navigate', 'slide-17')">Блог</button>
             <NuxtLink to="/personal-account" class="exact-nav-link">Личный кабинет</NuxtLink>
@@ -63,15 +69,11 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
             <NuxtLink to="/demo-result" class="exact-nav-link">Демо-результат</NuxtLink>
             <button type="button" class="exact-nav-link" @click="emit('navigate', 'slide-2')">Лаборатория ALEX2</button>
           </div>
-        </nav>
+        </div>
       </div>
 
-      <footer class="exact-contacts-footer" :class="`active-tab-${activeTab}`">
-        <div v-if="activeTab === 'contacts'" class="exact-policy-links">
-          <a href="/policy">Политика конфиденциальности</a>
-          <a href="/terms">Условия использования материалов сайта</a>
-        </div>
-
+      <!-- Studio Credit Footer -->
+      <footer class="exact-contacts-footer">
         <div class="exact-studio-credit">
           <img src="/assets/figma-studio-logo.svg" alt="">
           <span>сайт сделан в студии «созерцание»</span>
@@ -118,36 +120,6 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   white-space: nowrap;
 }
 
-.exact-contacts-cta {
-  position: absolute;
-  left: 0;
-  top: calc(49 * var(--ui));
-  width: 100%;
-  height: calc(80 * var(--ui));
-  min-height: 48px;
-  padding: 0 calc(24 * var(--ui));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #fff;
-  font: inherit;
-  font-size: clamp(15px, calc(21 * var(--ui)), 21px);
-  font-weight: 400;
-  line-height: 1;
-  text-align: left;
-  cursor: pointer;
-}
-
-.exact-contacts-cta img {
-  width: calc(32 * var(--ui));
-  height: calc(32 * var(--ui));
-  min-width: 22px;
-  min-height: 22px;
-  flex: 0 0 auto;
-}
-
 .exact-contacts-columns {
   position: absolute;
   left: 0;
@@ -156,35 +128,15 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   height: max(140px, calc(215 * var(--ui)));
 }
 
-.exact-contacts-columns::after {
-  content: '';
+.tabs-header-row {
+  display: flex;
   position: absolute;
   left: 0;
-  top: calc(36 * var(--ui));
-  width: 100%;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.exact-contacts-column {
-  position: absolute;
   top: 0;
-  height: 100%;
+  width: 100%;
 }
 
-.exact-contacts-info {
-  left: 0;
-  width: calc(299 * var(--ux));
-}
-
-.exact-site-navigation {
-  left: calc(331 * var(--ux));
-  width: calc(784 * var(--ux));
-}
-
-.contacts-heading,
-.nav-heading {
-  height: max(18px, calc(25 * var(--ui)));
+.tab-heading {
   margin: 0;
   font-size: clamp(15px, calc(21 * var(--ui)), 21px);
   font-weight: 400;
@@ -193,42 +145,85 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   cursor: pointer;
 }
 
+.contacts-tab {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.nav-tab {
+  position: absolute;
+  left: calc(331 * var(--ux));
+  top: 0;
+}
+
 .exact-column-rule {
-  display: none;
+  position: absolute;
+  left: 0;
+  top: calc(36 * var(--ui));
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.tab-content {
+  position: absolute;
+  top: calc(57 * var(--ui));
+}
+
+.contacts-content {
+  left: 0;
+  width: calc(299 * var(--ux));
+}
+
+.navigation-content {
+  left: calc(331 * var(--ux));
+  width: calc(784 * var(--ux));
 }
 
 .exact-contacts-links,
-.exact-site-links,
-.exact-contacts-legal {
-  position: absolute;
-  left: 0;
+.exact-contacts-legal,
+.exact-policy-links {
   display: flex;
   flex-direction: column;
 }
 
-.exact-contacts-links,
-.exact-site-links {
-  top: calc(57 * var(--ui));
+.exact-contacts-links {
   gap: calc(8 * var(--ui));
+  margin-bottom: calc(16 * var(--ui));
 }
 
 .exact-contacts-links a,
-.exact-site-links a,
-.exact-site-links button,
 .exact-policy-links a {
   width: fit-content;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
   color: inherit;
   font: inherit;
   font-size: clamp(13px, calc(16 * var(--ui)), 16px);
   font-weight: 400;
   line-height: max(1em, calc(19 * var(--ui)));
-  text-align: left;
   text-decoration: none;
-  cursor: pointer;
+}
+
+.exact-contacts-links a:hover,
+.exact-policy-links a:hover,
+.exact-nav-link:hover {
+  text-decoration: underline;
+}
+
+.exact-contacts-legal {
+  gap: calc(8 * var(--ui));
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.exact-contacts-legal span {
+  font-size: clamp(11px, calc(14 * var(--ui)), 14px);
+  line-height: max(1em, calc(16 * var(--ui)));
+}
+
+.exact-site-links {
+  display: flex;
+  flex-direction: column;
+  gap: calc(8 * var(--ui));
 }
 
 .exact-nav-link {
@@ -247,25 +242,6 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   cursor: pointer;
 }
 
-.exact-contacts-links a:hover,
-.exact-site-links a:hover,
-.exact-site-links button:hover,
-.exact-nav-link:hover,
-.exact-policy-links a:hover {
-  text-decoration: underline;
-}
-
-.exact-contacts-legal {
-  top: calc(151 * var(--ui));
-  gap: calc(8 * var(--ui));
-  color: rgba(0, 0, 0, 0.4);
-}
-
-.exact-contacts-legal span {
-  font-size: clamp(11px, calc(14 * var(--ui)), 14px);
-  line-height: max(1em, calc(16 * var(--ui)));
-}
-
 .exact-contacts-footer {
   position: absolute;
   left: 0;
@@ -275,23 +251,7 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
 }
 
 .exact-policy-links {
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  gap: calc(8 * var(--ui));
-}
-
-.exact-policy-links a {
-  color: rgba(0, 0, 0, 0.4);
-  font-size: clamp(11px, calc(14 * var(--ui)), 14px);
-  line-height: max(1em, calc(16 * var(--ui)));
-  text-decoration: none;
-}
-
-.exact-policy-links a:hover {
-  text-decoration: none;
+  display: none; /* Mobile layout uses contacts-content policy links */
 }
 
 .exact-studio-credit {
@@ -326,6 +286,10 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   text-transform: uppercase;
 }
 
+/* ==========================================================================
+   MOBILE LAYOUT (<= 700px) — MATCHES FIGMA FRAME 1 & FRAME 2 EXACTLY
+   ========================================================================== */
+
 @media (max-width: 700px) {
   .figma-exact-contacts {
     --mu: calc(100cqw / 420);
@@ -350,102 +314,66 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     white-space: normal;
   }
 
-  .exact-contacts-cta {
-    display: none;
-  }
-
   .exact-contacts-columns {
     top: calc(93 * var(--mu));
     width: calc(388 * var(--mu));
-    height: calc(276 * var(--mu));
-  }
-
-  .exact-contacts-columns.active-tab-navigation {
     height: calc(328 * var(--mu));
   }
 
-  .exact-contacts-columns::after {
-    top: calc(36 * var(--mu));
-  }
-
-  .exact-contacts-info {
+  .tabs-header-row {
+    position: absolute;
     left: 0;
-    width: calc(102 * var(--mu));
-  }
-
-  .exact-site-navigation {
-    left: calc(118 * var(--mu));
-    width: calc(270 * var(--mu));
-  }
-
-  .contacts-heading,
-  .nav-heading {
+    top: 0;
+    width: calc(388 * var(--mu));
     height: calc(25 * var(--mu));
+    display: flex;
+    gap: calc(21 * var(--mu));
+  }
+
+  .tab-heading {
+    position: static;
     font-size: calc(21 * var(--mu));
     line-height: calc(25 * var(--mu));
-    white-space: nowrap;
-    cursor: pointer;
-  }
-
-  .contacts-heading.is-dimmed,
-  .nav-heading.is-dimmed {
-    color: rgba(0, 0, 0, 0.32);
-  }
-
-  .contacts-heading.is-active,
-  .nav-heading.is-active {
+    font-weight: 400;
     color: #000000;
+    opacity: 0.3;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+  }
+
+  .tab-heading.active {
+    opacity: 1;
   }
 
   .exact-column-rule {
+    position: absolute;
+    left: 0;
     top: calc(36 * var(--mu));
+    width: calc(388 * var(--mu));
+    height: 1px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .tab-content {
+    position: absolute;
+    left: 0;
+    top: calc(57 * var(--mu));
+    width: calc(388 * var(--mu));
+  }
+
+  .is-hidden-mobile {
+    display: none !important;
+  }
+
+  .contacts-content {
+    display: flex;
+    flex-direction: column;
   }
 
   .exact-contacts-links {
-    top: calc(57 * var(--mu));
     gap: calc(8 * var(--mu));
-  }
-
-  .exact-site-links {
-    display: none;
-  }
-
-  .active-tab-navigation .exact-site-navigation {
-    left: 0 !important;
-    width: 100% !important;
-  }
-
-  .active-tab-navigation .exact-contacts-info {
-    width: auto !important;
-  }
-
-  .active-tab-navigation .exact-site-links {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: calc(2 * var(--mu)) !important;
-    position: absolute !important;
-    left: 0 !important;
-    top: calc(57 * var(--mu)) !important;
-    width: 100% !important;
-  }
-
-  .exact-nav-link {
-    display: flex !important;
-    align-items: center !important;
-    width: 100% !important;
-    height: calc(37 * var(--mu)) !important;
-    padding: calc(12 * var(--mu)) 0 !important;
-    margin: 0 !important;
-    border: 0 !important;
-    background: transparent !important;
-    color: #000000 !important;
-    font-family: 'Roboto', Arial, sans-serif !important;
-    font-size: calc(18 * var(--mu)) !important;
-    font-weight: 400 !important;
-    line-height: 1 !important;
-    text-align: left !important;
-    text-decoration: none !important;
-    cursor: pointer !important;
+    margin-bottom: calc(24 * var(--mu));
   }
 
   .exact-contacts-links a {
@@ -455,8 +383,8 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   }
 
   .exact-contacts-legal {
-    top: calc(151 * var(--mu));
     gap: calc(8 * var(--mu));
+    margin-bottom: calc(32 * var(--mu));
   }
 
   .exact-contacts-legal span {
@@ -465,25 +393,55 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     white-space: nowrap;
   }
 
-  .exact-contacts-footer {
-    top: calc(329 * var(--mu));
-    width: calc(388 * var(--mu));
-    height: calc(255 * var(--mu));
-  }
-
-  .exact-contacts-footer.active-tab-navigation {
-    top: calc(513 * var(--mu));
-    height: calc(71 * var(--mu));
-  }
-
   .exact-policy-links {
+    display: flex;
+    flex-direction: column;
     gap: calc(8 * var(--mu));
   }
 
   .exact-policy-links a {
     font-size: calc(14 * var(--mu));
     line-height: calc(16 * var(--mu));
+    color: rgba(0, 0, 0, 0.4);
     white-space: nowrap;
+  }
+
+  .navigation-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .exact-site-links {
+    display: flex;
+    flex-direction: column;
+    gap: calc(2 * var(--mu));
+  }
+
+  .exact-nav-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: calc(37 * var(--mu));
+    padding: calc(12 * var(--mu)) 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    color: #000000;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: calc(18 * var(--mu));
+    font-weight: 400;
+    line-height: 1;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .exact-contacts-footer {
+    position: absolute;
+    left: 0;
+    top: calc(513 * var(--mu));
+    width: calc(388 * var(--mu));
+    height: calc(71 * var(--mu));
   }
 
   .exact-studio-credit {
@@ -501,6 +459,7 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     top: 0;
     width: calc(70 * var(--mu));
     height: calc(31 * var(--mu));
+    opacity: 0.3;
   }
 
   .exact-studio-credit span {
@@ -510,6 +469,28 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     height: calc(32 * var(--mu));
     font-size: calc(14 * var(--mu));
     line-height: calc(16 * var(--mu));
+    opacity: 0.3;
+    text-transform: uppercase;
+  }
+}
+
+@media (min-width: 701px) {
+  .is-hidden-mobile {
+    display: block !important;
+  }
+
+  .contacts-tab,
+  .nav-tab {
+    opacity: 1 !important;
+    cursor: default;
+  }
+
+  .exact-policy-links {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+    gap: calc(8 * var(--ui));
   }
 }
 
