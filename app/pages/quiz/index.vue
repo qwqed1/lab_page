@@ -9,7 +9,7 @@
     <main class="content-container quiz-page-content">
       <!-- Mobile Top Navigation Bar -->
       <div class="mobile-top-bar home-back-area">
-        <HomeBackLink stretched />
+        <HomeBackLink stretched show-mobile-label />
         <span class="mobile-top-title">Квиз</span>
       </div>
 

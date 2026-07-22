@@ -3,6 +3,10 @@ defineProps({
   stretched: {
     type: Boolean,
     default: false
+  },
+  showMobileLabel: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
@@ -11,7 +15,10 @@ defineProps({
   <NuxtLink
     to="/"
     class="home-back-link"
-    :class="{ 'home-back-link--stretched': stretched }"
+    :class="{
+      'home-back-link--stretched': stretched,
+      'home-back-link--mobile-label': showMobileLabel
+    }"
     aria-label="На главную"
   >
     <span class="home-back-link__icon" aria-hidden="true">
@@ -67,6 +74,10 @@ defineProps({
 @media (max-width: 1024px) {
   .home-back-link__label {
     display: none;
+  }
+
+  .home-back-link--mobile-label .home-back-link__label {
+    display: inline;
   }
 }
 </style>
