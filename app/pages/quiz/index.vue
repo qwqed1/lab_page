@@ -17,7 +17,7 @@
         <HomeBackLink stretched />
       </header>
 
-      <div class="card-container" :class="{ 'question-layout': step === 'quiz' }">
+      <div ref="cardContainer" class="card-container" :class="{ 'question-layout': step === 'quiz' }">
         <Transition name="fade" mode="out-in">
           
           <!-- STATE: INTRO -->
@@ -63,7 +63,7 @@
             <div class="options-list">
               <div 
                 v-for="(option, idx) in currentQuestion.options" 
-                :key="idx" 
+                :key="`${currentQuestionIndex}-${idx}`"
                 class="option-row"
                 :class="{ 'selected': answers[currentQuestionIndex] === idx }"
                 @click="selectOption(idx)"
@@ -106,13 +106,14 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 import { useRouter } from '#app'
 
 const router = useRouter()
 
 const step = ref('intro')
 const currentQuestionIndex = ref(0)
+const cardContainer = ref(null)
 
 const questions = [
   {
@@ -205,9 +206,11 @@ const resetQuiz = () => {
 
 const selectOption = (idx) => {
   answers.value[currentQuestionIndex.value] = idx
-  setTimeout(() => {
+  setTimeout(async () => {
     if (currentQuestionIndex.value < questions.length - 1) {
       currentQuestionIndex.value++
+      await nextTick()
+      cardContainer.value?.scrollTo({ top: 0, behavior: 'auto' })
     } else {
       step.value = 'result'
     }
@@ -445,8 +448,10 @@ const redirectToCart = () => {
   backdrop-filter: blur(4px);
 }
 
-.option-row:hover {
-  background: rgba(245, 245, 245, 0.9);
+@media (hover: hover) and (pointer: fine) {
+  .option-row:hover {
+    background: rgba(245, 245, 245, 0.9);
+  }
 }
 
 .option-row.selected {
@@ -585,7 +590,10 @@ const redirectToCart = () => {
 
   .card-container.question-layout {
     padding-top: 55.5px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   .quiz-card-wrapper {
