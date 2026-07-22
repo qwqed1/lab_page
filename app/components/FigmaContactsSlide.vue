@@ -17,35 +17,18 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
         </button>
       </header>
 
-      <div class="exact-contacts-columns">
-        <div class="mobile-tabs-header">
-          <button
-            type="button"
-            class="tab-title"
-            :class="{ active: activeTab === 'contacts' }"
+      <div class="exact-contacts-columns" :class="`active-tab-${activeTab}`">
+        <section class="exact-contacts-column exact-contacts-info">
+          <h3
+            class="contacts-heading"
+            :class="{ 'is-active': activeTab === 'contacts', 'is-dimmed': activeTab === 'navigation' }"
             @click="activeTab = 'contacts'"
           >
             Контакты
-          </button>
-          <button
-            type="button"
-            class="tab-title"
-            :class="{ active: activeTab === 'navigation' }"
-            @click="activeTab = 'navigation'"
-          >
-            Навигация по сайту
-          </button>
-        </div>
-        <div class="exact-column-rule" />
+          </h3>
+          <div class="exact-column-rule" />
 
-        <!-- Contacts Column (Desktop always, Mobile when activeTab === 'contacts') -->
-        <section
-          class="exact-contacts-column exact-contacts-info"
-          :class="{ 'mobile-hidden': activeTab !== 'contacts' }"
-        >
-          <h3 class="desktop-only-heading">Контакты</h3>
-
-          <div class="exact-contacts-links">
+          <div v-if="activeTab === 'contacts'" class="exact-contacts-links">
             <a href="https://yandex.ru/maps/?text=Москва%2C%20Пречистенка%2030%2F2" target="_blank" rel="noopener noreferrer">
               Москва, Пречистенка 30/2
             </a>
@@ -53,21 +36,24 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
             <a href="mailto:info@kupitkartinu.ru">info@kupitkartinu.ru</a>
           </div>
 
-          <div class="exact-contacts-legal">
+          <div v-if="activeTab === 'contacts'" class="exact-contacts-legal">
             <span>ИНН: 9703021385</span>
             <span>ОГРН: 1207700425602</span>
             <span>КПП: 770301001</span>
           </div>
         </section>
 
-        <!-- Site Navigation Column (Desktop always, Mobile when activeTab === 'navigation') -->
-        <nav
-          class="exact-contacts-column exact-site-navigation"
-          :class="{ 'mobile-hidden': activeTab !== 'navigation' }"
-          aria-label="Навигация по сайту"
-        >
-          <h3 class="desktop-only-heading">Навигация по сайту</h3>
+        <nav class="exact-contacts-column exact-site-navigation" aria-label="Навигация по сайту">
+          <h3
+            class="nav-heading"
+            :class="{ 'is-active': activeTab === 'navigation', 'is-dimmed': activeTab === 'contacts' }"
+            @click="activeTab = 'navigation'"
+          >
+            Навигация по сайту
+          </h3>
+          <div class="exact-column-rule" />
 
+          <!-- Navigation Links List (Desktop always visible, Mobile visible when activeTab === 'navigation') -->
           <div class="exact-site-links">
             <button type="button" class="exact-nav-link" @click="emit('navigate', 'slide-17')">Блог</button>
             <NuxtLink to="/personal-account" class="exact-nav-link">Личный кабинет</NuxtLink>
@@ -80,7 +66,7 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
         </nav>
       </div>
 
-      <footer class="exact-contacts-footer" :class="{ 'nav-tab-active': activeTab === 'navigation' }">
+      <footer class="exact-contacts-footer" :class="`active-tab-${activeTab}`">
         <div v-if="activeTab === 'contacts'" class="exact-policy-links">
           <a href="/policy">Политика конфиденциальности</a>
           <a href="/terms">Условия использования материалов сайта</a>
@@ -162,14 +148,6 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   flex: 0 0 auto;
 }
 
-.mobile-tabs-header {
-  display: none;
-}
-
-.desktop-only-heading {
-  display: block;
-}
-
 .exact-contacts-columns {
   position: absolute;
   left: 0;
@@ -204,12 +182,15 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   width: calc(784 * var(--ux));
 }
 
-.exact-contacts-column h3 {
+.contacts-heading,
+.nav-heading {
   height: max(18px, calc(25 * var(--ui)));
   margin: 0;
   font-size: clamp(15px, calc(21 * var(--ui)), 21px);
   font-weight: 400;
   line-height: max(18px, calc(25 * var(--ui)));
+  color: #000;
+  cursor: pointer;
 }
 
 .exact-column-rule {
@@ -373,40 +354,13 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     display: none;
   }
 
-  .mobile-tabs-header {
-    display: flex;
-    gap: calc(21 * var(--mu));
-    align-items: center;
-    width: 100%;
-    height: calc(25 * var(--mu));
-  }
-
-  .tab-title {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    background: transparent;
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: calc(21 * var(--mu));
-    font-weight: 400;
-    line-height: calc(25 * var(--mu));
-    color: #000;
-    opacity: 0.3;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-
-  .tab-title.active {
-    opacity: 1;
-  }
-
-  .desktop-only-heading {
-    display: none !important;
-  }
-
   .exact-contacts-columns {
     top: calc(93 * var(--mu));
     width: calc(388 * var(--mu));
+    height: calc(276 * var(--mu));
+  }
+
+  .exact-contacts-columns.active-tab-navigation {
     height: calc(328 * var(--mu));
   }
 
@@ -416,26 +370,31 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
 
   .exact-contacts-info {
     left: 0;
-    width: calc(170 * var(--mu));
-  }
-
-  .exact-contacts-info.mobile-hidden,
-  .exact-site-navigation.mobile-hidden {
-    display: none !important;
+    width: calc(102 * var(--mu));
   }
 
   .exact-site-navigation {
-    left: 0 !important;
-    width: 100% !important;
-    top: calc(57 * var(--mu));
-    height: auto !important;
+    left: calc(118 * var(--mu));
+    width: calc(270 * var(--mu));
   }
 
-  .exact-contacts-column h3 {
+  .contacts-heading,
+  .nav-heading {
     height: calc(25 * var(--mu));
     font-size: calc(21 * var(--mu));
     line-height: calc(25 * var(--mu));
     white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .contacts-heading.is-dimmed,
+  .nav-heading.is-dimmed {
+    color: rgba(0, 0, 0, 0.32);
+  }
+
+  .contacts-heading.is-active,
+  .nav-heading.is-active {
+    color: #000000;
   }
 
   .exact-column-rule {
@@ -448,11 +407,25 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   }
 
   .exact-site-links {
+    display: none;
+  }
+
+  .active-tab-navigation .exact-site-navigation {
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  .active-tab-navigation .exact-contacts-info {
+    width: auto !important;
+  }
+
+  .active-tab-navigation .exact-site-links {
     display: flex !important;
     flex-direction: column !important;
     gap: calc(2 * var(--mu)) !important;
-    position: static !important;
-    top: auto !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: calc(57 * var(--mu)) !important;
     width: 100% !important;
   }
 
@@ -493,13 +466,14 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   }
 
   .exact-contacts-footer {
-    top: calc(513 * var(--mu));
+    top: calc(329 * var(--mu));
     width: calc(388 * var(--mu));
-    height: calc(71 * var(--mu));
+    height: calc(255 * var(--mu));
   }
 
-  .exact-contacts-footer.nav-tab-active {
+  .exact-contacts-footer.active-tab-navigation {
     top: calc(513 * var(--mu));
+    height: calc(71 * var(--mu));
   }
 
   .exact-policy-links {
@@ -527,7 +501,6 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     top: 0;
     width: calc(70 * var(--mu));
     height: calc(31 * var(--mu));
-    opacity: 0.3;
   }
 
   .exact-studio-credit span {
@@ -537,8 +510,6 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     height: calc(32 * var(--mu));
     font-size: calc(14 * var(--mu));
     line-height: calc(16 * var(--mu));
-    opacity: 0.3;
-    text-transform: lowercase;
   }
 }
 
