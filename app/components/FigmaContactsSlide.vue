@@ -459,7 +459,6 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     top: 0;
     width: calc(70 * var(--mu));
     height: calc(31 * var(--mu));
-    opacity: 0.3;
   }
 
   .exact-studio-credit span {
@@ -469,7 +468,7 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     height: calc(32 * var(--mu));
     font-size: calc(14 * var(--mu));
     line-height: calc(16 * var(--mu));
-    opacity: 0.3;
+    color: rgba(0, 0, 0, 0.32);
     text-transform: uppercase;
   }
 }
