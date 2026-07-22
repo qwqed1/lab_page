@@ -212,7 +212,7 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
 
 .exact-contacts-legal {
   gap: calc(8 * var(--ui));
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .exact-contacts-legal span {
@@ -261,7 +261,7 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   bottom: 0;
   width: calc(196 * var(--ux));
   height: calc(28 * var(--ui));
-  color: rgba(0, 0, 0, 0.32);
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .exact-studio-credit img {
@@ -402,7 +402,7 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .exact-policy-links a {
     font-size: calc(14 * var(--mu));
     line-height: calc(16 * var(--mu));
-    color: rgba(0, 0, 0, 0.4);
+    color: rgba(0, 0, 0, 0.3);
     white-space: nowrap;
   }
 
@@ -468,7 +468,7 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     height: calc(32 * var(--mu));
     font-size: calc(14 * var(--mu));
     line-height: calc(16 * var(--mu));
-    color: rgba(0, 0, 0, 0.32);
+    color: rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
   }
 }
