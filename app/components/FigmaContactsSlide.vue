@@ -234,7 +234,6 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
 .exact-contacts-links a,
 .exact-site-links a,
 .exact-site-links button,
-.exact-nav-link,
 .exact-policy-links a {
   width: fit-content;
   margin: 0;
@@ -246,6 +245,22 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   font-size: clamp(13px, calc(16 * var(--ui)), 16px);
   font-weight: 400;
   line-height: max(1em, calc(19 * var(--ui)));
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.exact-nav-link {
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #000000;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: clamp(15px, calc(18 * var(--ui)), 18px);
+  font-weight: 400;
+  line-height: max(1em, calc(21 * var(--ui)));
   text-align: left;
   text-decoration: none;
   cursor: pointer;
@@ -442,21 +457,22 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   }
 
   .exact-nav-link {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: calc(37 * var(--mu));
-    padding: calc(12 * var(--mu)) 0;
-    border: 0;
-    background: transparent;
-    color: #000;
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: calc(18 * var(--mu));
-    font-weight: 400;
-    line-height: 1;
-    text-align: left;
-    text-decoration: none;
-    cursor: pointer;
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: calc(37 * var(--mu)) !important;
+    padding: calc(12 * var(--mu)) 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: #000000 !important;
+    font-family: 'Roboto', Arial, sans-serif !important;
+    font-size: calc(18 * var(--mu)) !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+    text-align: left !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
   }
 
   .exact-contacts-links a {
