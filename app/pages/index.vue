@@ -385,16 +385,30 @@ const handleKeydown = (e) => {
 }
 
 let touchStartY = 0
+let touchStartX = 0
 const handleTouchStart = (e) => {
+  if (!e.touches || !e.touches.length) return
   touchStartY = e.touches[0].clientY
+  touchStartX = e.touches[0].clientX
+}
+
+const handleTouchMove = (e) => {
+  if (isMobileViewport.value && !mobileMenuOpen.value) {
+    if (e.cancelable) {
+      e.preventDefault()
+    }
+  }
 }
 
 const handleTouchEnd = (e) => {
+  if (!e.changedTouches || !e.changedTouches.length) return
   const touchEndY = e.changedTouches[0].clientY
-  const diff = touchStartY - touchEndY
+  const touchEndX = e.changedTouches[0].clientX
+  const diffY = touchStartY - touchEndY
+  const diffX = touchStartX - touchEndX
 
-  if (Math.abs(diff) > 50) {
-    if (diff > 0) goNext()
+  if (Math.abs(diffY) > 40 && Math.abs(diffY) > Math.abs(diffX)) {
+    if (diffY > 0) goNext()
     else goPrev()
   }
 }
@@ -918,6 +932,7 @@ onMounted(() => {
 
     container.addEventListener('wheel', handleWheel, { passive: false })
     container.addEventListener('touchstart', handleTouchStart, { passive: true })
+    container.addEventListener('touchmove', handleTouchMove, { passive: false })
     container.addEventListener('touchend', handleTouchEnd, { passive: true })
     window.addEventListener('keydown', handleKeydown)
 
@@ -939,6 +954,7 @@ onUnmounted(() => {
   if (container) {
     container.removeEventListener('wheel', handleWheel)
     container.removeEventListener('touchstart', handleTouchStart)
+    container.removeEventListener('touchmove', handleTouchMove)
     container.removeEventListener('touchend', handleTouchEnd)
   }
   window.removeEventListener('keydown', handleKeydown)
