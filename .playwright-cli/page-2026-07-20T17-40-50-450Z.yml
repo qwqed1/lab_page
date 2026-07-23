@@ -1,0 +1,23 @@
+- generic [active] [ref=f2e1]:
+  - complementary "Навигация по сайту" [ref=f2e4]:
+    - generic [ref=f2e5]:
+      - generic [ref=f2e6]:
+        - img "ALEX Allergy Xplorer" [ref=f2e7]
+        - paragraph [ref=f2e8]: Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
+      - button "Записаться на тест на аллергию" [ref=f2e9] [cursor=pointer]
+    - generic [ref=f2e12]:
+      - button "Список аллергенов" [ref=f2e13] [cursor=pointer]:
+        - heading "Список аллергенов" [level=3] [ref=f2e16]
+      - button "Посмотреть демо-результат" [ref=f2e18] [cursor=pointer]:
+        - heading "Посмотреть демо-результат" [level=3] [ref=f2e21]
+    - button "Нужен ли вам тест на аллергены?" [ref=f2e23] [cursor=pointer]
+    - button "Личный кабинет" [ref=f2e27] [cursor=pointer]
+    - button "О поставщике ALEX LAB" [ref=f2e32] [cursor=pointer]
+    - button "Для врачей" [ref=f2e36] [cursor=pointer]
+    - button "Закрыть" [ref=f2e39] [cursor=pointer]
+  - generic [ref=f2e42]:
+    - button "Toggle Nuxt DevTools" [ref=f2e43] [cursor=pointer]
+    - generic "Page load time" [ref=f2e47]:
+      - generic [ref=f2e48]: "62"
+      - generic [ref=f2e49]: ms
+    - button "Toggle Component Inspector" [ref=f2e51] [cursor=pointer]
