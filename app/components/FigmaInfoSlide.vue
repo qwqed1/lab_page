@@ -189,7 +189,6 @@ button {
   min-height: 19px;
 }
 
-/* FAQ — node 39:2029 */
 .exact-faq-list {
   position: absolute;
   left: calc(64 * var(--ux));
@@ -202,6 +201,14 @@ button {
   display: flex;
   flex-direction: column;
   gap: calc(32 * var(--uy));
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.exact-faq-list::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .exact-faq-item {
@@ -671,6 +678,147 @@ button {
 
   .exact-howto-step-3 .exact-howto-text p {
     line-height: calc(20 * var(--mu));
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1024px) {
+  .exact-section-title {
+    left: 32px;
+    top: 180px;
+    width: calc(100% - 64px);
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  /* FAQ Tablet Styles */
+  .exact-faq-list {
+    left: 32px;
+    right: 32px;
+    top: auto;
+    bottom: 180px;
+    width: auto;
+    max-height: calc(100cqh - 420px);
+    overflow-y: auto;
+    gap: 18px;
+  }
+
+  .exact-faq-question {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .exact-faq-answer {
+    width: 100%;
+    max-width: 600px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  /* Blog Tablet Styles */
+  .exact-blog-grid {
+    left: 32px;
+    top: 250px;
+    width: calc(100% - 64px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .exact-blog-tags span {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .exact-blog-author-name {
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  .exact-blog-author-role {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .exact-blog-card-title {
+    font-size: 21px;
+    line-height: 24px;
+  }
+
+  .exact-blog-description {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .exact-bottom-link {
+    left: 32px;
+    right: 32px;
+    bottom: 96px;
+    width: auto;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .exact-faq-slide .exact-bottom-link {
+    bottom: 100px;
+  }
+
+  /* How-to Tablet Styles */
+  .exact-howto-image {
+    left: 32px;
+    top: 250px;
+    width: min(calc(100% - 64px), 520px);
+    height: auto;
+    aspect-ratio: 627 / 360;
+    max-height: 280px;
+    object-fit: cover;
+  }
+
+  .exact-howto-copy,
+  .exact-howto-step-2 .exact-howto-copy,
+  .exact-howto-step-3 .exact-howto-copy {
+    left: 32px;
+    top: 560px;
+    width: min(calc(100% - 64px), 520px);
+    gap: 16px;
+  }
+
+  .exact-howto-step-3 .exact-howto-copy {
+    top: 560px;
+    gap: 14px;
+  }
+
+  .exact-step-indicator {
+    width: 144px;
+    height: 48px;
+  }
+
+  .exact-step-indicator > button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .exact-step-indicator i {
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+  }
+
+  .exact-howto-text {
+    gap: 12px;
+  }
+
+  .exact-howto-text h3,
+  .exact-howto-step-1 .exact-howto-text h3,
+  .exact-howto-step-2 .exact-howto-text h3,
+  .exact-howto-step-3 .exact-howto-text h3 {
+    width: 100%;
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .exact-howto-text p {
+    width: 100%;
+    font-size: 18px;
+    line-height: 22px;
   }
 }
 

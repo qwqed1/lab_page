@@ -161,6 +161,16 @@ const handleSubmit = async () => {
   gap: 48px;
 }
 
+@media (max-width: 1024px) {
+  .page-layout {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 @media (max-width: 600px) {
   .form-container {
     width: 100%;

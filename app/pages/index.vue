@@ -96,8 +96,9 @@ const navigateToExternal = (url) => {
 const openCart = () => navigateTo('/cart')
 
 const PHONE_VIDEO_ROOT = '/videos/PHONE%20NAREZKA'
-const phoneVideo = (index) => `${PHONE_VIDEO_ROOT}/video/s${index}.mp4`
-const phoneReverseVideo = (index) => `${PHONE_VIDEO_ROOT}/rev/s${index}r.mp4`
+const MOB_VIDEO_ROOT = '/videos/MOB'
+const phoneVideo = (index) => index >= 4 ? `${MOB_VIDEO_ROOT}/s${index}.mp4` : `${PHONE_VIDEO_ROOT}/video/s${index}.mp4`
+const phoneReverseVideo = (index) => index >= 4 ? `${MOB_VIDEO_ROOT}/s${index}r.mp4` : `${PHONE_VIDEO_ROOT}/rev/s${index}r.mp4`
 const isMobileViewport = ref(false)
 const mobileMenuOpen = ref(false)
 const mobileSectionMenuExpanded = ref(false)
@@ -126,13 +127,13 @@ const slides = ref([
   
   // Advantages
   { id: 'slide-3',  step: '1', totalSteps: '5', label: 'Преимущества', title: 'Всё за один сеанс', subtitle: 'За одно исследование аллергочип проверяет реакцию организма сразу на 300 различных веществ: пыльцу деревьев и трав, домашнюю пыль, плесень, шерсть животных, продукты питания (молоко, яйца, орехи, рыбу, морепродукты, злаки, фрукты и овощи), а также яды пчёл и ос, латекс и многое другое.', direction: 'down', video: '/videos/scroll/forward/scr3.mp4',  reverseVideo: '/videos/scroll/reverse/scrr3-fixed.mp4', mobileVideo: phoneVideo(3), mobileReverseVideo: phoneReverseVideo(3) },
-  { id: 'slide-4',  step: '2', totalSteps: '5', label: 'Преимущества', title: 'Точечный результат', subtitle: 'В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.', direction: 'right', video: '/videos/scroll/forward/scr4.mp4', reverseVideo: '/videos/scroll/reverse/scrr4.mp4', mobileVideo: phoneVideo(4), mobileReverseVideo: phoneReverseVideo(4) },
-  { id: 'slide-5',  step: '3', totalSteps: '5', label: 'Преимущества', title: 'Отчёт и консультация', subtitle: 'Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.', direction: 'right', video: '/videos/scroll/forward/scr4-5.mp4', reverseVideo: '/videos/scroll/reverse/scrr4-5.mp4', mobileVideo: phoneVideo(5), mobileReverseVideo: phoneReverseVideo(5) },
-  { id: 'slide-6',  step: '4', totalSteps: '5', label: 'Преимущества', title: 'Без диет и отмены лекарств', subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.', direction: 'right', video: '/videos/scroll/forward/scr5.mp4', reverseVideo: '/videos/scroll/reverse/scrr5.mp4', mobileVideo: phoneVideo(6), mobileReverseVideo: phoneReverseVideo(6) },
-  { id: 'slide-7',  step: '5', totalSteps: '5', label: 'Преимущества', title: 'Подходит детям', subtitle: 'Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.', direction: 'right', video: '/videos/scroll/forward/scr6.mp4', reverseVideo: '/videos/scroll/reverse/scrr6.mp4', mobileVideo: phoneVideo(7), mobileReverseVideo: phoneReverseVideo(7) },
+  { id: 'slide-4',  step: '2', totalSteps: '5', label: 'Преимущества', title: 'Точечный результат', subtitle: 'В природе многие растения и продукты содержат похожие белки. Из-за этого стандартные анализы нередко показывают «лишние» реакции — организм как будто реагирует на десятки всего, хотя настоящий виновник один. ALEX² отличает истинную аллергию от таких совпадений.', direction: 'right', video: '/videos/PC/s4.mp4', reverseVideo: '/videos/PC/s4r.mp4', mobileVideo: phoneVideo(4), mobileReverseVideo: phoneReverseVideo(4) },
+  { id: 'slide-5',  step: '3', totalSteps: '5', label: 'Преимущества', title: 'Отчёт и консультация', subtitle: 'Мы не бросаем человека с непонятными результатами — расшифруем и объясним человеческим языком.', direction: 'right', video: '/videos/PC/s4.5.mp4', reverseVideo: '/videos/PC/s4.5r.mp4', mobileVideo: phoneVideo(5), mobileReverseVideo: phoneReverseVideo(5) },
+  { id: 'slide-6',  step: '4', totalSteps: '5', label: 'Преимущества', title: 'Без диет и отмены лекарств', subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом. Специальной подготовки не нужно — достаточно не есть 3 часа до сдачи.', direction: 'right', video: '/videos/PC/s5.mp4', reverseVideo: '/videos/PC/s5r.mp4', mobileVideo: phoneVideo(6), mobileReverseVideo: phoneReverseVideo(6) },
+  { id: 'slide-7',  step: '5', totalSteps: '5', label: 'Преимущества', title: 'Подходит детям', subtitle: 'Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.', direction: 'right', video: '/videos/PC/s6.mp4', reverseVideo: '/videos/PC/s6r.mp4', mobileVideo: phoneVideo(7), mobileReverseVideo: phoneReverseVideo(7) },
   
   // The short scr7 transition moves from the last advantage into the results intro.
-  { id: 'slide-8',  label: 'О результатах', title: 'Что вы получите по итогам теста на аллергию', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr7.mp4', reverseVideo: '/videos/scroll/reverse/scrr7.mp4', mobileVideo: phoneVideo(8), mobileReverseVideo: phoneReverseVideo(8), holdVideo: true },
+  { id: 'slide-8',  label: 'О результатах', title: 'Что вы получите по итогам теста на аллергию', subtitle: '', direction: 'down', video: '/videos/PC/s7.mp4', reverseVideo: '/videos/PC/s7r.mp4', mobileVideo: phoneVideo(8), mobileReverseVideo: phoneReverseVideo(8), holdVideo: true },
   
   // Results Steps
   { id: 'slide-9',  step: '1', totalSteps: '3', label: 'О результатах', title: 'Аллерго-паспорт', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'down', video: '/videos/scroll/forward/scr8.mp4',  reverseVideo: '/videos/scroll/reverse/scrr8.mp4', mobileVideo: phoneVideo(9), mobileReverseVideo: phoneReverseVideo(9) },
@@ -140,7 +141,7 @@ const slides = ref([
   { id: 'slide-11', step: '3', totalSteps: '3', label: 'О результатах', badge: 'Опционально', title: 'Консультация', subtitle: 'Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.', direction: 'right', video: '/videos/scroll/forward/scr10.mp4', reverseVideo: '/videos/scroll/reverse/scrr10.mp4', mobileVideo: phoneVideo(11), mobileReverseVideo: phoneReverseVideo(11) },
   
   // The final-frame transition takes the results directly into FAQ.
-  { id: 'slide-16', label: 'FAQ', type: 'faq', title: 'FAQ', subtitle: '', direction: 'down', video: '/videos/scroll/forward/final-frame-pc.mp4', reverseVideo: '/videos/scroll/reverse/final-frame-pc.mp4', mobileVideo: '', mobileReverseVideo: phoneReverseVideo(12), mobileBackgroundVideo: phoneVideo(1), holdVideo: true },
+  { id: 'slide-16', label: 'FAQ', type: 'faq', title: 'FAQ', subtitle: '', direction: 'down', video: '/videos/scroll/forward/final-frame-pc.mp4', reverseVideo: '/videos/scroll/reverse/final-frame-pc.mp4', mobileVideo: phoneVideo(12), mobileReverseVideo: phoneReverseVideo(12), mobileBackgroundVideo: phoneVideo(12), holdVideo: true },
   
   // Blog
   { id: 'slide-17', label: 'Блог про аллергию', type: 'blog', title: 'Блог про аллергию', subtitle: '', direction: 'down', video: '', reverseVideo: '', mobileBackgroundVideo: phoneVideo(1), holdVideo: true },
@@ -155,7 +156,7 @@ const slides = ref([
 ])
 
 const showMobileInfoBackground = computed(() => (
-  isMobileViewport.value && currentSlideIndex.value >= 11
+  isMobileViewport.value && currentSlideIndex.value >= 12
 ))
 
 const getSlideClass = (index) => {
@@ -920,7 +921,7 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
 })
 
 onMounted(() => {
-  mobileViewportQuery = window.matchMedia('(max-width: 767px)')
+  mobileViewportQuery = window.matchMedia('(max-width: 1024px)')
   isMobileViewport.value = mobileViewportQuery.matches
   mobileViewportChangeHandler = (event) => {
     isMobileViewport.value = event.matches

@@ -205,8 +205,8 @@
                     <span class="select-arrow">
                       <!-- Стрелка-шеврон в круге по мобильному макету -->
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="10" stroke="#000000" stroke-width="1.5"/>
-                        <path d="M10 8L14 12L10 16" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="12" cy="12" r="10" stroke="#ABABAB" stroke-width="2"/>
+                        <path d="M10 8L14 12L10 16" stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                     </span>
                   </div>
@@ -229,12 +229,8 @@
                     </div>
                   </div>
                   <button class="change-btn" @click="openMapSelector">
-                    <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
-                      <path d="M16 23a7 7 0 1 0 14 0 7 7 0 0 0-14 0" stroke="#000" stroke-width="1.5" fill="none"/>
-                      <path d="M28 18l3-3 3 3" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M31 15v5" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                    Изменить
+                    <img src="/assets/figma-change-icon.svg" alt="" class="change-btn-icon" />
+                    <span>Изменить</span>
                   </button>
                 </div>
               </div>
@@ -270,7 +266,7 @@
                       <path d="M10 7V10" stroke="#000000" stroke-width="1.2" stroke-linecap="round"/>
                       <circle cx="10" cy="13" r="0.8" fill="#000000"/>
                     </svg>
-                    <span class="field-info-text">На указанную почту придут данные от личного кабинета.<br>В нём можно онлайн отслеживать результаты.</span>
+                    <span class="field-info-text">На указанную почту придут данные от личного кабинета. В нём можно онлайн отслеживать результаты.</span>
                   </div>
                 </div>
               </form>
@@ -283,72 +279,74 @@
             
             <h2 class="section-title mobile-only mobile-summary-title">Итого</h2>
 
-            <!-- Блок: Место -->
-            <div class="summary-block">
-              <h3 class="summary-label">Место</h3>
-              <div v-if="!selectedLab">
-                <p class="summary-value">Не выбрано</p>
-              </div>
-              <div v-else>
-                <span v-if="selectedLab.discount" class="summary-badge">-100% на консультацию</span>
-                <p class="summary-value summary-value--location">{{ selectedLab.name }}</p>
-                <div class="summary-schedule">
-                  <div class="summary-schedule-row">
-                    <span class="summary-schedule-days">ПН – ПТ</span>
-                    <span>{{ selectedLab.hoursWeekdays }}</span>
+            <div class="summary-card-body">
+              <!-- Блок: Место -->
+              <div class="summary-block">
+                <h3 class="summary-label">Место</h3>
+                <div v-if="!selectedLab">
+                  <p class="summary-value">Не выбрано</p>
+                </div>
+                <div v-else>
+                  <span v-if="selectedLab.discount" class="summary-badge">-100% на консультацию</span>
+                  <p class="summary-value summary-value--location">{{ selectedLab.name }}</p>
+                  <div class="summary-schedule">
+                    <div class="summary-schedule-row">
+                      <span class="summary-schedule-days">ПН – ПТ</span>
+                      <span>{{ selectedLab.hoursWeekdays }}</span>
+                    </div>
+                    <div class="summary-schedule-row">
+                      <span class="summary-schedule-days">СБ – ВС</span>
+                      <span>{{ selectedLab.hoursWeekend }}</span>
+                    </div>
                   </div>
-                  <div class="summary-schedule-row">
-                    <span class="summary-schedule-days">СБ – ВС</span>
-                    <span>{{ selectedLab.hoursWeekend }}</span>
+                </div>
+              </div>
+
+              <!-- Блок: Время на результат -->
+              <div class="summary-block">
+                <h3 class="summary-label summary-label--sm">Время на результат</h3>
+                <p class="summary-value summary-value--big">3 дня</p>
+              </div>
+
+              <!-- Блок: Комплектация -->
+              <div class="summary-block">
+                <h3 class="summary-label summary-label--sm">Комплектация</h3>
+                <div class="summary-items">
+                  <div class="summary-item">
+                    <span class="summary-item-name">ALEX2</span>
+                    <span class="summary-item-price">24&thinsp;900₽</span>
+                  </div>
+                  <div class="summary-item" v-if="isConsultationAdded">
+                    <span class="summary-item-name">Консультация</span>
+                    <span class="summary-item-price">2&thinsp;000₽</span>
+                  </div>
+                  <div class="summary-item" v-if="isExpressAdded">
+                    <span class="summary-item-name">Срочный результат</span>
+                    <span class="summary-item-price">5&thinsp;000₽</span>
+                  </div>
+                  <div class="summary-item">
+                    <span class="summary-item-name">Забор крови</span>
+                    <span class="summary-item-price">0₽</span>
+                  </div>
+                  <div class="summary-item">
+                    <span class="summary-item-name">Общий IgE</span>
+                    <span class="summary-item-price">0₽</span>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Блок: Время на результат -->
-            <div class="summary-block">
-              <h3 class="summary-label">Время на результат</h3>
-              <p class="summary-value summary-value--big">3 дня</p>
-            </div>
-
-            <!-- Блок: Комплектация -->
-            <div class="summary-block">
-              <h3 class="summary-label">Комплектация</h3>
-              <div class="summary-items">
-                <div class="summary-item">
-                  <span class="summary-item-name">ALEX2</span>
-                  <span class="summary-item-price">24&thinsp;900₽</span>
+              <!-- Промокод -->
+              <div class="promo-row">
+                <div class="promo-input-wrap">
+                  <input type="text" v-model="promo" class="promo-input" placeholder="Введите промокод"/>
                 </div>
-                <div class="summary-item" v-if="isConsultationAdded">
-                  <span class="summary-item-name">Консультация</span>
-                  <span class="summary-item-price">2&thinsp;000₽</span>
-                </div>
-                <div class="summary-item" v-if="isExpressAdded">
-                  <span class="summary-item-name">Срочный результат</span>
-                  <span class="summary-item-price">5&thinsp;000₽</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-name">Забор крови</span>
-                  <span class="summary-item-price">0₽</span>
-                </div>
-                <div class="summary-item">
-                  <span class="summary-item-name">Общий IgE</span>
-                  <span class="summary-item-price">0₽</span>
-                </div>
+                <button class="promo-btn" @click="applyPromo">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="#000000" stroke-width="2"/>
+                    <path d="M10 8L14 12L10 16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
               </div>
-            </div>
-
-            <!-- Промокод -->
-            <div class="promo-row">
-              <div class="promo-input-wrap">
-                <input type="text" v-model="promo" class="promo-input" placeholder="Введите промокод"/>
-              </div>
-              <button class="promo-btn" @click="applyPromo">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="10" stroke="#000000" stroke-width="2"/>
-                  <path d="M10 8L14 12L10 16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
             </div>
 
             <!-- Итоговая стоимость и чекбокс согласия -->
@@ -1316,7 +1314,7 @@ const handleContinue = () => {
 }
 
 .field-label--md {
-  font-size: 21px;
+  font-size: 16px;
   font-weight: 400;
   color: #000000;
 }
@@ -1348,22 +1346,20 @@ const handleContinue = () => {
 
 .field-info {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
   margin-top: 16px;
 }
 
 .field-info svg {
   flex-shrink: 0;
-  margin-top: 1px;
 }
 
 .field-info-text {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
-  color: #000000;
-  opacity: 0.5;
-  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 1.4;
 }
 
 /* ─── SUMMARY BLOCK (Сводка) ─── */
@@ -1377,11 +1373,15 @@ const handleContinue = () => {
 
 .summary-label {
   font-family: 'Roboto', sans-serif;
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 400;
-  color: #000000;
-  opacity: 0.5;
-  margin: 0;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0 0 12px 0;
+  line-height: 20px;
+}
+
+.summary-label--sm {
+  font-size: 16px;
 }
 
 .summary-value {
@@ -1397,7 +1397,8 @@ const handleContinue = () => {
 }
 
 .summary-value--location {
-  font-size: 18px;
+  font-size: 24px;
+  line-height: 1.25;
 }
 
 .summary-value--big {
@@ -1420,7 +1421,7 @@ const handleContinue = () => {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  font-size: 15px;
+  font-size: 16px;
   color: #000000;
   opacity: 0.5;
 }
@@ -1445,7 +1446,7 @@ const handleContinue = () => {
   justify-content: space-between;
   align-items: baseline;
   font-family: 'Roboto', sans-serif;
-  font-size: 17px;
+  font-size: 24px;
   font-weight: 400;
   color: #000000;
 }
@@ -1453,9 +1454,10 @@ const handleContinue = () => {
 /* ─── PROMO ─── */
 .promo-row {
   display: flex;
-  border-top: 0.5px solid #dfdfdf;
-  border-bottom: 0.5px solid #dfdfdf;
+  border-top: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
   flex-shrink: 0;
+  background: #f8f8f8;
 }
 
 .promo-input-wrap {
@@ -1464,7 +1466,7 @@ const handleContinue = () => {
 
 .promo-input {
   width: 100%;
-  height: 48px;
+  height: 61px;
   border: none;
   background: #f8f8f8;
   padding: 0 24px;
@@ -1477,15 +1479,15 @@ const handleContinue = () => {
 
 .promo-input::placeholder {
   color: #000000;
-  opacity: 0.4;
+  opacity: 0.2;
 }
 
 .promo-btn {
   width: 62px;
-  height: 48px;
+  height: 61px;
   background: #f8f8f8;
   border: none;
-  border-left: 0.5px solid #dfdfdf;
+  border-left: 1px solid #dfdfdf;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1990,10 +1992,17 @@ const handleContinue = () => {
     display: block !important;
   }
 
+  .page-layout {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
   /* Поток главной страницы */
   .page-body {
     flex-direction: column;
-    padding-bottom: 96px; /* Зазор под фиксированную кнопку Продолжить */
   }
 
   .content-container {
@@ -2046,39 +2055,88 @@ const handleContinue = () => {
     position: static;
     height: auto;
     border-left: none;
-    border-top: 1px solid #dfdfdf;
-    background-color: #ffffff;
+    border-top: none;
+    background-color: transparent;
     overflow: visible;
   }
 
   .mobile-summary-title {
-    padding: 48px 16px 8px 16px;
+    padding: 32px 0 16px 0;
     margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+    color: #000000;
+  }
+
+  .summary-card-body {
+    background-color: #ffffff;
+    border: 1px solid #dfdfdf;
+    display: flex;
+    flex-direction: column;
   }
 
   /* Переопределение отступов сводки на мобильном */
   .summary-block {
     padding: 24px 16px;
     background-color: #ffffff;
+    border-bottom: 1px solid #dfdfdf;
   }
 
   .promo-row {
-    background-color: #ffffff;
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+  }
+
+  .location-card {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 24px;
+    background: #ffffff;
+    border: 1px solid #dfdfdf;
+  }
+
+  .location-info {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .change-btn {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 16px 24px;
+    background: #ffffff;
+    border: 1px solid #dfdfdf;
+    border-radius: 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000000;
+    cursor: pointer;
+    margin-top: 0;
+    box-sizing: border-box;
+  }
+
+  .change-btn-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
   }
 
   .total-inner {
     padding: 32px 16px;
   }
 
-  /* Кнопка Продолжить фиксирована в самом низу экрана */
   .continue-btn-wrapper {
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    background-color: #ffffff;
-    border-top: 1px solid #dfdfdf;
-    z-index: 999;
+    position: static;
   }
 
   .continue-btn {
@@ -2131,7 +2189,7 @@ const handleContinue = () => {
   }
 
   .field-label--md {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -2539,7 +2597,7 @@ const handleContinue = () => {
   }
 
   .page-body {
-    padding-bottom: 72px;
+    padding-bottom: 0;
   }
 
   .left-col {
@@ -2721,7 +2779,7 @@ const handleContinue = () => {
   }
 
   .map-step-1 .field-group {
-    margin-top: -12px;
+    margin-top: 24px;
   }
 
   .city-select-dropdown {
