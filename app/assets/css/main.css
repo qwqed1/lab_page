@@ -64,7 +64,7 @@ body {
    not between related copy and controls.
    ========================================================================== */
 
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   body {
   .home-page-container {
     --mobile-unit: calc(100vw / 420);
@@ -1220,9 +1220,9 @@ body {
 .figma-smoke-cloud-fixed {
   position: absolute;
   left: -200px;
-  top: 150px;
-  width: 1000px;
-  height: 900px;
+  top: 60px;
+  width: 1100px;
+  height: 1020px;
   background: #ffffff;
   border-radius: 50%;
   filter: blur(140px);
@@ -1268,10 +1268,10 @@ body {
 
 @media (max-width: 1440px) {
   .figma-smoke-cloud-fixed {
-    width: 650px !important;
-    height: 600px !important;
+    width: 780px !important;
+    height: 720px !important;
     left: -150px !important;
-    top: 100px !important;
+    top: 40px !important;
     filter: blur(90px) !important;
   }
   .figma-smoke-cloud-fixed.results-cloud {
@@ -1291,15 +1291,15 @@ body {
 .figma-smoke-cloud-fixed.results-cloud-primary {
   left: -8% !important;
   top: auto !important;
-  bottom: -12% !important;
-  width: min(100%, 760px) !important;
-  height: min(63%, 520px) !important;
+  bottom: -5% !important;
+  width: min(100%, 820px) !important;
+  height: min(78%, 640px) !important;
   border-radius: 52% 62% 18% 0 / 68% 68% 22% 0;
   background: radial-gradient(
     ellipse at 20% 82%,
     rgba(255, 255, 255, 0.98) 0%,
-    rgba(255, 255, 255, 0.78) 42%,
-    rgba(255, 255, 255, 0.28) 70%,
+    rgba(255, 255, 255, 0.85) 45%,
+    rgba(255, 255, 255, 0.4) 75%,
     rgba(255, 255, 255, 0) 100%
   );
   -webkit-mask-image: none !important;
@@ -1695,7 +1695,7 @@ body {
    FIGMA MOBILE HOME (node 128:99, 420 × 750)
    ========================================================================== */
 
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   html, body {
     height: 100dvh;
     overflow: hidden;
@@ -2162,8 +2162,10 @@ body {
     height: 72px;
     padding: 24px 32px;
     margin: 0 -16px 32px -16px;
-    background-color: var(--bg-card-white);
-    border-bottom: 1px solid var(--border-color-grey);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -3879,7 +3881,7 @@ body {
 
 /* Mobile readability haze follows the bottom copy instead of inheriting the
    large desktop cloud positioned near the middle of the viewport. */
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .home-page-container .figma-menu-item {
     appearance: none;
     width: max-content;
@@ -3906,9 +3908,11 @@ body {
     gap: calc(10 * var(--mobile-unit));
     padding: calc(13 * var(--mobile-unit)) calc(16 * var(--mobile-unit));
     isolation: isolate;
-    background: transparent;
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
+    background: transparent !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    border-radius: 0 !important;
   }
 
   .home-page-container .figma-right-menu.visible {
@@ -3920,9 +3924,9 @@ body {
     position: absolute;
     z-index: -1;
     left: calc(-181 * var(--mobile-unit));
-    top: calc(-92 * var(--mobile-unit));
+    top: calc(-112 * var(--mobile-unit));
     width: calc(310 * var(--mobile-unit));
-    height: calc(188 * var(--mobile-unit));
+    height: calc(165 * var(--mobile-unit));
     border-radius: 50%;
     background: radial-gradient(
       ellipse at 72% 66%,
@@ -3941,8 +3945,8 @@ body {
     z-index: -1;
     left: calc(-165 * var(--mobile-unit));
     top: calc(-86 * var(--mobile-unit));
-    width: calc(382 * var(--mobile-unit));
-    height: calc(286 * var(--mobile-unit));
+    width: calc(400 * var(--mobile-unit));
+    height: calc(340 * var(--mobile-unit));
     border-radius: 50%;
     background: radial-gradient(
       ellipse at 62% 52%,
@@ -4070,7 +4074,7 @@ body {
     right: 0 !important;
     bottom: 0 !important;
     width: 100% !important;
-    height: calc(371 * var(--mobile-unit)) !important;
+    height: calc(470 * var(--mobile-unit)) !important;
     border-radius: 0 !important;
     overflow: visible;
     isolation: isolate;

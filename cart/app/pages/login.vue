@@ -181,6 +181,14 @@ const handleLogin = async () => {
 }
 
 @media (max-width: 1024px) {
+  .page-layout {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .back-link {
     gap: 0;
     font-size: 0;

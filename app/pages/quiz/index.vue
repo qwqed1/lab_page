@@ -45,7 +45,7 @@
           <div v-else-if="step === 'quiz'" class="quiz-card-wrapper quiz-state">
             <div class="options-header">
               <button class="back-prev-btn" @click="prevQuestion">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="14 8 10 12 14 16"></polyline>
                 </svg>
@@ -257,8 +257,10 @@ const redirectToCart = () => {
 /* Header Bar (Frame 290) */
 .header-bar {
   height: 72px;
-  border-bottom: 1px solid var(--border-color-grey);
-  background: var(--bg-card-white);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   padding: 24px 32px;
   display: flex;
   align-items: center;
@@ -380,13 +382,14 @@ const redirectToCart = () => {
 /* QUIZ STATE STYLES */
 .options-header {
   height: 72px;
-  background: var(--bg-card-white);
-  border: 1px solid var(--border-color-grey);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-bottom: none;
   padding: 24px;
   display: flex;
   align-items: center;
-  backdrop-filter: blur(4px);
 }
 
 .back-prev-btn {
@@ -399,11 +402,16 @@ const redirectToCart = () => {
   font-size: 21px;
   color: var(--text-black);
   font-weight: 400;
-  transition: transform 0.2s ease;
+  user-select: none;
+  transform: none !important;
+  transition: none !important;
 }
 
-.back-prev-btn:hover {
-  transform: translateX(-4px);
+.back-prev-btn:hover,
+.back-prev-btn:active,
+.back-prev-btn:focus {
+  transform: none !important;
+  outline: none;
 }
 
 .question-card {
@@ -498,18 +506,26 @@ const redirectToCart = () => {
   height: 588px;
   display: flex;
   align-items: flex-end;
+  padding: 24px;
+  position: relative;
 }
 
 .result-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: 100%;
   width: 100%;
 }
 
 .result-badge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 85px;
+  height: 13px;
   font-size: 18px;
+  line-height: 13px;
   color: var(--text-muted);
 }
 
@@ -635,55 +651,10 @@ const redirectToCart = () => {
     padding: 23.2px;
   }
 
-  .quiz-state .options-header {
-    height: 72px;
-    padding: 23.2px;
-  }
-
-  .quiz-state .back-prev-btn {
-    gap: 12px;
-    font-size: 18px;
-    line-height: 13px;
-  }
-
-  .quiz-state .back-prev-btn svg {
-    flex: 0 0 24px;
-    margin-right: 0 !important;
-  }
-
-  .quiz-state .question-info {
-    gap: 12px;
-  }
-
-  .quiz-state .question-counter {
-    color: #000;
-    opacity: 0.5;
-    line-height: 13px;
-  }
-
-  .question-text {
-    font-size: 32px;
-    line-height: 38px;
-  }
-
-  .option-label {
-    font-size: 21px;
-    line-height: 15px;
-  }
-
-  .option-row {
-    height: 72px;
-    padding: 0 23.2px;
-  }
-
-  .quiz-state .option-checkbox {
-    border-color: #000;
-  }
-
   .result-card {
     height: auto;
     min-height: 450px;
-    padding: 32px;
+    padding: 312px 22px 24px 24px;
   }
 
   .result-title {

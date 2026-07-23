@@ -208,9 +208,9 @@ const redirectToCart = () => {
               <!-- Футер левой колонки (Назад ко всем аллергенам) -->
               <div class="details-left-footer" @click="goBackToSearch">
                 <div class="back-arrow-circle">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 8l-4 4 4 4M16 12H8" />
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 8L10 12L14 16" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </div>
                 <span>Назад ко всем аллергенам</span>

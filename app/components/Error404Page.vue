@@ -166,7 +166,7 @@ useHead({
   stroke-linejoin: round;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .error-page {
     min-height: 0;
     background-position: calc(50vw - 339px) -9px;

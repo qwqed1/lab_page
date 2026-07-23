@@ -1176,10 +1176,12 @@ const reportPages = Array.from(
   }
 
   .results-page-content {
-    height: auto !important;
-    min-height: 100dvh;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
     padding: 0 16px 64px !important;
-    overflow: visible !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
   }
 
   .mobile-top-bar {
