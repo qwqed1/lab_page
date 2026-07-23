@@ -174,7 +174,7 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
 /* ==========================================================================
    DESKTOP STYLES (min-width: 701px)
    ========================================================================== */
-@media (min-width: 701px) {
+@media (min-width: 1025px) {
   .mobile-only-container {
     display: none !important;
   }
@@ -394,7 +394,7 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
 /* ==========================================================================
    MOBILE STYLES (max-width: 700px) - FIGMA FRAME 1 & FRAME 2 SPECIFICATIONS
    ========================================================================== */
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
   .desktop-only-container {
     display: none !important;
   }
@@ -403,6 +403,11 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     display: block !important;
     position: absolute;
     inset: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .mobile-only-container {
     --mu: calc(100cqw / 420);
   }
 
@@ -584,6 +589,206 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     line-height: calc(16 * var(--mu));
     color: rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1024px) {
+  .mobile-contacts-body {
+    position: absolute;
+    left: 40px;
+    top: 180px;
+    width: calc(100% - 80px);
+    max-width: 600px;
+    height: auto;
+  }
+
+  .mobile-contacts-header {
+    width: 100%;
+  }
+
+  .mobile-contacts-header h2 {
+    width: 100%;
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 38px;
+    color: #000000;
+    white-space: normal;
+  }
+
+  .mobile-contacts-main {
+    position: relative;
+    left: 0;
+    top: 36px;
+    width: 100%;
+    height: auto;
+  }
+
+  .mobile-tabs-row {
+    display: flex;
+    gap: 32px;
+    height: 32px;
+  }
+
+  .mobile-tab-btn {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28px;
+    color: #000000;
+    opacity: 0.3;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+  }
+
+  .mobile-tab-btn.active {
+    opacity: 1;
+  }
+
+  .mobile-tab-rule {
+    width: 100%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.2);
+    margin-top: 12px;
+    margin-bottom: 24px;
+  }
+
+  .mobile-tab-content {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 330px;
+  }
+
+  .mobile-contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .mobile-contacts-list a {
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #000000;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .mobile-legal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .mobile-legal-list span {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .mobile-policy-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mobile-policy-list a {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 44px;
+    padding: 10px 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    color: #000000;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .mobile-contacts-footer {
+    position: relative;
+    left: 0;
+    top: 120px;
+    width: 100%;
+    height: auto;
+  }
+
+  .mobile-studio-credit {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobile-studio-credit img {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 80px;
+    height: 35px;
+  }
+
+  .mobile-studio-credit span {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+  }
+}
+
+/* Height-tiered footer offsets for iPad Air (+20px) and iPad Pro (+40px) */
+@media (min-width: 701px) and (max-width: 1024px) and (min-height: 1051px) and (max-height: 1250px) {
+  .mobile-contacts-footer {
+    top: 140px !important;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1024px) and (min-height: 1251px) {
+  .mobile-contacts-footer {
+    top: 160px !important;
   }
 }
 </style>

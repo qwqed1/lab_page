@@ -205,8 +205,8 @@
                     <span class="select-arrow">
                       <!-- Стрелка-шеврон в круге по мобильному макету -->
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="10" stroke="#000000" stroke-width="1.5"/>
-                        <path d="M10 8L14 12L10 16" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="12" cy="12" r="10" stroke="#ABABAB" stroke-width="2"/>
+                        <path d="M10 8L14 12L10 16" stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                     </span>
                   </div>
@@ -266,7 +266,7 @@
                       <path d="M10 7V10" stroke="#000000" stroke-width="1.2" stroke-linecap="round"/>
                       <circle cx="10" cy="13" r="0.8" fill="#000000"/>
                     </svg>
-                    <span class="field-info-text">На указанную почту придут данные от личного кабинета.<br>В нём можно онлайн отслеживать результаты.</span>
+                    <span class="field-info-text">На указанную почту придут данные от личного кабинета. В нём можно онлайн отслеживать результаты.</span>
                   </div>
                 </div>
               </form>
@@ -304,13 +304,13 @@
 
               <!-- Блок: Время на результат -->
               <div class="summary-block">
-                <h3 class="summary-label">Время на результат</h3>
+                <h3 class="summary-label summary-label--sm">Время на результат</h3>
                 <p class="summary-value summary-value--big">3 дня</p>
               </div>
 
               <!-- Блок: Комплектация -->
               <div class="summary-block">
-                <h3 class="summary-label">Комплектация</h3>
+                <h3 class="summary-label summary-label--sm">Комплектация</h3>
                 <div class="summary-items">
                   <div class="summary-item">
                     <span class="summary-item-name">ALEX2</span>
@@ -1346,14 +1346,13 @@ const handleContinue = () => {
 
 .field-info {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
   margin-top: 16px;
 }
 
 .field-info svg {
   flex-shrink: 0;
-  margin-top: 1px;
 }
 
 .field-info-text {
@@ -1379,6 +1378,10 @@ const handleContinue = () => {
   color: rgba(0, 0, 0, 0.5);
   margin: 0 0 12px 0;
   line-height: 20px;
+}
+
+.summary-label--sm {
+  font-size: 16px;
 }
 
 .summary-value {
@@ -1451,9 +1454,10 @@ const handleContinue = () => {
 /* ─── PROMO ─── */
 .promo-row {
   display: flex;
-  border-top: 0.5px solid #dfdfdf;
-  border-bottom: 0.5px solid #dfdfdf;
+  border-top: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
   flex-shrink: 0;
+  background: #f8f8f8;
 }
 
 .promo-input-wrap {
@@ -1462,7 +1466,7 @@ const handleContinue = () => {
 
 .promo-input {
   width: 100%;
-  height: 48px;
+  height: 61px;
   border: none;
   background: #f8f8f8;
   padding: 0 24px;
@@ -1475,15 +1479,15 @@ const handleContinue = () => {
 
 .promo-input::placeholder {
   color: #000000;
-  opacity: 0.4;
+  opacity: 0.2;
 }
 
 .promo-btn {
   width: 62px;
-  height: 48px;
+  height: 61px;
   background: #f8f8f8;
   border: none;
-  border-left: 0.5px solid #dfdfdf;
+  border-left: 1px solid #dfdfdf;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1999,7 +2003,6 @@ const handleContinue = () => {
   /* Поток главной страницы */
   .page-body {
     flex-direction: column;
-    padding-bottom: 96px; /* Зазор под фиксированную кнопку Продолжить */
   }
 
   .content-container {
@@ -2080,9 +2083,8 @@ const handleContinue = () => {
   }
 
   .promo-row {
-    background-color: #ffffff;
-    padding: 24px 16px;
     border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
   }
 
   .location-card {
@@ -2132,15 +2134,9 @@ const handleContinue = () => {
     padding: 32px 16px;
   }
 
-  /* Кнопка Продолжить фиксирована в самом низу экрана */
   .continue-btn-wrapper {
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    background-color: #ffffff;
-    border-top: 1px solid #dfdfdf;
-    z-index: 999;
+    position: static;
   }
 
   .continue-btn {
@@ -2601,7 +2597,7 @@ const handleContinue = () => {
   }
 
   .page-body {
-    padding-bottom: 72px;
+    padding-bottom: 0;
   }
 
   .left-col {
