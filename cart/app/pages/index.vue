@@ -401,13 +401,13 @@
           
           <!-- ШАГ 1: Выбор города -->
           <div v-if="mapStep === 1" class="map-step-1">
-            <h2 class="map-sidebar-title">Выберите город</h2>
+            <h2 class="map-sidebar-title map-sidebar-title--step1">Выберите город</h2>
             <div class="field-group">
               <div class="city-select-dropdown" @click="showCityList = !showCityList">
                 <span class="selected-city-name" :class="{ 'selected-city-name--placeholder': !selectedCity }">{{ selectedCity || 'Выберите из списка' }}</span>
                 <span class="select-arrow" :class="{ 'select-arrow--open': showCityList }">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M6 9L12 15L18 9" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6 9L12 15L18 9" stroke="#ABABAB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </span>
               </div>
@@ -1196,20 +1196,20 @@ const handleContinue = () => {
   justify-content: space-between;
   padding: 0 24px;
   height: 61px;
-  border: 1px solid #dddddd;
-  background: #ffffff;
+  border: none;
+  border-bottom: 1px solid #dddddd;
+  background: transparent;
   cursor: pointer;
   transition: border-color 0.2s;
 }
 .select-field:hover {
-  border-color: #000000;
+  border-bottom-color: #000000;
 }
 
 .select-placeholder {
   font-size: 18px;
   font-weight: 400;
-  color: #000000;
-  opacity: 0.4;
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .select-arrow {
@@ -1306,7 +1306,7 @@ const handleContinue = () => {
 
 .field-label {
   font-family: 'Roboto', sans-serif;
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 400;
   color: #000000;
   margin-bottom: 12px;
@@ -1640,6 +1640,11 @@ const handleContinue = () => {
   margin: 0;
 }
 
+.map-sidebar-title--step1 {
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+
 /* Шаг 1: Выбор города */
 .city-select-dropdown {
   display: flex;
@@ -1647,19 +1652,24 @@ const handleContinue = () => {
   justify-content: space-between;
   padding: 0 24px;
   height: 61px;
-  border: 1px solid #dddddd;
-  background: #ffffff;
+  border: none;
+  border-bottom: 1px solid #000000;
+  background: transparent;
   cursor: pointer;
   transition: border-color 0.2s;
 }
 .city-select-dropdown:hover {
-  border-color: #000000;
+  border-bottom-color: #000000;
 }
 
 .selected-city-name {
   font-size: 18px;
   font-weight: 400;
   color: #000000;
+}
+
+.selected-city-name--placeholder {
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .city-options-list {
@@ -2699,6 +2709,8 @@ const handleContinue = () => {
   }
 
   .select-field {
+    border: none;
+    border-bottom: 1px solid #dddddd;
     background: transparent;
   }
 

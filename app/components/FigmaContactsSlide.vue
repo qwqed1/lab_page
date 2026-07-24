@@ -626,15 +626,15 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
 
   .mobile-tabs-row {
     display: flex;
-    gap: 32px;
-    height: 32px;
+    gap: 21px;
+    height: 25px;
   }
 
   .mobile-tab-btn {
     font-family: 'Roboto', Arial, sans-serif;
-    font-size: 24px;
+    font-size: 21px;
     font-weight: 400;
-    line-height: 28px;
+    line-height: 25px;
     color: #000000;
     opacity: 0.3;
     background: transparent;
@@ -654,8 +654,8 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     width: 100%;
     height: 1px;
     background: rgba(0, 0, 0, 0.2);
-    margin-top: 12px;
-    margin-bottom: 24px;
+    margin-top: 11px;
+    margin-bottom: 20px;
   }
 
   .mobile-tab-content {
@@ -669,13 +669,13 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .mobile-contacts-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 28px;
+    gap: 8px;
+    margin-bottom: 24px;
   }
 
   .mobile-contacts-list a {
-    font-size: 20px;
-    line-height: 26px;
+    font-size: 16px;
+    line-height: 19px;
     font-weight: 400;
     color: #000000;
     text-decoration: none;
@@ -685,14 +685,14 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .mobile-legal-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     margin-bottom: 32px;
     color: rgba(0, 0, 0, 0.3);
   }
 
   .mobile-legal-list span {
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 14px;
+    line-height: 16px;
     font-weight: 400;
     white-space: nowrap;
   }
@@ -700,12 +700,12 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .mobile-policy-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
   .mobile-policy-list a {
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 14px;
+    line-height: 16px;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.3);
     text-decoration: none;
@@ -715,21 +715,21 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .mobile-nav-list {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
   }
 
   .mobile-nav-link {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 44px;
-    padding: 10px 0;
+    height: 37px;
+    padding: 12px 0;
     margin: 0;
     border: 0;
     background: transparent;
     color: #000000;
     font-family: 'Roboto', Arial, sans-serif;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 400;
     line-height: 1;
     text-align: left;
@@ -760,8 +760,8 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     position: relative;
     left: 0;
     top: 0;
-    width: 80px;
-    height: 35px;
+    width: 70px;
+    height: 31px;
   }
 
   .mobile-studio-credit span {
