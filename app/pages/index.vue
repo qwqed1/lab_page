@@ -1220,7 +1220,10 @@ onUnmounted(() => {
                 </div>
               </div>
               
-              <button class="figma-faq-all-btn" @click="showDemoModal = true">Все вопросы</button>
+              <button class="figma-faq-all-btn" @click="showDemoModal = true">
+                <span>Все вопросы</span>
+                <img src="/assets/figma-faq-link-arrow.svg" alt="" />
+              </button>
             </div>
           </template>
 
@@ -1253,7 +1256,10 @@ onUnmounted(() => {
                 </div>
               </div>
 
-              <button class="figma-blog-all-btn" @click="showDemoModal = true">Все материалы</button>
+              <button class="figma-blog-all-btn" @click="showDemoModal = true">
+                <span>Все материалы</span>
+                <img src="/assets/figma-faq-link-arrow.svg" alt="" />
+              </button>
             </div>
           </template>
 
@@ -1308,7 +1314,7 @@ onUnmounted(() => {
           :aria-expanded="mobileMenuOpen"
           @click="openMobileMenu"
         >
-          <span aria-hidden="true"></span>
+          <img src="/assets/figma-mobile-menu-icon.svg" alt="" width="24" height="24" />
         </button>
       </nav>
     </main>

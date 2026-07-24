@@ -209,9 +209,9 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .desktop-contacts-header h2 {
     width: 100%;
     margin: 0;
-    font-size: calc(24 * var(--ui));
+    font-size: 24px;
     font-weight: 400;
-    line-height: calc(28 * var(--ui));
+    line-height: 28px;
     color: #000000;
     white-space: nowrap;
   }
@@ -609,9 +609,9 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .mobile-contacts-header h2 {
     width: 100%;
     margin: 0;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 400;
-    line-height: 38px;
+    line-height: 28px;
     color: #000000;
     white-space: normal;
   }
