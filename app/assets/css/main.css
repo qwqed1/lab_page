@@ -93,6 +93,7 @@ body {
   }
 
   .home-page-container .mobile-home-dock {
+    --mobile-unit: min(calc(100vw / 420), 1px);
     position: fixed;
     bottom: 0;
     left: 0;
@@ -129,24 +130,16 @@ body {
   }
 
   .mobile-home-menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-left: 1px solid #dfdfdf;
   }
 
-  .mobile-home-menu-button span,
-  .mobile-home-menu-button span::before,
-  .mobile-home-menu-button span::after {
-    width: calc(16 * var(--mobile-unit));
-    height: 1px;
-    border-radius: 0;
-    background: #000;
-  }
-
-  .mobile-home-menu-button span::before {
-    top: calc(-7 * var(--mobile-unit));
-  }
-
-  .mobile-home-menu-button span::after {
-    top: calc(7 * var(--mobile-unit));
+  .mobile-home-menu-button img {
+    width: calc(24 * var(--mobile-unit));
+    height: calc(24 * var(--mobile-unit));
+    flex: 0 0 calc(24 * var(--mobile-unit));
   }
 
   .figma-doctors-button {
@@ -210,6 +203,7 @@ body {
 
   .figma-right-menu,
   .figma-right-menu.mobile-intro-menu {
+    --mobile-unit: min(calc(100vw / 420), 1px);
     left: calc(24 * var(--mobile-unit));
     top: calc(21 * var(--mobile-unit));
     gap: calc(6 * var(--mobile-unit));
@@ -266,6 +260,11 @@ body {
     border-width: 1px;
     font-size: calc(20 * var(--mobile-unit));
     line-height: 1;
+  }
+
+  .figma-step-indicator {
+    --mobile-unit: min(calc(100vw / 420), 1px);
+    gap: calc(5 * var(--mobile-unit));
   }
 
   .figma-step-block.advantages-pos,
@@ -1884,32 +1883,15 @@ body {
     display: grid;
     place-items: center;
     padding: 0;
-    background: #000;
-  }
-
-  .mobile-home-menu-button span,
-  .mobile-home-menu-button span::before,
-  .mobile-home-menu-button span::after {
-    display: block;
-    width: 24px;
-    height: 2px;
-    border-radius: 1px;
     background: #fff;
+    border-left: 1px solid #dfdfdf;
   }
 
-  .mobile-home-menu-button span {
-    position: relative;
+  .mobile-home-menu-button img {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
   }
-
-  .mobile-home-menu-button span::before,
-  .mobile-home-menu-button span::after {
-    content: '';
-    position: absolute;
-    left: 0;
-  }
-
-  .mobile-home-menu-button span::before { top: -7px; }
-  .mobile-home-menu-button span::after { top: 7px; }
 
   .home-page-container .video-bg-container,
   .home-page-container .slides-deck-container,
@@ -3272,14 +3254,18 @@ body {
   position: absolute;
   left: 5.15%;
   top: 92.18%;
+  width: 89.7%;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  padding-top: 24px;
   background: transparent;
   border: none;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 400;
   color: #000000;
   cursor: pointer;
-  text-decoration: underline;
-  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
 }
 
 /* ==========================================================================
@@ -3341,14 +3327,18 @@ body {
   position: absolute;
   left: 5.15%;
   top: 92.08%;
+  width: 89.7%;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  padding-top: 24px;
   background: transparent;
   border: none;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 400;
   color: #000000;
   cursor: pointer;
-  text-decoration: underline;
-  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
 }
 
 /* ==========================================================================
@@ -4124,6 +4114,7 @@ body {
     z-index: 9;
     left: calc(16 * var(--mobile-unit));
     display: flex;
+    gap: calc(5 * var(--mobile-unit));
     opacity: 1;
     transform: none;
     pointer-events: auto;

@@ -43,8 +43,8 @@
 
           <!-- STATE: QUIZ -->
           <div v-else-if="step === 'quiz'" class="quiz-card-wrapper quiz-state">
-            <div class="options-header">
-              <button class="back-prev-btn" @click="prevQuestion">
+            <div class="options-header" @click="prevQuestion">
+              <button class="back-prev-btn">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="14 8 10 12 14 16"></polyline>
@@ -382,14 +382,22 @@ const redirectToCart = () => {
 /* QUIZ STATE STYLES */
 .options-header {
   height: 72px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: var(--bg-card-white);
+  border: 1px solid var(--border-color-grey);
   border-bottom: none;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   padding: 24px;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .options-header:hover {
+    background: rgba(245, 245, 245, 0.9);
+  }
 }
 
 .back-prev-btn {
@@ -405,6 +413,7 @@ const redirectToCart = () => {
   user-select: none;
   transform: none !important;
   transition: none !important;
+  padding: 0;
 }
 
 .back-prev-btn:hover,
@@ -649,6 +658,15 @@ const redirectToCart = () => {
     height: auto;
     min-height: 0;
     padding: 23.2px;
+  }
+
+  .quiz-state .options-header {
+    height: 72px;
+    padding: 24px;
+  }
+
+  .quiz-state .back-prev-btn {
+    font-size: 18px;
   }
 
   .result-card {

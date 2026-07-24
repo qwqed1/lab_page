@@ -165,21 +165,30 @@ button {
   left: calc(64 * var(--ux));
   bottom: calc(64 * var(--uy));
   width: calc(1117 * var(--ux));
-  height: calc(49 * var(--ui));
   min-height: 35px;
-  padding: calc(24 * var(--ui)) 0 0;
-  border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  padding: calc(24 * var(--ui)) 0 0 0;
+  border: none;
   background: transparent;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
   color: #000;
   font-size: clamp(17px, calc(24 * var(--ui)), 24px);
   font-weight: 400;
   line-height: 1;
   text-align: left;
   cursor: pointer;
+}
+
+.exact-bottom-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .exact-bottom-link img {
@@ -596,12 +605,17 @@ button {
     left: calc(16 * var(--mu));
     right: calc(16 * var(--mu));
     bottom: calc(98 * var(--mu));
-    width: auto;
+    width: calc(388 * var(--mu));
     height: calc(40 * var(--mu));
     min-height: 0;
     padding-top: calc(24 * var(--mu));
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
     font-size: calc(18 * var(--mu));
     line-height: calc(16 * var(--mu));
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: calc(12 * var(--mu));
   }
 
   .exact-bottom-link img {
@@ -748,17 +762,20 @@ button {
     line-height: 20px;
   }
 
-  .exact-bottom-link {
+  .exact-bottom-link,
+  .exact-faq-slide .exact-bottom-link {
     left: 32px;
     right: 32px;
     bottom: 96px;
-    width: auto;
+    width: calc(100% - 64px);
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    padding-top: 24px;
     font-size: 18px;
     line-height: 22px;
-  }
-
-  .exact-faq-slide .exact-bottom-link {
-    bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
   }
 
   /* How-to Tablet Styles */
