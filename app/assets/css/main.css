@@ -2626,17 +2626,172 @@ body {
   color: #ffffff;
   font: 400 21px/24px var(--font-family);
   text-align: left;
+  cursor: pointer;
+  transition: background-color 180ms ease;
 }
 
-.figma-doctors-button:disabled {
-  cursor: default;
-  opacity: 1;
+.figma-doctors-button:hover {
+  background: rgba(0, 0, 0, 0.32);
 }
 
 .figma-doctors-button img {
   width: 24px;
   height: 24px;
   flex: 0 0 24px;
+}
+
+/* ==========================================================================
+   DOCTOR AUDIENCE
+   The normal patient page remains the default. This palette and its copy are
+   enabled only by the alex-audience cookie through the root doctor-mode class.
+   ========================================================================== */
+
+.home-page-container.doctor-mode .site-sidebar .promo-card {
+  /* Figma 202:1727: translucent #5c3d1b → #78532e over an 80% black fill. */
+  background:
+    linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%),
+    rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: blur(125px);
+  backdrop-filter: blur(125px);
+}
+
+.home-page-container.doctor-mode .video-bg-container {
+  background: linear-gradient(110deg, #5c3d1b 0%, #b18a5f 58%, #d4b98f 100%);
+}
+
+.home-page-container.doctor-mode .video-bg-container.no-video {
+  opacity: 1;
+}
+
+.home-page-container.doctor-mode .bg-video {
+  filter: sepia(0.92) saturate(1.55) hue-rotate(-12deg) brightness(0.72) contrast(1.14);
+}
+
+.home-page-container.doctor-mode .video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: block;
+  background: rgba(105, 56, 21, 0.24);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.home-page-container.doctor-mode .figma-hero-title,
+.home-page-container.doctor-mode .figma-intro-title,
+.home-page-container.doctor-mode .figma-intro-title.white,
+.home-page-container.doctor-mode .figma-slide-title-inline,
+.home-page-container.doctor-mode .figma-slide-desc-inline,
+.home-page-container.doctor-mode .figma-section-title,
+.home-page-container.doctor-mode .figma-menu-item,
+.home-page-container.doctor-mode .figma-exact-info-slide,
+.home-page-container.doctor-mode .figma-exact-info-slide button {
+  color: #ffffff;
+}
+
+.home-page-container.doctor-mode .figma-menu-item.active::before {
+  background: #ffffff;
+}
+
+.home-page-container.doctor-mode .figma-scroll-icon img {
+  filter: invert(1);
+}
+
+.home-page-container.doctor-mode .figma-step-circle {
+  border-color: rgba(255, 255, 255, 0.34);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.home-page-container.doctor-mode .figma-step-circle.active {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.home-page-container.doctor-mode .figma-badge {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.home-page-container.doctor-mode .figma-smoke-cloud-fixed {
+  background: rgba(0, 0, 0, 0.42);
+  opacity: 0;
+}
+
+.home-page-container.doctor-mode .figma-smoke-cloud-fixed.visible {
+  opacity: 0.58;
+}
+
+.home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary,
+.home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud {
+  background: radial-gradient(
+    ellipse at 20% 78%,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.48) 45%,
+    rgba(0, 0, 0, 0.14) 74%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.home-page-container.doctor-mode .exact-faq-question,
+.home-page-container.doctor-mode .exact-faq-answer,
+.home-page-container.doctor-mode .exact-section-title,
+.home-page-container.doctor-mode .exact-bottom-link,
+.home-page-container.doctor-mode .exact-blog-card-title,
+.home-page-container.doctor-mode .exact-blog-description,
+.home-page-container.doctor-mode .exact-blog-author-name,
+.home-page-container.doctor-mode .exact-blog-author-role {
+  color: #ffffff;
+}
+
+.home-page-container.doctor-mode .exact-bottom-link::before {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.home-page-container.doctor-mode .exact-faq-chevron,
+.home-page-container.doctor-mode .exact-bottom-link img {
+  filter: invert(1);
+}
+
+@media (min-width: 1025px) {
+  .home-page-container.doctor-mode .figma-hero-title {
+    width: 82%;
+    font-size: 52px;
+  }
+}
+
+@media (min-width: 1025px) and (max-height: 850px) {
+  .home-page-container.doctor-mode {
+    --doctor-short-hero-top: min(calc(69.35% + 45px), calc(100% - 220px));
+  }
+
+  .home-page-container.doctor-mode .figma-scroll-icon {
+    top: calc(var(--doctor-short-hero-top) - 169px);
+  }
+
+  .home-page-container.doctor-mode .figma-hero-title {
+    top: var(--doctor-short-hero-top) !important;
+    width: 88%;
+    font-size: clamp(40px, 4.2vw, 46px);
+    line-height: 1.12;
+  }
+}
+
+@media (max-width: 1024px) {
+  .home-page-container.doctor-mode .site-sidebar .promo-card {
+    background:
+      linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%),
+      rgba(0, 0, 0, 0.8);
+  }
+
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(30, 18, 9, 0) 0%,
+      rgba(30, 18, 9, 0.08) 20%,
+      rgba(30, 18, 9, 0.54) 55%,
+      rgba(30, 18, 9, 0.84) 100%
+    );
+  }
 }
 
 .figma-intro-title {

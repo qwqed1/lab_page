@@ -1,6 +1,13 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 
+const audienceCookie = useCookie('alex-audience', {
+  default: () => 'patients',
+  maxAge: 60 * 60 * 24 * 365,
+  sameSite: 'lax'
+})
+const isDoctorMode = computed(() => audienceCookie.value === 'doctors')
+
 // Modal states
 const showDemoModal = ref(false)
 const showSearchModal = ref(false)
@@ -121,7 +128,7 @@ const hasSlideVideo = (slide) => Boolean(getSlideVideo(slide) || slide?.holdVide
 const openMobileMenu = () => { mobileMenuOpen.value = true }
 const closeMobileMenu = () => { mobileMenuOpen.value = false }
 
-const slides = ref([
+const allSlides = [
   { id: 'slide-1',  label: '', title: 'Тест на аллергию ALEX² — один анализ, который даёт ответы', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr1.mp4',  reverseVideo: '/videos/scroll/reverse/scrr1.mp4', mobileVideo: phoneVideo(1), mobileReverseVideo: phoneReverseVideo(1) },
   { id: 'slide-2',  label: '', title: 'Почему ALEX2?', subtitle: '', direction: 'down', video: '/videos/scroll/forward/scr2.mp4',  reverseVideo: '/videos/scroll/reverse/scrr2.mp4', mobileVideo: phoneVideo(2), mobileReverseVideo: phoneReverseVideo(2) },
   
@@ -153,7 +160,57 @@ const slides = ref([
   
   // Contacts
   { id: 'slide-21', label: 'Контакты', type: 'contacts', title: 'Контакты', subtitle: '', direction: 'down', video: '', reverseVideo: '', mobileBackgroundVideo: phoneVideo(1), holdVideo: true }
-])
+]
+
+const slides = computed(() => (
+  isDoctorMode.value
+    ? allSlides.filter(slide => !['slide-18', 'slide-19', 'slide-20', 'slide-21'].includes(slide.id))
+    : allSlides
+))
+
+const doctorSlideCopy = Object.freeze({
+  'slide-1': {
+    title: 'Аллергочип ALEX² — расширенный анализ на аллергию. 300+ аллергенов'
+  },
+  'slide-2': {
+    title: 'ALEX² — лучший тест на аллергию, что есть на рынке.'
+  },
+  'slide-3': {
+    title: 'Всё за один сеанс',
+    subtitle: 'Тест охватывает 99% известных аллергенов за один забор крови. Больше не нужно сдавать десятки анализов и гадать, на что у пациента аллергия.'
+  },
+  'slide-4': {
+    title: 'Точечный результат',
+    subtitle: 'Показываем не только на что аллергия, но и на какие именно молекулы. Это помогает с максимальной уверенностью назначить лечение, не допуская ошибок.'
+  },
+  'slide-5': {
+    title: 'Отчёт и консультация',
+    subtitle: 'Мы не оставляем пациента с непонятными результатами — расшифруем и объясним их человеческим языком.'
+  },
+  'slide-6': {
+    title: 'Без диет и отмены лекарств',
+    subtitle: 'Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом.'
+  },
+  'slide-7': {
+    title: 'Подходит детям',
+    subtitle: 'Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.'
+  },
+  'slide-8': {
+    title: 'Как назначать тест пациентам'
+  }
+})
+
+const getSlideTitle = (slide) => (
+  isDoctorMode.value
+    ? doctorSlideCopy[slide.id]?.title || slide.title
+    : slide.title
+)
+
+const getSlideSubtitle = (slide) => (
+  isDoctorMode.value
+    ? doctorSlideCopy[slide.id]?.subtitle ?? slide.subtitle
+    : slide.subtitle
+)
 
 const showMobileInfoBackground = computed(() => (
   isMobileViewport.value && currentSlideIndex.value >= 12
@@ -195,13 +252,20 @@ const goToPersistentStep = (step) => {
   navigateToSlideIndex(firstSlideIndex + step - 1, 'direct')
 }
 
-const menuItems = [
-  { label: 'Преимущества', slideId: 'slide-3' },
-  { label: 'Результаты', slideId: 'slide-9' },
-  { label: 'FAQ', slideId: 'slide-16' },
-  { label: 'Блог про аллергию', slideId: 'slide-17' },
-  { label: 'Как сдать тест', slideId: 'slide-18' }
-]
+const menuItems = computed(() => {
+  const items = [
+    { label: 'Преимущества', slideId: 'slide-3' },
+    { label: isDoctorMode.value ? 'О результатах' : 'Результаты', slideId: 'slide-9' },
+    { label: 'FAQ', slideId: 'slide-16' },
+    { label: 'Блог про аллергию', slideId: 'slide-17' }
+  ]
+
+  if (!isDoctorMode.value) {
+    items.push({ label: 'Как сдать тест', slideId: 'slide-18' })
+  }
+
+  return items
+})
 
 const activeMenuIndex = computed(() => {
   const idx = currentSlideIndex.value
@@ -247,6 +311,12 @@ const handleSectionMenuItemClick = (item, idx) => {
 
   mobileSectionMenuExpanded.value = false
   goToSlideById(item.slideId)
+}
+
+const toggleAudienceMode = () => {
+  audienceCookie.value = isDoctorMode.value ? 'patients' : 'doctors'
+  mobileSectionMenuExpanded.value = false
+  mobileMenuOpen.value = false
 }
 
 const showSmokeCloud = computed(() => {
@@ -978,11 +1048,17 @@ onUnmounted(() => {
 <template>
   <div
     class="page-container home-page-container site-sidebar-layout"
-    :class="{ 'mobile-menu-open': mobileMenuOpen }"
+    :class="{
+      'mobile-menu-open': mobileMenuOpen,
+      'doctor-mode': isDoctorMode
+    }"
+    :data-audience="isDoctorMode ? 'doctors' : 'patients'"
   >
     <SiteSidebar
+      :doctor-mode="isDoctorMode"
       @register="openCart"
       @about="goToSlideById('slide-1')"
+      @materials="goToSlideById('slide-17')"
       @close="closeMobileMenu"
     />
 
@@ -997,9 +1073,11 @@ onUnmounted(() => {
           v-if="currentSlideIndex === 0 && contentReadySlideIndex === 0"
           class="figma-doctors-button"
           type="button"
-          disabled
+          :aria-label="isDoctorMode ? 'Переключиться на версию для пациентов' : 'Переключиться на версию для врачей'"
+          :aria-pressed="isDoctorMode"
+          @click="toggleAudienceMode"
         >
-          <span>Для врачей</span>
+          <span>{{ isDoctorMode ? 'Для пациентов' : 'Для врачей' }}</span>
           <img src="/assets/figma-doctors-icon.svg" alt="" />
         </button>
       </Transition>
@@ -1113,15 +1191,13 @@ onUnmounted(() => {
               <img class="scroll-chevron scroll-chevron-2" src="/assets/figma-scroll-chevron-2.svg" alt="" />
               <img class="scroll-chevron scroll-chevron-3" src="/assets/figma-scroll-chevron-3.svg" alt="" />
             </div>
-            <h1 class="figma-hero-title">
-              Тест на аллергию ALEX² — один анализ, который даёт ответы
-            </h1>
+            <h1 class="figma-hero-title">{{ getSlideTitle(slide) }}</h1>
           </template>
 
           <!-- Slide 2: Why ALEX2 Intro -->
           <template v-else-if="slide.id === 'slide-2'">
             <h2 id="slide-2-title" class="figma-intro-title white">
-              Почему ALEX2?
+              {{ getSlideTitle(slide) }}
             </h2>
           </template>
 
@@ -1144,8 +1220,8 @@ onUnmounted(() => {
                 </div>
 
                 <div class="figma-step-text-stack">
-                  <h2 class="figma-slide-title-inline">{{ slide.title }}</h2>
-                  <p class="figma-slide-desc-inline">{{ slide.subtitle }}</p>
+                  <h2 class="figma-slide-title-inline">{{ getSlideTitle(slide) }}</h2>
+                  <p class="figma-slide-desc-inline">{{ getSlideSubtitle(slide) }}</p>
                 </div>
               </div>
             </div>
@@ -1154,7 +1230,8 @@ onUnmounted(() => {
           <!-- Results Intro (Slide 8) -->
           <template v-else-if="slide.id === 'slide-8'">
             <h2 class="figma-intro-title">
-              Что вы получите <br>по итогам теста на аллергию
+              <template v-if="isDoctorMode">{{ getSlideTitle(slide) }}</template>
+              <template v-else>Что вы получите <br>по итогам теста на аллергию</template>
             </h2>
           </template>
 
@@ -1178,10 +1255,10 @@ onUnmounted(() => {
 
                 <div class="figma-step-text-stack">
                   <div class="figma-result-title-row">
-                    <h2 class="figma-slide-title-inline">{{ slide.title }}</h2>
+                    <h2 class="figma-slide-title-inline">{{ getSlideTitle(slide) }}</h2>
                     <span v-if="slide.badge" class="figma-badge">{{ slide.badge }}</span>
                   </div>
-                  <p class="figma-slide-desc-inline">{{ slide.subtitle }}</p>
+                  <p class="figma-slide-desc-inline">{{ getSlideSubtitle(slide) }}</p>
                 </div>
               </div>
             </div>
@@ -1191,6 +1268,7 @@ onUnmounted(() => {
           <template v-else-if="['slide-16', 'slide-17', 'slide-18', 'slide-19', 'slide-20'].includes(slide.id)">
             <FigmaInfoSlide
               :slide="slide"
+              :doctor-mode="isDoctorMode"
               @action="showDemoModal = true"
               @navigate="goToSlideById"
             />

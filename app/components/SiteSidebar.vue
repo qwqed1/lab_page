@@ -1,5 +1,12 @@
 <script setup>
-const emit = defineEmits(['register', 'about', 'close'])
+const props = defineProps({
+  doctorMode: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const emit = defineEmits(['register', 'about', 'close', 'materials'])
 const router = useRouter()
 
 const sidebarAssets = Object.freeze({
@@ -8,10 +15,20 @@ const sidebarAssets = Object.freeze({
   search: '/assets/figma-search-icon.svg',
   demo: '/assets/figma-demo-icon.svg',
   profile: '/assets/figma-profile-icon.svg',
-  about: '/assets/figma-about-icon.svg'
+  about: '/assets/figma-about-icon.svg',
+  materials: '/assets/figma-doctor-materials-icon.svg'
 })
 
 const goTo = (path) => router.push(path)
+
+const openAudienceContent = () => {
+  if (props.doctorMode) {
+    emit('materials')
+    return
+  }
+
+  goTo('/quiz')
+}
 
 const closeMobileMenu = () => {
   emit('close')
@@ -97,17 +114,25 @@ const openMobileAbout = () => {
     </div>
 
     <div
-      id="row-quiz"
+      :id="doctorMode ? 'row-doctor-materials' : 'row-quiz'"
       class="sidebar-row-card"
       role="button"
       tabindex="0"
-      @click="goTo('/quiz')"
-      @keydown.enter="goTo('/quiz')"
-      @keydown.space.prevent="goTo('/quiz')"
+      @click="openAudienceContent"
+      @keydown.enter="openAudienceContent"
+      @keydown.space.prevent="openAudienceContent"
     >
       <div class="row-left-content">
-        <span class="tag-badge">~5 минут</span>
-        <span class="row-text">КВИЗ: Нужен ли вам тест на аллергены?</span>
+        <template v-if="doctorMode">
+          <span class="row-icon-icon" aria-hidden="true">
+            <img :src="sidebarAssets.materials" alt="" width="24" height="24" decoding="sync" />
+          </span>
+          <span class="row-text">Материалы для врачей</span>
+        </template>
+        <template v-else>
+          <span class="tag-badge">~5 минут</span>
+          <span class="row-text">КВИЗ: Нужен ли вам тест на аллергены?</span>
+        </template>
       </div>
     </div>
 

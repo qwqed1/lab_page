@@ -3,6 +3,10 @@ const props = defineProps({
   slide: {
     type: Object,
     required: true
+  },
+  doctorMode: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -10,12 +14,26 @@ const emit = defineEmits(['action', 'navigate'])
 
 const openFaqIndex = ref(-1)
 
-const faqItems = [
+const patientFaqItems = [
   { question: 'Это больно?', answer: 'Забор крови из вены производится тонкой иглой, процедура быстрая и практически безболезненная.' },
   { question: 'Сколько аллергенов в тесте?', answer: 'Аллергочип ALEX2 проверяет более 300 аллергенов одновременно.' },
   { question: 'Через сколько будет результат?', answer: 'Готовность — через 4–7 рабочих дней.' },
   { question: 'У вас есть сертификаты?', answer: 'Да, тест ALEX2 сертифицирован и признан во всем мире.' }
 ]
+
+const doctorFaqItems = [
+  patientFaqItems[0],
+  patientFaqItems[1],
+  {
+    question: 'Нужно ли сдавать на тощак?',
+    answer: 'Нет. Анализ можно сдавать без голодания и специальной подготовки.'
+  },
+  patientFaqItems[3]
+]
+
+const faqItems = computed(() => (
+  props.doctorMode ? doctorFaqItems : patientFaqItems
+))
 
 const blogCards = [
   {
