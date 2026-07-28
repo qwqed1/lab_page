@@ -875,10 +875,14 @@ button {
     line-height: 21px;
   }
 
-  .exact-bottom-link,
-  .exact-faq-slide .exact-bottom-link {
+  .exact-bottom-link {
     font-size: 18px;
     line-height: 22px;
+  }
+
+  .exact-faq-slide .exact-bottom-link {
+    font-size: 24px;
+    line-height: 24px;
   }
 
   .exact-blog-tags span {
