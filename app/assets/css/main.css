@@ -94,7 +94,7 @@ body {
 
   .home-page-container .mobile-home-dock {
     --mobile-unit: min(calc(100vw / 420), 1px);
-    --mobile-dock-height: calc(66 * var(--mobile-unit));
+    --mobile-dock-height: 66px;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -112,6 +112,7 @@ body {
 
   .mobile-home-register,
   .mobile-home-menu-button {
+    grid-row: 1 / 2;
     align-self: stretch;
     width: 100%;
     height: var(--mobile-dock-height);
