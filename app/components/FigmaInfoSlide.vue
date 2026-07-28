@@ -885,6 +885,11 @@ button {
     line-height: 24px;
   }
 
+  .exact-blog-slide .exact-bottom-link {
+    font-size: 24px;
+    line-height: 24px;
+  }
+
   .exact-blog-tags span {
     font-size: 14px;
     line-height: 16px;
