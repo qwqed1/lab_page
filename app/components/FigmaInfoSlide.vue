@@ -160,7 +160,7 @@ const toggleFaq = (index) => {
   container-type: size;
   overflow: hidden;
   color: #000;
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 button {
@@ -173,9 +173,9 @@ button {
   top: calc(326 * var(--uy));
   width: calc(1115 * var(--ux));
   margin: 0;
-  font-size: clamp(28px, calc(42 * var(--ui)), 42px);
+  font-size: 42px;
   font-weight: 400;
-  line-height: 1.1667;
+  line-height: 49px;
 }
 
 .exact-bottom-link {
@@ -192,7 +192,7 @@ button {
   justify-content: flex-start;
   gap: 12px;
   color: #000;
-  font-size: clamp(17px, calc(24 * var(--ui)), 24px);
+  font-size: 24px;
   font-weight: 400;
   line-height: 1;
   text-align: left;
@@ -254,7 +254,7 @@ button {
   align-items: center;
   justify-content: space-between;
   color: #000;
-  font-size: clamp(17px, calc(24 * var(--ui)), 24px);
+  font-size: 24px;
   font-weight: 400;
   line-height: 1;
   text-align: left;
@@ -277,9 +277,9 @@ button {
   width: min(calc(718 * var(--ux)), 100%);
   margin: calc(12 * var(--ui)) 0 0;
   color: rgba(0, 0, 0, 0.6);
-  font-size: clamp(14px, calc(18 * var(--ui)), 18px);
+  font-size: 18px;
   font-weight: 400;
-  line-height: 1;
+  line-height: 21px;
 }
 
 /* Blog — node 39:2204 */
@@ -327,8 +327,8 @@ button {
   background: #f2f2f2;
   display: inline-flex;
   align-items: center;
-  font-size: clamp(13px, calc(16 * var(--ui)), 16px);
-  line-height: 1.1875;
+  font-size: 16px;
+  line-height: 19px;
   white-space: nowrap;
 }
 
@@ -357,14 +357,14 @@ button {
 }
 
 .exact-blog-author-name {
-  font-size: clamp(14px, calc(18 * var(--ui)), 18px);
-  line-height: 1;
+  font-size: 18px;
+  line-height: 21px;
 }
 
 .exact-blog-author-role {
   color: rgba(0, 0, 0, 0.5);
-  font-size: clamp(13px, calc(16 * var(--ui)), 16px);
-  line-height: 1.1875;
+  font-size: 16px;
+  line-height: 19px;
 }
 
 .exact-blog-copy {
@@ -381,13 +381,13 @@ button {
 }
 
 .exact-blog-card-title {
-  font-size: clamp(15px, calc(21 * var(--ui)), 21px);
-  line-height: 1.03;
+  font-size: 21px;
+  line-height: 24px;
 }
 
 .exact-blog-description {
-  font-size: clamp(13px, calc(16 * var(--ui)), 16px);
-  line-height: 1.1875;
+  font-size: 16px;
+  line-height: 19px;
 }
 
 /* How to — nodes 39:2396, 39:2561 and 39:2726 */
@@ -455,7 +455,7 @@ button {
   display: grid;
   place-items: center;
   color: #000;
-  font-size: clamp(17px, calc(24 * var(--ui)), 24px);
+  font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: 1;
@@ -474,8 +474,8 @@ button {
 }
 
 .exact-howto-text h3 {
-  font-size: clamp(22px, calc(32 * var(--ui)), 32px);
-  line-height: 1.1875;
+  font-size: 32px;
+  line-height: 38px;
 }
 
 .exact-howto-step-1 .exact-howto-text h3 {
@@ -492,8 +492,8 @@ button {
 
 .exact-howto-text p {
   color: rgba(0, 0, 0, 0.8);
-  font-size: clamp(15px, calc(21 * var(--ui)), 21px);
-  line-height: 1.03;
+  font-size: 21px;
+  line-height: 24px;
 }
 
 @media (max-width: 700px) {
@@ -505,8 +505,8 @@ button {
     left: calc(16 * var(--mu));
     top: calc(100cqh - 611 * var(--mu));
     width: calc(388 * var(--mu));
-    font-size: calc(32 * var(--mu));
-    line-height: calc(38 * var(--mu));
+    font-size: 32px;
+    line-height: 38px;
   }
 
   .exact-blog-grid {
@@ -537,8 +537,8 @@ button {
     min-height: calc(32 * var(--mu));
     padding: calc(8 * var(--mu)) calc(12 * var(--mu));
     border-radius: calc(8 * var(--mu));
-    font-size: calc(14 * var(--mu));
-    line-height: calc(16 * var(--mu));
+    font-size: 14px;
+    line-height: 16px;
   }
 
   .exact-blog-author {
@@ -558,13 +558,13 @@ button {
   }
 
   .exact-blog-author-name {
-    font-size: calc(16 * var(--mu));
-    line-height: calc(19 * var(--mu));
+    font-size: 16px;
+    line-height: 19px;
   }
 
   .exact-blog-author-role {
-    font-size: calc(14 * var(--mu));
-    line-height: calc(16 * var(--mu));
+    font-size: 14px;
+    line-height: 16px;
   }
 
   .exact-blog-copy {
@@ -574,15 +574,15 @@ button {
 
   .exact-blog-card-title {
     width: calc(345 * var(--mu));
-    font-size: calc(21 * var(--mu));
-    line-height: calc(20 * var(--mu));
+    font-size: 21px;
+    line-height: 24px;
   }
 
   .exact-blog-description {
     width: calc(388 * var(--mu));
     max-width: none;
-    font-size: calc(16 * var(--mu));
-    line-height: calc(19 * var(--mu));
+    font-size: 16px;
+    line-height: 19px;
   }
 
   .exact-faq-list {
@@ -596,8 +596,8 @@ button {
   .exact-faq-question {
     height: calc(24 * var(--mu));
     min-height: calc(24 * var(--mu));
-    font-size: calc(20 * var(--mu));
-    line-height: calc(24 * var(--mu));
+    font-size: 20px;
+    line-height: 24px;
   }
 
   .exact-faq-chevron {
@@ -610,8 +610,8 @@ button {
   .exact-faq-answer {
     width: calc(388 * var(--mu));
     margin-top: calc(12 * var(--mu));
-    font-size: calc(18 * var(--mu));
-    line-height: calc(21 * var(--mu));
+    font-size: 18px;
+    line-height: 21px;
   }
 
   .exact-faq-item.open {
@@ -628,8 +628,8 @@ button {
     min-height: 0;
     padding-top: calc(24 * var(--mu));
     border-top: 1px solid rgba(0, 0, 0, 0.2);
-    font-size: calc(18 * var(--mu));
-    line-height: calc(16 * var(--mu));
+    font-size: 18px;
+    line-height: 22px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -678,7 +678,7 @@ button {
     width: calc(32 * var(--mu));
     height: calc(32 * var(--mu));
     border-width: 1px;
-    font-size: calc(20 * var(--mu));
+    font-size: 20px;
   }
 
   .exact-howto-text {
@@ -694,8 +694,8 @@ button {
   .exact-howto-step-2 .exact-howto-text h3,
   .exact-howto-step-3 .exact-howto-text h3 {
     width: calc(388 * var(--mu));
-    font-size: calc(24 * var(--mu));
-    line-height: calc(28 * var(--mu));
+    font-size: 24px;
+    line-height: 28px;
   }
 
   .exact-howto-step-3 .exact-howto-text h3 {
@@ -704,8 +704,8 @@ button {
 
   .exact-howto-text p {
     width: calc(388 * var(--mu));
-    font-size: calc(18 * var(--mu));
-    line-height: calc(21 * var(--mu));
+    font-size: 18px;
+    line-height: 21px;
   }
 
   .exact-howto-step-3 .exact-howto-text p {
@@ -713,7 +713,7 @@ button {
   }
 }
 
-@media (min-width: 701px) and (max-width: 1024px) {
+@container (min-width: 701px) and (max-width: 1024px) {
   .exact-section-title {
     left: 32px;
     top: 180px;
@@ -735,7 +735,7 @@ button {
   }
 
   .exact-faq-question {
-    font-size: 20px;
+    font-size: 21px;
     line-height: 24px;
   }
 
@@ -743,7 +743,7 @@ button {
     width: 100%;
     max-width: 600px;
     font-size: 18px;
-    line-height: 22px;
+    line-height: 21px;
   }
 
   /* Blog Tablet Styles */

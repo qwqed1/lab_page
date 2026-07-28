@@ -1185,13 +1185,15 @@ onUnmounted(() => {
         >
           <!-- Slide 1: Hero -->
           <template v-if="slide.id === 'slide-1'">
-            <div class="figma-scroll-icon">
-              <img class="scroll-mouse" src="/assets/figma-mouse.svg" alt="" />
-              <img class="scroll-chevron scroll-chevron-1" src="/assets/figma-scroll-chevron-1.svg" alt="" />
-              <img class="scroll-chevron scroll-chevron-2" src="/assets/figma-scroll-chevron-2.svg" alt="" />
-              <img class="scroll-chevron scroll-chevron-3" src="/assets/figma-scroll-chevron-3.svg" alt="" />
+            <div class="figma-hero-content">
+              <div class="figma-scroll-icon">
+                <img class="scroll-mouse" src="/assets/figma-mouse.svg" alt="" />
+                <img class="scroll-chevron scroll-chevron-1" src="/assets/figma-scroll-chevron-1.svg" alt="" />
+                <img class="scroll-chevron scroll-chevron-2" src="/assets/figma-scroll-chevron-2.svg" alt="" />
+                <img class="scroll-chevron scroll-chevron-3" src="/assets/figma-scroll-chevron-3.svg" alt="" />
+              </div>
+              <h1 class="figma-hero-title">{{ getSlideTitle(slide) }}</h1>
             </div>
-            <h1 class="figma-hero-title">{{ getSlideTitle(slide) }}</h1>
           </template>
 
           <!-- Slide 2: Why ALEX2 Intro -->

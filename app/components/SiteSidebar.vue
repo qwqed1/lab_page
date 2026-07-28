@@ -24,6 +24,7 @@ const goTo = (path) => router.push(path)
 const openAudienceContent = () => {
   if (props.doctorMode) {
     emit('materials')
+    closeMobileMenu()
     return
   }
 
