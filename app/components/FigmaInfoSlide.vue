@@ -866,7 +866,7 @@ button {
   }
 
   .exact-faq-question {
-    font-size: 21px;
+    font-size: 24px;
     line-height: 24px;
   }
 
