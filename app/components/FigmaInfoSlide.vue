@@ -857,4 +857,54 @@ button {
   }
 }
 
+/* The 1440px desktop layout is the typography reference. Wider desktop
+   viewports may expand the composition, but must not enlarge its text. */
+@media (min-width: 1025px) {
+  .exact-section-title {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .exact-faq-question {
+    font-size: 21px;
+    line-height: 24px;
+  }
+
+  .exact-faq-answer {
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .exact-bottom-link,
+  .exact-faq-slide .exact-bottom-link {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .exact-blog-tags span {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .exact-blog-author-name {
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  .exact-blog-author-role {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .exact-blog-card-title {
+    font-size: 21px;
+    line-height: 24px;
+  }
+
+  .exact-blog-description {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
 </style>
