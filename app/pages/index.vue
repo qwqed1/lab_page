@@ -104,8 +104,23 @@ const openCart = () => navigateTo('/cart')
 
 const PHONE_VIDEO_ROOT = '/videos/PHONE%20NAREZKA'
 const MOB_VIDEO_ROOT = '/videos/MOB'
+const DOCTOR_VIDEO_ROOT = '/videos/rezak%20previs%20for%20doc'
 const phoneVideo = (index) => index >= 4 ? `${MOB_VIDEO_ROOT}/s${index}.mp4` : `${PHONE_VIDEO_ROOT}/video/s${index}.mp4`
 const phoneReverseVideo = (index) => index >= 4 ? `${MOB_VIDEO_ROOT}/s${index}r.mp4` : `${PHONE_VIDEO_ROOT}/rev/s${index}r.mp4`
+const doctorVideoIndexBySlide = Object.freeze({
+  'slide-1': 1,
+  'slide-2': 2,
+  'slide-3': 3,
+  'slide-4': 4,
+  'slide-5': 5,
+  'slide-6': 6,
+  'slide-7': 7,
+  'slide-8': 8,
+  'slide-9': 9,
+  'slide-10': 10,
+  'slide-11': 11,
+  'slide-16': 12
+})
 const isMobileViewport = ref(false)
 const mobileMenuOpen = ref(false)
 const mobileSectionMenuExpanded = ref(false)
@@ -114,12 +129,20 @@ let mobileViewportChangeHandler = null
 
 const getSlideVideo = (slide) => {
   if (!slide) return ''
+  const doctorVideoIndex = doctorVideoIndexBySlide[slide.id]
+  if (isDoctorMode.value && doctorVideoIndex) {
+    return `${DOCTOR_VIDEO_ROOT}/main/s${doctorVideoIndex}.mp4`
+  }
   if (isMobileViewport.value && Object.hasOwn(slide, 'mobileVideo')) return slide.mobileVideo
   return slide.video || ''
 }
 
 const getSlideReverseVideo = (slide) => {
   if (!slide) return ''
+  const doctorVideoIndex = doctorVideoIndexBySlide[slide.id]
+  if (isDoctorMode.value && doctorVideoIndex) {
+    return `${DOCTOR_VIDEO_ROOT}/rev/s${doctorVideoIndex}r.mp4`
+  }
   if (isMobileViewport.value && Object.hasOwn(slide, 'mobileReverseVideo')) return slide.mobileReverseVideo
   return slide.reverseVideo || ''
 }
@@ -279,8 +302,8 @@ const activeMenuIndex = computed(() => {
 })
 
 const showMenu = computed(() => {
-  if (currentSlideIndex.value === slides.value.length - 1) return false
-  return activeMenuIndex.value !== -1
+  const currentSlide = slides.value[currentSlideIndex.value]
+  return currentSlide?.type !== 'contacts' && activeMenuIndex.value !== -1
 })
 
 const mobileSmokeCloudVariant = computed(() => {
@@ -867,6 +890,22 @@ const playVideoShot = async (src, { playbackRate = 1, onPlaybackStarted, onCompl
     }
   }
 }
+
+watch(isDoctorMode, async () => {
+  await nextTick()
+  const currentSlide = slides.value[currentSlideIndex.value]
+  const src = getSlideVideo(currentSlide)
+
+  if (src) {
+    playVideoShot(src)
+    return
+  }
+
+  const requestId = ++videoRequestId
+  const backgroundSrc = getSlideBackgroundSource(currentSlideIndex.value)
+  if (backgroundSrc) settleOnSlideFrame(backgroundSrc, requestId)
+  else settleWithoutVideo(requestId)
+})
 
 // Every numbered file is a transition into its slide. When moving back, play
 // the matching reverse transition of the slide being left.

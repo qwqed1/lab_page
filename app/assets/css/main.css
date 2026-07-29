@@ -2523,13 +2523,15 @@ body {
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (max-height: 850px) {
+@media (min-width: 1025px) and (max-height: 1024px),
+       (min-width: 1025px) and (max-width: 1200px) {
   .figma-scroll-icon {
-    top: min(calc(69.35% - 72px), calc(100% - 339px));
+    top: min(calc(69.35% - 72px), calc(100% - 390px));
   }
 
   .figma-hero-title {
-    top: min(calc(69.35% + 97px), calc(100% - 170px)) !important;
+    top: auto !important;
+    bottom: clamp(24px, 3.7037vh, 40px);
   }
 }
 
@@ -2674,20 +2676,6 @@ body {
   opacity: 1;
 }
 
-.home-page-container.doctor-mode .bg-video {
-  filter: sepia(0.92) saturate(1.55) hue-rotate(-12deg) brightness(0.72) contrast(1.14);
-}
-
-.home-page-container.doctor-mode .video-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  display: block;
-  background: rgba(105, 56, 21, 0.24);
-  mix-blend-mode: multiply;
-  pointer-events: none;
-}
-
 .home-page-container.doctor-mode .figma-hero-title,
 .home-page-container.doctor-mode .figma-intro-title,
 .home-page-container.doctor-mode .figma-intro-title.white,
@@ -2768,6 +2756,13 @@ body {
     background:
       linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%),
       rgba(0, 0, 0, 0.8);
+  }
+
+  /* The patient mobile hero image is green and sits above the card background
+     through a pseudo-element. Replace it in doctors mode so the open menu
+     uses the same brown palette as its desktop counterpart. */
+  .home-page-container.doctor-mode .site-sidebar .promo-card::before {
+    background: linear-gradient(141.59deg, #5c3d1b 0%, #78532e 100%);
   }
 
   .home-page-container.doctor-mode .figma-smoke-cloud-fixed::before {
@@ -4422,13 +4417,9 @@ body {
   }
 
   .home-page-container.doctor-mode .figma-right-menu.mobile-menu-expanded.mobile-backdrop-visible::before {
-    background: radial-gradient(
-      ellipse at 62% 52%,
-      rgba(0, 0, 0, 0.94) 0%,
-      rgba(0, 0, 0, 0.74) 46%,
-      rgba(0, 0, 0, 0.28) 74%,
-      rgba(0, 0, 0, 0) 100%
-    ) !important;
+    /* Keep the expanded mobile menu in the doctors palette. A translucent
+       backdrop let the green video frame show through behind the menu. */
+    background: linear-gradient(141.59deg, #5c3d1b 0%, #78532e 100%) !important;
   }
 
   .home-page-container .figma-step-indicator .figma-step-circle {
