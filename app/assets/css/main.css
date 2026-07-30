@@ -3974,11 +3974,11 @@ body {
     height: 100dvh;
   }
 
-  .home-page-container.doctor-mode .figma-right-menu.visible {
+  .home-page-container.doctor-mode .figma-right-menu.visible.doctor-backdrop-visible {
     isolation: isolate;
   }
 
-  .home-page-container.doctor-mode .figma-right-menu.visible::before {
+  .home-page-container.doctor-mode .figma-right-menu.visible.doctor-backdrop-visible::before {
     content: '';
     position: absolute;
     z-index: -1;
@@ -3995,6 +3995,17 @@ body {
     );
     filter: blur(clamp(18px, 1.8vw, 34px));
     pointer-events: none;
+  }
+
+  /* The third advantage needs a tighter edge haze: it should peek in from the
+     left and stop around the copy instead of filling the centre of the frame. */
+  .home-page-container.doctor-mode .home-content[data-active-slide="slide-5"] .figma-smoke-cloud-fixed {
+    left: -260px !important;
+    top: 250px !important;
+    width: 760px !important;
+    height: 650px !important;
+    filter: blur(90px) !important;
+    -webkit-filter: blur(90px) !important;
   }
 
   .site-sidebar-layout .site-sidebar {
