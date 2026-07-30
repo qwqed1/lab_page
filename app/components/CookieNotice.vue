@@ -87,6 +87,13 @@ const acceptCookies = () => {
   outline-offset: 3px;
 }
 
+:global(body:has(.home-content[data-active-slide='slide-21']) .cookie-notice) {
+  right: auto;
+  left: 27px;
+  width: min(420px, calc(100vw - 32px));
+  height: auto;
+}
+
 .cookie-notice-enter-active,
 .cookie-notice-leave-active {
   transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), opacity 260ms ease;
@@ -106,6 +113,12 @@ const acceptCookies = () => {
     height: auto;
     padding: 20px;
     gap: 20px;
+  }
+
+  :global(body:has(.home-content[data-active-slide='slide-21']) .cookie-notice) {
+    right: 0;
+    left: 0;
+    width: 100%;
   }
 
   .cookie-notice__text {
