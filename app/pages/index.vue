@@ -322,6 +322,13 @@ const toggleAudienceMode = () => {
 const showSmokeCloud = computed(() => {
   const idx = currentSlideIndex.value
 
+  // Doctors use the same readability layer as patients, recoloured dark.
+  // Keep it behind every content section from Advantages to the final slide.
+  if (isDoctorMode.value && idx >= 2) {
+    if (isMobileViewport.value) return true
+    return contentReadySlideIndex.value === idx
+  }
+
   // On mobile this is one fixed glass layer shared by the video slides. Keep
   // it mounted while swiping between them so it cannot blink off and on at
   // each content reveal point.
@@ -1089,7 +1096,7 @@ onUnmounted(() => {
           visible: showMenu,
           'mobile-intro-menu': currentSlideIndex === 1,
           'mobile-menu-expanded': mobileSectionMenuExpanded,
-          'mobile-backdrop-visible': currentSlideIndex < 11
+          'mobile-backdrop-visible': currentSlideIndex < 11 || (isDoctorMode && currentSlideIndex >= 2)
         }"
       >
         <button
