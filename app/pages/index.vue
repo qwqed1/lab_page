@@ -345,9 +345,10 @@ const toggleAudienceMode = () => {
 const showSmokeCloud = computed(() => {
   const idx = currentSlideIndex.value
 
-  // Doctors use the same readability layer as patients, recoloured dark.
-  // Keep it behind every content section from Advantages to the final slide.
-  if (isDoctorMode.value && idx >= 2) {
+  // In the doctors version the added dark layer is needed only on advantages
+  // 2–5. Advantage 1 and all later sections keep their original backgrounds.
+  if (isDoctorMode.value) {
+    if (idx < 3 || idx > 6) return false
     if (isMobileViewport.value) return true
     return contentReadySlideIndex.value === idx
   }
@@ -1135,7 +1136,8 @@ onUnmounted(() => {
           visible: showMenu,
           'mobile-intro-menu': currentSlideIndex === 1,
           'mobile-menu-expanded': mobileSectionMenuExpanded,
-          'mobile-backdrop-visible': currentSlideIndex < 11 || (isDoctorMode && currentSlideIndex >= 2)
+          'doctor-backdrop-visible': isDoctorMode && currentSlideIndex >= 3 && currentSlideIndex <= 6,
+          'mobile-backdrop-visible': currentSlideIndex < 11 && (!isDoctorMode || (currentSlideIndex >= 3 && currentSlideIndex <= 6))
         }"
       >
         <button
