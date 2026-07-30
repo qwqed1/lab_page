@@ -2660,16 +2660,34 @@ body {
    ========================================================================== */
 
 .home-page-container.doctor-mode .site-sidebar .promo-card {
-  /* Figma 202:1727: translucent #5c3d1b → #78532e over an 80% black fill. */
-  background:
-    linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%),
-    rgba(0, 0, 0, 0.8);
-  -webkit-backdrop-filter: blur(125px);
-  backdrop-filter: blur(125px);
+  /* Figma node 202:1557: #5c3d1b → #78532e, 70% paint opacity. */
+  background: linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%);
+  -webkit-backdrop-filter: blur(250px);
+  backdrop-filter: blur(250px);
+}
+
+.home-page-container.doctor-mode .site-sidebar .promo-card::before {
+  background: none;
 }
 
 .home-page-container.doctor-mode .video-bg-container {
   background: linear-gradient(110deg, #5c3d1b 0%, #b18a5f 58%, #d4b98f 100%);
+}
+
+.home-page-container.doctor-mode .video-bg-container.doctor-faq-still {
+  background: #cba98e url('/assets/doctor-faq-final.webp') center / cover no-repeat;
+}
+
+.home-page-container.doctor-mode .video-bg-container.doctor-editorial-background {
+  background: linear-gradient(110deg, #5c3d1b 0%, #b18a5f 58%, #d4b98f 100%);
+}
+
+.home-page-container.doctor-mode .video-bg-container.doctor-editorial-background .bg-video {
+  opacity: 0 !important;
+}
+
+.home-page-container .video-bg-container.suppress-held-frame .bg-video {
+  opacity: 0 !important;
 }
 
 .home-page-container.doctor-mode .video-bg-container.no-video {
@@ -2686,6 +2704,43 @@ body {
 .home-page-container.doctor-mode .figma-exact-info-slide,
 .home-page-container.doctor-mode .figma-exact-info-slide button {
   color: #ffffff;
+}
+
+.home-page-container.doctor-mode .exact-howto-text p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.home-page-container.doctor-mode .exact-step-indicator i {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.home-page-container.doctor-mode .figma-exact-contacts,
+.home-page-container.doctor-mode .figma-exact-contacts h2,
+.home-page-container.doctor-mode .figma-exact-contacts h3,
+.home-page-container.doctor-mode .figma-exact-contacts a,
+.home-page-container.doctor-mode .figma-exact-contacts button {
+  color: #ffffff;
+}
+
+.home-page-container.doctor-mode .figma-exact-contacts .col-rule,
+.home-page-container.doctor-mode .figma-exact-contacts .mobile-tab-rule {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.home-page-container.doctor-mode .figma-exact-contacts .legal-info-group,
+.home-page-container.doctor-mode .figma-exact-contacts .mobile-legal-list,
+.home-page-container.doctor-mode .figma-exact-contacts .mobile-policy-list a,
+.home-page-container.doctor-mode .figma-exact-contacts .desktop-studio-credit,
+.home-page-container.doctor-mode .figma-exact-contacts .desktop-studio-credit span,
+.home-page-container.doctor-mode .figma-exact-contacts .mobile-studio-credit span {
+  color: rgba(255, 255, 255, 0.52);
+}
+
+.home-page-container.doctor-mode .figma-exact-contacts .desktop-studio-credit img,
+.home-page-container.doctor-mode .figma-exact-contacts .mobile-studio-credit img {
+  filter: brightness(0) invert(1);
+  opacity: 0.52;
 }
 
 .home-page-container.doctor-mode .figma-menu-item.active::before {
@@ -2717,27 +2772,35 @@ body {
 }
 
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed.visible {
-  opacity: 0.85;
+  opacity: 0.68;
 }
 
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary {
   background: radial-gradient(
     ellipse at 20% 82%,
-    rgba(0, 0, 0, 0.96) 0%,
-    rgba(0, 0, 0, 0.82) 44%,
-    rgba(0, 0, 0, 0.34) 72%,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.85) 45%,
+    rgba(0, 0, 0, 0.4) 75%,
     rgba(0, 0, 0, 0) 100%
   );
+}
+
+.home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary.visible {
+  opacity: 0.5;
 }
 
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud {
   background: radial-gradient(
     ellipse at 20% 20%,
-    rgba(0, 0, 0, 0.96) 0%,
-    rgba(0, 0, 0, 0.82) 44%,
-    rgba(0, 0, 0, 0.34) 72%,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.82) 42%,
+    rgba(0, 0, 0, 0.32) 72%,
     rgba(0, 0, 0, 0) 100%
   );
+}
+
+.home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud.visible {
+  opacity: 0.7;
 }
 
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed.story-cloud {
@@ -3977,23 +4040,63 @@ body {
     border-radius: 50%;
     background: radial-gradient(
       ellipse at 48% 46%,
-      rgba(0, 0, 0, 0.9) 0%,
-      rgba(0, 0, 0, 0.6) 48%,
+      rgba(0, 0, 0, 0.74) 0%,
+      rgba(0, 0, 0, 0.46) 48%,
       rgba(0, 0, 0, 0) 100%
     );
     filter: blur(clamp(18px, 1.8vw, 34px));
     pointer-events: none;
   }
 
-  /* The third advantage needs a tighter edge haze: it should peek in from the
-     left and stop around the copy instead of filling the centre of the frame. */
-  .home-page-container.doctor-mode .home-content[data-active-slide="slide-5"] .figma-smoke-cloud-fixed {
-    left: -260px !important;
-    top: 250px !important;
-    width: 760px !important;
-    height: 650px !important;
-    filter: blur(90px) !important;
-    -webkit-filter: blur(90px) !important;
+  .home-page-container .figma-right-menu.visible.results-top-backdrop-visible {
+    isolation: isolate;
+  }
+
+  .home-page-container .figma-right-menu.visible.results-top-backdrop-visible::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: clamp(-210px, -14vw, -150px);
+    top: clamp(-105px, -7vw, -76px);
+    width: clamp(430px, 32vw, 620px);
+    height: clamp(220px, 16vw, 310px);
+    border-radius: 50%;
+    background: radial-gradient(
+      ellipse at 48% 46%,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.6) 48%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    filter: blur(clamp(18px, 1.8vw, 34px));
+    pointer-events: none;
+  }
+
+  .home-page-container.doctor-mode .figma-right-menu.visible.results-top-backdrop-visible::before {
+    background: radial-gradient(
+      ellipse at 48% 46%,
+      rgba(0, 0, 0, 0.74) 0%,
+      rgba(0, 0, 0, 0.46) 48%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  /* On every doctors advantage frame the haze emerges from beyond the left
+     edge. Its visible right edge ends with the copy, placing the fixed text
+     around the middle/right of the shape instead of at its left edge. */
+  .home-page-container.doctor-mode .home-content:is(
+    [data-active-slide="slide-3"],
+    [data-active-slide="slide-4"],
+    [data-active-slide="slide-5"],
+    [data-active-slide="slide-6"],
+    [data-active-slide="slide-7"]
+  ) .figma-smoke-cloud-fixed {
+    left: -32% !important;
+    top: 12% !important;
+    width: 90% !important;
+    height: 76% !important;
+    border-radius: 50% !important;
+    filter: blur(clamp(70px, 7vw, 115px)) !important;
+    -webkit-filter: blur(clamp(70px, 7vw, 115px)) !important;
   }
 
   .site-sidebar-layout .site-sidebar {
@@ -4454,8 +4557,8 @@ body {
   .home-page-container.doctor-mode .figma-right-menu.visible.mobile-backdrop-visible::before {
     background: radial-gradient(
       ellipse at 72% 66%,
-      rgba(0, 0, 0, 0.9) 0%,
-      rgba(0, 0, 0, 0.6) 48%,
+      rgba(0, 0, 0, 0.74) 0%,
+      rgba(0, 0, 0, 0.46) 48%,
       rgba(0, 0, 0, 0) 100%
     ) !important;
   }
@@ -4463,9 +4566,9 @@ body {
   .home-page-container.doctor-mode .figma-right-menu.mobile-menu-expanded.mobile-backdrop-visible::before {
     background: radial-gradient(
       ellipse at 62% 52%,
-      rgba(0, 0, 0, 0.92) 0%,
-      rgba(0, 0, 0, 0.7) 46%,
-      rgba(0, 0, 0, 0.24) 74%,
+      rgba(0, 0, 0, 0.76) 0%,
+      rgba(0, 0, 0, 0.55) 46%,
+      rgba(0, 0, 0, 0.18) 74%,
       rgba(0, 0, 0, 0) 100%
     ) !important;
   }
@@ -4478,6 +4581,7 @@ body {
       rgba(0, 0, 0, var(--mobile-glass-mid-alpha)) var(--mobile-glass-mid-stop),
       rgba(0, 0, 0, var(--mobile-glass-bottom-alpha)) 100%
     );
+    opacity: 0.76;
   }
 
   .home-page-container .figma-step-indicator .figma-step-circle {

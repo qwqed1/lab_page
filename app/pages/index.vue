@@ -90,6 +90,7 @@ const scrollContainer = ref(null)
 const videoA = ref(null)
 const videoB = ref(null)
 const activeVideoElement = ref('A') // 'A' or 'B'
+const suppressHeldVideoFrame = ref(false)
 let videoRequestId = 0
 const isSlideTransitioning = ref(false)
 const navigationMode = ref('scroll')
@@ -185,11 +186,10 @@ const allSlides = [
   { id: 'slide-21', label: 'Контакты', type: 'contacts', title: 'Контакты', subtitle: '', direction: 'down', video: '', reverseVideo: '', mobileBackgroundVideo: phoneVideo(1), holdVideo: true }
 ]
 
-const slides = computed(() => (
-  isDoctorMode.value
-    ? allSlides.filter(slide => !['slide-18', 'slide-19', 'slide-20', 'slide-21'].includes(slide.id))
-    : allSlides
-))
+// Patient and doctor audiences share the exact same closing flow. Audience
+// styling is applied by the root mode class, so the content, layout and
+// responsive behaviour stay in one implementation.
+const slides = computed(() => allSlides)
 
 const doctorSlideCopy = Object.freeze({
   'slide-1': {
@@ -280,12 +280,9 @@ const menuItems = computed(() => {
     { label: 'Преимущества', slideId: 'slide-3' },
     { label: isDoctorMode.value ? 'О результатах' : 'Результаты', slideId: 'slide-9' },
     { label: 'FAQ', slideId: 'slide-16' },
-    { label: 'Блог про аллергию', slideId: 'slide-17' }
+    { label: 'Блог про аллергию', slideId: 'slide-17' },
+    { label: 'Как сдать тест', slideId: 'slide-18' }
   ]
-
-  if (!isDoctorMode.value) {
-    items.push({ label: 'Как сдать тест', slideId: 'slide-18' })
-  }
 
   return items
 })
@@ -345,10 +342,12 @@ const toggleAudienceMode = () => {
 const showSmokeCloud = computed(() => {
   const idx = currentSlideIndex.value
 
-  // In the doctors version the added dark layer is needed only on advantages
-  // 2–5. Advantage 1 and all later sections keep their original backgrounds.
+  // In the doctors version the dark layer follows the patient geometry on all
+  // advantage and result slides. Later information sections stay unchanged.
   if (isDoctorMode.value) {
-    if (idx < 3 || idx > 6) return false
+    const isAdvantages = idx >= 2 && idx <= 6
+    const isResults = idx >= 7 && idx <= 10
+    if (!isAdvantages && !isResults) return false
     if (isMobileViewport.value) return true
     return contentReadySlideIndex.value === idx
   }
@@ -900,6 +899,7 @@ const playVideoShot = async (src, { playbackRate = 1, onPlaybackStarted, onCompl
 }
 
 watch(isDoctorMode, async () => {
+  suppressHeldVideoFrame.value = false
   await nextTick()
   const currentSlide = slides.value[currentSlideIndex.value]
   const src = getSlideVideo(currentSlide)
@@ -919,6 +919,7 @@ watch(isDoctorMode, async () => {
 // the matching reverse transition of the slide being left.
 watch(currentSlideIndex, (newIndex, oldIndex) => {
   mobileSectionMenuExpanded.value = false
+  suppressHeldVideoFrame.value = false
   const transitionId = ++slideTransitionId
   const transitionStartedAt = performance.now()
   let transitionFinishing = false
@@ -996,6 +997,25 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   }
 
   if (goingBack) {
+    const isDoctorBlogToFaq = (
+      isDoctorMode.value
+      && oldSlide?.id === 'slide-17'
+      && slide?.id === 'slide-16'
+    )
+
+    if (isDoctorBlogToFaq) {
+      // The previous results frame can remain composited while the large
+      // doctors clip seeks. Hide both video layers and reveal the exact saved
+      // FAQ end frame underneath instead.
+      ++videoRequestId
+      videoA.value?.pause()
+      videoB.value?.pause()
+      videoBackgroundReady.value = true
+      suppressHeldVideoFrame.value = true
+      finishCurrentTransition()
+      return
+    }
+
     if (oldSlideReverseSrc) {
       playVideoShot(oldSlideReverseSrc, {
         playbackRate: oldIndex === 2 || oldIndex === 1
@@ -1115,19 +1135,16 @@ onUnmounted(() => {
       ref="scrollContainer"
       :data-active-slide="slides[currentSlideIndex]?.id"
     >
-      <Transition name="fade">
-        <button
-          v-if="currentSlideIndex === 0 && contentReadySlideIndex === 0"
-          class="figma-doctors-button"
-          type="button"
-          :aria-label="isDoctorMode ? 'Переключиться на версию для пациентов' : 'Переключиться на версию для врачей'"
-          :aria-pressed="isDoctorMode"
-          @click="toggleAudienceMode"
-        >
-          <span>{{ isDoctorMode ? 'Для пациентов' : 'Для врачей' }}</span>
-          <img src="/assets/figma-doctors-icon.svg" alt="" />
-        </button>
-      </Transition>
+      <button
+        class="figma-doctors-button"
+        type="button"
+        :aria-label="isDoctorMode ? 'Переключиться на версию для пациентов' : 'Переключиться на версию для врачей'"
+        :aria-pressed="isDoctorMode"
+        @click="toggleAudienceMode"
+      >
+        <span>{{ isDoctorMode ? 'Для пациентов' : 'Для врачей' }}</span>
+        <img src="/assets/figma-doctors-icon.svg" alt="" />
+      </button>
 
       <!-- Persistent Right Menu overlay -->
       <div
@@ -1136,8 +1153,9 @@ onUnmounted(() => {
           visible: showMenu,
           'mobile-intro-menu': currentSlideIndex === 1,
           'mobile-menu-expanded': mobileSectionMenuExpanded,
-          'doctor-backdrop-visible': isDoctorMode && currentSlideIndex >= 3 && currentSlideIndex <= 6,
-          'mobile-backdrop-visible': currentSlideIndex < 11 && (!isDoctorMode || (currentSlideIndex >= 3 && currentSlideIndex <= 6))
+          'doctor-backdrop-visible': isDoctorMode && currentSlideIndex >= 2 && currentSlideIndex <= 6,
+          'results-top-backdrop-visible': currentSlideIndex >= 7 && currentSlideIndex <= 10,
+          'mobile-backdrop-visible': currentSlideIndex < 11 && (!isDoctorMode || (currentSlideIndex >= 2 && currentSlideIndex <= 6))
         }"
       >
         <button
@@ -1176,7 +1194,12 @@ onUnmounted(() => {
       <!-- Fixed Video Background Layer -->
       <div
         class="video-bg-container"
-        :class="{ 'no-video': !isVideoBackgroundVisible }"
+        :class="{
+          'no-video': !isVideoBackgroundVisible,
+          'doctor-faq-still': isDoctorMode && slides[currentSlideIndex]?.id === 'slide-16',
+          'doctor-editorial-background': isDoctorMode && ['slide-17', 'slide-18', 'slide-19', 'slide-20', 'slide-21'].includes(slides[currentSlideIndex]?.id),
+          'suppress-held-frame': suppressHeldVideoFrame
+        }"
         aria-hidden="true"
       >
         <video 
