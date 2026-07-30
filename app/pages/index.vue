@@ -13,6 +13,10 @@ const showDemoModal = ref(false)
 const showSearchModal = ref(false)
 const showQuizModal = ref(false)
 const showRegisterModal = ref(false)
+const isBlogTransitionActive = ref(false)
+
+const BLOG_URL = 'https://alexallergotest.ru/blog'
+const BLOG_TRANSITION_DURATION = 1100
 
 // Search State
 const searchQuery = ref('')
@@ -98,10 +102,33 @@ const videoBackgroundReady = ref(true)
 const contentReadySlideIndex = ref(0)
 
 const navigateToExternal = (url) => {
-  window.location.href = url
+  window.location.assign(url)
 }
 
 const openCart = () => navigateTo('/cart')
+
+const handleBlogClick = (event) => {
+  if (!isDoctorMode.value) return
+
+  const isModifiedClick = event.button !== 0
+    || event.metaKey
+    || event.ctrlKey
+    || event.shiftKey
+    || event.altKey
+
+  if (isModifiedClick) return
+
+  event.preventDefault()
+  if (isBlogTransitionActive.value) return
+
+  isBlogTransitionActive.value = true
+}
+
+const finishBlogTransition = () => {
+  if (!isBlogTransitionActive.value) return
+
+  navigateToExternal(BLOG_URL)
+}
 
 const PHONE_VIDEO_ROOT = '/videos/PHONE%20NAREZKA'
 const MOB_VIDEO_ROOT = '/videos/MOB'
@@ -461,6 +488,11 @@ const handleWheel = (e) => {
 }
 
 const handleKeydown = (e) => {
+  if (isBlogTransitionActive.value) {
+    e.preventDefault()
+    return
+  }
+
   if (e.repeat) return
 
   switch (e.key) {
@@ -1440,9 +1472,11 @@ onUnmounted(() => {
           <!-- Contacts (Slide 21) -->
           <template v-else-if="slide.type === 'contacts'">
             <FigmaContactsSlide
+              :blog-href="BLOG_URL"
               @register="openCart"
               @quiz="showQuizModal = true; goToSlideById('slide-1')"
               @navigate="goToSlideById"
+              @blog="handleBlogClick"
             />
           </template>
         </div>
@@ -1468,6 +1502,12 @@ onUnmounted(() => {
       </nav>
     </main>
   </div>
+
+  <DoctorBlogTransition
+    :active="isBlogTransitionActive"
+    :duration-ms="BLOG_TRANSITION_DURATION"
+    @complete="finishBlogTransition"
+  />
 
   <!-- ==========================================================================
        MODALS & OVERLAYS (Preserved from original)

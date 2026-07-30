@@ -1,7 +1,14 @@
 <script setup>
 import { ref } from 'vue'
 
-const emit = defineEmits(['register', 'quiz', 'navigate'])
+defineProps({
+  blogHref: {
+    type: String,
+    default: 'https://alexallergotest.ru/blog',
+  },
+})
+
+const emit = defineEmits(['register', 'quiz', 'navigate', 'blog'])
 const activeTab = ref('contacts') // 'contacts' | 'navigation'
 </script>
 
@@ -60,7 +67,7 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
               <button type="button" class="desktop-nav-item" @click="emit('quiz')">КВИЗ: Нужен ли вам тест</button>
               <NuxtLink to="/personal-account" class="desktop-nav-item">Личный кабинет</NuxtLink>
               <button type="button" class="desktop-nav-item" @click="emit('navigate', 'slide-2')">О лаборатории ALEXLAB</button>
-              <button type="button" class="desktop-nav-item" @click="emit('navigate', 'slide-17')">Блог</button>
+              <a :href="blogHref" class="desktop-nav-item" @click="emit('blog', $event)">Блог</a>
             </div>
           </div>
         </div>
@@ -138,7 +145,7 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
           <!-- Tab Content 2: Navigation -->
           <div v-show="activeTab === 'navigation'" class="mobile-tab-content navigation-tab-content">
             <div class="mobile-nav-list">
-              <button type="button" class="mobile-nav-link" @click="emit('navigate', 'slide-17')">Блог</button>
+              <a :href="blogHref" class="mobile-nav-link" @click="emit('blog', $event)">Блог</a>
               <NuxtLink to="/personal-account" class="mobile-nav-link">Личный кабинет</NuxtLink>
               <button type="button" class="mobile-nav-link" @click="emit('register')">Сдать тест</button>
               <button type="button" class="mobile-nav-link" @click="emit('quiz')">Квиз</button>
