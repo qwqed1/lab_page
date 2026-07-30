@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import DoctorBlogTransition from '~/components/DoctorBlogTransition.vue'
 
 const audienceCookie = useCookie('alex-audience', {
   default: () => 'patients',
