@@ -289,9 +289,8 @@ const goBack = () => {
   .doctor-materials-page {
     display: block;
     width: 100%;
-    height: auto;
-    min-height: 100dvh;
-    overflow: visible;
+    height: 100dvh;
+    overflow: hidden;
   }
 
   .doctor-materials-sidebar {
@@ -300,9 +299,10 @@ const goBack = () => {
 
   .materials-shell {
     width: 100%;
-    height: auto;
-    min-height: 100dvh;
-    overflow: visible;
+    height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .materials-back-bar {
@@ -316,7 +316,7 @@ const goBack = () => {
 
   .materials-content {
     width: 100%;
-    padding: 32px 16px 16px;
+    padding: 32px 16px 48px;
   }
 
   .materials-content h1 {
