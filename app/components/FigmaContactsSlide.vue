@@ -416,14 +416,15 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
 @media (max-width: 700px) {
   .mobile-only-container {
     --mu: calc(100cqw / 420);
+    --mvu: max(var(--mu), calc(400px / 420));
   }
 
   .mobile-contacts-body {
     position: absolute;
     left: calc(16 * var(--mu));
-    top: calc(100cqh - 682 * var(--mu));
+    top: calc(100cqh - 682 * var(--mvu));
     width: calc(388 * var(--mu));
-    height: calc(584 * var(--mu));
+    height: calc(584 * var(--mvu));
   }
 
   .mobile-contacts-header {
@@ -433,9 +434,9 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .mobile-contacts-header h2 {
     width: calc(388 * var(--mu));
     margin: 0;
-    font-size: calc(24 * var(--mu));
+    font-size: calc(24 * var(--mvu));
     font-weight: 400;
-    line-height: calc(28 * var(--mu));
+    line-height: calc(28 * var(--mvu));
     color: #000000;
     white-space: normal;
   }
@@ -443,22 +444,22 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .mobile-contacts-main {
     position: absolute;
     left: 0;
-    top: calc(93 * var(--mu));
+    top: calc(93 * var(--mvu));
     width: calc(388 * var(--mu));
-    height: calc(328 * var(--mu));
+    height: calc(328 * var(--mvu));
   }
 
   .mobile-tabs-row {
     display: flex;
-    gap: calc(21 * var(--mu));
-    height: calc(25 * var(--mu));
+    gap: calc(21 * var(--mvu));
+    height: calc(25 * var(--mvu));
   }
 
   .mobile-tab-btn {
     font-family: 'Roboto', Arial, sans-serif;
-    font-size: calc(21 * var(--mu));
+    font-size: calc(21 * var(--mvu));
     font-weight: 400;
-    line-height: calc(25 * var(--mu));
+    line-height: calc(25 * var(--mvu));
     color: #000000;
     opacity: 0.3;
     background: transparent;
@@ -478,27 +479,27 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     width: calc(388 * var(--mu));
     height: 1px;
     background: rgba(0, 0, 0, 0.2);
-    margin-top: calc(11 * var(--mu));
-    margin-bottom: calc(20 * var(--mu));
+    margin-top: calc(11 * var(--mvu));
+    margin-bottom: calc(20 * var(--mvu));
   }
 
   .mobile-tab-content {
     position: absolute;
     left: 0;
-    top: calc(57 * var(--mu));
+    top: calc(57 * var(--mvu));
     width: calc(388 * var(--mu));
   }
 
   .mobile-contacts-list {
     display: flex;
     flex-direction: column;
-    gap: calc(8 * var(--mu));
-    margin-bottom: calc(24 * var(--mu));
+    gap: calc(8 * var(--mvu));
+    margin-bottom: calc(24 * var(--mvu));
   }
 
   .mobile-contacts-list a {
-    font-size: calc(16 * var(--mu));
-    line-height: calc(19 * var(--mu));
+    font-size: calc(16 * var(--mvu));
+    line-height: calc(19 * var(--mvu));
     font-weight: 400;
     color: #000000;
     text-decoration: none;
@@ -508,14 +509,14 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .mobile-legal-list {
     display: flex;
     flex-direction: column;
-    gap: calc(8 * var(--mu));
-    margin-bottom: calc(32 * var(--mu));
+    gap: calc(8 * var(--mvu));
+    margin-bottom: calc(32 * var(--mvu));
     color: rgba(0, 0, 0, 0.3);
   }
 
   .mobile-legal-list span {
-    font-size: calc(14 * var(--mu));
-    line-height: calc(16 * var(--mu));
+    font-size: calc(14 * var(--mvu));
+    line-height: calc(16 * var(--mvu));
     font-weight: 400;
     white-space: nowrap;
   }
@@ -523,12 +524,12 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .mobile-policy-list {
     display: flex;
     flex-direction: column;
-    gap: calc(8 * var(--mu));
+    gap: calc(8 * var(--mvu));
   }
 
   .mobile-policy-list a {
-    font-size: calc(14 * var(--mu));
-    line-height: calc(16 * var(--mu));
+    font-size: calc(14 * var(--mvu));
+    line-height: calc(16 * var(--mvu));
     font-weight: 400;
     color: rgba(0, 0, 0, 0.3);
     text-decoration: none;
@@ -538,21 +539,21 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .mobile-nav-list {
     display: flex;
     flex-direction: column;
-    gap: calc(2 * var(--mu));
+    gap: calc(2 * var(--mvu));
   }
 
   .mobile-nav-link {
     display: flex;
     align-items: center;
     width: 100%;
-    height: calc(37 * var(--mu));
-    padding: calc(12 * var(--mu)) 0;
+    height: calc(37 * var(--mvu));
+    padding: calc(12 * var(--mvu)) 0;
     margin: 0;
     border: 0;
     background: transparent;
     color: #000000;
     font-family: 'Roboto', Arial, sans-serif;
-    font-size: calc(18 * var(--mu));
+    font-size: calc(18 * var(--mvu));
     font-weight: 400;
     line-height: 1;
     text-align: left;
@@ -563,9 +564,9 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .mobile-contacts-footer {
     position: absolute;
     left: 0;
-    top: calc(513 * var(--mu));
+    top: calc(513 * var(--mvu));
     width: calc(388 * var(--mu));
-    height: calc(71 * var(--mu));
+    height: calc(71 * var(--mvu));
   }
 
   .mobile-studio-credit {
@@ -573,7 +574,7 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     left: 0;
     bottom: 0;
     width: calc(196 * var(--mu));
-    height: calc(71 * var(--mu));
+    height: calc(71 * var(--mvu));
   }
 
   .mobile-studio-credit img {
@@ -581,21 +582,37 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
     left: 0;
     top: 0;
     width: calc(70 * var(--mu));
-    height: calc(31 * var(--mu));
+    height: calc(31 * var(--mvu));
   }
 
   .mobile-studio-credit span {
     position: absolute;
     left: 0;
-    top: calc(39 * var(--mu));
+    top: calc(39 * var(--mvu));
     width: calc(193 * var(--mu));
-    height: calc(32 * var(--mu));
+    height: calc(32 * var(--mvu));
     font-family: 'Roboto', Arial, sans-serif;
-    font-size: calc(14 * var(--mu));
+    font-size: calc(14 * var(--mvu));
     font-weight: 400;
-    line-height: calc(16 * var(--mu));
+    line-height: calc(16 * var(--mvu));
     color: rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
+  }
+}
+
+@media (max-width: 700px) and (max-height: 649px) {
+  .mobile-contacts-body {
+    top: 48px;
+    height: calc(100cqh - 114px);
+    padding-bottom: 16px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .mobile-contacts-body::-webkit-scrollbar {
+    display: none;
   }
 }
 

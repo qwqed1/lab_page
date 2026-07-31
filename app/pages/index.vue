@@ -306,7 +306,7 @@ const goToPersistentStep = (step) => {
 const menuItems = computed(() => {
   const items = [
     { label: 'Преимущества', slideId: 'slide-3' },
-    { label: isDoctorMode.value ? 'О результатах' : 'Результаты', slideId: 'slide-9' },
+    { label: 'Результаты', slideId: 'slide-9' },
     { label: 'FAQ', slideId: 'slide-16' },
     { label: 'Блог про аллергию', slideId: 'slide-17' },
     { label: 'Как сдать тест', slideId: 'slide-18' }

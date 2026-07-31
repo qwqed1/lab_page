@@ -713,6 +713,141 @@ button {
   }
 }
 
+/*
+ * Keep the how-to sequence vertically anchored on narrow phones.
+ * The regular mobile positions are measured from the bottom with a
+ * width-based unit, which makes the whole sequence drift down as the
+ * viewport gets narrower. Text sizing continues to use the mobile rules
+ * above; only these three vertical coordinates are corrected.
+ */
+@media (max-width: 400px) {
+  .exact-faq-list {
+    gap: 23px;
+  }
+
+  .exact-faq-question {
+    height: 23px;
+    min-height: 23px;
+  }
+
+  .exact-faq-chevron {
+    width: 23px;
+    height: 23px;
+    min-width: 23px;
+    min-height: 23px;
+  }
+
+  .exact-blog-slide .exact-bottom-link,
+  .exact-faq-slide .exact-bottom-link {
+    height: 38px;
+    gap: 11px;
+  }
+
+  .exact-blog-slide .exact-bottom-link img,
+  .exact-faq-slide .exact-bottom-link img {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+  }
+
+  .exact-howto-step-3 .exact-howto-text h3 {
+    line-height: 26px;
+  }
+
+  .exact-howto-step-3 .exact-howto-text p {
+    line-height: 19px;
+  }
+
+  .exact-howto-slide .exact-section-title {
+    top: clamp(96px, calc(155cqw - 400px), 158px);
+  }
+
+  .exact-howto-slide .exact-howto-image {
+    top: clamp(218px, calc(60cqw + 26px), 249px);
+  }
+
+  .exact-howto-slide .exact-howto-copy,
+  .exact-howto-step-2 .exact-howto-copy {
+    top: clamp(401px, calc(112.5cqw + 41px), 482px);
+  }
+
+  .exact-howto-step-3 .exact-howto-copy {
+    top: clamp(393px, calc(112.5cqw + 33px), 474px);
+  }
+}
+
+@media (max-width: 400px) and (min-height: 650px) {
+  .exact-blog-slide .exact-section-title {
+    top: calc(100cqh - 582px);
+  }
+
+  .exact-blog-grid {
+    top: calc(100cqh - 526px);
+  }
+
+  .exact-faq-list {
+    bottom: 162px;
+  }
+
+  .exact-blog-slide .exact-bottom-link,
+  .exact-faq-slide .exact-bottom-link {
+    bottom: 93px;
+  }
+}
+
+@media (max-width: 400px) and (max-height: 649px) {
+  .exact-blog-slide .exact-section-title {
+    top: 48px;
+  }
+
+  .exact-blog-grid {
+    top: 94px;
+  }
+
+  .exact-blog-cover {
+    height: clamp(120px, calc(31.25cqw + 20px), 145px);
+    aspect-ratio: auto;
+  }
+
+  .exact-howto-slide .exact-section-title {
+    top: 70px;
+  }
+
+  .exact-howto-slide .exact-howto-image {
+    top: 154px;
+    height: clamp(120px, 37.5cqw, 150px);
+  }
+
+  .exact-howto-slide .exact-howto-copy,
+  .exact-howto-step-2 .exact-howto-copy {
+    top: calc(37.5cqw + 160px);
+  }
+
+  .exact-howto-step-3 .exact-howto-copy {
+    top: calc(37.5cqw + 152px);
+  }
+}
+
+@media (max-width: 341px) and (max-height: 649px) {
+  .exact-howto-slide .exact-section-title {
+    top: 48px;
+  }
+
+  .exact-howto-slide .exact-howto-image {
+    top: 166px;
+  }
+
+  .exact-howto-slide .exact-howto-copy,
+  .exact-howto-step-2 .exact-howto-copy {
+    top: calc(37.5cqw + 174px);
+  }
+
+  .exact-howto-step-3 .exact-howto-copy {
+    top: calc(37.5cqw + 166px);
+  }
+}
+
 @container (min-width: 701px) and (max-width: 1024px) {
   .exact-section-title {
     left: 32px;
@@ -854,6 +989,45 @@ button {
     width: 100%;
     font-size: 18px;
     line-height: 22px;
+  }
+}
+
+/* A 1440px laptop can expose only ~720 CSS pixels vertically at 125% display
+   scaling. Keep the current laptop typography, but compress the tablet
+   composition itself so the editorial content and bottom links retain the
+   same relative placement as they have at the 1440 x 900 reference size. */
+@media (min-width: 1025px) and (max-height: 900px) {
+  @container (min-width: 701px) and (max-width: 1024px) {
+    .exact-section-title {
+      top: calc(180 * 100cqh / 900);
+    }
+
+    .exact-faq-list {
+      bottom: calc(180 * 100cqh / 900);
+      max-height: calc(480 * 100cqh / 900);
+    }
+
+    .exact-blog-grid {
+      top: calc(250 * 100cqh / 900);
+    }
+
+    .exact-bottom-link,
+    .exact-faq-slide .exact-bottom-link {
+      bottom: calc(96 * 100cqh / 900);
+    }
+
+    .exact-howto-image {
+      top: calc(250 * 100cqh / 900);
+      width: min(calc(100% - 64px), calc(520 * 100cqh / 900));
+      max-height: calc(280 * 100cqh / 900);
+    }
+
+    .exact-howto-copy,
+    .exact-howto-step-2 .exact-howto-copy,
+    .exact-howto-step-3 .exact-howto-copy {
+      top: calc(560 * 100cqh / 900);
+      width: min(calc(100% - 64px), calc(520 * 100cqh / 900));
+    }
   }
 }
 

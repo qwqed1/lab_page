@@ -68,6 +68,7 @@ body {
   body {
   .home-page-container {
     --mobile-unit: calc(100vw / 420);
+    --mobile-fixed-unit: max(min(calc(100vw / 420), 1px), calc(400px / 420));
 
     .mobile-info-background {
       position: absolute;
@@ -125,12 +126,12 @@ body {
   }
 
   .mobile-home-register {
-    gap: calc(10 * var(--mobile-unit));
-    padding: calc(21 * var(--mobile-unit)) calc(22.5 * var(--mobile-unit));
+    gap: calc(10 * var(--mobile-fixed-unit));
+    padding: calc(21 * var(--mobile-fixed-unit)) calc(22.5 * var(--mobile-unit));
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
-    font-size: calc(18 * var(--mobile-unit));
-    line-height: calc(24 * var(--mobile-unit));
+    font-size: calc(18 * var(--mobile-fixed-unit));
+    line-height: calc(24 * var(--mobile-fixed-unit));
   }
 
   .mobile-home-register img {
@@ -156,12 +157,12 @@ body {
   .figma-doctors-button {
     right: calc(16 * var(--mobile-unit));
     width: calc(215 * var(--mobile-unit));
-    height: calc(72 * var(--mobile-unit));
-    gap: calc(12 * var(--mobile-unit));
-    padding: calc(24 * var(--mobile-unit)) calc(32 * var(--mobile-unit));
+    height: calc(72 * var(--mobile-fixed-unit));
+    gap: calc(12 * var(--mobile-fixed-unit));
+    padding: calc(24 * var(--mobile-fixed-unit)) calc(32 * var(--mobile-unit));
     background: rgba(0, 0, 0, 0.2);
-    font-size: calc(21 * var(--mobile-unit));
-    line-height: calc(24 * var(--mobile-unit));
+    font-size: calc(21 * var(--mobile-fixed-unit));
+    line-height: calc(24 * var(--mobile-fixed-unit));
   }
 
   .figma-doctors-button img {
@@ -172,7 +173,7 @@ body {
 
   .figma-scroll-icon {
     left: calc(13 * var(--mobile-unit));
-    top: calc(100dvh - 366 * var(--mobile-unit));
+    top: calc(100dvh - 366 * var(--mobile-fixed-unit));
     width: calc(74 * var(--mobile-unit));
     height: calc(118 * var(--mobile-unit));
   }
@@ -199,17 +200,17 @@ body {
     left: calc(16 * var(--mobile-unit));
     width: calc(388 * var(--mobile-unit));
     margin: 0;
-    font-size: calc(32 * var(--mobile-unit));
+    font-size: calc(32 * var(--mobile-fixed-unit));
     font-weight: 400;
-    line-height: calc(38 * var(--mobile-unit));
+    line-height: calc(38 * var(--mobile-fixed-unit));
   }
 
   .figma-hero-title {
-    top: calc(100dvh - 228 * var(--mobile-unit)) !important;
+    top: calc(100dvh - 228 * var(--mobile-fixed-unit)) !important;
   }
 
   .figma-intro-title {
-    top: calc(100dvh - 230 * var(--mobile-unit));
+    top: calc(100dvh - 230 * var(--mobile-fixed-unit));
   }
 
   .figma-right-menu,
@@ -229,8 +230,8 @@ body {
 
   .figma-menu-item {
     display: none;
-    font-size: calc(14 * var(--mobile-unit));
-    line-height: calc(16 * var(--mobile-unit));
+    font-size: calc(14 * var(--mobile-fixed-unit));
+    line-height: calc(16 * var(--mobile-fixed-unit));
   }
 
   .figma-right-menu.mobile-intro-menu .figma-menu-item:first-child,
@@ -269,7 +270,7 @@ body {
     width: calc(32 * var(--mobile-unit));
     height: calc(32 * var(--mobile-unit));
     border-width: 1px;
-    font-size: calc(20 * var(--mobile-unit));
+    font-size: calc(20 * var(--mobile-fixed-unit));
     line-height: 1;
   }
 
@@ -282,7 +283,7 @@ body {
   .figma-step-block.results-pos {
     left: calc(16 * var(--mobile-unit));
     top: auto;
-    bottom: calc(84 * var(--mobile-unit));
+    bottom: calc(84 * var(--mobile-fixed-unit));
     width: calc(388 * var(--mobile-unit));
     max-width: none;
     gap: calc(32 * var(--mobile-unit));
@@ -298,15 +299,15 @@ body {
   .figma-slide-title-inline,
   .results-pos .figma-slide-title-inline {
     max-width: calc(388 * var(--mobile-unit));
-    font-size: calc(24 * var(--mobile-unit));
-    line-height: calc(28 * var(--mobile-unit));
+    font-size: calc(24 * var(--mobile-fixed-unit));
+    line-height: calc(28 * var(--mobile-fixed-unit));
   }
 
   .figma-slide-desc-inline,
   .results-pos .figma-slide-desc-inline {
     width: calc(388 * var(--mobile-unit));
-    font-size: calc(18 * var(--mobile-unit));
-    line-height: calc(21 * var(--mobile-unit));
+    font-size: calc(18 * var(--mobile-fixed-unit));
+    line-height: calc(21 * var(--mobile-fixed-unit));
   }
 
   .slide-layer.active .figma-slide-desc-inline {
@@ -315,16 +316,16 @@ body {
 
   .figma-result-title-row {
     gap: 8px !important;
-    min-height: calc(28 * var(--mobile-unit));
+    min-height: calc(28 * var(--mobile-fixed-unit));
   }
 
   .figma-badge {
     flex-basis: calc(121 * var(--mobile-unit));
     width: calc(121 * var(--mobile-unit));
-    height: calc(27 * var(--mobile-unit));
+    height: calc(27 * var(--mobile-fixed-unit));
     padding: 0 calc(9 * var(--mobile-unit));
     border-width: calc(1.5 * var(--mobile-unit));
-    font-size: calc(16 * var(--mobile-unit));
+    font-size: calc(16 * var(--mobile-fixed-unit));
     line-height: 1;
   }
 
@@ -2814,7 +2815,6 @@ body {
 }
 
 .home-page-container.doctor-mode .exact-faq-question,
-.home-page-container.doctor-mode .exact-faq-answer,
 .home-page-container.doctor-mode .exact-section-title,
 .home-page-container.doctor-mode .exact-bottom-link,
 .home-page-container.doctor-mode .exact-blog-card-title,
@@ -2822,6 +2822,14 @@ body {
 .home-page-container.doctor-mode .exact-blog-author-name,
 .home-page-container.doctor-mode .exact-blog-author-role {
   color: #ffffff;
+}
+
+.home-page-container.doctor-mode .exact-faq-answer {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.home-page-container.doctor-mode .exact-blog-tags span {
+  color: #000000;
 }
 
 .home-page-container.doctor-mode .exact-bottom-link::before {
@@ -4332,6 +4340,8 @@ body {
   .home-page-container .home-content {
     --mobile-copy-shift: 0px;
     --mobile-pager-shift: 0px;
+    --mobile-advantages-lift: clamp(0px, calc(450px - 120vw), 44px);
+    --mobile-results-lift: clamp(0px, calc(375px - 100vw), 20px);
     --mobile-glass-top-alpha: 0;
     --mobile-glass-shoulder-alpha: 0;
     --mobile-glass-shoulder-stop: 12%;
@@ -4354,8 +4364,8 @@ body {
   }
 
   .home-page-container .home-content[data-active-slide="slide-5"] {
-    --mobile-copy-shift: calc(42 * var(--mobile-unit));
-    --mobile-pager-shift: calc(24 * var(--mobile-unit));
+    --mobile-copy-shift: calc(42 * var(--mobile-fixed-unit));
+    --mobile-pager-shift: calc(24 * var(--mobile-fixed-unit));
     --mobile-glass-shoulder-alpha: 0.04;
     --mobile-glass-shoulder-stop: 10%;
     --mobile-glass-mid-alpha: 0.68;
@@ -4364,8 +4374,8 @@ body {
   }
 
   .home-page-container .home-content[data-active-slide="slide-6"] {
-    --mobile-copy-shift: calc(28 * var(--mobile-unit));
-    --mobile-pager-shift: calc(16 * var(--mobile-unit));
+    --mobile-copy-shift: calc(28 * var(--mobile-fixed-unit));
+    --mobile-pager-shift: calc(16 * var(--mobile-fixed-unit));
     --mobile-glass-shoulder-alpha: 0.14;
     --mobile-glass-shoulder-stop: 8%;
     --mobile-glass-mid-alpha: 0.82;
@@ -4374,8 +4384,8 @@ body {
   }
 
   .home-page-container .home-content[data-active-slide="slide-7"] {
-    --mobile-copy-shift: calc(58 * var(--mobile-unit));
-    --mobile-pager-shift: calc(32 * var(--mobile-unit));
+    --mobile-copy-shift: calc(58 * var(--mobile-fixed-unit));
+    --mobile-pager-shift: calc(32 * var(--mobile-fixed-unit));
     --mobile-glass-shoulder-alpha: 0.16;
     --mobile-glass-shoulder-stop: 8%;
     --mobile-glass-mid-alpha: 0.84;
@@ -4405,21 +4415,21 @@ body {
   }
 
   .home-page-container .figma-persistent-step-indicator.persistent-advantages {
-    top: calc(100dvh - 338 * var(--mobile-unit) + var(--mobile-pager-shift));
+    top: calc(100dvh - 338 * var(--mobile-fixed-unit) + var(--mobile-pager-shift) - var(--mobile-advantages-lift));
   }
 
   .home-page-container .figma-persistent-step-indicator.persistent-results {
-    top: calc(100dvh - 249 * var(--mobile-unit));
+    top: calc(100dvh - 249 * var(--mobile-fixed-unit) - var(--mobile-results-lift));
   }
 
   .home-page-container .figma-step-block.advantages-pos {
-    top: calc(100dvh - 274 * var(--mobile-unit) + var(--mobile-copy-shift));
+    top: calc(100dvh - 274 * var(--mobile-fixed-unit) + var(--mobile-copy-shift) - var(--mobile-advantages-lift));
     bottom: auto;
     gap: 0;
   }
 
   .home-page-container .figma-step-block.results-pos {
-    top: calc(100dvh - 185 * var(--mobile-unit));
+    top: calc(100dvh - 185 * var(--mobile-fixed-unit) - var(--mobile-results-lift));
     bottom: auto;
     gap: 0;
   }
@@ -4585,11 +4595,11 @@ body {
   }
 
   .home-page-container .figma-step-indicator .figma-step-circle {
-    width: calc(32 * var(--mobile-unit)) !important;
-    height: calc(32 * var(--mobile-unit)) !important;
+    width: calc(32 * var(--mobile-fixed-unit)) !important;
+    height: calc(32 * var(--mobile-fixed-unit)) !important;
     border-width: 1px !important;
     font-family: Helvetica, Arial, sans-serif !important;
-    font-size: calc(20 * var(--mobile-unit)) !important;
+    font-size: calc(20 * var(--mobile-fixed-unit)) !important;
     line-height: 1 !important;
   }
 

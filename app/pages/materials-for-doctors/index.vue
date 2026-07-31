@@ -107,7 +107,8 @@ const goBack = () => {
 .materials-shell {
   min-width: 0;
   height: 100dvh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: #f5f5f5;
 }
 
@@ -315,7 +316,7 @@ const goBack = () => {
 
   .materials-content {
     width: 100%;
-    padding: 32px 16px 0;
+    padding: 32px 16px 16px;
   }
 
   .materials-content h1 {
