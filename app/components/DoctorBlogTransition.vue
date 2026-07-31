@@ -241,7 +241,9 @@ onBeforeUnmount(() => {
   touch-action: none;
   outline: none;
   isolation: isolate;
-  background: linear-gradient(135deg, #5c3d1b 0%, #78532e 100%);
+  background:
+    linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%),
+    #ffffff;
   cursor: wait;
   animation: doctor-blog-transition-appear var(--doctor-blog-transition-duration) linear both;
 }

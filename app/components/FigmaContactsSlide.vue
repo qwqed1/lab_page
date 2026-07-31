@@ -198,19 +198,19 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   .exact-contacts-body-desktop {
     position: absolute;
     left: calc(64 * var(--ux));
-    top: calc(534 * var(--uy));
-    width: calc(1115 * var(--ux));
-    height: calc(482 * var(--ui));
+    top: max(calc(460 * var(--uy)), calc(100cqh - 540px));
+    width: calc(100% - calc(128 * var(--ux)));
+    display: flex;
+    flex-direction: column;
   }
 
   .desktop-contacts-header {
-    position: absolute;
-    left: 0;
-    top: 0;
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: calc(32 * var(--ui));
+    gap: calc(24 * var(--ui));
+    margin-bottom: 48px;
   }
 
   .desktop-contacts-header h2 {
@@ -260,12 +260,11 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   }
 
   .desktop-contacts-columns {
-    position: absolute;
-    left: 0;
-    top: calc(177 * var(--ui));
+    position: relative;
     width: 100%;
     display: flex;
     gap: calc(32 * var(--ux));
+    margin-bottom: 32px;
   }
 
   .contacts-col {
@@ -347,11 +346,9 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
   }
 
   .desktop-contacts-footer {
-    position: absolute;
-    left: 0;
-    top: calc(440 * var(--ui));
+    position: relative;
     width: 100%;
-    height: calc(42 * var(--ui));
+    height: auto;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -813,6 +810,27 @@ const activeTab = ref('contacts') // 'contacts' | 'navigation'
 @media (min-width: 701px) and (max-width: 1024px) and (min-height: 1251px) {
   .mobile-contacts-footer {
     top: 160px !important;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1120px) {
+  .exact-contacts-body-desktop {
+    top: max(calc(420 * var(--uy)), calc(100cqh - 510px)) !important;
+  }
+
+  .desktop-contacts-header {
+    margin-bottom: 48px !important;
+  }
+
+  .desktop-contacts-header h2 {
+    white-space: normal !important;
+    max-width: 520px !important;
+    font-size: 24px !important;
+    line-height: 28px !important;
+  }
+
+  .desktop-contacts-columns {
+    margin-bottom: 24px !important;
   }
 }
 </style>

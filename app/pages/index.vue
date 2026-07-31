@@ -340,7 +340,11 @@ const mobileSmokeCloudVariant = computed(() => {
     : 'mobile-cloud-compact'
 })
 
-const handleSectionMenuItemClick = (item, idx) => {
+const handleSectionMenuItemClick = (item, idx, event) => {
+  if (event?.currentTarget && typeof event.currentTarget.blur === 'function') {
+    event.currentTarget.blur()
+  }
+
   if (!isMobileViewport.value) {
     goToSlideById(item.slideId)
     return
@@ -370,21 +374,20 @@ const toggleAudienceMode = () => {
 const showSmokeCloud = computed(() => {
   const idx = currentSlideIndex.value
 
+  // On mobile this is one fixed glass layer shared by the video slides. Keep
+  // it mounted while swiping between them so it cannot blink off and on at
+  // each content reveal point.
+  if (isMobileViewport.value) {
+    return idx >= 2 && idx <= 10
+  }
+
   // In the doctors version the dark layer follows the patient geometry on all
   // advantage and result slides. Later information sections stay unchanged.
   if (isDoctorMode.value) {
     const isAdvantages = idx >= 2 && idx <= 6
     const isResults = idx >= 7 && idx <= 10
     if (!isAdvantages && !isResults) return false
-    if (isMobileViewport.value) return true
     return contentReadySlideIndex.value === idx
-  }
-
-  // On mobile this is one fixed glass layer shared by the video slides. Keep
-  // it mounted while swiping between them so it cannot blink off and on at
-  // each content reveal point.
-  if (isMobileViewport.value) {
-    return idx >= 0 && idx <= 10
   }
 
   // Decorative layers enter together with the content. This prevents a cloud
@@ -1186,9 +1189,9 @@ onUnmounted(() => {
           visible: showMenu,
           'mobile-intro-menu': currentSlideIndex === 1,
           'mobile-menu-expanded': mobileSectionMenuExpanded,
-          'doctor-backdrop-visible': isDoctorMode && currentSlideIndex >= 2 && currentSlideIndex <= 6,
-          'results-top-backdrop-visible': currentSlideIndex >= 7 && currentSlideIndex <= 10,
-          'mobile-backdrop-visible': currentSlideIndex < 11 && (!isDoctorMode || (currentSlideIndex >= 2 && currentSlideIndex <= 6))
+          'doctor-backdrop-visible': isDoctorMode && currentSlideIndex >= 2 && currentSlideIndex <= 10,
+          'results-top-backdrop-visible': !isDoctorMode && currentSlideIndex >= 7 && currentSlideIndex <= 10,
+          'mobile-backdrop-visible': currentSlideIndex >= 2 && currentSlideIndex <= 10
         }"
       >
         <button
@@ -1198,7 +1201,7 @@ onUnmounted(() => {
           :class="{ active: idx === activeMenuIndex }"
           type="button"
           :aria-expanded="isMobileViewport && (idx === activeMenuIndex || (activeMenuIndex === -1 && idx === 0)) ? mobileSectionMenuExpanded : undefined"
-          @click="handleSectionMenuItemClick(item, idx)"
+          @click="handleSectionMenuItemClick(item, idx, $event)"
         >
           {{ item.label }}
         </button>

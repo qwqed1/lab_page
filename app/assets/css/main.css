@@ -126,18 +126,28 @@ body {
   }
 
   .mobile-home-register {
-    gap: calc(10 * var(--mobile-fixed-unit));
-    padding: calc(21 * var(--mobile-fixed-unit)) calc(22.5 * var(--mobile-unit));
+    gap: 8px;
+    padding: 21px 12px;
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
-    font-size: calc(18 * var(--mobile-fixed-unit));
-    line-height: calc(24 * var(--mobile-fixed-unit));
+    font-size: 18px;
+    line-height: 24px;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  .mobile-home-register span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    flex: 1 1 auto;
   }
 
   .mobile-home-register img {
-    width: calc(24 * var(--mobile-unit));
-    height: calc(24 * var(--mobile-unit));
-    flex-basis: calc(24 * var(--mobile-unit));
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
   }
 
   .mobile-home-menu-button {
@@ -155,11 +165,12 @@ body {
   }
 
   .figma-doctors-button {
-    right: calc(16 * var(--mobile-unit));
+    right: max(calc(16 * var(--mobile-unit)), 16px);
     width: calc(215 * var(--mobile-unit));
+    max-width: 215px;
     height: calc(72 * var(--mobile-fixed-unit));
     gap: calc(12 * var(--mobile-fixed-unit));
-    padding: calc(24 * var(--mobile-fixed-unit)) calc(32 * var(--mobile-unit));
+    padding: calc(24 * var(--mobile-fixed-unit)) min(calc(32 * var(--mobile-unit)), 32px);
     background: rgba(0, 0, 0, 0.2);
     font-size: calc(21 * var(--mobile-fixed-unit));
     line-height: calc(24 * var(--mobile-fixed-unit));
@@ -173,27 +184,27 @@ body {
 
   .figma-scroll-icon {
     left: calc(13 * var(--mobile-unit));
-    top: calc(100dvh - 366 * var(--mobile-fixed-unit));
-    width: calc(74 * var(--mobile-unit));
-    height: calc(118 * var(--mobile-unit));
+    top: calc(100dvh - 367 * var(--mobile-fixed-unit));
+    width: calc(74 * var(--mobile-fixed-unit));
+    height: calc(119 * var(--mobile-fixed-unit));
   }
 
   .scroll-mouse {
     left: 0;
     top: 0;
-    width: calc(74 * var(--mobile-unit));
-    height: calc(74 * var(--mobile-unit));
+    width: calc(74 * var(--mobile-fixed-unit));
+    height: calc(74 * var(--mobile-fixed-unit));
   }
 
   .scroll-chevron {
-    left: calc(20 * var(--mobile-unit));
-    width: calc(32 * var(--mobile-unit));
-    height: calc(13 * var(--mobile-unit));
+    left: calc(21 * var(--mobile-fixed-unit));
+    width: calc(32 * var(--mobile-fixed-unit));
+    height: calc(13 * var(--mobile-fixed-unit));
   }
 
-  .scroll-chevron-1 { top: calc(76 * var(--mobile-unit)); }
-  .scroll-chevron-2 { top: calc(91 * var(--mobile-unit)); }
-  .scroll-chevron-3 { top: calc(106 * var(--mobile-unit)); }
+  .scroll-chevron-1 { top: calc(76 * var(--mobile-fixed-unit)); }
+  .scroll-chevron-2 { top: calc(91 * var(--mobile-fixed-unit)); }
+  .scroll-chevron-3 { top: calc(106 * var(--mobile-fixed-unit)); }
 
   .figma-hero-title,
   .figma-intro-title {
@@ -341,12 +352,18 @@ body {
   }
 }
 
-@media (min-width: 701px) and (max-width: 1024px) {
+@media (min-width: 701px) and (max-width: 1120px) {
   .figma-section-title,
   .figma-hero-title,
   .figma-intro-title {
     font-size: 32px !important;
     line-height: 38px !important;
+  }
+
+  .figma-hero-subtitle,
+  .figma-intro-subtitle {
+    font-size: 18px !important;
+    line-height: 22px !important;
   }
 
   .figma-hero-title {
@@ -383,36 +400,51 @@ body {
     box-sizing: border-box !important;
     padding: 4px 9px !important;
     gap: 10px !important;
-    border: 1.5px solid #000000 !important;
+    border: 1.5px solid #ffffff !important;
     border-radius: 120px !important;
     font-family: 'Roboto', Arial, sans-serif !important;
     font-weight: 400 !important;
     font-size: 16px !important;
     line-height: 19px !important;
-    color: #000000 !important;
+    color: #ffffff !important;
   }
 
   .figma-step-indicator .figma-step-circle {
-    width: 40px !important;
-    height: 40px !important;
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
     font-size: 20px !important;
     line-height: 1 !important;
   }
 
   /* Paginator circles positioning on tablet */
-  .home-page-container .figma-persistent-step-indicator.persistent-advantages,
-  .home-page-container .figma-persistent-step-indicator.persistent-results {
+  .home-page-container .figma-persistent-step-indicator.persistent-advantages {
     top: calc(100dvh - 372px) !important;
     left: 32px !important;
   }
 
+  .home-page-container .figma-persistent-step-indicator.persistent-results {
+    top: auto !important;
+    bottom: 220px !important;
+    left: 32px !important;
+  }
+
   /* Content block (title + text) placed exactly 12px below circles (372px - 40px circle height - 12px gap = 320px) */
-  .home-page-container .figma-step-block.advantages-pos,
-  .home-page-container .figma-step-block.results-pos {
+  .home-page-container .figma-step-block.advantages-pos {
     top: calc(100dvh - 320px) !important;
     left: 32px !important;
     width: calc(100% - 64px) !important;
-    bottom: auto !important;
+    max-width: none !important;
+    gap: 10px !important;
+  }
+
+  /* Results 1-3 pinned to floor for 1025px - 1120px range */
+  .home-page-container .figma-step-block.results-pos {
+    top: auto !important;
+    bottom: 120px !important;
+    left: 32px !important;
+    width: calc(100% - 64px) !important;
     gap: 10px !important;
   }
 
@@ -1874,14 +1906,24 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    padding: 21px 24px;
+    gap: 8px;
+    padding: 21px 12px;
     background: rgba(0, 0, 0, 0.38);
     -webkit-backdrop-filter: blur(24px);
     backdrop-filter: blur(24px);
     font: 400 18px/24px var(--font-family);
     text-align: left;
     white-space: nowrap;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  .mobile-home-register span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    flex: 1 1 auto;
   }
 
   .mobile-home-register img {
@@ -1894,9 +1936,13 @@ body {
     position: relative;
     display: grid;
     place-items: center;
+    width: 66px;
+    height: 66px;
     padding: 0;
     background: #fff;
     border-left: 1px solid #dfdfdf;
+    box-sizing: border-box;
+    min-width: 66px;
   }
 
   .mobile-home-menu-button img {
@@ -2672,7 +2718,9 @@ body {
 }
 
 .home-page-container.doctor-mode .video-bg-container {
-  background: linear-gradient(110deg, #5c3d1b 0%, #b18a5f 58%, #d4b98f 100%);
+  background:
+    linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%),
+    #ffffff;
 }
 
 .home-page-container.doctor-mode .video-bg-container.doctor-faq-still {
@@ -2680,7 +2728,9 @@ body {
 }
 
 .home-page-container.doctor-mode .video-bg-container.doctor-editorial-background {
-  background: linear-gradient(110deg, #5c3d1b 0%, #b18a5f 58%, #d4b98f 100%);
+  background:
+    linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%),
+    #ffffff;
 }
 
 .home-page-container.doctor-mode .video-bg-container.doctor-editorial-background .bg-video {
@@ -2776,6 +2826,38 @@ body {
   opacity: 0.68;
 }
 
+/* Doctor Mode: Expand Advantages smoke cloud to cover 100% of text width on 1025px - 1500px viewports */
+@media (min-width: 1025px) and (max-width: 1120px) {
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed:not(.results-cloud):not(.story-cloud):not(.results-cloud-primary):not(.results-intro-cloud) {
+    width: 900px !important;
+    height: 800px !important;
+    left: -320px !important;
+    top: 180px !important;
+    filter: blur(100px) !important;
+  }
+
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud {
+    top: 35% !important;
+    background: radial-gradient(
+      ellipse at 20% 35%,
+      rgba(0, 0, 0, 0.98) 0%,
+      rgba(0, 0, 0, 0.82) 42%,
+      rgba(0, 0, 0, 0.32) 72%,
+      rgba(0, 0, 0, 0) 100%
+    ) !important;
+  }
+}
+
+@media (min-width: 1121px) and (max-width: 1500px) {
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed:not(.results-cloud):not(.story-cloud):not(.results-cloud-primary):not(.results-intro-cloud) {
+    width: 1115px !important;
+    height: 880px !important;
+    left: -380px !important;
+    top: 40px !important;
+    filter: blur(110px) !important;
+  }
+}
+
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary {
   background: radial-gradient(
     ellipse at 20% 82%,
@@ -2845,14 +2927,16 @@ body {
   .home-page-container.doctor-mode .site-sidebar .promo-card {
     background:
       linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%),
-      rgba(0, 0, 0, 0.8);
+      #ffffff;
   }
 
   /* The patient mobile hero image is green and sits above the card background
      through a pseudo-element. Replace it in doctors mode so the open menu
      uses the same brown palette as its desktop counterpart. */
   .home-page-container.doctor-mode .site-sidebar .promo-card::before {
-    background: linear-gradient(141.59deg, #5c3d1b 0%, #78532e 100%);
+    background:
+      linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%),
+      #ffffff;
   }
 
 }
@@ -3119,6 +3203,17 @@ body {
   line-height: clamp(9px, 1.2037vh, 13px); /* 13px at the 1080px Figma frame */
   transition: opacity 0.3s ease;
   user-select: none;
+  outline: none;
+}
+
+.figma-menu-item:focus,
+.figma-menu-item:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.figma-menu-item:not(.active) {
+  opacity: 0.4;
 }
 
 .figma-menu-item.active {
@@ -3153,8 +3248,8 @@ body {
   height: 27px;
   box-sizing: border-box;
   background: transparent;
-  border: 1.5px solid #000000;
-  color: #000000;
+  border: 1.5px solid #ffffff;
+  color: #ffffff;
   font-family: 'Roboto', Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -4560,8 +4655,8 @@ body {
 
   .home-page-container.doctor-mode .mobile-info-background.visible {
     background:
-      linear-gradient(rgba(62, 40, 22, 0.84), rgba(28, 17, 10, 0.9)),
-      url('/assets/figma-mobile-info-background-frame.png') center / cover no-repeat;
+      linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%),
+      #ffffff;
   }
 
   .home-page-container.doctor-mode .figma-right-menu.visible.mobile-backdrop-visible::before {
@@ -4583,6 +4678,18 @@ body {
     ) !important;
   }
 
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed,
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud,
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary {
+    background: transparent !important;
+  }
+
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed.visible,
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud.visible,
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary.visible {
+    opacity: 1 !important;
+  }
+
   .home-page-container.doctor-mode .figma-smoke-cloud-fixed::before {
     background: linear-gradient(
       to bottom,
@@ -4590,8 +4697,8 @@ body {
       rgba(0, 0, 0, var(--mobile-glass-shoulder-alpha)) var(--mobile-glass-shoulder-stop),
       rgba(0, 0, 0, var(--mobile-glass-mid-alpha)) var(--mobile-glass-mid-stop),
       rgba(0, 0, 0, var(--mobile-glass-bottom-alpha)) 100%
-    );
-    opacity: 0.76;
+    ) !important;
+    opacity: 1 !important;
   }
 
   .home-page-container .figma-step-indicator .figma-step-circle {

@@ -181,16 +181,16 @@ button {
 .exact-bottom-link {
   position: absolute;
   left: calc(64 * var(--ux));
-  bottom: calc(64 * var(--uy));
-  width: calc(1117 * var(--ux));
+  right: calc(64 * var(--ux));
+  bottom: calc(14 * var(--uy));
+  width: auto;
   min-height: 35px;
   padding: calc(24 * var(--ui)) 0 0 0;
   border: none;
   background: transparent;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
+  justify-content: space-between;
   color: #000;
   font-size: 24px;
   font-weight: 400;
@@ -438,9 +438,13 @@ button {
   cursor: pointer;
 }
 
-.exact-faq-slide .exact-bottom-link {
+.exact-faq-slide .exact-bottom-link,
+.exact-blog-slide .exact-bottom-link {
+  left: calc(64 * var(--ux));
   right: calc(64 * var(--ux));
+  bottom: calc(14 * var(--uy));
   width: auto;
+  justify-content: space-between;
 }
 
 .exact-step-indicator > button.active {
@@ -619,7 +623,8 @@ button {
   }
 
   .exact-bottom-link,
-  .exact-faq-slide .exact-bottom-link {
+  .exact-faq-slide .exact-bottom-link,
+  .exact-blog-slide .exact-bottom-link {
     left: calc(16 * var(--mu));
     right: calc(16 * var(--mu));
     bottom: calc(98 * var(--mu));
@@ -916,10 +921,11 @@ button {
   }
 
   .exact-bottom-link,
-  .exact-faq-slide .exact-bottom-link {
+  .exact-faq-slide .exact-bottom-link,
+  .exact-blog-slide .exact-bottom-link {
     left: 32px;
     right: 32px;
-    bottom: 96px;
+    bottom: 51px;
     width: calc(100% - 64px);
     border-top: 1px solid rgba(0, 0, 0, 0.2);
     padding-top: 24px;
@@ -927,7 +933,7 @@ button {
     line-height: 22px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 12px;
   }
 
@@ -1013,7 +1019,7 @@ button {
 
     .exact-bottom-link,
     .exact-faq-slide .exact-bottom-link {
-      bottom: calc(96 * 100cqh / 900);
+      bottom: calc(51 * 100cqh / 900);
     }
 
     .exact-howto-image {
@@ -1087,6 +1093,111 @@ button {
   .exact-blog-description {
     font-size: 16px;
     line-height: 20px;
+  }
+}
+
+/* Specific mobile font-size override for 1025px - 1120px transition viewports */
+@media (min-width: 1025px) and (max-width: 1120px) {
+  .exact-section-title {
+    font-size: 32px !important;
+    line-height: 38px !important;
+  }
+
+  .exact-howto-slide .exact-section-title {
+    top: 260px !important;
+  }
+
+  .exact-howto-image {
+    top: 350px !important;
+    width: min(calc(100% - 64px), 540px) !important;
+    height: auto !important;
+    max-height: 200px !important;
+    object-fit: cover !important;
+  }
+
+  .exact-howto-copy,
+  .exact-howto-step-2 .exact-howto-copy,
+  .exact-howto-step-3 .exact-howto-copy {
+    top: 575px !important;
+    width: calc(100% - 64px) !important;
+    max-width: 850px !important;
+    gap: 14px !important;
+  }
+
+  .exact-howto-text h3,
+  .exact-howto-step-1 .exact-howto-text h3,
+  .exact-howto-step-2 .exact-howto-text h3,
+  .exact-howto-step-3 .exact-howto-text h3 {
+    font-size: 24px !important;
+    line-height: 28px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .exact-howto-text p {
+    font-size: 18px !important;
+    line-height: 21px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .exact-faq-question {
+    font-size: 21px !important;
+    line-height: 24px !important;
+  }
+
+  .exact-faq-answer {
+    font-size: 18px !important;
+    line-height: 21px !important;
+  }
+
+  .exact-blog-card-title {
+    font-size: 21px !important;
+    line-height: 24px !important;
+  }
+
+  .exact-blog-description {
+    font-size: 16px !important;
+    line-height: 20px !important;
+  }
+
+  .exact-step-indicator {
+    height: 26px !important;
+    gap: 8px !important;
+  }
+
+  .exact-step-indicator > button {
+    width: 26px !important;
+    height: 26px !important;
+  }
+
+  .exact-step-indicator i {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    border-width: 1px !important;
+    font-size: 20px !important;
+    line-height: 1 !important;
+  }
+
+  /* FAQ list aligned to bottom right next to the divider line */
+  .exact-faq-slide .exact-faq-list {
+    top: auto !important;
+    bottom: 170px !important;
+    max-height: calc(100cqh - 380px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+  }
+
+  /* Blog grid shifted ~20% lower within 1025px - 1120px range */
+  .exact-blog-slide .exact-section-title {
+    top: 250px !important;
+  }
+
+  .exact-blog-grid {
+    top: 310px !important;
   }
 }
 
