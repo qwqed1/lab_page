@@ -6,7 +6,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['register', 'about', 'close', 'materials'])
+const emit = defineEmits(['register', 'about', 'close', 'materials', 'home'])
 const router = useRouter()
 
 const sidebarAssets = Object.freeze({
@@ -35,6 +35,11 @@ const closeMobileMenu = () => {
   emit('close')
 }
 
+const openHome = () => {
+  emit('home')
+  closeMobileMenu()
+}
+
 const openMobileAbout = () => {
   emit('about')
   closeMobileMenu()
@@ -45,15 +50,17 @@ const openMobileAbout = () => {
   <aside class="sidebar-container site-sidebar" aria-label="Навигация по сайту">
     <div id="card-promo" class="promo-card">
       <div class="promo-content">
-        <img
-          :src="sidebarAssets.logo"
-          alt="ALEX Allergy Xplorer"
-          class="promo-banner-img"
-          width="392"
-          height="142"
-          decoding="sync"
-          fetchpriority="high"
-        />
+        <button class="promo-logo-button" type="button" aria-label="Вернуться на первый экран главной" @click="openHome">
+          <img
+            :src="sidebarAssets.logo"
+            alt="ALEX Allergy Xplorer"
+            class="promo-banner-img"
+            width="392"
+            height="142"
+            decoding="sync"
+            fetchpriority="high"
+          />
+        </button>
         <p class="promo-text">
           Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
         </p>

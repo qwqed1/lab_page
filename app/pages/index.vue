@@ -1163,6 +1163,7 @@ onUnmounted(() => {
     <SiteSidebar
       :doctor-mode="isDoctorMode"
       @register="openCart"
+      @home="goToSlideById('slide-1')"
       @about="goToSlideById('slide-1')"
       @materials="goToSlideById('slide-17')"
       @close="closeMobileMenu"
