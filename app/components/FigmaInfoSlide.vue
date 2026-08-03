@@ -854,31 +854,6 @@ button {
 }
 
 /*
- * In-app browsers can leave the page with a much shorter content area than
- * the window reported by the media query. React to the actual slide container
- * so the second and third how-to steps stay fully visible above the dock.
- */
-@container (max-width: 400px) and (max-height: 760px) {
-  .exact-howto-slide .exact-section-title {
-    top: clamp(50px, 10cqh, 70px);
-  }
-
-  .exact-howto-slide .exact-howto-image {
-    top: clamp(132px, 24cqh, 154px);
-    height: clamp(120px, 24cqh, 150px);
-  }
-
-  .exact-howto-slide .exact-howto-copy,
-  .exact-howto-step-2 .exact-howto-copy {
-    top: clamp(264px, 50cqh, 352px);
-  }
-
-  .exact-howto-step-3 .exact-howto-copy {
-    top: clamp(256px, calc(50cqh - 8px), 344px);
-  }
-}
-
-/*
  * Keep the desktop how-to composition anchored to the top of the slide.
  * Its previous Y coordinates were multiplied by the container height, which
  * pushed the whole block down on tall and high-resolution viewports.
