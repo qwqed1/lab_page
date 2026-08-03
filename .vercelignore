@@ -1,0 +1,5 @@
+.codex_tmp/
+.playwright-cli/
+output/
+scratch/
+*.docx
