@@ -1055,6 +1055,12 @@ button {
     line-height: 21px;
   }
 
+  .exact-bottom-link,
+  .exact-faq-slide .exact-bottom-link,
+  .exact-blog-slide .exact-bottom-link {
+    bottom: calc(51 * var(--uy)) !important;
+  }
+
   .exact-bottom-link {
     font-size: 18px;
     line-height: 22px;

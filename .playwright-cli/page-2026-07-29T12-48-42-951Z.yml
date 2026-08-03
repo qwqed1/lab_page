@@ -1,0 +1,94 @@
+- main [ref=f28e3]:
+  - button "Переключиться на версию для пациентов" [pressed] [ref=f28e4] [cursor=pointer]:
+    - generic [ref=f28e5]: Для пациентов
+  - generic [ref=f28e6]:
+    - heading "Аллергочип ALEX² — расширенный анализ на аллергию. 300+ аллергенов" [level=1] [ref=f28e8]
+    - generic:
+      - heading "ALEX² — лучший тест на аллергию, что есть на рынке." [level=2]
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - heading "Всё за один сеанс" [level=2]
+            - paragraph: Тест охватывает 99% известных аллергенов за один забор крови. Больше не нужно сдавать десятки анализов и гадать, на что у пациента аллергия.
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - heading "Точечный результат" [level=2]
+            - paragraph: Показываем не только на что аллергия, но и на какие именно молекулы. Это помогает с максимальной уверенностью назначить лечение, не допуская ошибок.
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - heading "Отчёт и консультация" [level=2]
+            - paragraph: Мы не оставляем пациента с непонятными результатами — расшифруем и объясним их человеческим языком.
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - heading "Без диет и отмены лекарств" [level=2]
+            - paragraph: Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом.
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - heading "Подходит детям" [level=2]
+            - paragraph: Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.
+    - generic:
+      - heading "Как назначать тест пациентам" [level=2]
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - heading "Аллерго-паспорт" [level=2]
+            - paragraph: Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - heading "Рекомендации по аллергенам" [level=2]
+            - paragraph: Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - heading "Консультация" [level=2]
+              - generic: Опционально
+            - paragraph: Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - button "Это больно?"
+          - generic:
+            - button "Сколько аллергенов в тесте?"
+          - generic:
+            - button "Нужно ли сдавать на тощак?"
+          - generic:
+            - button "У вас есть сертификаты?"
+        - button "Все вопросы"
+    - generic:
+      - generic:
+        - heading "Блог про аллергию" [level=2]
+        - generic:
+          - article:
+            - generic:
+              - generic:
+                - generic: ~16 минут
+                - generic: Наука
+            - generic:
+              - img "Александра Ковальчук"
+              - generic:
+                - paragraph: Александра Ковальчук
+                - paragraph: Профессор МГУ
+            - generic:
+              - heading "Я уволил джуна, нанял AI-агента, через месяц нанял джуна обратно" [level=3]
+              - paragraph: Про оптимизацию, которая выстрелила — но не так, как я думал
+        - button "Все материалы"
+  - navigation "Быстрые действия" [ref=f28e9]:
+    - button "Записаться на тест на аллергию" [ref=f28e10]
+    - button "Открыть меню" [ref=f28e12]

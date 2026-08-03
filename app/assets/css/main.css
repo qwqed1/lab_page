@@ -400,13 +400,13 @@ body {
     box-sizing: border-box !important;
     padding: 4px 9px !important;
     gap: 10px !important;
-    border: 1.5px solid #ffffff !important;
+    border: 1.5px solid #000000 !important;
     border-radius: 120px !important;
     font-family: 'Roboto', Arial, sans-serif !important;
     font-weight: 400 !important;
     font-size: 16px !important;
     line-height: 19px !important;
-    color: #ffffff !important;
+    color: #000000 !important;
   }
 
   .figma-step-indicator .figma-step-circle {
@@ -2813,8 +2813,8 @@ body {
 }
 
 .home-page-container.doctor-mode .figma-badge {
-  border-color: #ffffff;
-  color: #ffffff;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
 }
 
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed {
@@ -3248,8 +3248,8 @@ body {
   height: 27px;
   box-sizing: border-box;
   background: transparent;
-  border: 1.5px solid #ffffff;
-  color: #ffffff;
+  border: 1.5px solid #000000;
+  color: #000000;
   font-family: 'Roboto', Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;

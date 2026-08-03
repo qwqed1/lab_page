@@ -1,0 +1,263 @@
+- generic [ref=f2e1]:
+  - status [ref=f2e134]: Переходим в блог
+  - generic [ref=f2e2]:
+    - generic [ref=f2e3]:
+      - complementary "Навигация по сайту" [ref=f2e4]:
+        - generic [ref=f2e5]:
+          - generic [ref=f2e6]:
+            - img "ALEX Allergy Xplorer" [ref=f2e7]
+            - paragraph [ref=f2e8]: Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
+          - button "Записаться на тест на аллергию" [ref=f2e9] [cursor=pointer]
+        - generic [ref=f2e12]:
+          - button "Поиск аллергенов Убедитесь, что тест покажет, что вам нужно" [ref=f2e13] [cursor=pointer]:
+            - generic [ref=f2e15]:
+              - heading "Поиск аллергенов" [level=3] [ref=f2e16]
+              - paragraph [ref=f2e17]: Убедитесь, что тест покажет, что вам нужно
+          - button "Посмотреть демо-результат Объясняем результаты на человеческом языке" [ref=f2e18] [cursor=pointer]:
+            - generic [ref=f2e20]:
+              - heading [level=3] [ref=f2e21]:
+                - generic [ref=f2e22]: Посмотретьдемо-результат
+              - paragraph [ref=f2e23]: Объясняем результатына человеческом языке
+        - button "Материалы для врачей" [ref=f2e88] [cursor=pointer]
+        - button "Личный кабинет" [ref=f2e28] [cursor=pointer]
+        - button "Лаборатория ALEX LAB" [ref=f2e32] [cursor=pointer]
+      - main [ref=f2e36]:
+        - button "Переключиться на версию для пациентов" [pressed] [ref=f2e91] [cursor=pointer]:
+          - generic [ref=f2e38]: Для пациентов
+        - generic:
+          - button "Преимущества"
+          - button "О результатах"
+          - button "FAQ"
+          - button "Блог про аллергию"
+          - button "Как сдать тест"
+        - generic [ref=f2e39]:
+          - generic:
+            - heading "Аллергочип ALEX² — расширенный анализ на аллергию. 300+ аллергенов" [level=1]
+          - generic:
+            - heading "ALEX² — лучший тест на аллергию, что есть на рынке." [level=2]
+          - generic:
+            - generic:
+              - generic:
+                - generic "Шаги преимуществ" [ref=f2e42]:
+                  - button "Перейти к шагу 1" [ref=f2e43] [cursor=pointer]: "1"
+                  - button "Перейти к шагу 2" [ref=f2e44] [cursor=pointer]: "2"
+                  - button "Перейти к шагу 3" [ref=f2e45] [cursor=pointer]: "3"
+                  - button "Перейти к шагу 4" [ref=f2e46] [cursor=pointer]: "4"
+                  - button "Перейти к шагу 5" [ref=f2e47] [cursor=pointer]: "5"
+                - generic:
+                  - heading "Всё за один сеанс" [level=2]
+                  - paragraph: Тест охватывает 99% известных аллергенов за один забор крови. Больше не нужно сдавать десятки анализов и гадать, на что у пациента аллергия.
+          - generic:
+            - generic:
+              - generic:
+                - generic "Шаги преимуществ" [ref=f2e48]:
+                  - button "Перейти к шагу 1" [ref=f2e49] [cursor=pointer]: "1"
+                  - button "Перейти к шагу 2" [ref=f2e50] [cursor=pointer]: "2"
+                  - button "Перейти к шагу 3" [ref=f2e51] [cursor=pointer]: "3"
+                  - button "Перейти к шагу 4" [ref=f2e52] [cursor=pointer]: "4"
+                  - button "Перейти к шагу 5" [ref=f2e53] [cursor=pointer]: "5"
+                - generic:
+                  - heading "Точечный результат" [level=2]
+                  - paragraph: Показываем не только на что аллергия, но и на какие именно молекулы. Это помогает с максимальной уверенностью назначить лечение, не допуская ошибок.
+          - generic:
+            - generic:
+              - generic:
+                - generic "Шаги преимуществ" [ref=f2e54]:
+                  - button "Перейти к шагу 1" [ref=f2e55] [cursor=pointer]: "1"
+                  - button "Перейти к шагу 2" [ref=f2e56] [cursor=pointer]: "2"
+                  - button "Перейти к шагу 3" [ref=f2e57] [cursor=pointer]: "3"
+                  - button "Перейти к шагу 4" [ref=f2e58] [cursor=pointer]: "4"
+                  - button "Перейти к шагу 5" [ref=f2e59] [cursor=pointer]: "5"
+                - generic:
+                  - heading "Отчёт и консультация" [level=2]
+                  - paragraph: Мы не оставляем пациента с непонятными результатами — расшифруем и объясним их человеческим языком.
+          - generic:
+            - generic:
+              - generic:
+                - generic "Шаги преимуществ" [ref=f2e60]:
+                  - button "Перейти к шагу 1" [ref=f2e61] [cursor=pointer]: "1"
+                  - button "Перейти к шагу 2" [ref=f2e62] [cursor=pointer]: "2"
+                  - button "Перейти к шагу 3" [ref=f2e63] [cursor=pointer]: "3"
+                  - button "Перейти к шагу 4" [ref=f2e64] [cursor=pointer]: "4"
+                  - button "Перейти к шагу 5" [ref=f2e65] [cursor=pointer]: "5"
+                - generic:
+                  - heading "Без диет и отмены лекарств" [level=2]
+                  - paragraph: Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом.
+          - generic:
+            - generic:
+              - generic:
+                - generic "Шаги преимуществ" [ref=f2e66]:
+                  - button "Перейти к шагу 1" [ref=f2e67] [cursor=pointer]: "1"
+                  - button "Перейти к шагу 2" [ref=f2e68] [cursor=pointer]: "2"
+                  - button "Перейти к шагу 3" [ref=f2e69] [cursor=pointer]: "3"
+                  - button "Перейти к шагу 4" [ref=f2e70] [cursor=pointer]: "4"
+                  - button "Перейти к шагу 5" [ref=f2e71] [cursor=pointer]: "5"
+                - generic:
+                  - heading "Подходит детям" [level=2]
+                  - paragraph: Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.
+          - generic:
+            - heading "Как назначать тест пациентам" [level=2]
+          - generic:
+            - generic:
+              - generic:
+                - generic "Шаги результатов" [ref=f2e72]:
+                  - button "Перейти к шагу 1" [ref=f2e73] [cursor=pointer]: "1"
+                  - button "Перейти к шагу 2" [ref=f2e74] [cursor=pointer]: "2"
+                  - button "Перейти к шагу 3" [ref=f2e75] [cursor=pointer]: "3"
+                - generic:
+                  - generic:
+                    - heading "Аллерго-паспорт" [level=2]
+                  - paragraph: Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.
+          - generic:
+            - generic:
+              - generic:
+                - generic "Шаги результатов" [ref=f2e76]:
+                  - button "Перейти к шагу 1" [ref=f2e77] [cursor=pointer]: "1"
+                  - button "Перейти к шагу 2" [ref=f2e78] [cursor=pointer]: "2"
+                  - button "Перейти к шагу 3" [ref=f2e79] [cursor=pointer]: "3"
+                - generic:
+                  - generic:
+                    - heading "Рекомендации по аллергенам" [level=2]
+                  - paragraph: Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.
+          - generic:
+            - generic:
+              - generic:
+                - generic "Шаги результатов" [ref=f2e80]:
+                  - button "Перейти к шагу 1" [ref=f2e81] [cursor=pointer]: "1"
+                  - button "Перейти к шагу 2" [ref=f2e82] [cursor=pointer]: "2"
+                  - button "Перейти к шагу 3" [ref=f2e83] [cursor=pointer]: "3"
+                - generic:
+                  - generic:
+                    - heading "Консультация" [level=2]
+                    - generic: Опционально
+                  - paragraph: Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - button "Это больно?"
+                - generic:
+                  - button "Сколько аллергенов в тесте?"
+                - generic:
+                  - button "Нужно ли сдавать на тощак?"
+                - generic:
+                  - button "У вас есть сертификаты?"
+              - button "Все вопросы"
+          - generic:
+            - generic:
+              - heading "Блог про аллергию" [level=2]
+              - generic:
+                - article:
+                  - generic:
+                    - generic:
+                      - generic: ~16 минут
+                      - generic: Наука
+                  - generic:
+                    - img "Александра Ковальчук"
+                    - generic:
+                      - paragraph: Александра Ковальчук
+                      - paragraph: Профессор МГУ
+                  - generic:
+                    - heading "Я уволил джуна, нанял AI-агента, через месяц нанял джуна обратно" [level=3]
+                    - paragraph: Про оптимизацию, которая выстрелила — но не так, как я думал
+                - article:
+                  - generic:
+                    - generic:
+                      - generic: ~16 минут
+                      - generic: Наука
+                  - generic:
+                    - img "Александра Ковальчук"
+                    - generic:
+                      - paragraph: Александра Ковальчук
+                      - paragraph: Профессор МГУ
+                  - generic:
+                    - heading "Я уволил джуна, нанял AI-агента, через месяц нанял джуна обратно" [level=3]
+                    - paragraph: Про оптимизацию, которая выстрелила — но не так, как я думал
+              - button "Все материалы"
+          - generic:
+            - generic:
+              - 'heading "Как сдать тест: подготовка и процесс" [level=2]'
+              - generic:
+                - generic "Шаги":
+                  - button "Перейти к шагу 1":
+                    - generic: "1"
+                  - button "Перейти к шагу 2":
+                    - generic: "2"
+                  - button "Перейти к шагу 3":
+                    - generic: "3"
+                - generic:
+                  - heading "Запишитесь на тест через наш сайт" [level=3]
+                  - paragraph: А если хотите получить дополнительно консультацию бесплатно — выберите сдачу теста в лабораториях ALEX
+          - generic:
+            - generic:
+              - 'heading "Как сдать тест: подготовка и процесс" [level=2]'
+              - generic:
+                - generic "Шаги":
+                  - button "Перейти к шагу 1":
+                    - generic: "1"
+                  - button "Перейти к шагу 2":
+                    - generic: "2"
+                  - button "Перейти к шагу 3":
+                    - generic: "3"
+                - generic:
+                  - heading "Сдайте кровь в выбранной лаборатории" [level=3]
+                  - paragraph: "Важно: За 4 часа до сдачи крови нужно не кушать. Кровь берут из вены."
+          - generic:
+            - generic:
+              - 'heading "Как сдать тест: подготовка и процесс" [level=2]'
+              - generic:
+                - generic "Шаги":
+                  - button "Перейти к шагу 1":
+                    - generic: "1"
+                  - button "Перейти к шагу 2":
+                    - generic: "2"
+                  - button "Перейти к шагу 3":
+                    - generic: "3"
+                - generic:
+                  - heading "Отслеживайте результат в личном кабинете и на электронной почте" [level=3]: Отслеживайте результатв личном кабинете и на электронной почте
+                  - paragraph: В личном кабинете показываем статусы — туда же придёт результат. Дополнительно всё дублируем на почту.
+          - region [ref=f2e94]:
+            - generic [ref=f2e96]:
+              - generic [ref=f2e97]:
+                - heading "Тест на аллергию ALEX² — один анализ, который даёт ответы" [level=2] [ref=f2e98]
+                - button "Записаться на тест на аллергию" [ref=f2e99] [cursor=pointer]
+              - generic [ref=f2e105]:
+                - generic [ref=f2e106]:
+                  - heading "Контакты" [level=3] [ref=f2e107]
+                  - generic [ref=f2e109]:
+                    - link "Москва, Пречистенка 30/2" [ref=f2e110] [cursor=pointer]:
+                      - /url: https://yandex.ru/maps/?text=Москва%2C%20Пречистенка%2030%2F2
+                    - link "+7 495 507-64-85" [ref=f2e111] [cursor=pointer]:
+                      - /url: tel:+74955076485
+                    - link "info@kupitkartinu.ru" [ref=f2e112] [cursor=pointer]:
+                      - /url: mailto:info@kupitkartinu.ru
+                  - generic [ref=f2e113]:
+                    - generic [ref=f2e114]: "ИНН: 9703021385"
+                    - generic [ref=f2e115]: "ОГРН: 1207700425602"
+                    - generic [ref=f2e116]: "КПП: 770301001"
+                - generic [ref=f2e117]:
+                  - heading "Навигация по сайту" [level=3] [ref=f2e118]
+                  - generic [ref=f2e120]:
+                    - link "Поиск аллергентов" [ref=f2e121] [cursor=pointer]:
+                      - /url: /search
+                    - link "Демо-результат" [ref=f2e122] [cursor=pointer]:
+                      - /url: /demo-result
+                    - 'button "КВИЗ: Нужен ли вам тест" [ref=f2e123] [cursor=pointer]'
+                    - link "Личный кабинет" [ref=f2e124] [cursor=pointer]:
+                      - /url: /personal-account
+                    - button "О лаборатории ALEXLAB" [ref=f2e125] [cursor=pointer]
+                    - link "Блог" [ref=f2e126] [cursor=pointer]:
+                      - /url: https://alexallergotest.ru/blog
+              - generic [ref=f2e127]:
+                - generic [ref=f2e128]:
+                  - link "Политика конфиденциальности" [ref=f2e129] [cursor=pointer]:
+                    - /url: /policy
+                  - link "Условия использования материалов сайта" [ref=f2e130] [cursor=pointer]:
+                    - /url: /terms
+                - generic [ref=f2e131]: сайт сделан в студии «созерцание»
+    - complementary "Уведомление об использовании cookie" [ref=f2e84]:
+      - paragraph [ref=f2e85]:
+        - text: Сайт использует cookie с целью анализа поведения посетителей для улучшения Сайта. Продолжая пользоваться Сайтом, вы соглашаетесь на использование файлов cookie в соответствии с нашими
+        - link "Cookie-правилами." [ref=f2e86] [cursor=pointer]:
+          - /url: "#"
+      - button "Хорошо" [ref=f2e87] [cursor=pointer]

@@ -432,6 +432,7 @@ const isVideoBackgroundVisible = computed(() => {
 const CONTENT_EXIT_DURATION = 650
 const VIDEO_CONTENT_REVEAL_TIME = 1.3
 const EARLY_REVERSE_PLAYBACK_RATE = 1.5
+const DOCTOR_SLIDE_3_REVERSE_PLAYBACK_RATE = 2
 const VIDEO_LAYER_CROSSFADE_DURATION = 160
 const VIDEO_CONTAINER_FADE_DURATION = 450
 const WHEEL_GESTURE_RESET_DURATION = 90
@@ -1054,9 +1055,11 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
 
     if (oldSlideReverseSrc) {
       playVideoShot(oldSlideReverseSrc, {
-        playbackRate: oldIndex === 2 || oldIndex === 1
-          ? EARLY_REVERSE_PLAYBACK_RATE
-          : 1,
+        playbackRate: isDoctorMode.value && oldSlide?.id === 'slide-3'
+          ? DOCTOR_SLIDE_3_REVERSE_PLAYBACK_RATE
+          : oldIndex === 2 || oldIndex === 1
+            ? EARLY_REVERSE_PLAYBACK_RATE
+            : 1,
         onPlaybackStarted: revealDuringPlayback,
         onComplete: finishCurrentTransition
       })

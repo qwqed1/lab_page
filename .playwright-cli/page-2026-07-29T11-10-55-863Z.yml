@@ -1,0 +1,171 @@
+- generic [ref=f3e3]:
+  - complementary "Навигация по сайту" [ref=f3e4]:
+    - generic [ref=f3e5]:
+      - generic [ref=f3e6]:
+        - img "ALEX Allergy Xplorer" [ref=f3e7]
+        - paragraph [ref=f3e8]: Многокомпонентный анализ крови, который за один забор крови проверяет более 300 аллергенов, выявляя истинные причины реакции.
+      - button "Записаться на тест на аллергию" [ref=f3e9] [cursor=pointer]
+    - generic [ref=f3e12]:
+      - button "Поиск аллергенов Убедитесь, что тест покажет, что вам нужно" [ref=f3e13] [cursor=pointer]:
+        - generic [ref=f3e15]:
+          - heading "Поиск аллергенов" [level=3] [ref=f3e16]
+          - paragraph [ref=f3e17]: Убедитесь, что тест покажет, что вам нужно
+      - button "Посмотреть демо-результат Объясняем результаты на человеческом языке" [ref=f3e18] [cursor=pointer]:
+        - generic [ref=f3e20]:
+          - heading [level=3] [ref=f3e21]:
+            - generic [ref=f3e22]: Посмотретьдемо-результат
+          - paragraph [ref=f3e23]: Объясняем результатына человеческом языке
+    - button "Материалы для врачей" [ref=f3e24] [cursor=pointer]
+    - button "Личный кабинет" [ref=f3e28] [cursor=pointer]
+    - button "Лаборатория ALEX LAB" [ref=f3e32] [cursor=pointer]
+  - main [ref=f3e36]:
+    - button "Переключиться на версию для пациентов" [pressed] [ref=f3e37] [cursor=pointer]:
+      - generic [ref=f3e38]: Для пациентов
+    - generic:
+      - button "Преимущества"
+      - button "О результатах"
+      - button "FAQ"
+      - button "Блог про аллергию"
+    - generic [ref=f3e39]:
+      - heading "Аллергочип ALEX² — расширенный анализ на аллергию. 300+ аллергенов" [level=1] [ref=f3e41]
+      - generic:
+        - heading "ALEX² — лучший тест на аллергию, что есть на рынке." [level=2]
+      - generic:
+        - generic:
+          - generic:
+            - generic "Шаги преимуществ" [ref=f3e42]:
+              - button "Перейти к шагу 1" [ref=f3e43] [cursor=pointer]: "1"
+              - button "Перейти к шагу 2" [ref=f3e44] [cursor=pointer]: "2"
+              - button "Перейти к шагу 3" [ref=f3e45] [cursor=pointer]: "3"
+              - button "Перейти к шагу 4" [ref=f3e46] [cursor=pointer]: "4"
+              - button "Перейти к шагу 5" [ref=f3e47] [cursor=pointer]: "5"
+            - generic:
+              - heading "Всё за один сеанс" [level=2]
+              - paragraph: Тест охватывает 99% известных аллергенов за один забор крови. Больше не нужно сдавать десятки анализов и гадать, на что у пациента аллергия.
+      - generic:
+        - generic:
+          - generic:
+            - generic "Шаги преимуществ" [ref=f3e48]:
+              - button "Перейти к шагу 1" [ref=f3e49] [cursor=pointer]: "1"
+              - button "Перейти к шагу 2" [ref=f3e50] [cursor=pointer]: "2"
+              - button "Перейти к шагу 3" [ref=f3e51] [cursor=pointer]: "3"
+              - button "Перейти к шагу 4" [ref=f3e52] [cursor=pointer]: "4"
+              - button "Перейти к шагу 5" [ref=f3e53] [cursor=pointer]: "5"
+            - generic:
+              - heading "Точечный результат" [level=2]
+              - paragraph: Показываем не только на что аллергия, но и на какие именно молекулы. Это помогает с максимальной уверенностью назначить лечение, не допуская ошибок.
+      - generic:
+        - generic:
+          - generic:
+            - generic "Шаги преимуществ" [ref=f3e54]:
+              - button "Перейти к шагу 1" [ref=f3e55] [cursor=pointer]: "1"
+              - button "Перейти к шагу 2" [ref=f3e56] [cursor=pointer]: "2"
+              - button "Перейти к шагу 3" [ref=f3e57] [cursor=pointer]: "3"
+              - button "Перейти к шагу 4" [ref=f3e58] [cursor=pointer]: "4"
+              - button "Перейти к шагу 5" [ref=f3e59] [cursor=pointer]: "5"
+            - generic:
+              - heading "Отчёт и консультация" [level=2]
+              - paragraph: Мы не оставляем пациента с непонятными результатами — расшифруем и объясним их человеческим языком.
+      - generic:
+        - generic:
+          - generic:
+            - generic "Шаги преимуществ" [ref=f3e60]:
+              - button "Перейти к шагу 1" [ref=f3e61] [cursor=pointer]: "1"
+              - button "Перейти к шагу 2" [ref=f3e62] [cursor=pointer]: "2"
+              - button "Перейти к шагу 3" [ref=f3e63] [cursor=pointer]: "3"
+              - button "Перейти к шагу 4" [ref=f3e64] [cursor=pointer]: "4"
+              - button "Перейти к шагу 5" [ref=f3e65] [cursor=pointer]: "5"
+            - generic:
+              - heading "Без диет и отмены лекарств" [level=2]
+              - paragraph: Анализ можно сдавать на фоне приёма антигистаминных, гормонов и без голодания перед анализом.
+      - generic:
+        - generic:
+          - generic:
+            - generic "Шаги преимуществ" [ref=f3e66]:
+              - button "Перейти к шагу 1" [ref=f3e67] [cursor=pointer]: "1"
+              - button "Перейти к шагу 2" [ref=f3e68] [cursor=pointer]: "2"
+              - button "Перейти к шагу 3" [ref=f3e69] [cursor=pointer]: "3"
+              - button "Перейти к шагу 4" [ref=f3e70] [cursor=pointer]: "4"
+              - button "Перейти к шагу 5" [ref=f3e71] [cursor=pointer]: "5"
+            - generic:
+              - heading "Подходит детям" [level=2]
+              - paragraph: Тест можно сдавать с шести месяцев, а для анализа требуется совсем мало крови.
+      - generic:
+        - heading "Как назначать тест пациентам" [level=2]
+      - generic:
+        - generic:
+          - generic:
+            - generic "Шаги результатов" [ref=f3e72]:
+              - button "Перейти к шагу 1" [ref=f3e73] [cursor=pointer]: "1"
+              - button "Перейти к шагу 2" [ref=f3e74] [cursor=pointer]: "2"
+              - button "Перейти к шагу 3" [ref=f3e75] [cursor=pointer]: "3"
+            - generic:
+              - generic:
+                - heading "Аллерго-паспорт" [level=2]
+              - paragraph: Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.
+      - generic:
+        - generic:
+          - generic:
+            - generic "Шаги результатов" [ref=f3e76]:
+              - button "Перейти к шагу 1" [ref=f3e77] [cursor=pointer]: "1"
+              - button "Перейти к шагу 2" [ref=f3e78] [cursor=pointer]: "2"
+              - button "Перейти к шагу 3" [ref=f3e79] [cursor=pointer]: "3"
+            - generic:
+              - generic:
+                - heading "Рекомендации по аллергенам" [level=2]
+              - paragraph: Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.
+      - generic:
+        - generic:
+          - generic:
+            - generic "Шаги результатов" [ref=f3e80]:
+              - button "Перейти к шагу 1" [ref=f3e81] [cursor=pointer]: "1"
+              - button "Перейти к шагу 2" [ref=f3e82] [cursor=pointer]: "2"
+              - button "Перейти к шагу 3" [ref=f3e83] [cursor=pointer]: "3"
+            - generic:
+              - generic:
+                - heading "Консультация" [level=2]
+                - generic: Опционально
+              - paragraph: Список из 300 аллергенов, которые будут разделены по группам и уровням опасности.
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - button "Это больно?"
+            - generic:
+              - button "Сколько аллергенов в тесте?"
+            - generic:
+              - button "Нужно ли сдавать на тощак?"
+            - generic:
+              - button "У вас есть сертификаты?"
+          - button "Все вопросы"
+      - generic:
+        - generic:
+          - heading "Блог про аллергию" [level=2]
+          - generic:
+            - article:
+              - generic:
+                - generic:
+                  - generic: ~16 минут
+                  - generic: Наука
+              - generic:
+                - img "Александра Ковальчук"
+                - generic:
+                  - paragraph: Александра Ковальчук
+                  - paragraph: Профессор МГУ
+              - generic:
+                - heading "Я уволил джуна, нанял AI-агента, через месяц нанял джуна обратно" [level=3]
+                - paragraph: Про оптимизацию, которая выстрелила — но не так, как я думал
+            - article:
+              - generic:
+                - generic:
+                  - generic: ~16 минут
+                  - generic: Наука
+              - generic:
+                - img "Александра Ковальчук"
+                - generic:
+                  - paragraph: Александра Ковальчук
+                  - paragraph: Профессор МГУ
+              - generic:
+                - heading "Я уволил джуна, нанял AI-агента, через месяц нанял джуна обратно" [level=3]
+                - paragraph: Про оптимизацию, которая выстрелила — но не так, как я думал
+          - button "Все материалы"
