@@ -873,6 +873,20 @@ button {
   .exact-howto-step-2 .exact-howto-copy,
   .exact-howto-step-3 .exact-howto-copy {
     top: 672px;
+    width: 700px;
+  }
+
+  .exact-howto-text h3,
+  .exact-howto-step-1 .exact-howto-text h3,
+  .exact-howto-step-2 .exact-howto-text h3,
+  .exact-howto-step-3 .exact-howto-text h3 {
+    width: 700px;
+    max-width: 700px;
+  }
+
+  .exact-howto-text p {
+    width: 500px;
+    max-width: 500px;
   }
 }
 
