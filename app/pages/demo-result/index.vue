@@ -23,6 +23,20 @@ const filteredItems = computed(() => {
   )
 })
 
+const filteredResultPages = computed(() => {
+  const pages = []
+  const rowsPerPage = 38
+  for (let index = 0; index < filteredItems.value.length; index += rowsPerPage) {
+    pages.push(filteredItems.value.slice(index, index + rowsPerPage))
+  }
+  return pages
+})
+
+const reportPages = Array.from(
+  { length: 10 },
+  (_, index) => `/assets/demo-report/page-${String(index + 1).padStart(2, '0')}.png`
+)
+
 const downloadPDF = () => {
   const link = document.createElement('a')
   link.href = '/documents/elagin-demo-result-clean.pdf'
@@ -80,94 +94,56 @@ const downloadPDF = () => {
         </p>
 
         <section v-if="!normalizedQuery" class="report-pages" aria-label="Демо-результат">
-          <figure class="report-page report-page-image">
-            <img
-              src="/assets/demo-report/page-01.png"
-              alt="Краткое изложение результатов исследования"
-            />
-          </figure>
-
-          <article
-            v-for="page in reportData.pages"
-            :key="page.number"
-            class="report-page report-table-page"
-            :aria-label="`Страница ${page.number} отчёта`"
+          <figure
+            v-for="(page, index) in reportPages"
+            :key="page"
+            class="report-page report-page-image"
           >
-            <table class="report-table">
-              <colgroup>
-                <col class="column-designation" />
-                <col class="column-allergen" />
-                <col class="column-type" />
-                <col class="column-protein" />
-                <col class="column-value" />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th>Обозначение</th>
-                  <th>Аллерген</th>
-                  <th class="cell-center">E/M(*)</th>
-                  <th>Семейство белков</th>
-                  <th class="cell-right">kUA/L</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  v-for="(row, rowIndex) in page.rows"
-                  :key="`${page.number}-${rowIndex}`"
-                  :class="row.kind === 'section' ? `section-row section-level-${row.level}` : 'allergen-row'"
-                >
-                  <th v-if="row.kind === 'section'" colspan="5" scope="rowgroup">
-                    {{ row.title }}
-                  </th>
-                  <template v-else>
-                    <td>{{ row.designation }}</td>
-                    <td>{{ row.allergen }}</td>
-                    <td class="cell-center">{{ row.type }}</td>
-                    <td>{{ row.protein }}</td>
-                    <td class="cell-right">{{ row.value }}</td>
-                  </template>
-                </tr>
-              </tbody>
-            </table>
-          </article>
-
-          <figure class="report-page report-page-image">
             <img
-              src="/assets/demo-report/page-10.png"
-              alt="Краткое описание результата"
-              loading="lazy"
+              :src="page"
+              :alt="`Страница ${index + 1} демо-результата`"
+              :loading="index < 2 ? 'eager' : 'lazy'"
             />
           </figure>
         </section>
 
         <section v-else class="search-results" aria-label="Результаты поиска по аллергенам">
-          <div v-if="filteredItems.length" class="search-results-table-wrap">
-            <table class="search-results-table">
-              <thead>
-                <tr>
-                  <th>Обозначение</th>
-                  <th>Аллерген</th>
-                  <th>E/M</th>
-                  <th>Семейство белков</th>
-                  <th>kUA/L</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(item, index) in filteredItems" :key="`${item.page}-${item.allergen}-${index}`">
-                  <td>
-                    <strong>{{ item.designation }}</strong>
-                    <span class="result-path">
-                      {{ [item.category, item.section].filter(Boolean).join(' / ') }}
-                    </span>
-                  </td>
-                  <td>{{ item.allergen }}</td>
-                  <td class="cell-center">{{ item.type }}</td>
-                  <td>{{ item.protein }}</td>
-                  <td class="cell-right">{{ item.value }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <template v-if="filteredItems.length">
+            <article
+              v-for="(items, pageIndex) in filteredResultPages"
+              :key="pageIndex"
+              class="report-page search-report-page"
+              :aria-label="`Страница ${pageIndex + 1} результатов поиска`"
+            >
+              <table class="report-table search-report-table">
+                <colgroup>
+                  <col class="column-designation" />
+                  <col class="column-allergen" />
+                  <col class="column-type" />
+                  <col class="column-protein" />
+                  <col class="column-value" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>Обозначение</th>
+                    <th>Аллерген</th>
+                    <th class="cell-center">E/M(*)</th>
+                    <th>Семейство белков</th>
+                    <th class="cell-right">kUA/L</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(item, index) in items" :key="`${item.page}-${item.allergen}-${index}`">
+                    <td>{{ item.designation }}</td>
+                    <td>{{ item.allergen }}</td>
+                    <td class="cell-center">{{ item.type }}</td>
+                    <td>{{ item.protein }}</td>
+                    <td class="cell-right">{{ item.value }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </template>
 
           <div v-else class="empty-search-result">
             <p>Ничего не найдено</p>
@@ -184,6 +160,8 @@ const downloadPDF = () => {
   box-sizing: border-box;
   height: 100dvh !important;
   padding: 0 !important;
+  display: flex !important;
+  flex-direction: column;
   gap: 0;
   align-items: stretch;
   background: #f5f5f5;
@@ -330,7 +308,7 @@ const downloadPDF = () => {
   height: auto;
 }
 
-.report-table-page {
+.search-report-page {
   container-type: inline-size;
   padding: 4.7cqw 4.7cqw 3.5cqw;
 }
@@ -368,16 +346,6 @@ const downloadPDF = () => {
   white-space: nowrap;
 }
 
-.report-table .section-row th {
-  height: 3.45cqw;
-  font-size: 1.62cqw;
-  font-weight: 700;
-}
-
-.report-table .section-level-1 th {
-  font-size: 1.86cqw;
-}
-
 .cell-center {
   text-align: center !important;
 }
@@ -388,52 +356,8 @@ const downloadPDF = () => {
 }
 
 .search-results {
-  min-height: 520px;
-  background: #fff;
-  box-shadow: 0 6px 24px rgba(30, 46, 52, 0.12);
-}
-
-.search-results-table-wrap {
-  overflow-x: auto;
-}
-
-.search-results-table {
-  width: 100%;
-  min-width: 760px;
-  border-collapse: collapse;
-  color: #111;
-  font: 16px/1.25 Arial, Helvetica, sans-serif;
-}
-
-.search-results-table th,
-.search-results-table td {
-  padding: 14px 16px;
-  border: 1px solid #d4d4d4;
-  text-align: left;
-  vertical-align: top;
-}
-
-.search-results-table thead th {
-  background: #f7f7f7;
-  font-weight: 700;
-}
-
-.search-results-table th:nth-child(1) { width: 35%; }
-.search-results-table th:nth-child(2) { width: 21%; }
-.search-results-table th:nth-child(3) { width: 7%; }
-.search-results-table th:nth-child(4) { width: 29%; }
-.search-results-table th:nth-child(5) { width: 8%; }
-
-.search-results-table strong {
-  display: block;
-  font-weight: 400;
-}
-
-.result-path {
-  display: block;
-  margin-top: 5px;
-  color: rgba(0, 0, 0, 0.46);
-  font-size: 13px;
+  display: grid;
+  gap: 20px;
 }
 
 .empty-search-result {
