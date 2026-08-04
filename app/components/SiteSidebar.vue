@@ -41,8 +41,12 @@ const openHome = () => {
 }
 
 const openMobileAbout = () => {
-  emit('about')
+  goTo('/alex-lab')
   closeMobileMenu()
+}
+
+const openAbout = () => {
+  goTo('/alex-lab')
 }
 </script>
 
@@ -166,9 +170,9 @@ const openMobileAbout = () => {
       class="sidebar-row-card"
       role="button"
       tabindex="0"
-      @click="emit('about')"
-      @keydown.enter="emit('about')"
-      @keydown.space.prevent="emit('about')"
+      @click="openAbout"
+      @keydown.enter="openAbout"
+      @keydown.space.prevent="openAbout"
     >
       <div class="row-left-content">
         <span class="row-text">
