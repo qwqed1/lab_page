@@ -3847,6 +3847,15 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+
+.figma-faq-divider {
+  position: absolute;
+  left: 5.15%;
+  top: 92.18%;
+  width: 89.7%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.2);
+}
 .contacts-nav-links li a:hover, 
 .contacts-nav-links li:hover {
   text-decoration: underline;

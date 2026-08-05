@@ -7,10 +7,14 @@ const props = defineProps({
   doctorMode: {
     type: Boolean,
     default: false
+  },
+  blogHref: {
+    type: String,
+    default: 'https://alexallergotest.ru/blog'
   }
 })
 
-const emit = defineEmits(['action', 'navigate'])
+const emit = defineEmits(['navigate', 'blog'])
 
 const openFaqIndex = ref(-1)
 
@@ -76,10 +80,7 @@ const toggleFaq = (index) => {
       </div>
     </div>
 
-    <button class="exact-bottom-link" type="button" @click="emit('action')">
-      <span>Все вопросы</span>
-      <img src="/assets/figma-faq-link-arrow.svg" alt="">
-    </button>
+    <div class="exact-bottom-link exact-bottom-line" aria-hidden="true"></div>
   </section>
 
   <section v-else-if="slide.type === 'blog'" class="figma-exact-info-slide exact-blog-slide">
@@ -110,10 +111,10 @@ const toggleFaq = (index) => {
       </article>
     </div>
 
-    <button class="exact-bottom-link" type="button" @click="emit('action')">
+    <a :href="blogHref" class="exact-bottom-link" @click="emit('blog', $event)">
       <span>Все материалы</span>
       <img src="/assets/figma-faq-link-arrow.svg" alt="">
-    </button>
+    </a>
   </section>
 
   <section
@@ -196,6 +197,8 @@ button {
   font-weight: 400;
   line-height: 1;
   text-align: left;
+  text-decoration: none;
+  font-family: inherit;
   cursor: pointer;
 }
 
@@ -207,6 +210,11 @@ button {
   width: 100%;
   height: 1px;
   background: rgba(0, 0, 0, 0.2);
+}
+
+.exact-bottom-line {
+  pointer-events: none;
+  cursor: default;
 }
 
 .exact-bottom-link img {
