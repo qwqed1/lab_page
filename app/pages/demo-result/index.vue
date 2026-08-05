@@ -410,9 +410,13 @@ const downloadPDF = () => {
     box-sizing: border-box;
     width: calc(100% + 32px);
     height: 72px;
-    margin: 0 -16px 45px;
+    margin: 0 -16px 24px;
     padding: 24px 32px;
     position: static;
+    background: #fff;
+    border-bottom: 1px solid #dfdfdf;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   .report-wrapper {
