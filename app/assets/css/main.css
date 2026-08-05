@@ -1430,23 +1430,23 @@ body {
    behind the left edge and dissolves shortly after the copy, instead of
    drawing a local card around the text. */
 .figma-smoke-cloud-fixed.results-cloud-primary {
-  left: -8% !important;
+  left: -5% !important;
   top: auto !important;
-  bottom: -5% !important;
-  width: min(100%, 820px) !important;
-  height: min(78%, 640px) !important;
-  border-radius: 52% 62% 18% 0 / 68% 68% 22% 0;
+  bottom: -4% !important;
+  width: min(90%, 720px) !important;
+  height: min(38%, 380px) !important;
+  border-radius: 56% 66% 14% 0 / 72% 72% 18% 0;
   background: radial-gradient(
-    ellipse at 20% 82%,
+    ellipse at 18% 92%,
     rgba(255, 255, 255, 0.98) 0%,
-    rgba(255, 255, 255, 0.85) 45%,
-    rgba(255, 255, 255, 0.4) 75%,
+    rgba(255, 255, 255, 0.84) 43%,
+    rgba(255, 255, 255, 0.34) 72%,
     rgba(255, 255, 255, 0) 100%
   );
   -webkit-mask-image: none !important;
   mask-image: none !important;
-  filter: blur(30px) !important;
-  -webkit-filter: blur(30px) !important;
+  filter: blur(24px) !important;
+  -webkit-filter: blur(24px) !important;
 }
 
 .figma-smoke-cloud-fixed.results-cloud-primary.visible {
@@ -2840,17 +2840,19 @@ body {
 }
 
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed.visible {
-  opacity: 0.68;
+  opacity: 0.5;
 }
 
-/* Doctor Mode: Expand Advantages smoke cloud to cover 100% of text width on 1025px - 1500px viewports */
+/* Keep the patient and doctor advantage haze on the same desktop geometry. */
 @media (min-width: 1025px) and (max-width: 1120px) {
+  .home-page-container:not(.doctor-mode) .figma-smoke-cloud-fixed:not(.results-cloud):not(.story-cloud):not(.results-cloud-primary):not(.results-intro-cloud),
   .home-page-container.doctor-mode .figma-smoke-cloud-fixed:not(.results-cloud):not(.story-cloud):not(.results-cloud-primary):not(.results-intro-cloud) {
     width: 900px !important;
     height: 800px !important;
     left: -320px !important;
     top: 180px !important;
-    filter: blur(100px) !important;
+    filter: blur(110px) !important;
+    -webkit-filter: blur(110px) !important;
   }
 
   .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud {
@@ -2866,27 +2868,29 @@ body {
 }
 
 @media (min-width: 1121px) and (max-width: 1500px) {
+  .home-page-container:not(.doctor-mode) .figma-smoke-cloud-fixed:not(.results-cloud):not(.story-cloud):not(.results-cloud-primary):not(.results-intro-cloud),
   .home-page-container.doctor-mode .figma-smoke-cloud-fixed:not(.results-cloud):not(.story-cloud):not(.results-cloud-primary):not(.results-intro-cloud) {
     width: 1115px !important;
     height: 880px !important;
     left: -380px !important;
     top: 40px !important;
-    filter: blur(110px) !important;
+    filter: blur(120px) !important;
+    -webkit-filter: blur(120px) !important;
   }
 }
 
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary {
   background: radial-gradient(
-    ellipse at 20% 82%,
+    ellipse at 18% 92%,
     rgba(0, 0, 0, 0.98) 0%,
-    rgba(0, 0, 0, 0.85) 45%,
-    rgba(0, 0, 0, 0.4) 75%,
+    rgba(0, 0, 0, 0.82) 43%,
+    rgba(0, 0, 0, 0.32) 72%,
     rgba(0, 0, 0, 0) 100%
   );
 }
 
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary.visible {
-  opacity: 0.5;
+  opacity: 0.44;
 }
 
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud {
@@ -4153,18 +4157,20 @@ body {
     content: '';
     position: absolute;
     z-index: -1;
-    left: clamp(-210px, -14vw, -150px);
-    top: clamp(-105px, -7vw, -76px);
-    width: clamp(430px, 32vw, 620px);
-    height: clamp(220px, 16vw, 310px);
+    left: -48px;
+    top: -36px;
+    transform: translateX(-10%);
+    width: clamp(270px, 20vw, 340px);
+    height: clamp(185px, 13vw, 225px);
     border-radius: 50%;
     background: radial-gradient(
-      ellipse at 48% 46%,
-      rgba(0, 0, 0, 0.74) 0%,
-      rgba(0, 0, 0, 0.46) 48%,
+      ellipse at 28% 38%,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.29) 44%,
+      rgba(0, 0, 0, 0.1) 72%,
       rgba(0, 0, 0, 0) 100%
     );
-    filter: blur(clamp(18px, 1.8vw, 34px));
+    filter: blur(clamp(16px, 1.4vw, 24px));
     pointer-events: none;
   }
 
@@ -4176,34 +4182,37 @@ body {
     content: '';
     position: absolute;
     z-index: -1;
-    left: clamp(-210px, -14vw, -150px);
-    top: clamp(-105px, -7vw, -76px);
-    width: clamp(430px, 32vw, 620px);
-    height: clamp(220px, 16vw, 310px);
+    left: -48px;
+    top: -36px;
+    transform: translateX(-10%);
+    width: clamp(270px, 20vw, 340px);
+    height: clamp(185px, 13vw, 225px);
     border-radius: 50%;
     background: radial-gradient(
-      ellipse at 48% 46%,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(255, 255, 255, 0.6) 48%,
+      ellipse at 28% 38%,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.84) 44%,
+      rgba(255, 255, 255, 0.27) 72%,
       rgba(255, 255, 255, 0) 100%
     );
-    filter: blur(clamp(18px, 1.8vw, 34px));
+    filter: blur(clamp(16px, 1.4vw, 24px));
     pointer-events: none;
   }
 
   .home-page-container.doctor-mode .figma-right-menu.visible.results-top-backdrop-visible::before {
     background: radial-gradient(
-      ellipse at 48% 46%,
-      rgba(0, 0, 0, 0.74) 0%,
-      rgba(0, 0, 0, 0.46) 48%,
+      ellipse at 28% 38%,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.29) 44%,
+      rgba(0, 0, 0, 0.1) 72%,
       rgba(0, 0, 0, 0) 100%
     );
   }
 
-  /* On every doctors advantage frame the haze emerges from beyond the left
-     edge. Its visible right edge ends with the copy, placing the fixed text
-     around the middle/right of the shape instead of at its left edge. */
-  .home-page-container.doctor-mode .home-content:is(
+  /* On every desktop advantage frame the haze emerges from beyond the left
+     edge. Its visible right edge ends with the copy, keeping most of the video
+     unobscured while preserving contrast around the text. */
+  .home-page-container .home-content:is(
     [data-active-slide="slide-3"],
     [data-active-slide="slide-4"],
     [data-active-slide="slide-5"],
@@ -4215,8 +4224,33 @@ body {
     width: 90% !important;
     height: 76% !important;
     border-radius: 50% !important;
-    filter: blur(clamp(70px, 7vw, 115px)) !important;
-    -webkit-filter: blur(clamp(70px, 7vw, 115px)) !important;
+    filter: blur(clamp(80px, 7.5vw, 125px)) !important;
+    -webkit-filter: blur(clamp(80px, 7.5vw, 125px)) !important;
+  }
+
+  .home-page-container:not(.doctor-mode) .home-content:is(
+    [data-active-slide="slide-3"],
+    [data-active-slide="slide-4"],
+    [data-active-slide="slide-5"],
+    [data-active-slide="slide-6"],
+    [data-active-slide="slide-7"]
+  ) .figma-smoke-cloud-fixed.visible {
+    opacity: 0.8;
+  }
+
+  /* Results intro (slide 8): trim 15% from both the top and bottom while
+     preserving the original centre, then match each mode's primary haze. */
+  .home-page-container .figma-smoke-cloud-fixed.results-intro-cloud {
+    top: calc(20% + min(9.75%, 82.5px)) !important;
+    height: min(45.5%, 385px) !important;
+  }
+
+  .home-page-container:not(.doctor-mode) .figma-smoke-cloud-fixed.results-intro-cloud.visible {
+    opacity: 0.8;
+  }
+
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud.visible {
+    opacity: 0.5;
   }
 
   .site-sidebar-layout .site-sidebar {
@@ -4353,6 +4387,30 @@ body {
 
   .site-sidebar #row-about {
     border-bottom: 0;
+  }
+}
+
+/* At the 1920×1080 presentation viewport, lower the patient advantages haze
+   so its brightest area sits behind the copy instead of drifting upward. */
+@media (min-width: 1025px) and (max-width: 1120px) {
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud {
+    top: calc(35% + min(9.75%, 82.5px)) !important;
+  }
+}
+
+@media (width: 1920px) and (height: 1080px) {
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud {
+    top: calc(45% + min(9.75%, 82.5px)) !important;
+  }
+
+  .home-page-container:not(.doctor-mode) .home-content:is(
+    [data-active-slide="slide-3"],
+    [data-active-slide="slide-4"],
+    [data-active-slide="slide-5"],
+    [data-active-slide="slide-6"],
+    [data-active-slide="slide-7"]
+  ) .figma-smoke-cloud-fixed {
+    top: 32% !important;
   }
 }
 
