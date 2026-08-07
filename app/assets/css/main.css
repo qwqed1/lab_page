@@ -2982,6 +2982,23 @@ body {
   height: 100%;
 }
 
+/* The three "How to take the test" pages reuse one visual shell. Only the
+   copy and the selected step change, keeping the rest of the scene steady. */
+.howto-persistent-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.howto-persistent-layer .figma-exact-info-slide {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  animation: none;
+  transition: none;
+}
+
 /* Step category tag (e.g. Преимущества) */
 .figma-category-label {
   position: absolute;

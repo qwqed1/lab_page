@@ -134,6 +134,7 @@ const finishBlogTransition = () => {
 const PHONE_VIDEO_ROOT = '/videos/PHONE%20NAREZKA'
 const MOB_VIDEO_ROOT = '/videos/MOB'
 const DOCTOR_VIDEO_ROOT = '/videos/rezak%20previs%20for%20doc'
+const DOCTOR_MOBILE_VIDEO_ROOT = '/videos/MOB%20FOR%20DOC'
 const phoneVideo = (index) => index >= 4 ? `${MOB_VIDEO_ROOT}/s${index}.mp4` : `${PHONE_VIDEO_ROOT}/video/s${index}.mp4`
 const phoneReverseVideo = (index) => index >= 4 ? `${MOB_VIDEO_ROOT}/s${index}r.mp4` : `${PHONE_VIDEO_ROOT}/rev/s${index}r.mp4`
 const doctorVideoIndexBySlide = Object.freeze({
@@ -160,6 +161,9 @@ const getSlideVideo = (slide) => {
   if (!slide) return ''
   const doctorVideoIndex = doctorVideoIndexBySlide[slide.id]
   if (isDoctorMode.value && doctorVideoIndex) {
+    if (isMobileViewport.value) {
+      return `${DOCTOR_MOBILE_VIDEO_ROOT}/s${doctorVideoIndex}.mp4`
+    }
     return `${DOCTOR_VIDEO_ROOT}/main/s${doctorVideoIndex}.mp4`
   }
   if (isMobileViewport.value && Object.hasOwn(slide, 'mobileVideo')) return slide.mobileVideo
@@ -170,6 +174,9 @@ const getSlideReverseVideo = (slide) => {
   if (!slide) return ''
   const doctorVideoIndex = doctorVideoIndexBySlide[slide.id]
   if (isDoctorMode.value && doctorVideoIndex) {
+    if (isMobileViewport.value) {
+      return `${DOCTOR_MOBILE_VIDEO_ROOT}/s${doctorVideoIndex}r.mp4`
+    }
     return `${DOCTOR_VIDEO_ROOT}/rev/s${doctorVideoIndex}r.mp4`
   }
   if (isMobileViewport.value && Object.hasOwn(slide, 'mobileReverseVideo')) return slide.mobileReverseVideo
@@ -402,6 +409,15 @@ const isResultsSection = computed(() => {
   return idx >= 8 && idx <= 10
 })
 
+const isHowToSection = computed(() => {
+  const idx = currentSlideIndex.value
+  return idx >= 13 && idx <= 15
+})
+
+const currentHowToSlide = computed(() => (
+  isHowToSection.value ? slides.value[currentSlideIndex.value] : null
+))
+
 const resultsCloudVariant = computed(() => {
   const idx = currentSlideIndex.value
 
@@ -436,11 +452,9 @@ const DOCTOR_SLIDE_3_REVERSE_PLAYBACK_RATE = 2
 const VIDEO_LAYER_CROSSFADE_DURATION = 160
 const VIDEO_CONTAINER_FADE_DURATION = 450
 const WHEEL_GESTURE_RESET_DURATION = 90
-const RESULTS_INTRO_DURATION = 2000
 let wheelGestureActive = false
 let wheelGestureResetTimer = 0
 let contentExitTimer = 0
-let resultsIntroTimer = 0
 let slideTransitionId = 0
 let cancelEarlyContentReveal = () => {}
 const exitingContentSlideIndex = ref(-1)
@@ -971,6 +985,14 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   if (!destinationHasVideo || !originHasVideo) videoBackgroundReady.value = false
   isSlideTransitioning.value = true
 
+  // The how-to pages share one fixed layout. Switching their copy must not
+  // wait for, or trigger, the general slide exit/entrance animation.
+  if (newIndex >= 13 && newIndex <= 15 && oldIndex >= 13 && oldIndex <= 15) {
+    contentReadySlideIndex.value = newIndex
+    isSlideTransitioning.value = false
+    return
+  }
+
   const isCurrentTransition = () => (
     transitionId === slideTransitionId
     && currentSlideIndex.value === newIndex
@@ -1002,16 +1024,8 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   }
 
   cancelEarlyContentReveal()
-  window.clearTimeout(resultsIntroTimer)
   animateOutgoingContent(oldIndex)
   contentReadySlideIndex.value = -1
-
-  if (newIndex === 7 && oldIndex === 6) {
-    resultsIntroTimer = window.setTimeout(() => {
-      if (!isCurrentTransition()) return
-      navigateToSlideIndex(8, 'auto')
-    }, RESULTS_INTRO_DURATION)
-  }
 
   // A direct jump across several slides cannot use one adjacent reverse clip:
   // its final frame belongs to the wrong page. Play the destination animation
@@ -1145,7 +1159,6 @@ onUnmounted(() => {
   window.clearTimeout(wheelGestureResetTimer)
   window.clearTimeout(contentExitTimer)
   cancelEarlyContentReveal()
-  window.clearTimeout(resultsIntroTimer)
   slideTransitionId++
   videoRequestId++
 })
@@ -1267,6 +1280,17 @@ onUnmounted(() => {
         aria-hidden="true"
       ></div>
 
+      <!-- This exact Figma component stays mounted for all three how-to pages.
+           Its prop changes in place, so only the image, copy and active step update. -->
+      <div v-if="currentHowToSlide" class="howto-persistent-layer">
+        <FigmaInfoSlide
+          :slide="currentHowToSlide"
+          :doctor-mode="isDoctorMode"
+          @action="showDemoModal = true"
+          @navigate="goToSlideById"
+        />
+      </div>
+
       <!-- Static Smoke Cloud (Fixed, transitions opacity, does not slide) -->
       <div
         class="figma-smoke-cloud-fixed"
@@ -1375,8 +1399,8 @@ onUnmounted(() => {
             </div>
           </template>
 
-          <!-- Figma-exact FAQ, Blog and How-to frames (nodes 39:2029–39:2726) -->
-          <template v-else-if="['slide-16', 'slide-17', 'slide-18', 'slide-19', 'slide-20'].includes(slide.id)">
+          <!-- Figma-exact FAQ and Blog frames. How-to is mounted once above. -->
+          <template v-else-if="['slide-16', 'slide-17'].includes(slide.id)">
             <FigmaInfoSlide
               :slide="slide"
               :doctor-mode="isDoctorMode"
@@ -1449,31 +1473,6 @@ onUnmounted(() => {
                 <span>Все материалы</span>
                 <img src="/assets/figma-faq-link-arrow.svg" alt="" />
               </button>
-            </div>
-          </template>
-
-          <!-- How to сдавать Steps (Slide 18 to 20) -->
-          <template v-else-if="slide.label === 'Как сдать тест'">
-            <div class="figma-content-wrapper howto-wrapper">
-              <h2 class="figma-section-title">Как сдать тест: подготовка и процесс</h2>
-              <div class="figma-step-block howto-pos">
-                <!-- Step circles indicator -->
-                <div class="figma-step-indicator">
-                  <div 
-                    v-for="i in 3" 
-                    :key="i"
-                    class="figma-step-circle"
-                    :class="{ active: i === parseInt(slide.step) }"
-                  >
-                    {{ i }}
-                  </div>
-                </div>
-                <!-- Text stack -->
-                <div class="figma-step-text-stack">
-                  <h2 class="figma-slide-title-inline">{{ slide.title }}</h2>
-                  <p class="figma-slide-desc-inline">{{ slide.subtitle }}</p>
-                </div>
-              </div>
             </div>
           </template>
 
