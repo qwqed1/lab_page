@@ -412,7 +412,7 @@ const downloadPDF = () => {
     height: 72px;
     margin: 0 -16px 24px;
     padding: 24px 32px;
-    position: static;
+    position: relative;
     background: #fff;
     border-bottom: 1px solid #dfdfdf;
     backdrop-filter: none;

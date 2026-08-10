@@ -1404,8 +1404,9 @@ onUnmounted(() => {
             <FigmaInfoSlide
               :slide="slide"
               :doctor-mode="isDoctorMode"
-              @action="showDemoModal = true"
+              :blog-href="BLOG_URL"
               @navigate="goToSlideById"
+              @blog="handleBlogClick"
             />
           </template>
 
@@ -1433,10 +1434,7 @@ onUnmounted(() => {
                 </div>
               </div>
               
-              <button class="figma-faq-all-btn" @click="showDemoModal = true">
-                <span>Все вопросы</span>
-                <img src="/assets/figma-faq-link-arrow.svg" alt="" />
-              </button>
+              <div class="figma-faq-divider" aria-hidden="true"></div>
             </div>
           </template>
 
