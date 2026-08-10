@@ -1474,7 +1474,7 @@ body {
 }
 
 .figma-smoke-cloud-fixed.results-intro-cloud.visible {
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 /* The story clips already contain a light paper surface. This smaller,
@@ -2745,9 +2745,10 @@ body {
 }
 
 .home-page-container.doctor-mode .video-bg-container.doctor-editorial-background {
-  background:
-    linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%),
-    #ffffff;
+  /* Keep the FAQ video's final frame behind the remaining editorial pages.
+     This is static, so returning to FAQ can still prepare its held video
+     frame without a visible background swap. */
+  background: #cba98e url('/assets/doctor-faq-final.webp') center / cover no-repeat;
 }
 
 .home-page-container.doctor-mode .video-bg-container.doctor-editorial-background .bg-video {
@@ -2890,7 +2891,7 @@ body {
 }
 
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary.visible {
-  opacity: 0.44;
+  opacity: 0.2;
 }
 
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud {
@@ -2904,7 +2905,7 @@ body {
 }
 
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud.visible {
-  opacity: 0.7;
+  opacity: 0.2;
 }
 
 .home-page-container.doctor-mode .figma-smoke-cloud-fixed.story-cloud {
@@ -2975,6 +2976,11 @@ body {
 }
 .figma-intro-title.white {
   color: #000000; /* Use black even here to keep layout consistent and clean on white overlay */
+}
+
+/* Doctor results intro: keep the heading legible over the QR-code scene. */
+.home-page-container.doctor-mode .home-content[data-active-slide="slide-8"] .figma-intro-title {
+  text-shadow: 0 0 1px #fff, 0 0 45px #00000045;
 }
 
 /* Base Wrapper for detail slides content */
@@ -3116,6 +3122,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px; /* Gap between Title and Description is 12px */
+}
+
+/* Patient copy stays unshadowed; the darker doctor footage needs the extra
+   contrast on its advantage and result text. */
+.home-page-container.doctor-mode .figma-step-text-stack {
+  text-shadow: 0 0 1px #fff, 0 0 45px #00000045;
 }
 
 .figma-slide-title-inline {
@@ -4198,6 +4210,7 @@ body {
     );
     filter: blur(clamp(16px, 1.4vw, 24px));
     pointer-events: none;
+    opacity: 0.2;
   }
 
   .home-page-container .figma-right-menu.visible.results-top-backdrop-visible {
@@ -4223,6 +4236,7 @@ body {
     );
     filter: blur(clamp(16px, 1.4vw, 24px));
     pointer-events: none;
+    opacity: 0.5;
   }
 
   .home-page-container.doctor-mode .figma-right-menu.visible.results-top-backdrop-visible::before {
@@ -4233,6 +4247,7 @@ body {
       rgba(0, 0, 0, 0.1) 72%,
       rgba(0, 0, 0, 0) 100%
     );
+    opacity: 0.2;
   }
 
   /* On every desktop advantage frame the haze emerges from beyond the left
@@ -4261,7 +4276,7 @@ body {
     [data-active-slide="slide-6"],
     [data-active-slide="slide-7"]
   ) .figma-smoke-cloud-fixed.visible {
-    opacity: 0.8;
+    opacity: 0.5;
   }
 
   /* Results intro (slide 8): trim 15% from both the top and bottom while
@@ -4272,11 +4287,11 @@ body {
   }
 
   .home-page-container:not(.doctor-mode) .figma-smoke-cloud-fixed.results-intro-cloud.visible {
-    opacity: 0.8;
+    opacity: 0.5;
   }
 
   .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud.visible {
-    opacity: 0.5;
+    opacity: 0.2;
   }
 
   .site-sidebar-layout .site-sidebar {
@@ -4467,11 +4482,11 @@ body {
   }
 
   .home-page-container:not(.doctor-mode) .figma-smoke-cloud-fixed.results-cloud-primary.visible {
-    opacity: 0.65;
+    opacity: 0.5;
   }
 
   .home-page-container:not(.doctor-mode) .figma-smoke-cloud-fixed.results-intro-cloud.visible {
-    opacity: 1;
+    opacity: 0.5;
   }
 
   .home-page-container:not(.doctor-mode) .figma-smoke-cloud-fixed.results-intro-cloud {
@@ -4485,7 +4500,7 @@ body {
   }
 
   .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary.visible {
-    opacity: 0.65;
+    opacity: 0.2;
   }
 
   .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary {
@@ -4499,7 +4514,7 @@ body {
   }
 
   .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud.visible {
-    opacity: 1;
+    opacity: 0.2;
   }
 
   .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-intro-cloud {
@@ -4888,13 +4903,24 @@ body {
 }
 
 /* Doctor results: compact dark haze anchored in the lower-left corner. */
-.figma-step-block.results-pos {
+.home-page-container.doctor-mode .figma-step-block.results-pos {
   text-shadow: 0 0 1px #fff, 0 0 45px #00000045;
 }
 
 @media (min-width: 1025px) {
+  .home-page-container:not(.doctor-mode) .figma-smoke-cloud-fixed.results-cloud-primary {
+    left: -8% !important;
+    top: auto !important;
+    bottom: -5% !important;
+    width: min(100%, 720px) !important;
+    height: min(40%, 540px) !important;
+    border-radius: 52% 62% 18% 0 / 68% 68% 22% 0;
+    mask-image: none !important;
+    -webkit-filter: blur(30px) !important;
+  }
+
   .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary.visible {
-    opacity: 0.15;
+    opacity: 0.2;
   }
 
   .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary {
