@@ -9,6 +9,7 @@ useSeoMeta({
 
 const searchQuery = ref('')
 const activeCategory = ref('all')
+const categoryFilters = ref(null)
 
 const patient = Object.freeze({
   name: 'Елагин М.С.',
@@ -87,6 +88,16 @@ const clearFilters = () => {
   activeCategory.value = 'all'
 }
 
+const scrollCategories = (direction) => {
+  const slider = categoryFilters.value
+  if (!slider) return
+
+  slider.scrollBy({
+    left: direction * Math.max(280, Math.round(slider.clientWidth * 0.7)),
+    behavior: 'smooth'
+  })
+}
+
 const downloadPDF = () => {
   const link = document.createElement('a')
   link.href = '/documents/elagin-demo-result-clean.pdf'
@@ -127,6 +138,23 @@ const downloadPDF = () => {
             <img src="/assets/figma-demo-download.svg" alt="" />
           </button>
         </header>
+
+        <div class="report-brandbar" aria-label="Бренды лабораторного отчёта">
+          <img
+            class="report-brand-logo report-brand-logo-mad"
+            src="/assets/report-brand/mad-logo.jpg"
+            alt="MAD — Macro Array Diagnostics"
+          />
+          <div class="report-brand-caption" aria-hidden="true">
+            <span>Лабораторный отчёт</span>
+            <strong>ALEX²</strong>
+          </div>
+          <img
+            class="report-brand-logo report-brand-logo-alex"
+            src="/assets/report-brand/alex-allergy-xplorer.png"
+            alt="ALEX — Allergy Xplorer"
+          />
+        </div>
 
         <section class="patient-panel" aria-labelledby="patient-title">
           <div class="panel-heading">
@@ -230,24 +258,45 @@ const downloadPDF = () => {
             </label>
           </div>
 
-          <div class="category-filters" aria-label="Фильтр по группам аллергенов">
+          <div class="category-slider">
             <button
+              class="category-slider-arrow category-slider-arrow-prev"
               type="button"
-              :class="{ active: activeCategory === 'all' }"
-              @click="selectCategory('all')"
+              aria-label="Показать предыдущие группы аллергенов"
+              @click="scrollCategories(-1)"
             >
-              Все <span>{{ reportData.items.length }}</span>
+              <span aria-hidden="true">←</span>
             </button>
+
+            <div ref="categoryFilters" class="category-filters" aria-label="Фильтр по группам аллергенов">
+              <button
+                type="button"
+                :class="{ active: activeCategory === 'all' }"
+                @click="selectCategory('all')"
+              >
+                Все <span>{{ reportData.items.length }}</span>
+              </button>
+              <button
+                v-for="category in categories"
+                :key="category.name"
+                type="button"
+                :class="{ active: activeCategory === category.name }"
+                @click="selectCategory(category.name)"
+              >
+                {{ category.name }} <span>{{ category.count }}</span>
+              </button>
+            </div>
+
             <button
-              v-for="category in categories"
-              :key="category.name"
+              class="category-slider-arrow category-slider-arrow-next"
               type="button"
-              :class="{ active: activeCategory === category.name }"
-              @click="selectCategory(category.name)"
+              aria-label="Показать следующие группы аллергенов"
+              @click="scrollCategories(1)"
             >
-              {{ category.name }} <span>{{ category.count }}</span>
+              <span aria-hidden="true">→</span>
             </button>
           </div>
+          <p class="slider-hint">Листайте в сторону, чтобы увидеть все группы <span aria-hidden="true">→</span></p>
 
           <div v-if="groupedCategories.length" class="result-groups" aria-live="polite">
             <article
@@ -347,13 +396,64 @@ const downloadPDF = () => {
   box-sizing: border-box;
 }
 
+.report-brandbar {
+  min-height: 104px;
+  padding: 28px 0 24px;
+  display: grid;
+  grid-template-columns: minmax(170px, 230px) minmax(120px, 1fr) minmax(190px, 260px);
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+  border-bottom: 3px solid #7b8b7a;
+}
+
+.report-brand-logo {
+  display: block;
+  width: 100%;
+  object-fit: contain;
+}
+
+.report-brand-logo-mad {
+  max-width: 230px;
+  max-height: 92px;
+  object-position: left center;
+}
+
+.report-brand-logo-alex {
+  max-width: 260px;
+  max-height: 96px;
+  justify-self: end;
+  object-position: right center;
+}
+
+.report-brand-caption {
+  min-height: 52px;
+  padding: 0 clamp(20px, 3vw, 44px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-right: 1px solid #dedede;
+  border-left: 1px solid #dedede;
+  color: #737873;
+  text-align: center;
+  font: 400 12px/16px Roboto, Arial, sans-serif;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.report-brand-caption strong {
+  color: #303a3d;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .report-header {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
   gap: 40px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid #dedede;
+  padding: 0 0 32px;
+  border-bottom: 0;
 }
 
 .report-heading {
@@ -363,10 +463,21 @@ const downloadPDF = () => {
 .eyebrow,
 .section-kicker {
   margin: 0 0 12px;
-  color: #758574;
+  color: #6e7370;
   font: 500 13px/18px Roboto, Arial, sans-serif;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.eyebrow::before,
+.section-kicker::before {
+  content: '';
+  width: 16px;
+  height: 3px;
+  margin-right: 8px;
+  display: inline-block;
+  background: #7b8b7a;
+  vertical-align: 3px;
 }
 
 .report-heading h1 {
@@ -419,9 +530,10 @@ const downloadPDF = () => {
 }
 
 .patient-panel {
-  margin-top: 48px;
+  margin-top: 0;
   padding: 32px;
-  background: #f0f3ee;
+  border-top: 3px solid #7b8b7a;
+  background: #f4f5f3;
 }
 
 .panel-heading {
@@ -455,7 +567,7 @@ const downloadPDF = () => {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #70866c;
+  background: #7b8b7a;
 }
 
 .patient-data {
@@ -514,8 +626,8 @@ const downloadPDF = () => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #a9b7a5;
-  color: #fff;
+  background: #83c8ec;
+  color: #182326;
 }
 
 .total-ige-card span {
@@ -530,7 +642,7 @@ const downloadPDF = () => {
 
 .total-ige-card small {
   font: 400 13px/16px Roboto, Arial, sans-serif;
-  opacity: 0.72;
+  opacity: 0.66;
 }
 
 .sensitivity-scale {
@@ -550,7 +662,7 @@ const downloadPDF = () => {
   background: #dce1dc;
 }
 
-.scale-low .scale-color { background: #f5efb7; }
+.scale-low .scale-color { background: #c9d8c7; }
 .scale-medium .scale-color { background: #f4b36e; }
 .scale-high .scale-color { background: #ef815f; }
 .scale-very-high .scale-color { background: #dc5554; }
@@ -590,7 +702,7 @@ const downloadPDF = () => {
   grid-column: 1 / -1;
   margin: 0;
   padding: 16px 18px;
-  border-left: 3px solid #a9b7a5;
+  border-left: 3px solid #7b8b7a;
   background: #f5f6f4;
   color: #676b67;
   font: 400 13px/19px Roboto, Arial, sans-serif;
@@ -668,12 +780,24 @@ const downloadPDF = () => {
   cursor: pointer;
 }
 
-.category-filters {
+.category-slider {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 48px;
+  align-items: center;
+  gap: 10px;
   margin: 32px 0 40px;
+}
+
+.category-filters {
   display: flex;
   gap: 8px;
   overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
 }
 
 .category-filters::-webkit-scrollbar {
@@ -690,7 +814,34 @@ const downloadPDF = () => {
   font: 400 13px/18px Roboto, Arial, sans-serif;
   white-space: nowrap;
   cursor: pointer;
+  scroll-snap-align: start;
   transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+.category-slider-arrow {
+  width: 48px;
+  height: 42px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #d5d7d5;
+  background: #fff;
+  color: #30383a;
+  font: 400 22px/1 Arial, sans-serif;
+  cursor: pointer;
+  transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+.category-slider-arrow:hover,
+.category-slider-arrow:focus-visible {
+  border-color: #7b8b7a;
+  background: #7b8b7a;
+  color: #fff;
+  outline: none;
+}
+
+.slider-hint {
+  display: none;
 }
 
 .category-filters button span {
@@ -701,8 +852,8 @@ const downloadPDF = () => {
 .category-filters button:hover,
 .category-filters button:focus-visible,
 .category-filters button.active {
-  border-color: #758574;
-  background: #758574;
+  border-color: #7b8b7a;
+  background: #7b8b7a;
   color: #fff;
   outline: none;
 }
@@ -728,7 +879,7 @@ const downloadPDF = () => {
   justify-content: space-between;
   gap: 24px;
   padding-bottom: 18px;
-  border-bottom: 2px solid #202420;
+  border-bottom: 2px solid #303a3d;
 }
 
 .category-header h3 {
@@ -756,6 +907,15 @@ const downloadPDF = () => {
 .subsection-heading h4 {
   margin: 0;
   font: 500 15px/20px Roboto, Arial, sans-serif;
+}
+
+.subsection-heading h4::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  margin-right: 9px;
+  display: inline-block;
+  background: #7b8b7a;
 }
 
 .subsection-heading span {
@@ -994,10 +1154,30 @@ const downloadPDF = () => {
     padding: 32px 16px 56px;
   }
 
+  .report-brandbar {
+    min-height: 72px;
+    padding: 24px 0 20px;
+    grid-template-columns: minmax(110px, 0.9fr) minmax(140px, 1.1fr);
+    gap: 24px;
+    border-bottom-width: 2px;
+  }
+
+  .report-brand-caption {
+    display: none;
+  }
+
+  .report-brand-logo-mad {
+    max-height: 58px;
+  }
+
+  .report-brand-logo-alex {
+    max-height: 62px;
+  }
+
   .report-header {
     grid-template-columns: 1fr;
     gap: 28px;
-    padding-bottom: 32px;
+    padding: 0 0 28px;
   }
 
   .report-heading h1 {
@@ -1014,7 +1194,7 @@ const downloadPDF = () => {
   }
 
   .patient-panel {
-    margin-top: 16px;
+    margin-top: 0;
     padding: 24px 20px;
   }
 
@@ -1062,8 +1242,42 @@ const downloadPDF = () => {
   }
 
   .category-filters {
-    margin: 24px -16px 36px;
+    margin: 0 -16px;
     padding: 0 16px;
+  }
+
+  .category-slider {
+    display: block;
+    margin: 24px 0 0;
+  }
+
+  .category-slider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -1px;
+    width: 40px;
+    height: 42px;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 76%);
+  }
+
+  .category-slider-arrow {
+    display: none;
+  }
+
+  .slider-hint {
+    display: block;
+    margin: 10px 0 36px;
+    color: #858985;
+    font: 400 12px/16px Roboto, Arial, sans-serif;
+  }
+
+  .slider-hint span {
+    margin-left: 5px;
+    color: #758574;
+    font-size: 16px;
+    vertical-align: -1px;
   }
 
   .result-groups {
