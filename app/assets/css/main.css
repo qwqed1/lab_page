@@ -4869,3 +4869,25 @@ body {
   }
 
 }
+
+/* Doctor results: compact dark haze anchored in the lower-left corner. */
+.figma-step-block.results-pos {
+  text-shadow: 0 0 1px #fff, 0 0 45px #00000045;
+}
+
+@media (min-width: 1025px) {
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary.visible {
+    opacity: 0.15;
+  }
+
+  .home-page-container.doctor-mode .figma-smoke-cloud-fixed.results-cloud-primary {
+    left: -8% !important;
+    top: auto !important;
+    bottom: -5% !important;
+    width: min(100%, 720px) !important;
+    height: min(40%, 540px) !important;
+    border-radius: 52% 62% 18% 0 / 68% 68% 22% 0;
+    mask-image: none !important;
+    -webkit-filter: blur(30px) !important;
+  }
+}
