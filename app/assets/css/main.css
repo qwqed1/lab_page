@@ -2734,13 +2734,29 @@ body {
   background: none;
 }
 
+.home-page-container:not(.doctor-mode) .video-bg-container.patient-editorial-background {
+  background: #d9d9d9 url('/assets/patient-faq-final.webp') center / cover no-repeat;
+}
+
+.home-page-container:not(.doctor-mode) .video-bg-container.patient-editorial-background .bg-video {
+  opacity: 0 !important;
+}
+
+.home-page-container:not(.doctor-mode) .video-bg-container.faq-fixed-background {
+  background: #d9d9d9 url('/assets/patient-faq-final.webp') center / cover no-repeat;
+}
+
+.home-page-container .video-bg-container.faq-fixed-background:not(.faq-transition-active) .bg-video {
+  opacity: 0 !important;
+}
+
 .home-page-container.doctor-mode .video-bg-container {
   background:
     linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%),
     #ffffff;
 }
 
-.home-page-container.doctor-mode .video-bg-container.doctor-faq-still {
+.home-page-container.doctor-mode .video-bg-container.faq-fixed-background {
   background: #cba98e url('/assets/doctor-faq-final.webp') center / cover no-repeat;
 }
 
@@ -3974,6 +3990,20 @@ body {
   pointer-events: auto;
 }
 
+/* Keep the FAQ scene visible first, then introduce the interactive questions
+   shortly after it. The transition video itself is intentionally unaffected. */
+.slide-layer[data-slide-id="slide-16"] .exact-faq-list {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+}
+
+.slide-layer.active[data-slide-id="slide-16"][data-content-ready="true"] .exact-faq-list {
+  animation: cinematic-fade-in-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.535s;
+  pointer-events: auto;
+}
+
 /* FAQ now follows the results directly and is the 12th slide. Keep all of the
    Figma information frames on the original crossfade-only behavior. */
 .slide-layer:nth-child(n+12) {
@@ -4847,6 +4877,14 @@ body {
     background:
       linear-gradient(141.59deg, rgba(92, 61, 27, 0.7) 0%, rgba(120, 83, 46, 0.7) 100%),
       #ffffff;
+  }
+
+  .home-page-container:not(.doctor-mode) .video-bg-container.faq-fixed-background {
+    background: #d9d9d9 url('/assets/patient-faq-final-mobile.webp') center / cover no-repeat;
+  }
+
+  .home-page-container.doctor-mode .video-bg-container.faq-fixed-background {
+    background: #cba98e url('/assets/doctor-faq-final-mobile.webp') center / cover no-repeat;
   }
 
   .home-page-container.doctor-mode .figma-right-menu.visible.mobile-backdrop-visible::before {

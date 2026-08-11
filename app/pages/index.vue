@@ -96,6 +96,8 @@ const videoA = ref(null)
 const videoB = ref(null)
 const activeVideoElement = ref('A') // 'A' or 'B'
 const suppressHeldVideoFrame = ref(false)
+const isFaqForwardTransitionActive = ref(false)
+const isFaqReverseTransitionActive = ref(false)
 let videoRequestId = 0
 const isSlideTransitioning = ref(false)
 const navigationMode = ref('scroll')
@@ -225,6 +227,9 @@ const allSlides = [
 // styling is applied by the root mode class, so the content, layout and
 // responsive behaviour stay in one implementation.
 const slides = computed(() => allSlides)
+const EDITORIAL_SLIDE_IDS = new Set(['slide-17', 'slide-18', 'slide-19', 'slide-20', 'slide-21'])
+const isEditorialSlide = (slide) => EDITORIAL_SLIDE_IDS.has(slide?.id)
+const hasDesktopEditorialStill = (slide) => !isMobileViewport.value && isEditorialSlide(slide)
 
 const doctorSlideCopy = Object.freeze({
   'slide-1': {
@@ -448,7 +453,7 @@ const isVideoBackgroundVisible = computed(() => {
 const CONTENT_EXIT_DURATION = 650
 const VIDEO_CONTENT_REVEAL_TIME = 1.3
 const RESULTS_CONTENT_REVEAL_TIME = 0.9
-const RESULTS_TO_FAQ_PLAYBACK_RATE = 1.4
+const RESULTS_TO_FAQ_PLAYBACK_RATE = 2
 const EARLY_REVERSE_PLAYBACK_RATE = 1.5
 const DOCTOR_SLIDE_3_REVERSE_PLAYBACK_RATE = 2
 const VIDEO_LAYER_CROSSFADE_DURATION = 160
@@ -628,13 +633,25 @@ const waitForVideoFrame = (video) => new Promise((resolve, reject) => {
   finish()
 })
 
-const waitUntilVideoCanPlay = (video) => new Promise((resolve, reject) => {
-  if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+const waitUntilVideoCanPlay = (video, expectedSrc = '') => new Promise((resolve, reject) => {
+  const hasExpectedSource = () => (
+    !expectedSrc
+    || video.currentSrc === expectedSrc
+  )
+  const isReady = () => (
+    hasExpectedSource()
+    && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
+  )
+
+  if (isReady()) {
     resolve()
     return
   }
 
   const onReady = () => {
+    // A pending event from the previously loaded clip can arrive after `src`
+    // changes. Ignore it until the requested resource itself has decoded data.
+    if (!isReady()) return
     cleanup()
     resolve()
   }
@@ -653,9 +670,26 @@ const waitUntilVideoCanPlay = (video) => new Promise((resolve, reject) => {
     reject(new Error('Video loading timed out'))
   }, 10000)
 
-  video.addEventListener('loadeddata', onReady, { once: true })
+  video.addEventListener('loadeddata', onReady)
   video.addEventListener('error', onError, { once: true })
 })
+
+const prepareVideoSource = async (video, src) => {
+  const absoluteSrc = getAbsoluteVideoUrl(src)
+
+  if (video.src === absoluteSrc) {
+    await waitUntilVideoCanPlay(video, absoluteSrc)
+    return
+  }
+
+  // Subscribe before changing the source. Chromium can retain the old
+  // readyState for one task after load(), otherwise callers may seek against
+  // the previous resource and the new clip later resets itself to frame zero.
+  const sourceReady = waitUntilVideoCanPlay(video, absoluteSrc)
+  video.src = src
+  video.load()
+  await sourceReady
+}
 
 const seekVideo = (video, time) => new Promise((resolve, reject) => {
   const targetTime = Math.max(0, Math.min(time, Number.isFinite(video.duration) ? video.duration : time))
@@ -715,6 +749,7 @@ const configureVideoElement = (video) => {
   video.defaultMuted = true
   video.playsInline = true
   video.disablePictureInPicture = true
+  video.playbackRate = 1
 }
 
 const revealContentAtVideoProgress = (
@@ -856,12 +891,7 @@ const settleOnSlideFrame = async (src, requestId) => {
     stillEl.pause()
     configureVideoElement(stillEl)
 
-    if (stillEl.src !== getAbsoluteVideoUrl(src)) {
-      stillEl.src = src
-      stillEl.load()
-    }
-
-    await waitUntilVideoCanPlay(stillEl)
+    await prepareVideoSource(stillEl, src)
     if (requestId !== videoRequestId) return
 
     await seekVideo(stillEl, Math.max(0, stillEl.duration - (1 / 30)))
@@ -903,18 +933,11 @@ const playVideoShot = async (src, { playbackRate = 1, onPlaybackStarted, onCompl
     return
   }
 
-  const absoluteSrc = getAbsoluteVideoUrl(src)
-
   try {
     incomingEl.pause()
     configureVideoElement(incomingEl)
 
-    if (incomingEl.src !== absoluteSrc) {
-      incomingEl.src = src
-      incomingEl.load()
-    }
-
-    await waitUntilVideoCanPlay(incomingEl)
+    await prepareVideoSource(incomingEl, src)
     if (requestId !== videoRequestId) return
 
     await seekVideo(incomingEl, 0)
@@ -953,8 +976,19 @@ const playVideoShot = async (src, { playbackRate = 1, onPlaybackStarted, onCompl
 
 watch(isDoctorMode, async () => {
   suppressHeldVideoFrame.value = false
+  isFaqForwardTransitionActive.value = false
+  isFaqReverseTransitionActive.value = false
   await nextTick()
   const currentSlide = slides.value[currentSlideIndex.value]
+
+  if (currentSlide?.id === 'slide-16') {
+    ++videoRequestId
+    videoA.value?.pause()
+    videoB.value?.pause()
+    videoBackgroundReady.value = true
+    return
+  }
+
   const src = getSlideVideo(currentSlide)
 
   if (src) {
@@ -973,6 +1007,8 @@ watch(isDoctorMode, async () => {
 watch(currentSlideIndex, (newIndex, oldIndex) => {
   mobileSectionMenuExpanded.value = false
   suppressHeldVideoFrame.value = false
+  isFaqForwardTransitionActive.value = false
+  isFaqReverseTransitionActive.value = false
   const transitionId = ++slideTransitionId
   const transitionStartedAt = performance.now()
   let transitionFinishing = false
@@ -1020,6 +1056,12 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   }
   const revealDuringPlayback = (video, requestId) => {
     if (!isCurrentTransition()) return
+
+    // FAQ must appear only after its transition has reached and held the
+    // particle end frame. At higher playback rates an early reveal would put
+    // the questions over the intermediate document frames instead.
+    if (slide?.id === 'slide-16') return
+
     revealContentAtVideoProgress(video, newIndex, requestId, revealCurrentSlide, {
       targetTime: newIndex >= 8 && newIndex <= 10
         ? RESULTS_CONTENT_REVEAL_TIME
@@ -1038,12 +1080,29 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   // its final frame belongs to the wrong page. Play the destination animation
   // instead, or settle the exact held frame before revealing any content.
   if (isDirectJump) {
-    if (slideVideoSrc) {
+    if (slide?.id === 'slide-16') {
+      // FAQ is a fixed particle scene on direct entry. Its transition video is
+      // reserved for the adjacent Results <-> FAQ sequence only.
+      ++videoRequestId
+      videoA.value?.pause()
+      videoB.value?.pause()
+      videoBackgroundReady.value = true
+      finishCurrentTransition()
+    } else if (slideVideoSrc) {
       playVideoShot(slideVideoSrc, {
         playbackRate: forwardPlaybackRate,
         onPlaybackStarted: revealDuringPlayback,
         onComplete: finishCurrentTransition
       })
+    } else if (hasDesktopEditorialStill(slide)) {
+      // Editorial pages all use the same explicit FAQ end scene. Do not derive
+      // it by loading and seeking a transition MP4 during a menu jump: frame 0
+      // contains the result documents and must never become their background.
+      ++videoRequestId
+      videoA.value?.pause()
+      videoB.value?.pause()
+      videoBackgroundReady.value = true
+      finishCurrentTransition()
     } else {
       const requestId = ++videoRequestId
       const backgroundSrc = getSlideBackgroundSource(newIndex)
@@ -1056,22 +1115,44 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   }
 
   if (goingBack) {
-    const isDoctorBlogToFaq = (
-      isDoctorMode.value
-      && oldSlide?.id === 'slide-17'
+    const isBlogToFaq = (
+      oldSlide?.id === 'slide-17'
       && slide?.id === 'slide-16'
     )
 
-    if (isDoctorBlogToFaq) {
-      // The previous results frame can remain composited while the large
-      // doctors clip seeks. Hide both video layers and reveal the exact saved
-      // FAQ end frame underneath instead.
+    if (isBlogToFaq) {
+      // Both pages share one fixed particle scene. Do not touch either video
+      // element while returning from Blog to FAQ.
       ++videoRequestId
       videoA.value?.pause()
       videoB.value?.pause()
       videoBackgroundReady.value = true
-      suppressHeldVideoFrame.value = true
       finishCurrentTransition()
+      return
+    }
+
+    const isFaqToResults = (
+      oldSlide?.id === 'slide-16'
+      && slide?.id === 'slide-11'
+      && oldSlideReverseSrc
+    )
+
+    if (isFaqToResults) {
+      // Keep the fixed FAQ still visible until the reverse clip has decoded
+      // its matching particle start frame, then reveal that clip in place.
+      isFaqReverseTransitionActive.value = true
+      suppressHeldVideoFrame.value = true
+      playVideoShot(oldSlideReverseSrc, {
+        onPlaybackStarted: (video, requestId) => {
+          suppressHeldVideoFrame.value = false
+          revealDuringPlayback(video, requestId)
+        },
+        onComplete: () => {
+          isFaqReverseTransitionActive.value = false
+          suppressHeldVideoFrame.value = false
+          finishCurrentTransition()
+        }
+      })
       return
     }
 
@@ -1097,10 +1178,16 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   }
 
   if (slideVideoSrc) {
+    const isResultsToFaq = oldSlide?.id === 'slide-11' && slide?.id === 'slide-16'
+    if (isResultsToFaq) isFaqForwardTransitionActive.value = true
+
     playVideoShot(slideVideoSrc, {
       playbackRate: forwardPlaybackRate,
       onPlaybackStarted: revealDuringPlayback,
-      onComplete: finishCurrentTransition
+      onComplete: () => {
+        isFaqForwardTransitionActive.value = false
+        finishCurrentTransition()
+      }
     })
   } else if (!slide.holdVideo) {
     const requestId = ++videoRequestId
@@ -1258,8 +1345,10 @@ onUnmounted(() => {
         class="video-bg-container"
         :class="{
           'no-video': !isVideoBackgroundVisible,
-          'doctor-faq-still': isDoctorMode && slides[currentSlideIndex]?.id === 'slide-16',
-          'doctor-editorial-background': isDoctorMode && ['slide-17', 'slide-18', 'slide-19', 'slide-20', 'slide-21'].includes(slides[currentSlideIndex]?.id),
+          'faq-fixed-background': slides[currentSlideIndex]?.id === 'slide-16' || isFaqReverseTransitionActive,
+          'faq-transition-active': isFaqForwardTransitionActive || isFaqReverseTransitionActive,
+          'patient-editorial-background': !isDoctorMode && hasDesktopEditorialStill(slides[currentSlideIndex]),
+          'doctor-editorial-background': isDoctorMode && isEditorialSlide(slides[currentSlideIndex]),
           'suppress-held-frame': suppressHeldVideoFrame
         }"
         aria-hidden="true"
