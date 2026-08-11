@@ -3999,7 +3999,7 @@ body {
 }
 
 .slide-layer.active[data-slide-id="slide-16"][data-content-ready="true"] .exact-faq-list {
-  animation: cinematic-fade-in-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cinematic-fade-in-up 0.46s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 0.535s;
   pointer-events: auto;
 }
