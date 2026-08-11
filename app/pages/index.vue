@@ -447,6 +447,8 @@ const isVideoBackgroundVisible = computed(() => {
 
 const CONTENT_EXIT_DURATION = 650
 const VIDEO_CONTENT_REVEAL_TIME = 1.3
+const RESULTS_CONTENT_REVEAL_TIME = 0.9
+const RESULTS_TO_FAQ_PLAYBACK_RATE = 1.4
 const EARLY_REVERSE_PLAYBACK_RATE = 1.5
 const DOCTOR_SLIDE_3_REVERSE_PLAYBACK_RATE = 2
 const VIDEO_LAYER_CROSSFADE_DURATION = 160
@@ -1019,9 +1021,14 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   const revealDuringPlayback = (video, requestId) => {
     if (!isCurrentTransition()) return
     revealContentAtVideoProgress(video, newIndex, requestId, revealCurrentSlide, {
-      targetTime: VIDEO_CONTENT_REVEAL_TIME
+      targetTime: newIndex >= 8 && newIndex <= 10
+        ? RESULTS_CONTENT_REVEAL_TIME
+        : VIDEO_CONTENT_REVEAL_TIME
     })
   }
+  const forwardPlaybackRate = slide?.id === 'slide-16'
+    ? RESULTS_TO_FAQ_PLAYBACK_RATE
+    : 1
 
   cancelEarlyContentReveal()
   animateOutgoingContent(oldIndex)
@@ -1033,6 +1040,7 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   if (isDirectJump) {
     if (slideVideoSrc) {
       playVideoShot(slideVideoSrc, {
+        playbackRate: forwardPlaybackRate,
         onPlaybackStarted: revealDuringPlayback,
         onComplete: finishCurrentTransition
       })
@@ -1090,6 +1098,7 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
 
   if (slideVideoSrc) {
     playVideoShot(slideVideoSrc, {
+      playbackRate: forwardPlaybackRate,
       onPlaybackStarted: revealDuringPlayback,
       onComplete: finishCurrentTransition
     })
