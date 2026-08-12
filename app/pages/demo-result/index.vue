@@ -17,8 +17,7 @@ const patient = Object.freeze({
   sample: 'елагин',
   qr: '02CSU126',
   method: 'ALEX²',
-  testedAt: '16.12.2025',
-  totalIge: '1440'
+  testedAt: '16.12.2025'
 })
 
 const sensitivityScale = Object.freeze([
@@ -28,6 +27,28 @@ const sensitivityScale = Object.freeze([
   { level: '3', label: 'Высокий', range: '5–15', tone: 'high' },
   { level: '4', label: 'Очень высокий', range: '> 15', tone: 'very-high' }
 ])
+
+const summaryLevelDetails = Object.freeze({
+  '0': { label: 'Уровень 0', range: '< 0,3 kUA/L' },
+  '1': { label: 'Уровень 1', range: '0,3–1 kUA/L' },
+  '2': { label: 'Уровень 2', range: '1–5 kUA/L' },
+  '3': { label: 'Уровень 3', range: '5–15 kUA/L' },
+  '4': { label: 'Уровень 4', range: '> 15 kUA/L' }
+})
+
+const getResultLevel = (value) => {
+  const numericValue = Number.parseFloat(String(value).replace(',', '.').replace(/[^0-9.]/g, ''))
+  if (!Number.isFinite(numericValue) || numericValue < 0.3) return '0'
+  if (numericValue < 1) return '1'
+  if (numericValue < 5) return '2'
+  if (numericValue <= 15) return '3'
+  return '4'
+}
+
+const getSummaryLevelText = (value) => {
+  const level = summaryLevelDetails[value] || summaryLevelDetails['0']
+  return `${level.label} · ${level.range}`
+}
 
 const normalizeSearchValue = (value = '') =>
   String(value)
@@ -189,6 +210,42 @@ const downloadPDF = () => {
           </dl>
         </section>
 
+        <section class="report-summary" aria-labelledby="summary-title">
+          <header class="report-summary-heading">
+            <p class="section-kicker">Лабораторный отчёт</p>
+            <h2 id="summary-title">Краткое изложение информации об исследуемой сенсибилизации</h2>
+          </header>
+
+          <div class="report-summary-columns">
+            <section class="report-summary-panel" aria-labelledby="allergen-groups-title">
+              <h3 id="allergen-groups-title">Группы аллергенов</h3>
+              <dl class="report-summary-list">
+                <div v-for="item in reportData.summary.allergenGroups" :key="item.label">
+                  <dt>
+                    <span class="summary-group">{{ item.group }}</span>
+                    <span>{{ item.label }}</span>
+                  </dt>
+                  <dd class="summary-level" :class="`result-level-${item.value}`">{{ getSummaryLevelText(item.value) }}</dd>
+                </div>
+              </dl>
+            </section>
+
+            <section class="report-summary-panel" aria-labelledby="families-title">
+              <h3 id="families-title">Семейства перекрёстно-реагирующих аллергенов</h3>
+              <dl class="report-summary-list">
+                <div v-for="item in reportData.summary.crossReactiveFamilies" :key="item.label">
+                  <dt>{{ item.label }}</dt>
+                  <dd class="summary-level" :class="`result-level-${item.value}`">{{ getSummaryLevelText(item.value) }}</dd>
+                </div>
+                <div class="summary-total-ige">
+                  <dt>Общий IgE (kU/L)</dt>
+                  <dd>{{ reportData.summary.totalIge }}</dd>
+                </div>
+              </dl>
+            </section>
+          </div>
+        </section>
+
         <section class="interpretation-section" aria-labelledby="interpretation-title">
           <div class="interpretation-copy">
             <p class="section-kicker">Коротко о результате</p>
@@ -202,7 +259,7 @@ const downloadPDF = () => {
 
           <div class="total-ige-card" aria-label="Общий иммуноглобулин E">
             <span>Общий IgE</span>
-            <strong>{{ patient.totalIge }}</strong>
+            <strong>{{ reportData.summary.totalIge }}</strong>
             <small>kU/L</small>
           </div>
 
@@ -336,7 +393,9 @@ const downloadPDF = () => {
                         <td data-label="Аллерген"><strong>{{ item.allergen }}</strong></td>
                         <td data-label="Тип"><span class="type-badge">{{ item.type }}</span></td>
                         <td data-label="Семейство белков">{{ item.protein || '—' }}</td>
-                        <td data-label="kUA/L" class="cell-right"><span class="value-badge">{{ item.value }}</span></td>
+                        <td data-label="kUA/L" class="cell-right">
+                          <span class="value-badge" :class="`result-level-${getResultLevel(item.value)}`">{{ item.value }}</span>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -593,6 +652,105 @@ const downloadPDF = () => {
   color: #181b18;
   font: 500 16px/20px Roboto, Arial, sans-serif;
   overflow-wrap: anywhere;
+}
+
+.report-summary {
+  padding: 56px 0;
+  border-bottom: 1px solid #dedede;
+}
+
+.report-summary-heading {
+  max-width: 820px;
+}
+
+.report-summary-heading h2 {
+  margin: 0;
+  color: #111411;
+  font: 500 clamp(26px, 2vw, 36px)/1.15 Roboto, Arial, sans-serif;
+  letter-spacing: -0.025em;
+}
+
+.report-summary-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.report-summary-panel {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid #dfe2de;
+  background: #f7f8f6;
+}
+
+.report-summary-panel h3 {
+  margin: 0 0 16px;
+  color: #303a3d;
+  font: 500 15px/20px Roboto, Arial, sans-serif;
+}
+
+.report-summary-list {
+  margin: 0;
+  border-top: 1px solid #dfe2de;
+}
+
+.report-summary-list > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(126px, auto);
+  gap: 12px;
+  align-items: start;
+  padding: 9px 0;
+  border-bottom: 1px solid #dfe2de;
+}
+
+.report-summary-list dt,
+.report-summary-list dd {
+  min-width: 0;
+  margin: 0;
+}
+
+.report-summary-list .summary-level {
+  padding: 3px 6px;
+  align-self: center;
+  color: #4d554b;
+  background: #f1f3f0;
+  font-size: 11px;
+  line-height: 14px;
+  white-space: nowrap;
+}
+
+.report-summary-list dt {
+  display: grid;
+  gap: 2px;
+  color: #404540;
+  font: 400 13px/18px Roboto, Arial, sans-serif;
+  overflow-wrap: anywhere;
+}
+
+.report-summary-list dd {
+  color: #151815;
+  font: 500 13px/18px Roboto, Arial, sans-serif;
+  text-align: right;
+}
+
+.summary-group {
+  color: #7a8278;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.report-summary-list .summary-total-ige {
+  margin-top: 10px;
+  padding: 11px 10px;
+  border-color: #83c8ec;
+  background: #dff2fb;
+}
+
+.summary-total-ige dt,
+.summary-total-ige dd {
+  color: #182326;
+  font-weight: 600;
 }
 
 .interpretation-section {
@@ -1014,6 +1172,26 @@ const downloadPDF = () => {
   font: 500 12px/18px Roboto, Arial, sans-serif;
 }
 
+.result-level-1 {
+  background: #f5efb7 !important;
+  color: #584f14 !important;
+}
+
+.result-level-2 {
+  background: #f4b36e !important;
+  color: #47260c !important;
+}
+
+.result-level-3 {
+  background: #ef815f !important;
+  color: #fff !important;
+}
+
+.result-level-4 {
+  background: #dc5554 !important;
+  color: #fff !important;
+}
+
 .empty-search-result {
   min-height: 360px;
   padding: 48px 24px;
@@ -1104,6 +1282,28 @@ const downloadPDF = () => {
   .patient-data {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     row-gap: 22px;
+  }
+
+  .report-summary {
+    padding: 44px 0;
+  }
+
+  .report-summary-columns {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .report-summary-panel {
+    padding: 20px 16px;
+  }
+
+  .report-summary-list > div {
+    grid-template-columns: minmax(0, 1fr) minmax(112px, auto);
+  }
+
+  .report-summary-list .summary-level {
+    font-size: 10px;
   }
 
   .patient-data div {
@@ -1249,17 +1449,6 @@ const downloadPDF = () => {
   .category-slider {
     display: block;
     margin: 24px 0 0;
-  }
-
-  .category-slider::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -1px;
-    width: 40px;
-    height: 42px;
-    pointer-events: none;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 76%);
   }
 
   .category-slider-arrow {

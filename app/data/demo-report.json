@@ -1,4 +1,182 @@
 {
+  "summary": {
+    "allergenGroups": [
+      {
+        "group": "Пыльца",
+        "label": "Пыльца злаков",
+        "value": "2"
+      },
+      {
+        "group": "Пыльца",
+        "label": "Пыльца деревьев",
+        "value": "3"
+      },
+      {
+        "group": "Пыльца",
+        "label": "Пыльца сорняков",
+        "value": "4"
+      },
+      {
+        "group": "Клещи",
+        "label": "Домашние пылевые клещи и амбарные клещи",
+        "value": "4"
+      },
+      {
+        "group": "Микроорганизмы",
+        "label": "Плесень и дрожжевые грибы",
+        "value": "0"
+      },
+      {
+        "group": "Продукты растительного происхождения",
+        "label": "Бобовые культуры",
+        "value": "1"
+      },
+      {
+        "group": "Продукты растительного происхождения",
+        "label": "Злаки",
+        "value": "2"
+      },
+      {
+        "group": "Продукты растительного происхождения",
+        "label": "Специи",
+        "value": "0"
+      },
+      {
+        "group": "Продукты растительного происхождения",
+        "label": "Фрукты",
+        "value": "1"
+      },
+      {
+        "group": "Продукты растительного происхождения",
+        "label": "Овощи",
+        "value": "1"
+      },
+      {
+        "group": "Продукты растительного происхождения",
+        "label": "Орехи и семена",
+        "value": "3"
+      },
+      {
+        "group": "Продукты животного происхождения",
+        "label": "Молоко",
+        "value": "0"
+      },
+      {
+        "group": "Продукты животного происхождения",
+        "label": "Яйцо",
+        "value": "0"
+      },
+      {
+        "group": "Продукты животного происхождения",
+        "label": "Рыба и морепродукты",
+        "value": "0"
+      },
+      {
+        "group": "Продукты животного происхождения",
+        "label": "Мясо домашних животных и насекомых",
+        "value": "0"
+      },
+      {
+        "group": "Яды и Насекомые",
+        "label": "Муравей, Пчела, Оса",
+        "value": "0"
+      },
+      {
+        "group": "Яды и Насекомые",
+        "label": "Таракан",
+        "value": "0"
+      },
+      {
+        "group": "Перхоть животных",
+        "label": "Домашние животные",
+        "value": "4"
+      },
+      {
+        "group": "Перхоть животных",
+        "label": "Домашний скот",
+        "value": "2"
+      },
+      {
+        "group": "Фикус и Хмель",
+        "label": "Латекс",
+        "value": "0"
+      },
+      {
+        "group": "Фикус и Хмель",
+        "label": "Фикус и Хмель",
+        "value": "0"
+      },
+      {
+        "group": "Другое",
+        "label": "CCD",
+        "value": "0"
+      },
+      {
+        "group": "Другое",
+        "label": "Паразит",
+        "value": "0"
+      }
+    ],
+    "crossReactiveFamilies": [
+      {
+        "label": "Полкальцин",
+        "value": "0"
+      },
+      {
+        "label": "Профилин",
+        "value": "0"
+      },
+      {
+        "label": "PR-10",
+        "value": "3"
+      },
+      {
+        "label": "Семейство Ole e 1",
+        "value": "0"
+      },
+      {
+        "label": "LTPs (белки-переносчики липидов)",
+        "value": "4"
+      },
+      {
+        "label": "Запасные белки",
+        "value": "0"
+      },
+      {
+        "label": "Липокалин",
+        "value": "2"
+      },
+      {
+        "label": "NPC2",
+        "value": "4"
+      },
+      {
+        "label": "Serum albumin",
+        "value": "0"
+      },
+      {
+        "label": "Парвальбумин",
+        "value": "0"
+      },
+      {
+        "label": "Тропомиозин",
+        "value": "0"
+      },
+      {
+        "label": "CCD (перекрестно-реактивные углеводные детерминанты)",
+        "value": "0"
+      },
+      {
+        "label": "Утероглобин",
+        "value": "2"
+      },
+      {
+        "label": "Аргининкиназа",
+        "value": "0"
+      }
+    ],
+    "totalIge": "605"
+  },
   "pages": [
     {
       "number": 2,
@@ -41,7 +219,7 @@
           "allergen": "Lol p 1",
           "type": "М",
           "protein": "Beta-Expansin",
-          "value": "≤ 0.10",
+          "value": "4.78",
           "category": "Пыльца",
           "section": "Пыльца травы",
           "page": 2
@@ -63,7 +241,7 @@
           "allergen": "Phl p 1",
           "type": "М",
           "protein": "Beta-Expansin",
-          "value": "0.11",
+          "value": "1.83",
           "category": "Пыльца",
           "section": "Пыльца травы",
           "page": 2
@@ -178,7 +356,7 @@
           "allergen": "Aln g 1",
           "type": "М",
           "protein": "PR-10",
-          "value": "≤ 0.10",
+          "value": "7.32",
           "category": "Пыльца",
           "section": "Пыльца деревьев",
           "page": 2
@@ -200,7 +378,7 @@
           "allergen": "Bet v 1",
           "type": "М",
           "protein": "PR-10",
-          "value": "≤ 0.10",
+          "value": "4.84",
           "category": "Пыльца",
           "section": "Пыльца деревьев",
           "page": 2
@@ -244,7 +422,7 @@
           "allergen": "Cor a_pollen",
           "type": "Е",
           "protein": "",
-          "value": "≤ 0.10",
+          "value": "0.27",
           "category": "Пыльца",
           "section": "Пыльца деревьев",
           "page": 2
@@ -255,7 +433,7 @@
           "allergen": "Cor a 1.0103",
           "type": "М",
           "protein": "PR-10",
-          "value": "≤ 0.10",
+          "value": "3.47",
           "category": "Пыльца",
           "section": "Пыльца деревьев",
           "page": 2
@@ -266,7 +444,7 @@
           "allergen": "Cry j 1",
           "type": "М",
           "protein": "Pectate Lyase",
-          "value": "≤ 0.10",
+          "value": "1.09",
           "category": "Пыльца",
           "section": "Пыльца деревьев",
           "page": 2
@@ -299,7 +477,7 @@
           "allergen": "Fag s 1",
           "type": "М",
           "protein": "PR-10",
-          "value": "≤ 0.10",
+          "value": "0.75",
           "category": "Пыльца",
           "section": "Пыльца деревьев",
           "page": 2
@@ -469,7 +647,7 @@
           "allergen": "Amb a",
           "type": "Е",
           "protein": "",
-          "value": "≤ 0.10",
+          "value": "0.80",
           "category": "Пыльца",
           "section": "Пыльца сорняков",
           "page": 2
@@ -480,7 +658,7 @@
           "allergen": "Amb a 1",
           "type": "М",
           "protein": "Pectate Lyase",
-          "value": "≤ 0.10",
+          "value": "6.27",
           "category": "Пыльца",
           "section": "Пыльца сорняков",
           "page": 2
@@ -496,7 +674,7 @@
           "allergen": "Amb a 4",
           "type": "М",
           "protein": "Plant Defensin",
-          "value": "≤ 0.10",
+          "value": "16.82",
           "category": "Пыльца",
           "section": "Пыльца сорняков",
           "page": 3
@@ -507,7 +685,7 @@
           "allergen": "Art v",
           "type": "Е",
           "protein": "",
-          "value": "≤ 0.10",
+          "value": "7.47",
           "category": "Пыльца",
           "section": "Пыльца сорняков",
           "page": 3
@@ -518,7 +696,7 @@
           "allergen": "Art v 1",
           "type": "М",
           "protein": "Plant Defensin",
-          "value": "≤ 0.10",
+          "value": "10.42",
           "category": "Пыльца",
           "section": "Пыльца сорняков",
           "page": 3
@@ -529,7 +707,7 @@
           "allergen": "Art v 3",
           "type": "М",
           "protein": "nsLTP",
-          "value": "≤ 0.10",
+          "value": "38.33",
           "category": "Пыльца",
           "section": "Пыльца сорняков",
           "page": 3
@@ -606,7 +784,7 @@
           "allergen": "Par j 2",
           "type": "М",
           "protein": "nsLTP",
-          "value": "≤ 0.10",
+          "value": "0.91",
           "category": "Пыльца",
           "section": "Пыльца сорняков",
           "page": 3
@@ -693,7 +871,7 @@
           "allergen": "Der f 2",
           "type": "М",
           "protein": "NPC2 Family",
-          "value": "≤ 0.10",
+          "value": "9.31",
           "category": "Клещ",
           "section": "Европейский клещ домашней пыли",
           "page": 3
@@ -715,7 +893,7 @@
           "allergen": "Der p 2",
           "type": "М",
           "protein": "NPC2 Family",
-          "value": "≤ 0.10",
+          "value": "15.03",
           "category": "Клещ",
           "section": "Европейский клещ домашней пыли",
           "page": 3
@@ -748,7 +926,7 @@
           "allergen": "Der p 10",
           "type": "М",
           "protein": "Tropomyosin",
-          "value": "0.10",
+          "value": "≤ 0.10",
           "category": "Клещ",
           "section": "Европейский клещ домашней пыли",
           "page": 3
@@ -852,7 +1030,7 @@
           "allergen": "Gly d 2",
           "type": "М",
           "protein": "NPC2 Family",
-          "value": "≤ 0.10",
+          "value": "0.12",
           "category": "Клещ",
           "section": "Амбарный клещ",
           "page": 3
@@ -1157,7 +1335,7 @@
           "allergen": "Gly m 4",
           "type": "М",
           "protein": "PR-10",
-          "value": "≤ 0.10",
+          "value": "0.76",
           "category": "Продукты растительного происхождения",
           "section": "Бобовые культуры",
           "page": 4
@@ -1382,7 +1560,7 @@
           "allergen": "Zea m",
           "type": "Е",
           "protein": "",
-          "value": "≤ 0.10",
+          "value": "0.93",
           "category": "Продукты растительного происхождения",
           "section": "Злаки",
           "page": 4
@@ -1393,7 +1571,7 @@
           "allergen": "Zea m 14",
           "type": "М",
           "protein": "nsLTP",
-          "value": "≤ 0.10",
+          "value": "3.09",
           "category": "Продукты растительного происхождения",
           "section": "Злаки",
           "page": 4
@@ -1529,7 +1707,7 @@
           "allergen": "Act d 10",
           "type": "М",
           "protein": "nsLTP",
-          "value": "≤ 0.10",
+          "value": "0.57",
           "category": "Продукты растительного происхождения",
           "section": "Fruits",
           "page": 5
@@ -1595,7 +1773,7 @@
           "allergen": "Mal d 1",
           "type": "М",
           "protein": "PR-10",
-          "value": "≤ 0.10",
+          "value": "0.11",
           "category": "Продукты растительного происхождения",
           "section": "Fruits",
           "page": 5
@@ -1754,7 +1932,7 @@
           "allergen": "Api g 2",
           "type": "М",
           "protein": "nsLTP",
-          "value": "≤ 0.10",
+          "value": "0.31",
           "category": "Продукты растительного происхождения",
           "section": "Овощи",
           "page": 5
@@ -1902,7 +2080,7 @@
           "allergen": "Cor a 1.0401",
           "type": "М",
           "protein": "PR-10",
-          "value": "≤ 0.10",
+          "value": "5.86",
           "category": "Продукты растительного происхождения",
           "section": "Орехи",
           "page": 5
@@ -1913,7 +2091,7 @@
           "allergen": "Cor a 8",
           "type": "М",
           "protein": "nsLTP",
-          "value": "≤ 0.10",
+          "value": "0.10",
           "category": "Продукты растительного происхождения",
           "section": "Орехи",
           "page": 5
@@ -2301,7 +2479,7 @@
           "allergen": "Gal d 2",
           "type": "М",
           "protein": "Ovalbumin",
-          "value": "0.23",
+          "value": "≤ 0.10",
           "category": "Продукты животного происхождения",
           "section": "Яйцо",
           "page": 6
@@ -3071,7 +3249,7 @@
           "allergen": "Can f_male urine",
           "type": "Е",
           "protein": "",
-          "value": "≤ 0.10",
+          "value": "39.72",
           "category": "Аллергены животных",
           "section": "Домашние животные",
           "page": 8
@@ -3093,7 +3271,7 @@
           "allergen": "Can f 2",
           "type": "М",
           "protein": "Lipocalin",
-          "value": "0.22",
+          "value": "≤ 0.10",
           "category": "Аллергены животных",
           "section": "Домашние животные",
           "page": 8
@@ -3115,7 +3293,7 @@
           "allergen": "Can f 4",
           "type": "М",
           "protein": "Lipocalin",
-          "value": "≤ 0.10",
+          "value": "0.60",
           "category": "Аллергены животных",
           "section": "Домашние животные",
           "page": 8
@@ -3148,7 +3326,7 @@
           "allergen": "Fel d 1",
           "type": "М",
           "protein": "Uteroglobin",
-          "value": "≤ 0.10",
+          "value": "1.37",
           "category": "Аллергены животных",
           "section": "Домашние животные",
           "page": 8
@@ -3170,7 +3348,7 @@
           "allergen": "Fel d 4",
           "type": "М",
           "protein": "Lipocalin",
-          "value": "≤ 0.10",
+          "value": "0.57",
           "category": "Аллергены животных",
           "section": "Домашние животные",
           "page": 8
@@ -3225,7 +3403,7 @@
           "allergen": "Ory c 3",
           "type": "М",
           "protein": "Uteroglobin",
-          "value": "≤ 0.10",
+          "value": "2.05",
           "category": "Аллергены животных",
           "section": "Домашние животные",
           "page": 8
@@ -3285,7 +3463,7 @@
           "allergen": "Equ c 1",
           "type": "М",
           "protein": "Lipocalin",
-          "value": "≤ 0.10",
+          "value": "1.67",
           "category": "Аллергены животных",
           "section": "Домашний скот",
           "page": 8
@@ -3495,7 +3673,7 @@
       "allergen": "Lol p 1",
       "type": "М",
       "protein": "Beta-Expansin",
-      "value": "≤ 0.10",
+      "value": "4.78",
       "category": "Пыльца",
       "section": "Пыльца травы",
       "page": 2
@@ -3517,7 +3695,7 @@
       "allergen": "Phl p 1",
       "type": "М",
       "protein": "Beta-Expansin",
-      "value": "0.11",
+      "value": "1.83",
       "category": "Пыльца",
       "section": "Пыльца травы",
       "page": 2
@@ -3627,7 +3805,7 @@
       "allergen": "Aln g 1",
       "type": "М",
       "protein": "PR-10",
-      "value": "≤ 0.10",
+      "value": "7.32",
       "category": "Пыльца",
       "section": "Пыльца деревьев",
       "page": 2
@@ -3649,7 +3827,7 @@
       "allergen": "Bet v 1",
       "type": "М",
       "protein": "PR-10",
-      "value": "≤ 0.10",
+      "value": "4.84",
       "category": "Пыльца",
       "section": "Пыльца деревьев",
       "page": 2
@@ -3693,7 +3871,7 @@
       "allergen": "Cor a_pollen",
       "type": "Е",
       "protein": "",
-      "value": "≤ 0.10",
+      "value": "0.27",
       "category": "Пыльца",
       "section": "Пыльца деревьев",
       "page": 2
@@ -3704,7 +3882,7 @@
       "allergen": "Cor a 1.0103",
       "type": "М",
       "protein": "PR-10",
-      "value": "≤ 0.10",
+      "value": "3.47",
       "category": "Пыльца",
       "section": "Пыльца деревьев",
       "page": 2
@@ -3715,7 +3893,7 @@
       "allergen": "Cry j 1",
       "type": "М",
       "protein": "Pectate Lyase",
-      "value": "≤ 0.10",
+      "value": "1.09",
       "category": "Пыльца",
       "section": "Пыльца деревьев",
       "page": 2
@@ -3748,7 +3926,7 @@
       "allergen": "Fag s 1",
       "type": "М",
       "protein": "PR-10",
-      "value": "≤ 0.10",
+      "value": "0.75",
       "category": "Пыльца",
       "section": "Пыльца деревьев",
       "page": 2
@@ -3913,7 +4091,7 @@
       "allergen": "Amb a",
       "type": "Е",
       "protein": "",
-      "value": "≤ 0.10",
+      "value": "0.80",
       "category": "Пыльца",
       "section": "Пыльца сорняков",
       "page": 2
@@ -3924,7 +4102,7 @@
       "allergen": "Amb a 1",
       "type": "М",
       "protein": "Pectate Lyase",
-      "value": "≤ 0.10",
+      "value": "6.27",
       "category": "Пыльца",
       "section": "Пыльца сорняков",
       "page": 2
@@ -3935,7 +4113,7 @@
       "allergen": "Amb a 4",
       "type": "М",
       "protein": "Plant Defensin",
-      "value": "≤ 0.10",
+      "value": "16.82",
       "category": "Пыльца",
       "section": "Пыльца сорняков",
       "page": 3
@@ -3946,7 +4124,7 @@
       "allergen": "Art v",
       "type": "Е",
       "protein": "",
-      "value": "≤ 0.10",
+      "value": "7.47",
       "category": "Пыльца",
       "section": "Пыльца сорняков",
       "page": 3
@@ -3957,7 +4135,7 @@
       "allergen": "Art v 1",
       "type": "М",
       "protein": "Plant Defensin",
-      "value": "≤ 0.10",
+      "value": "10.42",
       "category": "Пыльца",
       "section": "Пыльца сорняков",
       "page": 3
@@ -3968,7 +4146,7 @@
       "allergen": "Art v 3",
       "type": "М",
       "protein": "nsLTP",
-      "value": "≤ 0.10",
+      "value": "38.33",
       "category": "Пыльца",
       "section": "Пыльца сорняков",
       "page": 3
@@ -4045,7 +4223,7 @@
       "allergen": "Par j 2",
       "type": "М",
       "protein": "nsLTP",
-      "value": "≤ 0.10",
+      "value": "0.91",
       "category": "Пыльца",
       "section": "Пыльца сорняков",
       "page": 3
@@ -4122,7 +4300,7 @@
       "allergen": "Der f 2",
       "type": "М",
       "protein": "NPC2 Family",
-      "value": "≤ 0.10",
+      "value": "9.31",
       "category": "Клещ",
       "section": "Европейский клещ домашней пыли",
       "page": 3
@@ -4144,7 +4322,7 @@
       "allergen": "Der p 2",
       "type": "М",
       "protein": "NPC2 Family",
-      "value": "≤ 0.10",
+      "value": "15.03",
       "category": "Клещ",
       "section": "Европейский клещ домашней пыли",
       "page": 3
@@ -4177,7 +4355,7 @@
       "allergen": "Der p 10",
       "type": "М",
       "protein": "Tropomyosin",
-      "value": "0.10",
+      "value": "≤ 0.10",
       "category": "Клещ",
       "section": "Европейский клещ домашней пыли",
       "page": 3
@@ -4276,7 +4454,7 @@
       "allergen": "Gly d 2",
       "type": "М",
       "protein": "NPC2 Family",
-      "value": "≤ 0.10",
+      "value": "0.12",
       "category": "Клещ",
       "section": "Амбарный клещ",
       "page": 3
@@ -4551,7 +4729,7 @@
       "allergen": "Gly m 4",
       "type": "М",
       "protein": "PR-10",
-      "value": "≤ 0.10",
+      "value": "0.76",
       "category": "Продукты растительного происхождения",
       "section": "Бобовые культуры",
       "page": 4
@@ -4771,7 +4949,7 @@
       "allergen": "Zea m",
       "type": "Е",
       "protein": "",
-      "value": "≤ 0.10",
+      "value": "0.93",
       "category": "Продукты растительного происхождения",
       "section": "Злаки",
       "page": 4
@@ -4782,7 +4960,7 @@
       "allergen": "Zea m 14",
       "type": "М",
       "protein": "nsLTP",
-      "value": "≤ 0.10",
+      "value": "3.09",
       "category": "Продукты растительного происхождения",
       "section": "Злаки",
       "page": 4
@@ -4903,7 +5081,7 @@
       "allergen": "Act d 10",
       "type": "М",
       "protein": "nsLTP",
-      "value": "≤ 0.10",
+      "value": "0.57",
       "category": "Продукты растительного происхождения",
       "section": "Fruits",
       "page": 5
@@ -4969,7 +5147,7 @@
       "allergen": "Mal d 1",
       "type": "М",
       "protein": "PR-10",
-      "value": "≤ 0.10",
+      "value": "0.11",
       "category": "Продукты растительного происхождения",
       "section": "Fruits",
       "page": 5
@@ -5123,7 +5301,7 @@
       "allergen": "Api g 2",
       "type": "М",
       "protein": "nsLTP",
-      "value": "≤ 0.10",
+      "value": "0.31",
       "category": "Продукты растительного происхождения",
       "section": "Овощи",
       "page": 5
@@ -5266,7 +5444,7 @@
       "allergen": "Cor a 1.0401",
       "type": "М",
       "protein": "PR-10",
-      "value": "≤ 0.10",
+      "value": "5.86",
       "category": "Продукты растительного происхождения",
       "section": "Орехи",
       "page": 5
@@ -5277,7 +5455,7 @@
       "allergen": "Cor a 8",
       "type": "М",
       "protein": "nsLTP",
-      "value": "≤ 0.10",
+      "value": "0.10",
       "category": "Продукты растительного происхождения",
       "section": "Орехи",
       "page": 5
@@ -5640,7 +5818,7 @@
       "allergen": "Gal d 2",
       "type": "М",
       "protein": "Ovalbumin",
-      "value": "0.23",
+      "value": "≤ 0.10",
       "category": "Продукты животного происхождения",
       "section": "Яйцо",
       "page": 6
@@ -6355,7 +6533,7 @@
       "allergen": "Can f_male urine",
       "type": "Е",
       "protein": "",
-      "value": "≤ 0.10",
+      "value": "39.72",
       "category": "Аллергены животных",
       "section": "Домашние животные",
       "page": 8
@@ -6377,7 +6555,7 @@
       "allergen": "Can f 2",
       "type": "М",
       "protein": "Lipocalin",
-      "value": "0.22",
+      "value": "≤ 0.10",
       "category": "Аллергены животных",
       "section": "Домашние животные",
       "page": 8
@@ -6399,7 +6577,7 @@
       "allergen": "Can f 4",
       "type": "М",
       "protein": "Lipocalin",
-      "value": "≤ 0.10",
+      "value": "0.60",
       "category": "Аллергены животных",
       "section": "Домашние животные",
       "page": 8
@@ -6432,7 +6610,7 @@
       "allergen": "Fel d 1",
       "type": "М",
       "protein": "Uteroglobin",
-      "value": "≤ 0.10",
+      "value": "1.37",
       "category": "Аллергены животных",
       "section": "Домашние животные",
       "page": 8
@@ -6454,7 +6632,7 @@
       "allergen": "Fel d 4",
       "type": "М",
       "protein": "Lipocalin",
-      "value": "≤ 0.10",
+      "value": "0.57",
       "category": "Аллергены животных",
       "section": "Домашние животные",
       "page": 8
@@ -6509,7 +6687,7 @@
       "allergen": "Ory c 3",
       "type": "М",
       "protein": "Uteroglobin",
-      "value": "≤ 0.10",
+      "value": "2.05",
       "category": "Аллергены животных",
       "section": "Домашние животные",
       "page": 8
@@ -6564,7 +6742,7 @@
       "allergen": "Equ c 1",
       "type": "М",
       "protein": "Lipocalin",
-      "value": "≤ 0.10",
+      "value": "1.67",
       "category": "Аллергены животных",
       "section": "Домашний скот",
       "page": 8

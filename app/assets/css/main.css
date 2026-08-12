@@ -3999,9 +3999,13 @@ body {
 }
 
 .slide-layer.active[data-slide-id="slide-16"][data-content-ready="true"] .exact-faq-list {
-  animation: cinematic-fade-in-up 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.18s;
+  animation: cinematic-fade-in-up 0.16s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0s;
   pointer-events: auto;
+}
+
+.slide-layer[data-slide-id="slide-16"] > .figma-exact-info-slide {
+  transition-duration: 0.16s;
 }
 
 /* FAQ now follows the results directly and is the 12th slide. Keep all of the
@@ -4943,6 +4947,12 @@ body {
 /* Doctor results: compact dark haze anchored in the lower-left corner. */
 .home-page-container.doctor-mode .figma-step-block.results-pos {
   text-shadow: 0 0 1px #fff, 0 0 45px #00000045;
+}
+
+.slide-layer[data-slide-id="slide-11"].content-exiting .figma-step-indicator,
+.slide-layer[data-slide-id="slide-11"].content-exiting .figma-slide-title-inline,
+.slide-layer[data-slide-id="slide-11"].content-exiting .figma-slide-desc-inline {
+  animation-duration: 0.35s !important;
 }
 
 @media (min-width: 1025px) {

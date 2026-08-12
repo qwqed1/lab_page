@@ -453,7 +453,9 @@ const isVideoBackgroundVisible = computed(() => {
 const CONTENT_EXIT_DURATION = 650
 const VIDEO_CONTENT_REVEAL_TIME = 1.3
 const RESULTS_CONTENT_REVEAL_TIME = 0.9
-const RESULTS_TO_FAQ_PLAYBACK_RATE = 2
+const RESULTS_TO_FAQ_PLAYBACK_RATE = 5
+const RESULTS_TO_FAQ_CONTENT_REVEAL_PROGRESS = 0.5
+const RESULTS_TO_FAQ_CONTENT_EXIT_DURATION = 350
 const EARLY_REVERSE_PLAYBACK_RATE = 1.5
 const DOCTOR_SLIDE_3_REVERSE_PLAYBACK_RATE = 2
 const VIDEO_LAYER_CROSSFADE_DURATION = 160
@@ -472,12 +474,12 @@ const revealSlideContent = (index) => {
   contentReadySlideIndex.value = index
 }
 
-const animateOutgoingContent = (index) => {
+const animateOutgoingContent = (index, duration = CONTENT_EXIT_DURATION) => {
   window.clearTimeout(contentExitTimer)
   exitingContentSlideIndex.value = index
   contentExitTimer = window.setTimeout(() => {
     if (exitingContentSlideIndex.value === index) exitingContentSlideIndex.value = -1
-  }, CONTENT_EXIT_DURATION)
+  }, duration)
 }
 
 const goNext = () => {
@@ -1016,6 +1018,10 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   const oldSlide = slides.value[oldIndex]
   const slideVideoSrc = getSlideVideo(slide)
   const oldSlideReverseSrc = getSlideReverseVideo(oldSlide)
+  const isResultsToFaq = oldSlide?.id === 'slide-11' && slide?.id === 'slide-16'
+  const outgoingContentExitDuration = isResultsToFaq
+    ? RESULTS_TO_FAQ_CONTENT_EXIT_DURATION
+    : CONTENT_EXIT_DURATION
   const goingBack = newIndex < oldIndex
   const isDirectJump = navigationMode.value === 'direct' && Math.abs(newIndex - oldIndex) > 1
   const destinationHasVideo = hasSlideVideo(slide)
@@ -1036,7 +1042,7 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
     && currentSlideIndex.value === newIndex
   )
   const waitForOutgoingContent = async () => {
-    const remaining = CONTENT_EXIT_DURATION - (performance.now() - transitionStartedAt)
+    const remaining = outgoingContentExitDuration - (performance.now() - transitionStartedAt)
     if (remaining > 0) {
       await new Promise(resolve => window.setTimeout(resolve, remaining))
     }
@@ -1057,13 +1063,10 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   const revealDuringPlayback = (video, requestId) => {
     if (!isCurrentTransition()) return
 
-    // FAQ must appear only after its transition has reached and held the
-    // particle end frame. At higher playback rates an early reveal would put
-    // the questions over the intermediate document frames instead.
-    if (slide?.id === 'slide-16') return
-
     revealContentAtVideoProgress(video, newIndex, requestId, revealCurrentSlide, {
-      targetTime: newIndex >= 8 && newIndex <= 10
+      targetTime: slide?.id === 'slide-16'
+        ? video.duration * RESULTS_TO_FAQ_CONTENT_REVEAL_PROGRESS
+        : newIndex >= 8 && newIndex <= 10
         ? RESULTS_CONTENT_REVEAL_TIME
         : VIDEO_CONTENT_REVEAL_TIME
     })
@@ -1073,7 +1076,7 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
     : 1
 
   cancelEarlyContentReveal()
-  animateOutgoingContent(oldIndex)
+  animateOutgoingContent(oldIndex, outgoingContentExitDuration)
   contentReadySlideIndex.value = -1
 
   // A direct jump across several slides cannot use one adjacent reverse clip:
@@ -1178,7 +1181,6 @@ watch(currentSlideIndex, (newIndex, oldIndex) => {
   }
 
   if (slideVideoSrc) {
-    const isResultsToFaq = oldSlide?.id === 'slide-11' && slide?.id === 'slide-16'
     if (isResultsToFaq) isFaqForwardTransitionActive.value = true
 
     playVideoShot(slideVideoSrc, {

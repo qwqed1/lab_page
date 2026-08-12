@@ -244,7 +244,8 @@ const redirectToCart = () => {
 .quiz-page-content {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
   position: relative;
   overflow: hidden;
   background-color: var(--bg-page);
@@ -290,6 +291,7 @@ const redirectToCart = () => {
 /* Centered cards container */
 .card-container {
   flex: 1;
+  min-height: 0;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -615,7 +617,7 @@ const redirectToCart = () => {
   }
 
   .card-container.question-layout {
-    padding-top: 55.5px;
+    padding: 55.5px 16px calc(96px + env(safe-area-inset-bottom, 0px));
     overflow-x: hidden;
     overflow-y: auto;
     overscroll-behavior-y: contain;
@@ -624,6 +626,11 @@ const redirectToCart = () => {
 
   .quiz-card-wrapper {
     width: 100%;
+  }
+
+  .card-container.question-layout .quiz-card-wrapper {
+    min-height: calc(100% + 96px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
   }
 
   .main-card {
@@ -770,7 +777,7 @@ const redirectToCart = () => {
   }
 
   .card-container.question-layout {
-    padding: 4px 12px 8px;
+    padding: 4px 12px calc(96px + env(safe-area-inset-bottom, 0px));
   }
 
   .quiz-state .options-header {
