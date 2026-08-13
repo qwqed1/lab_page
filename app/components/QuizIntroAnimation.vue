@@ -1,5 +1,5 @@
 <template>
-  <div class="quiz-intro-animation" :class="`quiz-intro-animation--${variant}`" aria-hidden="true">
+  <div ref="animationContainer" class="quiz-intro-animation" :class="`quiz-intro-animation--${variant}`" aria-hidden="true">
     <template v-if="variant === 'pollen'">
       <i
         v-for="particle in pollenParticles"
@@ -23,49 +23,89 @@
     </template>
 
     <template v-else-if="variant === 'photo'">
-      <img class="photo-gif" src="/assets/quiz-animation-card-c.gif" alt="" />
+      <div class="photo-image" />
+      <i
+        v-for="particle in photoDust"
+        :key="particle.id"
+        class="photo-dust-particle"
+        :style="particle.style"
+      />
     </template>
 
     <svg v-else class="topographic-lines" viewBox="0 0 677 352" preserveAspectRatio="none" aria-hidden="true">
-      <path
-        v-for="line in topographicLines"
-        :key="line.id"
-        :d="line.path"
-        :stroke="line.color"
-        :stroke-width="line.width"
-        :style="{ animationDelay: line.delay }"
-      />
+      <g v-for="group in topographicLineGroups" :key="group.id" :style="{ animationDelay: group.delay }">
+        <path
+          v-for="line in group.lines"
+          :key="line.id"
+          :d="line.path"
+          :stroke="line.color"
+          :stroke-width="line.width"
+        />
+      </g>
     </svg>
   </div>
 </template>
 
 <script setup lang="ts">
-type AnimationVariant = 'pollen' | 'dots' | 'photo' | 'topo'
+import { onMounted, ref } from 'vue'
 
-defineProps<{ variant: AnimationVariant }>()
+type AnimationVariant = 'pollen' | 'dots' | 'photo' | 'topo'
+type PollenParticle = { id: number; dark: boolean; style: Record<string, string> }
+type PhotoDustParticle = { id: number; style: Record<string, string> }
+
+const props = defineProps<{ variant: AnimationVariant }>()
+const animationContainer = ref<HTMLElement | null>(null)
 
 const W = 677
 const H = 352
 
-const pollenParticles = Array.from({ length: 64 }, (_, id) => {
+const createPollenParticles = (width: number, height: number): PollenParticle[] => Array.from({ length: 64 }, (_, id) => {
   const size = 5 + Math.abs(Math.sin(id * 12.9898)) * 22
   const duration = 9 + (id % 7) * 1.6
   const phase = Math.abs(Math.sin(id * 17.13)) * duration
+  const dark = id % 7 === 0
 
   return {
     id,
-    dark: id % 7 === 0,
+    dark,
     style: {
-      width: `${(size / W) * 100}%`,
-      height: `${(size / W) * 100}%`,
-      left: `${(Math.abs(Math.sin(id * 78.233)) * (W - 10) - size / 2) / W * 100}%`,
-      top: `${(Math.abs(Math.cos(id * 43.512)) * (H - 10) - size / 2) / H * 100}%`,
+      width: `${size}px`,
+      height: `${size}px`,
+      left: `${Math.abs(Math.sin(id * 78.233)) * (width - 10) - size / 2}px`,
+      top: `${Math.abs(Math.cos(id * 43.512)) * (height - 10) - size / 2}px`,
       filter: `blur(${id % 3 === 0 ? 8 : 0}px)`,
-      '--particle-opacity': id % 7 === 0 ? '0.6' : String(0.55 + Math.abs(Math.sin(id)) * 0.4),
+      '--particle-opacity': dark ? '0.6' : String(0.55 + Math.abs(Math.sin(id)) * 0.4),
       animationDuration: `${duration}s`,
       animationDelay: `-${phase.toFixed(2)}s`
     }
   }
+})
+
+const pollenParticles = ref<PollenParticle[]>([])
+
+const photoDust: PhotoDustParticle[] = Array.from({ length: 30 }, (_, id) => {
+  const near = id % 3 === 0
+  const size = near ? 7 + Math.abs(Math.sin(id * 9.7)) * 11 : 2 + Math.abs(Math.sin(id * 5.3)) * 3
+  const duration = (near ? 9 : 15) + (id % 5) * 1.7
+
+  return {
+    id,
+    style: {
+      width: `${size}px`,
+      height: `${size}px`,
+      left: `${Math.abs(Math.sin(id * 61.7)) * 660 / W * 100}%`,
+      top: `${(60 + Math.abs(Math.cos(id * 27.3)) * 260) / H * 100}%`,
+      filter: `blur(${near ? 4 : 0.6}px)`,
+      '--particle-opacity': near ? '0.5' : '0.85',
+      animationDuration: `${duration}s`,
+      animationDelay: `-${(Math.abs(Math.sin(id * 13.9)) * duration).toFixed(2)}s`
+    }
+  }
+})
+
+onMounted(() => {
+  if (props.variant !== 'pollen' || !animationContainer.value) return
+  pollenParticles.value = createPollenParticles(animationContainer.value.clientWidth, animationContainer.value.clientHeight)
 })
 
 const allergenDots = Array.from({ length: 300 }, (_, id) => {
@@ -98,6 +138,12 @@ const topographicLines = Array.from({ length: 18 }, (_, id) => {
     delay: `-${(9 - id * 0.34).toFixed(2)}s`
   }
 })
+
+const topographicLineGroups = Array.from({ length: 6 }, (_, id) => ({
+  id,
+  delay: `-${(9 - id * 3 * 0.34).toFixed(2)}s`,
+  lines: topographicLines.slice(id * 3, id * 3 + 3)
+}))
 </script>
 
 <style scoped>
@@ -116,6 +162,7 @@ const topographicLines = Array.from({ length: 18 }, (_, id) => {
 
 .pollen-particle {
   position: absolute;
+  aspect-ratio: 1;
   border-radius: 50%;
   background: #fff;
   animation-timing-function: linear;
@@ -182,13 +229,24 @@ const topographicLines = Array.from({ length: 18 }, (_, id) => {
   background: #dce3d4;
 }
 
-.photo-gif {
+.photo-image {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 62% 38%;
+  background: url('/assets/quiz-animation-photo.webp') 62% 38% / 112% auto no-repeat;
+}
+
+.photo-dust-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: photo-dust-drift linear infinite;
+}
+
+@keyframes photo-dust-drift {
+  0% { margin-top: 60px; margin-left: 0; opacity: 0; }
+  20% { opacity: var(--particle-opacity); }
+  80% { opacity: var(--particle-opacity); }
+  100% { margin-top: -150px; margin-left: 40px; opacity: 0; }
 }
 
 .quiz-intro-animation--topo {
@@ -202,10 +260,13 @@ const topographicLines = Array.from({ length: 18 }, (_, id) => {
   height: 100%;
 }
 
-.topographic-lines path {
-  fill: none;
+.topographic-lines g {
   stroke-opacity: .32;
   animation: topo-scan 9s linear infinite;
+}
+
+.topographic-lines path {
+  fill: none;
 }
 
 @keyframes topo-scan {
@@ -230,7 +291,8 @@ const topographicLines = Array.from({ length: 18 }, (_, id) => {
 @media (prefers-reduced-motion: reduce) {
   .pollen-particle,
   .allergen-grid .allergen-dot--live,
-  .topographic-lines path {
+  .photo-dust-particle,
+  .topographic-lines g {
     animation: none !important;
   }
 }

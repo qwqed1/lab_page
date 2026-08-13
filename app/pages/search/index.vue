@@ -177,11 +177,12 @@ const redirectToCart = () => openTestLocationModal()
             </div>
 
             <!-- Разделитель (Vector 18 в Figma) -->
-            <div class="search-divider"></div>
           </div>
         </section>
 
         <!-- Контент под строкой поиска: Результаты или Детали -->
+        <div class="search-divider"></div>
+
         <div class="search-bottom-content">
           <!-- Режим детального просмотра выбранного аллергена -->
           <div v-if="selectedAllergen" class="search-details-grid">
