@@ -229,9 +229,8 @@ const redirectToProfile = () => {
   router.push('/personal-account')
 }
 
-const redirectToCart = () => {
-  navigateTo('/cart')
-}
+const { open: openTestLocationModal } = useTestLocationModal()
+const redirectToCart = () => openTestLocationModal()
 </script>
 
 <style scoped>

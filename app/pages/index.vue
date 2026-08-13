@@ -108,7 +108,8 @@ const navigateToExternal = (url) => {
   window.location.assign(url)
 }
 
-const openCart = () => navigateTo('/cart')
+const { open: openTestLocationModal } = useTestLocationModal()
+const openCart = () => openTestLocationModal()
 
 const handleBlogClick = (event) => {
   if (!isDoctorMode.value) return

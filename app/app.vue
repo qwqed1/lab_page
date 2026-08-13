@@ -11,4 +11,5 @@ const showCookieNotice = computed(() => (
 <template>
   <NuxtPage />
   <CookieNotice v-if="showCookieNotice" />
+  <TestLocationModal />
 </template>

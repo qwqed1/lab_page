@@ -126,9 +126,8 @@ watch(searchQuery, (newVal) => {
   }
 })
 
-const redirectToCart = () => {
-  navigateTo('/cart')
-}
+const { open: openTestLocationModal } = useTestLocationModal()
+const redirectToCart = () => openTestLocationModal()
 </script>
 
 <template>

@@ -10,6 +10,7 @@ useSeoMeta({
 const searchQuery = ref('')
 const activeCategory = ref('all')
 const categoryFilters = ref(null)
+const { open: openTestLocationModal } = useTestLocationModal()
 
 const patient = Object.freeze({
   name: 'Елагин М.С.',
@@ -130,7 +131,7 @@ const downloadPDF = () => {
 <template>
   <div class="page-container site-sidebar-layout">
     <SiteSidebar
-      @register="$router.push('/cart')"
+      @register="openTestLocationModal"
       @about="$router.push('/')"
     />
 

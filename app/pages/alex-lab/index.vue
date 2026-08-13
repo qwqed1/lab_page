@@ -7,6 +7,7 @@ useSeoMeta({
 })
 
 const router = useRouter()
+const { open: openTestLocationModal } = useTestLocationModal()
 const activeTab = ref('about')
 const licenseQuery = ref('')
 const tabButtons = ref([])
@@ -198,7 +199,7 @@ const downloadLicense = (item) => {
   <div class="alexlab-page site-sidebar-layout">
     <SiteSidebar
       class="alexlab-sidebar"
-      @register="router.push('/cart')"
+      @register="openTestLocationModal"
       @home="router.push('/')"
       @close="router.push('/')"
     />
