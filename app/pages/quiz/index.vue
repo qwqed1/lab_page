@@ -23,6 +23,7 @@
           <!-- STATE: INTRO -->
           <div v-if="step === 'intro'" class="quiz-card-wrapper intro-state">
             <div class="glass-card main-card">
+              <QuizIntroAnimation v-if="introAnimation" :variant="introAnimation" />
               <div class="main-card-inner">
                 <h1 class="card-title">Нужно ли мне сдать<br>тест на аллергию?</h1>
                 <p class="card-subtitle">
@@ -106,14 +107,26 @@
 </template>
 
 <script setup>
-import { ref, computed, nextTick } from 'vue'
+import { ref, computed, nextTick, onMounted } from 'vue'
 import { useRouter } from '#app'
+import QuizIntroAnimation from '~/components/QuizIntroAnimation.vue'
 
 const router = useRouter()
 
 const step = ref('intro')
 const currentQuestionIndex = ref(0)
 const cardContainer = ref(null)
+const introAnimation = ref(null)
+const introAnimationVariants = ['pollen', 'dots', 'photo', 'topo']
+
+onMounted(() => {
+  const storageKey = 'alex-quiz-intro-animation-index'
+  const savedIndex = Number.parseInt(sessionStorage.getItem(storageKey) ?? '0', 10)
+  const animationIndex = Number.isFinite(savedIndex) ? Math.abs(savedIndex) % introAnimationVariants.length : 0
+
+  introAnimation.value = introAnimationVariants[animationIndex]
+  sessionStorage.setItem(storageKey, String((animationIndex + 1) % introAnimationVariants.length))
+})
 
 const questions = [
   {
@@ -328,6 +341,8 @@ const redirectToCart = () => openTestLocationModal()
   display: flex;
   align-items: flex-end;
   padding-bottom: 24px;
+  position: relative;
+  overflow: hidden;
 }
 
 .main-card-inner {
@@ -335,6 +350,8 @@ const redirectToCart = () => openTestLocationModal()
   flex-direction: column;
   gap: 12px;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .card-title {
