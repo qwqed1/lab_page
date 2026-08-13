@@ -152,29 +152,34 @@ const redirectToCart = () => openTestLocationModal()
           'search-center--detail': selectedAllergen
         }"
       >
-        <h1 class="search-heading">Поиск аллергенов,<br>которые покажет ALEX2</h1>
-        <p class="search-subheading">Более 300 аллергенов в одном тесте —<br>убедитесь сами</p>
+        <section class="search-hero">
+          <SearchParticleBackground />
+          <div class="search-hero-content">
+            <h1 class="search-heading">Поиск аллергенов,<br>которые покажет ALEX2</h1>
+            <p class="search-subheading">Более 300 аллергенов в одном тесте —<br>убедитесь сами</p>
 
-        <!-- Поисковая строка -->
-        <div class="search-input-wrapper">
-          <input
-            id="allergen-search-input"
-            v-model="searchQuery"
-            type="text"
-            class="search-input"
-            placeholder="Введите продукт"
-            autocomplete="off"
-          />
-          <button class="search-icon-btn" aria-label="Поиск">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="11" cy="11" r="7" stroke="#000" stroke-width="1.8"/>
-              <path d="M16.5 16.5L21 21" stroke="#000" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </button>
-        </div>
+            <!-- Поисковая строка -->
+            <div class="search-input-wrapper">
+              <input
+                id="allergen-search-input"
+                v-model="searchQuery"
+                type="text"
+                class="search-input"
+                placeholder="Введите продукт"
+                autocomplete="off"
+              />
+              <button class="search-icon-btn" aria-label="Поиск">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="11" cy="11" r="7" stroke="#000" stroke-width="1.8"/>
+                  <path d="M16.5 16.5L21 21" stroke="#000" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
 
-        <!-- Разделитель (Vector 18 в Figma) -->
-        <div class="search-divider"></div>
+            <!-- Разделитель (Vector 18 в Figma) -->
+            <div class="search-divider"></div>
+          </div>
+        </section>
 
         <!-- Контент под строкой поиска: Результаты или Детали -->
         <div class="search-bottom-content">
@@ -337,6 +342,7 @@ const redirectToCart = () => openTestLocationModal()
 
 /* Центрированный блок */
 .search-center {
+  --search-hero-top-offset: 218px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -347,7 +353,24 @@ const redirectToCart = () => openTestLocationModal()
 
 .search-center--filtered,
 .search-center--detail {
+  --search-hero-top-offset: 128px;
   padding-top: 128px;
+}
+
+.search-hero {
+  position: relative;
+  width: 100%;
+  margin-top: calc(var(--search-hero-top-offset) * -1);
+  padding-top: var(--search-hero-top-offset);
+  overflow: hidden;
+}
+
+.search-hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .search-heading {
@@ -665,11 +688,13 @@ const redirectToCart = () => openTestLocationModal()
   }
 
   .search-center {
+    --search-hero-top-offset: 102px;
     padding: 102px 16px 32px;
   }
 
   .search-center--filtered,
   .search-center--detail {
+    --search-hero-top-offset: 102px;
     padding-top: 102px;
   }
 
